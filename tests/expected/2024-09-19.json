@@ -1,0 +1,839 @@
+{
+  "B10-0023/2024": {
+    "votes": {
+      "+": {
+        "France / PfE :": [
+          "Androuët",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ],
+        "France / Renew :": [
+          "Canfin"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Glucksmann",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Ridel",
+          "Sargiacomo"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Morano"
+        ],
+        "France / Renew :": [
+          "Allione",
+          "Boyer",
+          "Farreng",
+          "Gozi",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne",
+          "Yon-Courtin"
+        ]
+      },
+      "0": {
+        "France / ECR :": [
+          "Bay",
+          "Maréchal",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / ESN :": [
+          "Knafo"
+        ]
+      }
+    },
+    "date": "2024-09-19",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION sur la situation au Venezuela",
+      "description": "PROPOSITION DE RÉSOLUTION - déposée à la suite d’une déclaration de la Commission - conformément à l’article 136, paragraphe 2, du règlement intérieur - sur la situation au Venezuela - (2024/2810(RSP)) - Dolors Montserrat, Esteban González Pons, Gabriel Mato, Sebastião Bugalho, Antonio López-Istúriz White - au nom du groupe PPE",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/B-10-2024-0023_FR.html"
+    }
+  },
+  "RC-B10-0024/2024": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay",
+          "Maréchal",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / ESN :": [
+          "Knafo"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Morano"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ],
+        "France / Renew :": [
+          "Allione",
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Ridel",
+          "Sargiacomo"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2024-09-19",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur la détérioration de la situation des femmes en Afghanistan du fait de l’adoption récente de la loi sur «la promotion de la vertu et la prévention du vice»",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 150, paragraphe 5, et à l’article 136, paragraphe 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0024/2024 (The Left) - B10-0038/2024 (Verts/ALE) - B10-0045/2024 (Renew) - B10-0047/2024 (S&D) - B10-0048/2024 (ECR) - B10-0050/2024 (PPE) - sur la détérioration de la situation des femmes en Afghanistan du fait de l’adoption récente de la loi sur «la promotion de la vertu et la prévention du vice» - (2024/2803(RSP)) - Sebastião Bugalho, Michael Gahler, Andrzej Halicki, Gabriel Mato, Marcin Kierwiński, Željana Zovko, Tomáš Zdechovský, Jörgen Warborn, Wouter Beke, Ondřej Kolář, Nicolás Pascual De La Parte, Eleonora Meleti, Ingeborg Ter Laak, Reinhold Lopatka, Mirosława Nykiel, Luděk Niedermayer, Michał Wawrykiewicz, Rosa Estaràs Ferragut, Jessica Polfjärd, Antonio López-Istúriz White, Isabel Wiseler-Lima - au nom du groupe PPE - Yannis Maniatis, Francisco Assis, Alessandra Moretti, Evin Incir - au nom du groupe S&D - Joachim Stanisław Brudziński, Carlo Fidanza, Adam Bielan, Waldemar Tomaszewski, Sebastian Tynkkynen, Assita Kanko, Małgorzata Gosiewska, Alberico Gambino - au nom du groupe ECR - Petras Auštrevičius, Oihane Agirregoitia Martínez, Abir Al-Sahlani, Dan Barna, Benoit Cassart, Olivier Chastel, Karin Karlsbro, Ľubica Karvašová, Moritz Körner, Ilhan Kyuchyuk, Nathalie Loiseau, Jan-Christoph Oetjen, Urmas Paet, Hilde Vautmans, Lucia Yar - au nom du groupe Renew - Hannah Neumann - au nom du groupe Verts/ALE - Isabel Serra Sánchez - au nom du groupe The Left",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2024-0024_FR.html"
+    }
+  },
+  "RC-B10-0023/2024": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay",
+          "Maréchal",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / ESN :": [
+          "Knafo"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Morano"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ]
+      },
+      "-": {
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2024-09-19",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur la situation au Venezuela",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 136, paragraphes 2 et 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0023/2024 (PPE) - B10-0027/2024 (PfE) - B10-0037/2024 (ECR) - sur la situation au Venezuela - (2024/2810(RSP)) - Dolors Montserrat, Esteban González Pons, Gabriel Mato, Sebastião Bugalho, Antonio López-Istúriz White, Hélder Sousa Silva - au nom du groupe PPE - Hermann Tertsch - au nom du groupe PfE - Carlo Fidanza, Joachim Stanisław Brudziński, Adam Bielan, Mariusz Kamiński, Małgorzata Gosiewska, Rihards Kols, Assita Kanko, Sebastian Tynkkynen, Alberico Gambino - au nom du groupe ECR",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2024-0023_FR.html"
+    }
+  },
+  "A10-0001/2024": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay",
+          "Maréchal",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / ESN :": [
+          "Knafo"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Morano"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ],
+        "France / Renew :": [
+          "Allione",
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Ridel",
+          "Sargiacomo"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Satouri",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ]
+      },
+      "0": {
+        "France / Verts/ALE :": [
+          "Cormand"
+        ]
+      }
+    },
+    "date": "2024-09-19",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
+    "details": {
+      "title": "RECOMMANDATION sur le projet de décision du Conseil concernant la conclusion, au nom de l’Union, de l’accord entre l’Union européenne et les États-Unis d’Amérique établissant des procédures de sécurité pour le lancement de satellites Galileo à partir du territoire des États-Unis",
+      "description": "RECOMMANDATION - sur le projet de décision du Conseil concernant la conclusion, au nom de l’Union, de l’accord entre l’Union européenne et les États-Unis d’Amérique établissant des procédures de sécurité pour le lancement de satellites Galileo à partir du territoire des États-Unis - (07058/2024 - C9-0137/2024 - 2024/0046(NLE)) - Commission de l’industrie, de la recherche et de l’énergie - Rapporteur: Borys Budka",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-10-2024-0001_FR.html"
+    }
+  },
+  "RC-B10-0022/2024": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay",
+          "Maréchal",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / ESN :": [
+          "Knafo"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Morano"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ],
+        "France / Renew :": [
+          "Allione",
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Ridel"
+        ]
+      },
+      "-": {
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      },
+      "0": {
+        "France / S&D :": [
+          "Germain",
+          "Mebarek",
+          "Sargiacomo"
+        ]
+      }
+    },
+    "date": "2024-09-19",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur le cas de José Daniel Ferrer García à Cuba",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 150, paragraphe 5, et à l’article 136, paragraphe 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0022/2024 (PPE) - B10-0043/2024 (ECR) - B10-0049/2024 (Renew) - sur le cas de José Daniel Ferrer García à Cuba - (2024/2805(RSP)) - Sebastião Bugalho, Gabriel Mato, Michael Gahler, Andrzej Halicki, Marcin Kierwiński, Željana Zovko, Tomáš Zdechovský, Jörgen Warborn, Wouter Beke, Ondřej Kolář, Nicolás Pascual De La Parte, Mirosława Nykiel, Vangelis Meimarakis, Michał Wawrykiewicz, Rosa Estaràs Ferragut, Antonio López-Istúriz White, Isabel Wiseler-Lima, Hélder Sousa Silva - au nom du groupe PPE - Carlo Fidanza, Joachim Stanisław Brudziński, Adam Bielan, Mariusz Kamiński, Sebastian Tynkkynen, Małgorzata Gosiewska, Waldemar Tomaszewski, Alexandr Vondra, Assita Kanko, Alberico Gambino - au nom du groupe ECR - Raquel García Hermida-Van Der Walle, Petras Auštrevičius, Dan Barna, Bernard Guetta, Karin Karlsbro, Ilhan Kyuchyuk, Nathalie Loiseau, Urmas Paet, Hilde Vautmans, Lucia Yar - au nom du groupe Renew",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2024-0022_FR.html"
+    }
+  },
+  "RC-B10-0057/2024": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay",
+          "Maréchal",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / ESN :": [
+          "Knafo"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ]
+      },
+      "-": {
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Morano"
+        ],
+        "France / Renew :": [
+          "Allione",
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Kalfon",
+          "Lalucq",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Ridel",
+          "Sargiacomo"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2024-09-19",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur les inondations dévastatrices en Europe centrale et orientale, les pertes de vies humaines et la préparation de l’Union pour agir face à de telles catastrophes amplifiées par le changement climatique",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 136, paragraphes 2 et 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0057/2024 (PPE) - B10-0058/2024 (The Left) - B10-0059/2024 (Renew) - B10-0060/2024 (ECR) - B10-0061/2024 (S&D) - B10-0063/2024 (Verts/ALE) - sur les inondations dévastatrices en Europe centrale et orientale, les pertes de vies humaines et la préparation de l’Union pour agir face à de telles catastrophes amplifiées par le changement climatique - (2024/2817(RSP)) - Bartosz Arłukowicz, Andrey Novakov, András Tivadar Kulja, Siegfried Mureşan, Lídia Pereira, Peter Liese, Ioan-Rareş Bogdan, Daniel Buda, Andrzej Buła, Dan-Ştefan Motreanu, Virgil-Daniel Popescu, Adina Vălean, Dolors Montserrat, Bogdan Andrzej Zdrojewski, Gheorghe Falcă, Mircea-Gheorghe Hava, Miriam Lexmann, Zoltán Tarr, Dóra Dávid, Gabriella Gerzsenyi, Andrzej Halicki, Krzysztof Hetman, Monika Hohlmeier, Adam Jarubas, Dariusz Joński, Kinga Kollár, Eszter Lakos, Magdalena Adamowicz, Krzysztof Brejza, Borys Budka, Kamila Gasiuk-Pihowicz, Marcin Kierwiński, Łukasz Kohut, Ewa Kopacz, Janusz Lewandowski, Elżbieta Katarzyna Łukacijewska, Jagna Marczułajtis-Walczak, Mirosława Nykiel, Jacek Protas, Bartłomiej Sienkiewicz, Michał Szczerba, Michał Wawrykiewicz, Marta Wcisło, Daniel Caspary, Christine Schneider, Andrea Wechsler, Ralf Seekatz - au nom du groupe PPE - Mohammed Chahim, Tiemo Wölken, Marcos Ros Sempere, Andreas Schieder, Krzysztof Śmiszek, Dan Nica, Klára Dobrev, Victor Negrescu, Maria Grapini, Mihai Tudose, Gabriela Firea, Adrian-Dragoş Benea, Claudiu Manda, Gheorghe Cârciu, Ştefan Muşoiu, Vasile Dîncu, Csaba Molnár, Joanna Scheuring-Wielgus, Robert Biedroń, Sakis Arnaoutoglou, Evelyn Regner, Hannes Heide, Elisabeth Grossmann, Günther Sidl - au nom du groupe S&D - Waldemar Buda, Roberts Zīle, Pietro Fiocchi, Ivaylo Valchev, Ondřej Krutílek, Claudiu-Richard Târziu, Veronika Vrecionová, Geadis Geadi, Georgiana Teodorescu, Gheorghe Piperea, Şerban-Dimitrie Sturdza, Adrian-George Axinia, Waldemar Tomaszewski, Alexandr Vondra, Daniel Obajtek, Małgorzata Gosiewska, Jacek Ozdoba, Patryk Jaki, Adam Bielan, Joachim Stanisław Brudziński, Michał Dworczyk, Jadwiga Wiśniewska, Kosma Złotowski, Marlena Maląg, Arkadiusz Mularczyk, Beata Szydło, Dominik Tarczyński, Mariusz Kamiński, Tobiasz Bocheński, Maciej Wąsik, Bogdan Rzońca, Anna Zalewska - au nom du groupe ECR - Michal Wiezik, Martin Hojsík, Ľudovít Ódor, Veronika Cifrová Ostrihoňová, Lucia Yar, Ľubica Karvašová, Marjan Šarec, Dan Barna, Sigrid Friis, Yvan Verougstraete, Grégory Allione, Benoit Cassart, Olivier Chastel, Hilde Vautmans, Vlad Vasile-Voiculescu, Anna Stürgkh, Ilhan Kyuchyuk, Gerben-Jan Gerbrandy, Michał Kobosko - au nom du groupe Renew - Sara Matthieu - au nom du groupe Verts/ALE - Jonas Sjöstedt, Younous Omarjee - au nom du groupe The Left",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2024-0057_FR.html"
+    }
+  },
+  "RC-B10-0028/2024": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay",
+          "Maréchal",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart"
+        ],
+        "France / Renew :": [
+          "Allione",
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Ridel",
+          "Sargiacomo"
+        ],
+        "France / The Left :": [
+          "Omarjee"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / PfE :": [
+          "Androuët",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ]
+      },
+      "0": {
+        "France / ESN :": [
+          "Knafo"
+        ],
+        "France / PPE :": [
+          "Morano"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Saeidi",
+          "Smith"
+        ]
+      }
+    },
+    "date": "2024-09-19",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur la pérennité du soutien financier et militaire apporté à l’Ukraine par les États membres de l’Union",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 136, paragraphes 2 et 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0028/2024 (Verts/ALE) - B10-0031/2024 (S&D) - B10-0033/2024 (Renew) - B10-0036/2024 (PPE) - B10-0039/2024 (ECR) - sur la pérennité du soutien financier et militaire apporté à l’Ukraine par les États membres de l’Union - (2024/2799(RSP)) - Michael Gahler, Andrzej Halicki, Sebastião Bugalho, David McAllister, Siegfried Mureşan, Željana Zovko, Andrius Kubilius, Pekka Toveri, Rasa Juknevičienė, Isabel Wiseler-Lima, Antonio López-Istúriz White, Nicolás Pascual De La Parte, Mika Aaltola, Wouter Beke, Gheorghe Falcă, Niclas Herbst, Sandra Kalniete, Marcin Kierwiński, Łukasz Kohut, Ondřej Kolář, Vangelis Meimarakis, Danuše Nerudová, Ana Miguel Pedro, Hélder Sousa Silva, Davor Ivo Stier, Michał Szczerba, Alice Teodorescu Måwe, Ingeborg Ter Laak, Riho Terras, Matej Tonin, Inese Vaidere - au nom du groupe PPE - Yannis Maniatis, Sven Mikser - au nom du groupe S&D - Aurelijus Veryga, Adam Bielan, Mariusz Kamiński, Tobiasz Bocheński, Roberts Zīle, Michał Dworczyk, Veronika Vrecionová, Jadwiga Wiśniewska, Ondřej Krutílek, Reinis Pozņaks, Rihards Kols, Sebastian Tynkkynen, Małgorzata Gosiewska, Assita Kanko - au nom du groupe ECR - Helmut Brandstätter, Petras Auštrevičius, Dan Barna, Benoit Cassart, Olivier Chastel, Bart Groothuis, Karin Karlsbro, Ľubica Karvašová, Ilhan Kyuchyuk, Nathalie Loiseau, Urmas Paet, Eugen Tomac, Hilde Vautmans, Lucia Yar, Dainius Žalimas - au nom du groupe Renew - Sergey Lagodinsky, Markéta Gregorová - au nom du groupe Verts/ALE - Hanna Gedin, Jonas Sjöstedt, Li Andersson, Jussi Saramo, Merja Kyllönen, Per Clausen",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2024-0028_FR.html"
+    }
+  },
+  "RC-B10-0026/2024": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay",
+          "Maréchal",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / ESN :": [
+          "Knafo"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Morano"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ],
+        "France / Renew :": [
+          "Allione",
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Ridel",
+          "Sargiacomo"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      },
+      "0": {
+        "France / PfE :": [
+          "Mariani"
+        ]
+      }
+    },
+    "date": "2024-09-19",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur la gravité de la situation des prisonniers politiques en Biélorussie",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 150, paragraphe 5, et à l’article 136, paragraphe 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0026/2024 (The Left) - B10-0051/2024 (Verts/ALE) - B10-0052/2024 (Renew) - B10-0053/2024 (ECR) - B10-0054/2024 (S&D) - B10-0055/2024 (PPE) - sur la gravité de la situation des prisonniers politiques en Biélorussie - (2024/2804(RSP)) - Sebastião Bugalho, Sandra Kalniete, Tomas Tobé, Michael Gahler, Andrzej Halicki, Gabriel Mato, Marcin Kierwiński, Željana Zovko, Tomáš Zdechovský, Jörgen Warborn, Wouter Beke, Ondřej Kolář, Nicolás Pascual De La Parte, Mirosława Nykiel, Reinhold Lopatka, Michał Wawrykiewicz, Luděk Niedermayer, Rosa Estaràs Ferragut, Jessica Polfjärd, Antonio López-Istúriz White, Isabel Wiseler-Lima, Vangelis Meimarakis - au nom du groupe PPE - Yannis Maniatis, Francisco Assis, Thijs Reuten - au nom du groupe S&D - Carlo Fidanza, Adam Bielan, Mariusz Kamiński, Tobiasz Bocheński, Alberico Gambino, Ondřej Krutílek, Roberts Zīle, Michał Dworczyk, Veronika Vrecionová, Jadwiga Wiśniewska, Sebastian Tynkkynen, Assita Kanko, Rihards Kols, Małgorzata Gosiewska, Reinis Pozņaks, Maciej Wąsik, Joachim Stanisław Brudziński - au nom du groupe ECR - Michał Kobosko, Petras Auštrevičius, Dan Barna, Benoit Cassart, Olivier Chastel, Bernard Guetta, Karin Karlsbro, Ľubica Karvašová, Moritz Körner, Ilhan Kyuchyuk, Nathalie Loiseau, Jan-Christoph Oetjen, Urmas Paet, Eugen Tomac, Hilde Vautmans, Marie-Pierre Vedrenne, Lucia Yar, Dainius Žalimas - au nom du groupe Renew - Sergey Lagodinsky, Mārtiņš Staķis, Nicolae Ştefănuță, Virginijus Sinkevičius - au nom du groupe Verts/ALE - Rima Hassan - au nom du groupe The Left",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2024-0026_FR.html"
+    }
+  }
+}
