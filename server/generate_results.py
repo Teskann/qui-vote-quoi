@@ -13,6 +13,7 @@ def generate_results_page(data):
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATES_PATH))
     env.filters["political_group"] = filter_political_group
     env.filters["enumerate"] = enumerate
+    env.filters["reversed"] = reversed
     env.filters["is_last_iterator"] = is_last_iterator
     env.filters["to_pretty_date"] = to_pretty_date
     env.filters["political_group_url"] = political_group_url

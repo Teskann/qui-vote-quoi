@@ -10,16 +10,16 @@
      </style>
        <meta charset="utf-8">
        <title>Qui Vote Quoi ?</title>
+     {% include "workaround_responsive.js.jinja" %}
      </head>
      <body>
      {% include "toolbar.html.jinja" %}
        <div id="content">
        <h1>🔎 Résultats pour «&nbsp;{{ keywords }}&nbsp;»</h1>
 
-       {% for eu_document_code, data in data.items() %}
+       {% for eu_document_code, data in data.items() | reversed %}
             {{ create_vote_results(eu_document_code, data) }}
        {% endfor %}
        </div>
      </body>
-     {% include "workaround_responsive.js.jinja" %}
    </html>
