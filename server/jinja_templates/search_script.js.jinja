@@ -1,0 +1,56 @@
+<script>
+    // Set default date values dynamically
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search); // Get URL query parameters
+        return {
+            search: params.get('search') || '', // Get 'search' parameter
+            startDate: params.get('start_date') || '', // Get 'start_date' parameter
+            endDate: params.get('end_date') || '' // Get 'end_date' parameter
+        };
+    }
+
+    // Function to set the input fields based on query parameters
+    function setDateFields() {
+        const { search, startDate, endDate } = getQueryParams();
+
+        // Set the input field values if parameters are present
+        if (startDate) {
+            document.getElementById('min-date').value = startDate;
+        }
+
+        if (endDate) {
+            document.getElementById('max-date').value = endDate;
+        }
+
+        if (search) {
+            document.getElementById('search-input').value = search;
+        }
+    }
+
+    function search() {
+        // Get the input values
+        const searchText = document.getElementById('search-input').value;
+        const minDate = document.getElementById('min-date').value;
+        const maxDate = document.getElementById('max-date').value;
+        console.log(searchText);
+        // Construct the URL with query parameters
+        const baseUrl = window.location.origin + "/results";
+
+
+        const queryParams = `?search=${encodeURIComponent(searchText)}&start_date=${minDate}&end_date=${maxDate}`;
+        const finalUrl = baseUrl + queryParams;
+        console.log(finalUrl);
+        // Redirect the user to the new URL
+        window.location.href = finalUrl;
+    }
+
+    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+    document.getElementById('max-date').value = today;      // Default to today's date
+    setDateFields();
+
+    document.getElementById('search-input').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        search();  // Trigger search when "Enter" is pressed
+    }
+});
+</script>

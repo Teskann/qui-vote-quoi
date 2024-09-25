@@ -1,0 +1,100 @@
+body {
+    background-color: #2c2c2c;
+    color: #e0e0e0; /* Light text color for contrast */
+    font-family: 'Roboto', sans-serif; /* Modern font */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the start */
+    height: 100vh; /* Full height */
+}
+
+.centered {
+    text-align: center; /* Center text */
+    margin-top: 1%; /* Adjust this value to move content up or down */
+}
+
+.main_title {
+    font-size: 2.5em; /* Increase title size */
+    margin-bottom: 0.5em; /* Space below title */
+    line-height: 1.2; /* Line height for better readability */
+}
+
+.main_sub_title {
+    font-size: 1.5em; /* Sub-title size */
+    margin-bottom: 2em; /* Space below subtitle */
+    font-weight: normal;
+    margin-top: 70%;
+    color: #bcbcbc;
+}
+
+.main_search_bar {
+    width: 100%; /* Wider search bar */
+    padding: 1em; /* Inner padding */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #464646;
+    color: #e0e0e0; /* Input text color */
+    font-size: 1em; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.main_search_bar::placeholder {
+    color: #888; /* Placeholder text color */
+}
+
+.main_search_bar:focus {
+    outline: none; /* Remove outline */
+    background-color: #333; /* Change background on focus */
+}
+
+.date-range {
+    display: flex; /* Use flex for layout */
+    justify-content: center; /* Center the date range inputs */
+    margin: 1em 0; /* Margin around date inputs */
+}
+
+.date-input {
+    margin: 0 0.5em; /* Spacing between inputs */
+    padding: 0.5em; /* Padding inside inputs */
+    border: 1px solid #444; /* Input border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #464646; /* Dark background for inputs */
+    color: #e0e0e0; /* Input text color */
+}
+
+.date-input:focus {
+    outline: none; /* Remove outline */
+    border-color: #3e3e3e; /* Change border color on focus */
+}
+
+#search-btn {
+    padding: 0.75em 2em; /* Button padding */
+    background-color: #3e3e3e; /* Primary color for button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    color: #ffffff; /* White text */
+    font-size: 1em; /* Font size */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+#search-btn:hover {
+    background-color: #4d4d4d; /* Darker on hover */
+}
+
+#search-btn:focus {
+    outline: none; /* Remove outline */
+}
+
+a {
+    color: #4ab6c8;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+a:hover {
+    filter: brightness(70%);
+    transition: 0.5s;
+}

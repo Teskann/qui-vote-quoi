@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+{{ css }}
+
+</style>
+<meta charset="utf-8">
+<title>À propos de Qui Vote Quoi ?</title>
+{% include "favicon.html.jinja" %}
+</head>
+<body>
+  <div id="content_main" class="centered text_page middle">
+  <h1 class="main_title"><br/>Qui Vote Quoi&nbsp;?</h1>
+
+    <input id="search-input" class="main_search_bar" type="text" placeholder="Ukraine, Israël, agriculture, covid, ..." class="input_search"/>
+<div class="date-range">
+    <label for="min-date">Du :</label>
+    <input type="date" id="min-date" class="date-input" name="min-date" value="2024-07-16">
+
+    <label for="max-date">Au :</label>
+    <input type="date" id="max-date" class="date-input" name="max-date" value="2022-01-01">
+</div>
+
+<button id="search-btn" onclick="search()">Rechercher</button>
+    <h2 class="main_sub_title">Surveillez les votes des députés européens Français</h2>
+
+  {% include "search_script.js.jinja" %}
+
+<footer><a href="./about">À propos</a></footer>
+  </div>
+</body>
+</html>

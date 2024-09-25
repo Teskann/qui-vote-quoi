@@ -1,0 +1,24 @@
+   {% from "vote_result.html.jinja" import create_vote_results %}
+
+   <!doctype html>
+   <html lang="fr">
+     <head>
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+     {% include "favicon.html.jinja" %}
+     <style>
+     {{ css }}
+     </style>
+       <meta charset="utf-8">
+       <title>Qui Vote Quoi ?</title>
+     </head>
+     <body>
+     {% include "toolbar.html.jinja" %}
+       <div id="content">
+       <h1>🔎 Résultats pour «&nbsp;{{ keywords }}&nbsp;»</h1>
+
+       {% for eu_document_code, data in data.items() %}
+            {{ create_vote_results(eu_document_code, data) }}
+       {% endfor %}
+       </div>
+     </body>
+   </html>
