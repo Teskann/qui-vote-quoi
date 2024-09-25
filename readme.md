@@ -4,7 +4,7 @@
 
 Ce projet vise à faciliter l'accès aux données du parlement européen relatives aux votes. Il vous permet de facilement retrouver tous les textes de loi votés contenant certains mots clés.
 
-*[Lien du site]("https://qui-vote-quoi.fr")*
+### [Lien du site](https://qui-vote-quoi.fr)
 
 ## Pourquoi ce projet ?
 
