@@ -4,15 +4,19 @@
 body {
     background-color: #2c2c2c; /* Dark background */
     font-family: 'Open Sans', monospace;
-    color: #fff;
+    color: rgba(255,255,255,0.9);
     margin: 0;
     padding: 0;
 }
 
 #content {
-    margin: 20px;
-    max-width: 1200px;
+    padding: 25px;
+    max-width: 1250px;
     margin: auto;
+}
+
+.text_page {
+    max-width: 800px !important;
 }
 
 .h2 {
@@ -27,7 +31,7 @@ body {
 .tooltip_text {
     visibility: hidden;
     background-color: #222;
-    color: #fff;
+    color: rgba(255,255,255,0.9);;
     padding: 8px;
     position: absolute;
     z-index: 1;
@@ -63,14 +67,14 @@ body {
 /* Header Styling */
 .votes_table th, .votes_table td {
     padding: 12px 15px;
-    color: #fff;
+    color: rgba(255,255,255,0.9);;
     text-align: left;
 }
 
 /* Header Row */
 .votes_table th {
     background-color: #303030;
-    color: #fff;
+    color: rgba(255,255,255,0.9);;
     font-weight: bold;
 }
 
@@ -102,6 +106,7 @@ body {
 
 .political_group, .header_details{
     background-color: #353535;
+    white-space: nowrap;
 }
 
 /* Result header specific styling */
@@ -138,7 +143,7 @@ body {
 
 .details td {
     padding: 12px 15px;
-    color: #fff;
+    color: rgba(255,255,255,0.9);;
     text-align: left;
     border: 1px solid #3e3e3e;
 }
@@ -181,4 +186,169 @@ a:hover {
 
 .legend_item.abstained::before {
     background-color: rgba(231,196,104,0.7);
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #303030; /* Light gray background */
+    padding: 0 20px;
+    font-family: Arial, sans-serif;
+}
+
+.toolbar .home a,
+.toolbar .about a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.9); /* Dark text color */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.toolbar .input_search {
+    flex-grow: 1;
+    margin: 0 15px;
+    padding: 8px;
+    border: 1px solid #3e3e3e;
+    font-size: 14px;
+    width: 300px; /* Set width of the input field */
+    background-color: #464646;
+    outline: none;
+    color: rgba(255,255,255,0.9);
+}
+
+::placeholder, ::-moz-placeholder, ::-webkit-input-placeholder {
+    color: #aaaaaa
+}
+
+/* Date range styles */
+.date-range {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+    gap: 20px; /* Adds space between the inputs */
+}
+
+.date-range label {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.date-input {
+    padding: 3px;
+    font-size: 14px;
+    border: 1px solid #3e3e3e;
+    outline: none;
+    transition: border-color 0.2s ease;
+    background-color: #464646;
+    color: rgba(255,255,255,0.9);
+}
+
+.date-input:focus {
+    border-color: #007BFF;
+}
+
+button {
+    padding: 7px;
+    font-size: 14px;
+    outline: none;
+    background-color: #464646;
+    color: rgba(255,255,255,0.9);
+    border: none;
+    text-align: center;
+    margin: 0 15px;
+    transition: 0.5s;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #3d3d3d;
+    transition: 0.5s;
+}
+
+p {
+    font-size: 13pt;
+}
+
+/* Container for the warning block */
+.avertissement {
+    background-color: #2c2c2c; /* Dark background */
+    color: rgba(231,196,104,0.7);
+    border-left: 4px solid rgba(231,196,104,0.7);; /* Red border for warning indicator */
+    padding: 3px 15px;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Warning title */
+.avertissement_titre {
+    font-size: 18pt;
+    font-weight: bold;
+    color: rgba(231,196,104,0.7);
+    margin-bottom: 10px;
+}
+
+/* Warning content */
+.avertissement_content p {
+    margin: 10px 0;
+    color: #f1f1f1; /* Light gray for paragraph text */
+}
+
+/* Additional styling for paragraphs */
+.avertissement_content p:last-child {
+    margin-bottom: 0; /* Remove bottom margin from last paragraph */
+}
+
+.centered
+{
+    text-align: center;
+}
+
+.middle {
+    display: flex;
+      justify-content: center; 
+      align-items: center;
+      height: 100%;
+      display: block;
+}
+
+.main_search_bar {
+    display: inline-block;
+    width: 100%;
+    font-size: 16pt;
+    margin: auto;
+    
+    
+    flex-grow: 1;
+    margin: 20px 15px;
+    padding: 8px;
+    border: 1px solid #3e3e3e;
+    font-size: 14px;
+    background-color: #464646;
+    outline: none;
+    color: rgba(255,255,255,0.9);
+}
+
+
+#content_main {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.date-range {
+    margin: 20px 0;
+}
+
+.date-input {
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 4px;
+    color: #d1d1d1;
+    padding: 5px;
 }

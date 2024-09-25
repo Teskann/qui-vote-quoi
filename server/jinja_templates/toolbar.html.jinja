@@ -1,0 +1,15 @@
+<div class="toolbar">
+<div class="home"><a href="../">Qui Vote Quoi ?</a></div>
+<input id="search-input" type="text" placeholder="Ukraine, Israël, agriculture, covid, ..." class="input_search"/>
+<div class="date-range">
+    <label for="min-date">Du :</label>
+    <input type="date" id="min-date" class="date-input" name="min-date" value="2024-07-16">
+
+    <label for="max-date">Au :</label>
+    <input type="date" id="max-date" class="date-input" name="max-date" value="2022-01-01">
+</div>
+<button id="search-btn" onclick="search()">Rechercher</button>
+<div class="about"><a href="../about">À propos</a></div>
+</div>
+
+{% include "search_script.js.jinja" %}
