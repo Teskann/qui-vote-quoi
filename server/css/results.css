@@ -1,0 +1,184 @@
+/* Google fonts - Open Sans */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+body {
+    background-color: #2c2c2c; /* Dark background */
+    font-family: 'Open Sans', monospace;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    margin: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.h2 {
+    font-size: 15pt;
+    color: rgba(255,255,255,0.9);
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip_text {
+    visibility: hidden;
+    background-color: #222;
+    color: #fff;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 0%;
+    opacity: 0;
+    transition: opacity 0.6s;
+    font-size: 10pt;
+}
+
+.tooltip:hover .tooltip_text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* Table Container */
+.vote_results {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #353535;
+}
+
+.votes_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    color:rgba(255,255,255,0.9);
+}
+
+/* Header Styling */
+.votes_table th, .votes_table td {
+    padding: 12px 15px;
+    color: #fff;
+    text-align: left;
+}
+
+/* Header Row */
+.votes_table th {
+    background-color: #303030;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Table Rows */
+.votes_table tbody tr {
+    border-bottom: 1px solid #3e3e3e;
+}
+
+/* Alternating row colors */
+.votes_table tbody tr {
+    background-color: #303030;
+}
+
+.details_content
+{
+    background-color: #303030;
+}
+
+/* Row hover effect */
+.votes_table tbody tr:hover {
+    background-color: #464646;
+}
+
+/* Align the second, third and fourth columns to the center */
+.votes_table td {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.political_group, .header_details{
+    background-color: #353535;
+}
+
+/* Result header specific styling */
+.political_group.voted_for {
+    border-left: 5px solid rgba(82,210,154,1);
+}
+
+.political_group.voted_against {
+    border-left: 5px solid rgba(235,118,85,1);
+}
+
+.political_group.abstained {
+    border-left: 5px solid rgba(231,196,104,0.7);
+}
+
+.political_group_name.voted_for {
+    color: rgba(82,210,154,1);
+}
+
+.political_group_name.voted_against {
+    color: rgba(235,118,85,1);
+}
+
+.political_group_name.abstained {
+    color: rgba(231,196,104,0.7);
+}
+/* Details table */
+.details {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #3a3a3a;
+}
+
+.details td {
+    padding: 12px 15px;
+    color: #fff;
+    text-align: left;
+    border: 1px solid #3e3e3e;
+}
+
+/* Links */
+a {
+    color: #4ab6c8;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+a:hover {
+    filter: brightness(70%);
+    transition: 0.5s;
+}
+
+.legend {
+    text-align: center;
+}
+
+.legend_item {
+    margin-right: 30px;
+}
+
+.legend_item::before {
+    display: inline-block;
+    content:'';
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.legend_item.voted_for::before {
+    background-color: rgba(82,210,154,1);
+}
+
+.legend_item.voted_against::before {
+    background-color: rgba(235,118,85,1);
+}
+
+.legend_item.abstained::before {
+    background-color: rgba(231,196,104,0.7);
+}
