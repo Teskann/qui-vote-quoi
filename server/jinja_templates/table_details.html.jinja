@@ -4,19 +4,19 @@
 
 
 <tbody>
-<tr><td class="header_details">Date</td>
-    <td class="details_content tooltip">{{ date | to_pretty_date }}
+<tr><td class="header_details text_adjust_workaround">Date</td>
+    <td class="details_content tooltip text_adjust_workaround">{{ date | to_pretty_date }}
         <span class="tooltip_text">Le vote a eu lieu le {{ date | to_pretty_date }}</span>
     </td>
     </tr>
 
 <tr>
-    <td class="header_details">Source des données des votes</td>
+    <td class="header_details text_adjust_workaround">Source des données des votes</td>
     <td class="details_content"><a href="{{ votes_source_url }}">Consulter sur europarl.europa.eu</a></td>
 </tr>
 
 <tr>
-    <td class="header_details">Document associé</td>
+    <td class="header_details text_adjust_workaround">Document associé</td>
     <td class="details_content"><a href="{{ source_url }}">Lire {{ eu_document_code }} sur europarl.europa.eu</a></td>
 </tr>
 

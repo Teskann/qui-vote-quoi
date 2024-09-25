@@ -1,0 +1,16 @@
+<script>
+var isChromium = !!window.chrome;
+if(isChromium)
+{
+    var styles  = `
+    @media (orientation: portrait) {
+        .text_adjust_workaround {
+            font-size: 1.7vh;
+        }
+    }
+    `
+    var styleSheet = document.createElement("style")
+    styleSheet.textContent = styles
+    document.head.appendChild(styleSheet)
+}
+</script>
