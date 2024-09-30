@@ -25,7 +25,7 @@
     Résultat théorique
     <span class="tooltip_text">Résultat du vote si seuls les français avaient voté.</span>
 </td>
-    <td class="details_content tooltip">
+    <td class="details_content text_adjust_workaround tooltip">
         {% if votes_for > votes_against %}
             ✅ 🇫🇷 Le texte aurait été adopté si seuls les députés français avaient voté, par {{ votes_for }} voix contre
             {{ votes_against }} ({{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
