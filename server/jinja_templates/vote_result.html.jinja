@@ -5,9 +5,8 @@
 
 <div class="vote_results">
 
-<div class="tooltip h2"><a href="{{ data.details.source_url }}">🗳️ {{ eu_document_code }}</a> -
+<div class="h2"><a href="{{ data.details.source_url }}">🗳️ {{ eu_document_code }}</a> -
 {{ data.details.title }}
-  <span class="tooltip_text">{{ data.details.description }}</span>
 </div>
 
 {{ create_votes_table(data.votes) }}
