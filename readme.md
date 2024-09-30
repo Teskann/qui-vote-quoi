@@ -4,7 +4,7 @@
 
 Ce projet vise à faciliter l'accès aux données du parlement européen relatives aux votes. Il vous permet de facilement retrouver tous les textes de loi votés contenant certains mots clés.
 
-### [Lien du site](https://qui-vote-quoi.fr)
+### [https://qui-vote-quoi.fr](https://qui-vote-quoi.fr)
 
 ## Pourquoi ce projet ?
 
@@ -27,7 +27,59 @@ Pour signaler un problème, merci d'utiliser les [issues GitHub](./issues).
 
 Pour toute prise de contact, vous pouvez m'écrire à `teskann-dev@protonmail.com`.
 
+## Debug (Linux)
 
+```bash
+python -mvenv .venv
+source ./.venv/bin/activate
+pip install -r requirements.txt
+```
 
+Pour lancer le serveur localement, créez un fichier `database_path.txt` à la racine du projet.
+Il doit contenir le chemin vers la base de données des résultats des votes. Par exemple:
+```text
+/home/vous/database-qui-vote-quoi
+```
+Sans cela, vous aurez une erreur au lancement de l'application:
 
+```bash
+echo /home/vous/database-qui-vote-quoi >> database_path.txt
+```
 
+```bash
+python app.py  # Lance le serveur en debug
+```
+## Extraire la base de données de europarl.europa.eu
+
+Lancez dans l'environnement virtuel python:
+```bash
+python fill_database.py -h
+```
+Pour savoir comment récupérer la base de données.
+
+## Mise à jour automatique de la base de données quotidiennement
+
+Pour la mise à jour quotidienne automatique de votre base de données, vous pouvez lancer
+```bash
+python fill_database_from_yesterday.py
+```
+
+Ce script va récupérer les données de la veille (uniquement) et les ajouter à votre base de données.
+
+Vous pouvez ajouter le lancement de ce script à crontab pour que cela se fasse automatiquement:
+
+- Créez un fichier `update.sh` n'importe où sur votre disque, disons `/home/vous`
+```bash
+#!/bin/bash
+cd /home/vous/qui-vote-quoi
+source ./.venv/bin/activate
+python fill_database_from_yesterday.py
+deactivate
+cd -
+```
+
+- Puis, lancez `crontab -e` et ajoutez ceci:
+
+```cron
+0 1 * * * /home/vous/update.sh
+```

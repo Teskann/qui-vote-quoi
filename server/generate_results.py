@@ -1,10 +1,12 @@
 import json
+from itertools import islice
 from os.path import join, abspath, dirname
 
 import jinja2
 
 from server.filters import filter_political_group, is_last_iterator, to_pretty_date, political_group_url, \
-    political_group_class, class_from_vote_result, political_group_tooltip
+    political_group_class, class_from_vote_result, political_group_tooltip, count_all_votes, set_page, page_range
+from urllib.parse import urlencode
 from server.common import get_css, TEMPLATES_PATH
 
 
@@ -20,6 +22,14 @@ def generate_results_page(data):
     env.filters["political_group_class"] = political_group_class
     env.filters["class_from_vote_result"] = class_from_vote_result
     env.filters["political_group_tooltip"] = political_group_tooltip
+    env.filters["count_all_votes"] = count_all_votes
+    env.filters["urlencode"] = urlencode
+    env.filters["set_page"] = set_page
+    env.filters["set_page"] = set_page
+    env.filters["islice"] = islice
+    env.filters["min"] = min
+    env.filters["page_range"] = page_range
+
     with open(join(TEMPLATES_PATH, "results.html.jinja")) as f:
         template = env.from_string(f.read())
     return template.render(data)

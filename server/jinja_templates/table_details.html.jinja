@@ -1,4 +1,4 @@
-{% macro create_table_details(eu_document_code, date, votes_source_url, source_url) %}
+{% macro create_table_details(eu_document_code, date, votes_source_url, source_url, votes_for, votes_against, votes_abstained) %}
 
 <table class="details">
 
@@ -8,7 +8,7 @@
     <td class="details_content tooltip text_adjust_workaround">{{ date | to_pretty_date }}
         <span class="tooltip_text">Le vote a eu lieu le {{ date | to_pretty_date }}</span>
     </td>
-    </tr>
+</tr>
 
 <tr>
     <td class="header_details text_adjust_workaround">Source des données des votes</td>
@@ -18,6 +18,26 @@
 <tr>
     <td class="header_details text_adjust_workaround">Document associé</td>
     <td class="details_content"><a href="{{ source_url }}">Lire {{ eu_document_code }} sur europarl.europa.eu</a></td>
+</tr>
+
+<tr>
+<td class="header_details text_adjust_workaround tooltip">
+    Résultat théorique
+    <span class="tooltip_text">Résultat du vote si seuls les français avaient voté.</span>
+</td>
+    <td class="details_content text_adjust_workaround tooltip">
+        {% if votes_for > votes_against %}
+            ✅ 🇫🇷 Le texte aurait été adopté si seuls les députés français avaient voté, par {{ votes_for }} voix contre
+            {{ votes_against }} ({{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
+            <span class="tooltip_text">⚠️ Notez que cela ne signifie pas que le texte n'a pas été adopté par le parlement
+            européen malgré le vote des députés français.</span>
+        {% else %}
+            ❌ 🇫🇷 Le texte n'aurait pas été adopté si seuls les députés français avaient voté ({{ votes_for }} voix pour,
+            {{ votes_against }} voix contre, {{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
+            <span class="tooltip_text">⚠️ Notez que cela ne signifie pas que le texte a été adopté par le parlement
+            européen malgré le vote des députés français.</span>
+        {% endif %}
+    </td>
 </tr>
 
 </tbody>

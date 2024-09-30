@@ -11,7 +11,7 @@
 </div>
 
 {{ create_votes_table(data.votes) }}
-{{ create_table_details(eu_document_code, data.date, data.votes_source_url, data.details.source_url) }}
+{{ create_table_details(eu_document_code, data.date, data.votes_source_url, data.details.source_url, data.votes["+"] | count_all_votes, data.votes["-"] | count_all_votes, data.votes["0"] | count_all_votes) }}
 
 </div>
 

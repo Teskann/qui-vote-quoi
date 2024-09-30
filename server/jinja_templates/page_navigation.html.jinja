@@ -1,0 +1,24 @@
+{% macro page_navigation(size, request_args) %}
+
+{% if size > 25 %}
+
+<div class="page_navigation text_adjust_workaround">
+<div class="current_page_info">
+    Affichage des résultats {{ 25 * (request_args.page - 1) + 1 }} à {{ (25 * (request_args.page)) | min(size) }} sur {{ size }}
+</div>
+<span class="move_to_page">Aller à la page:</span>
+{% for i in size | page_range(request_args.page) %}
+    <div class="page_button{{ " current_page" if i == request_args.page else "" }}">
+    {% if i == -1 %}
+        <span>...</span>
+    {% else %}
+        <a href="./results?{{request_args | set_page(i) | urlencode }}">{{i}}</a>
+    {% endif %}
+    </div>
+{% endfor %}
+
+</div>
+
+
+{% endif %}
+{% endmacro %}

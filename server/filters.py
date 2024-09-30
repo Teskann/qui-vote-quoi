@@ -14,6 +14,7 @@ def political_group_url(group_name):
         "France / The Left :": "https://left.eu/",
         "France / Verts/ALE :": "https://www.greens-efa.eu/en/",
         "France / NI :": "https://en.wikipedia.org/wiki/Non-attached_members",
+        "France / GUE/NGL :": "https://left.eu/the-group/",
     }
     return links[group_name] if group_name in links else ""
 
@@ -30,6 +31,7 @@ def political_group_class(group_name):
         "France / The Left :": "group_left",
         "France / Verts/ALE :": "group_verts",
         "France / NI :": "group_ni",
+        "France / GUE/NGL :": "group_guengl",
     }
     return classes[group_name] if group_name in classes else "group_ni"
 
@@ -45,6 +47,7 @@ def political_group_tooltip(group_name):
         "France / The Left :": "Groupe de la Gauche au Parlement européen (gauche à extrême gauche)",
         "France / Verts/ALE :": "Groupe des Verts/Alliance libre européenne (centre gauche à gauche)",
         "France / NI :": "Non-inscrit au Parlement européen",
+        "France / GUE/NGL :": "Groupe de la Gauche au Parlement européen (gauche à extrême gauche)",
     }
     return classes[group_name] if group_name in classes else "Aucune information n'est connue au sujet de ce parti"
 
@@ -66,3 +69,26 @@ def is_last_iterator(iterator):
 
 def to_pretty_date(date):
     return format_date(datetime.date.fromisoformat(date), format='long', locale='fr')
+
+def count_all_votes(data):
+    """
+    Get the number of votes for a specific result (+, -, 0)
+    """
+    return sum([len(data[x]) for x in data])
+
+def set_page(data: dict, page):
+    new = data.copy()
+    new["page"] = page
+    return new
+
+def page_range(size, current_page):
+    pages_number = size // 25 + (1 if size % 25 != 0 else 0) + 1
+    if pages_number <= 5:
+        return list(range(1, pages_number))
+    if current_page <= 3:
+        return [1, 2, 3, 4, -1, pages_number - 1]
+
+    if current_page > pages_number - 4:
+        return [1, -1, pages_number - 4, pages_number - 3, pages_number - 2, pages_number - 1]
+
+    return [1, -1, current_page - 1, current_page, current_page + 1, -1, pages_number - 1]

@@ -1,4 +1,5 @@
    {% from "vote_result.html.jinja" import create_vote_results %}
+   {% from "page_navigation.html.jinja" import page_navigation %}
 
    <!doctype html>
    <html lang="fr">
@@ -17,8 +18,8 @@
      {% include "toolbar.html.jinja" %}
        <div id="content">
        <h1>🔎 {{ data | length }} {{ "résultat" + ("s" if data | length > 1 else "") }} {{ " pour «&nbsp;" + keywords.strip() + "&nbsp;»" if keywords.strip() else "(tous les votes)" }}</h1>
-
-       {% for eu_document_code, data in data.items() | reversed %}
+       {{ page_navigation(data | length, request) }}
+       {% for eu_document_code, data in data.items() | reversed | islice(25 * (request.page - 1), 25*(request.page)) %}
             {{ create_vote_results(eu_document_code, data) }}
        {% endfor %}
        {% if data | length == 0 %}
@@ -29,6 +30,7 @@
        Vous pouvez relancer une recherche avec «&nbsp;Document au nom inconnu&nbsp;»
        pour voir si le document que vous cherchez se trouve parmi eux.</p>
        {% endif %}
+       {{ page_navigation(data | length, request) }}
        </div>
      </body>
    </html>

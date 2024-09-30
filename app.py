@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
+def index():
     return generate_index()
 
 @app.route('/results')
@@ -24,9 +24,15 @@ def results():
 
     for result in search_in_time_range(start_date, end_date, search):
         data["data"] |= result
+
+    data["request"] = dict(request.args)
+    data["request"]["page"] = 1 if "page" not in data["request"] else int(data["request"]["page"])
     return generate_results_page(data)
 
 @app.route('/about')
 def about():
     return generate_about()
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
