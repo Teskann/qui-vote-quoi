@@ -28,6 +28,7 @@ def generate_results_page(data):
     env.filters["islice"] = islice
     env.filters["min"] = min
     env.filters["page_range"] = page_range
+    env.filters["add_flags"] = add_flags
 
     with open(join(TEMPLATES_PATH, "results.html.jinja")) as f:
         template = env.from_string(f.read())

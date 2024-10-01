@@ -6,7 +6,7 @@
 <div class="vote_results">
 
 <div class="h2"><a href="{{ data.details.source_url }}">🗳️ {{ eu_document_code }}</a> -
-{{ data.details.title }}
+{{ data.details.title | add_flags }}{{ data.details.title }}
 </div>
 
 {{ create_votes_table(data.votes) }}
