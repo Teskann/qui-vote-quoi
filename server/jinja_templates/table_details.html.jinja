@@ -29,10 +29,10 @@
         {% if votes_for > votes_against %}
             ✅ 🇫🇷 Le texte aurait été adopté si seuls les députés français avaient voté, par {{ votes_for }} voix contre
             {{ votes_against }} ({{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
-            <span class="tooltip_text">⚠️ Notez que cela ne signifie pas que le texte n'a pas été adopté par le parlement
+            <span class="tooltip_text">⚠️ Notez que cela ne signifie pas que le texte a été rejeté par le parlement
             européen malgré le vote des députés français.</span>
         {% else %}
-            ❌ 🇫🇷 Le texte n'aurait pas été adopté si seuls les députés français avaient voté ({{ votes_for }} voix pour,
+            ❌ 🇫🇷 Le texte aurait été rejeté si seuls les députés français avaient voté ({{ votes_for }} voix pour,
             {{ votes_against }} voix contre, {{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
             <span class="tooltip_text">⚠️ Notez que cela ne signifie pas que le texte a été adopté par le parlement
             européen malgré le vote des députés français.</span>

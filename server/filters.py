@@ -81,6 +81,11 @@ def set_page(data: dict, page):
     new["page"] = page
     return new
 
+def set_search(data: dict, search):
+    new = data.copy()
+    new["search"] = search
+    return new
+
 def page_range(size, current_page):
     pages_number = size // 25 + (1 if size % 25 != 0 else 0) + 1
     if pages_number <= 5:

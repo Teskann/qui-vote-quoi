@@ -23,12 +23,17 @@
             {{ create_vote_results(eu_document_code, data) }}
        {% endfor %}
        {% if data | length == 0 %}
-       <p>Réessayez avec d'autres mots-clés ou sur une autre période.</p>
-       <p>Notez que les textes votés avant la mandature de 2019 ne sont pas
-       disponibles sur ce site (<a href="../about">en savoir plus</a>).</p>
-       <p>Certains noms de documents n'ont pas pu être récupérés correctement.
-       Vous pouvez relancer une recherche avec «&nbsp;Document au nom inconnu&nbsp;»
-       pour voir si le document que vous cherchez se trouve parmi eux.</p>
+           <p>Réessayez avec d'autres mots-clés ou sur une autre période.</p>
+           <p>Si des votes ont eu lieu aujourd'hui, ils seront visibles dès cette nuit à partir de 1:00.</p>
+           <p>Notez que les textes votés avant la mandature de 2019 ne sont pas
+           disponibles sur ce site (<a href="../about">en savoir plus</a>).</p>
+           <p>Lors de la récupération des données sur le site du parlement européen, certains noms de documents n'ont pas pu
+           être obtenus.
+           Vous pouvez
+           <a href="../results?{{request | set_page(1) | set_search("Document au nom inconnu") | urlencode }}">
+                relancer une recherche avec «&nbsp;Document au nom inconnu&nbsp;»
+           </a>
+           pour voir si le document que vous cherchez se trouve parmi eux.</p>
        {% endif %}
        {{ page_navigation(data | length, request) }}
        </div>

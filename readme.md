@@ -23,7 +23,7 @@ Si plusieurs votes ont eu lieu pour un même document (par exemple `RC-B-10-0035
 
 ## Contact
 
-Pour signaler un problème, merci d'utiliser les [issues GitHub](./issues).
+Pour signaler un problème, merci d'utiliser les [issues GitHub](https://github.com/Teskann/qui-vote-quoi/issues).
 
 Pour toute prise de contact, vous pouvez m'écrire à `teskann-dev@protonmail.com`.
 
@@ -38,12 +38,12 @@ pip install -r requirements.txt
 Pour lancer le serveur localement, créez un fichier `database_path.txt` à la racine du projet.
 Il doit contenir le chemin vers la base de données des résultats des votes. Par exemple:
 ```text
-/home/vous/database-qui-vote-quoi
+/home/user/database-qui-vote-quoi
 ```
 Sans cela, vous aurez une erreur au lancement de l'application:
 
 ```bash
-echo /home/vous/database-qui-vote-quoi >> database_path.txt
+echo /home/user/database-qui-vote-quoi >> database_path.txt
 ```
 
 ```bash
@@ -68,10 +68,10 @@ Ce script va récupérer les données de la veille (uniquement) et les ajouter �
 
 Vous pouvez ajouter le lancement de ce script à crontab pour que cela se fasse automatiquement:
 
-- Créez un fichier `update.sh` n'importe où sur votre disque, disons `/home/vous`
+- Créez un fichier `update.sh` n'importe où sur votre disque, disons `/home/user`
 ```bash
 #!/bin/bash
-cd /home/vous/qui-vote-quoi
+cd /home/user/qui-vote-quoi
 source ./.venv/bin/activate
 python fill_database_from_yesterday.py
 deactivate
@@ -81,5 +81,5 @@ cd -
 - Puis, lancez `crontab -e` et ajoutez ceci:
 
 ```cron
-0 1 * * * /home/vous/update.sh
+0 1 * * * /home/user/update.sh
 ```
