@@ -290,7 +290,7 @@ def create_flags_keywords():
             "🇻🇺": ["Vanuatu", "Vanuatuan", "Vanuatuans", "Vanuatuan", "Vanuatuannes", "Port-Vila", "Luganville"],
             "🇻🇦": ["Vatican", "Vatican", "Vaticans", "Vaticane", "Vaticanes", "Vatican"],
             "🇻🇪": ["Venezuela", "Vénézuélien", "Vénézuéliens", "Vénézuélienne", "Vénézuéliennes", "Caracas", "Maracaibo"],
-            "🇻🇳": ["Vietnam", "Vietnamien", "Vietnamiens", "Vietnamienne", "Vietnamiennes", "Hanoï", "Hô-Chi-Minh-Ville"],
+            "🇻🇳": ["Vietnam", "Viêt Nam", "Vietnamien", "Vietnamiens", "Vietnamienne", "Vietnamiennes", "Hanoï", "Hô-Chi-Minh-Ville"],
             "🇾🇪": ["Yémen", "Yéménite", "Yéménites", "Yéménite", "Yéménites", "Sanaa", "Aden"],
             "🇿🇲": ["Zambie", "Zambien", "Zambiens", "Zambienne", "Zambiennes", "Lusaka", "Kitwe"],
             "🇿🇼": ["Zimbabwe", "Zimbabwéen", "Zimbabwéens", "Zimbabwéenne", "Zimbabwéennes", "Harare", "Bulawayo"],
@@ -317,3 +317,59 @@ def add_flags(title):
             flags.append(flag)
     return " ".join(flags) + " "
 
+def create_emojis_keywords():
+    emoji_keywords_ = {
+        "🌱": ["agriculture", "agricultures", "agricole", "agricoles"],
+        "🧬": ["génétiquement", "OGM", "génétique", "gène", "gènes", "génétiques"],
+        "🌽": ["maïs"],
+        "🌾": ["blé", "blés"],
+        "🦠": ["virus", "covid-19", "bactérie", "bactéries", "pandémie", "maladie", "maladies"],
+        "💉": ["vaccin", "vaccins", "vaccination", "vaccinations"],
+        "☢️": ["atomique", "nucléaire", "atomiques", "nucléaires", "iter"],
+        "♀️": ["femmes", "féminicide", "violences conjugales", "féminisme", "féministe", "féministes", "avortement", "avortements", "avorter", "viol", "harcèlement sexuel", "sexiste", "sexisme"],
+        "💣": ["terrorisme", "terroriste", "terroristes", "terrorismes"],
+        "💥": ["attaque", "guerre", "guerres", "conflit", "conflits", "invasion", "armé", "armés", "armées", "armée", "arme", "armement", "armes", "missile", "missiles", "militaire", "militaires", "bombardement", "bombardements", "bombe", "bombes"],
+        "☠️": ["génocide", "génocides", "crime de guerre", "crimes de guerre", "crime contre l'humanité", "crime", "crimes", "criminalité"],
+        "🍗": ["viande", "viandes", "volaille", "boeuf", "produits animaux", "origine animale"],
+        "🐟": ["poisson", "poissons", "crustacé", "crustacés", "fruits de mer", "saumon", "saumons", "colin", "colins"],
+        "🌳": ["environnement", "environnementale", "environnementales", "environnemental", "environnementaux", "forêt", "forêts", "forestiers", "forestier", "forestières", "forestière", "pollution", "pollutions", "polluants", "durable", "renouvelable", "renouvelables", "carbone", "hydrogène", "biogaz", "biocarburant", "biocarburants", "propre", "propres"],
+        "🔥": ["incendie", "incendies"],
+        "🌊": ["tsunami", "tsunamis", "raz-de-marée", "inondation", "inondations"],
+        "🌋": ["volcan", "volcans", "volcanique", "volcaniques"],
+        "🌡️": ["climatique", "climatiques", "effet de serre"],
+        "💡": ["énergie", "énergies", "électricité"],
+        "🖥️": ["cybersécurité", "cyberattaque", "cyberdéfense", "malware", "piratage", "données à caractère personnel", "protection des données", "numérique", "numériques"],
+        "🛰️": ["satellites", "satellite", "gps", "galileo", "starlink"],
+        "🚀": ["fusée", "spatial", "spatiale", "ESA"],
+        "🧪": ["limites maximales applicables aux résidus", "chimiques", "chimique", "substances actives"],
+        "🏥": ["médicaments", "médicament", "santé", "hôpital", "hôpitaux", "médecins", "médecin", "personnel médical", "sécurité sociale"],
+        "🫧": ["hygiène"],
+        "💶": ["monnaie", "monnaies", "euros", "budget", "budgets", "économie", "économies", "économique", "économiques","dépôts", "banque", "banques", "taux d'intérêt", "financement", "coûts", "coût", "dépenses", "recettes", "capitaux", "capital"],
+        "🚗": ["routier", "routière", "routiers", "routières", "voiture", "voitures", "camions", "camion"],
+        "✈️": ["aviation", "avion", "aéro", "aérienne", "aérien", "aériens", "aériennes"],
+        "🚅": ["train", "ferroviaire", "ferroviaires", "chemin de fer", "chemins de fer"],
+        "🛥️": ["maritime", "bateau", "bateaux", "maritimes", "voie navigable", "voies navigables"],
+        "🚌": ["autobus", "autocar", "bus", "bus", "transport en commun", "transports en commun"],
+        "⚽": ["sport", "sports", "activité physique", "activités physiques", "football", "FIFA", "UEFA"],
+        "🎣": ["pêche", "pêches", "pêcherie", "pêcheries"],
+        "🌍": ["frontière", "frontières", "mondialisation", "libre-échange", "transfrontalier", "transfrontaliers", "transfrontalières", "transfrontalière", "transfrontière", "transfrontières"],
+        "❓": ["Document au nom inconnu"],
+        "♿": ["handicap", "handicapés", "handicapées", "handicapé", "handicapée"],
+        "📈": ["marché", "marchés", "croissance"],
+        "🔒": ["sécurité", "sécurités", "chiffrement"],
+        "⚖️": ["parquet", "justice", "judiciaire", "judiciaires", "cour de justice", "pénale", "pénal", "pénales", "sanctions", "tribunal", "tribunaux", "condamnation"]
+    }
+    for flag, keywords in emoji_keywords_.items():
+        emoji_keywords_[flag] = re.compile(r"(?:\W|^)(" + "|".join([re.escape(keyword) for keyword in keywords]) + r")(?:\W|$)", flags=re.IGNORECASE)
+    return emoji_keywords_
+
+emoji_keywords = create_emojis_keywords()
+
+def add_emojis(title):
+    emojis = []
+    for emoji, keywords in emoji_keywords.items():
+        if re.search(keywords, title):
+            emojis.append(emoji)
+        if len(emojis) >= 3:
+            break
+    return " ".join(emojis) + " "

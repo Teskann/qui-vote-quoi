@@ -29,6 +29,7 @@ def generate_results_page(data):
     env.filters["min"] = min
     env.filters["page_range"] = page_range
     env.filters["add_flags"] = add_flags
+    env.filters["add_emojis"] = add_emojis
 
     with open(join(TEMPLATES_PATH, "results.html.jinja")) as f:
         template = env.from_string(f.read())

@@ -10,7 +10,7 @@
      {{ css }}
      </style>
        <meta charset="utf-8">
-       <title>Qui vote quoi&nbsp;?</title>
+       <title>{{ request.search if request.search.strip() else "Tous les votes"}} - Qui vote quoi ?</title>
        <meta name="description" content="Surveillez les votes des députés Français au parlement européen">
      {% include "workaround_responsive.js.jinja" %}
      </head>
