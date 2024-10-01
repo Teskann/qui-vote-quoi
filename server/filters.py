@@ -41,7 +41,7 @@ def political_group_tooltip(group_name):
         "France / ENS :": "L'Europe des nations souveraines (extrême droite)",
         "France / PfE :": "Patriotes pour l'Europe (droite à extrême droite)",
         "France / ID :": "Parti Identité et démocratie (droite radicale à extrême)",
-        "France / PPE :": "Groupe du Parti populaire européen (dentre droit à droite)",
+        "France / PPE :": "Groupe du Parti populaire européen (centre droit à droite)",
         "France / Renew :": "Renew Europe (centre)",
         "France / S&D :": "Alliance progressiste des socialistes et démocrates au Parlement européen (gauche à centre gauche)",
         "France / The Left :": "Groupe de la Gauche au Parlement européen (gauche à extrême gauche)",
