@@ -5,7 +5,12 @@ import requests
 from bs4 import BeautifulSoup
 
 from parser.Document import Document, scrap_documents_from_string
+from tests.utils.workarounds import find_all_next_fixed, find_all_fixed
 from utils.date_management import votes_source_url
+
+
+class Error404(Exception):
+    pass
 
 
 def __get_votes_html(date: str) -> BeautifulSoup:
@@ -17,8 +22,8 @@ def __get_votes_html(date: str) -> BeautifulSoup:
     response = requests.get(votes_source_url(date))
 
     if response.status_code != 200:
-        raise Exception("Error", response.status_code, "for", date)
-    return BeautifulSoup(response.text, 'html.parser')
+        raise Error404("Error", response.status_code, "for", date)
+    return BeautifulSoup(response.text, 'lxml')
 
 
 def __get_main_eu_document(documents: set[Document]) -> tuple[Document, bool]:
@@ -39,8 +44,8 @@ def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
     :param html: input beautiful soup (whole page)
     :return: {"document code": <bs4.Tag>}
     """
-    all_items = html.find_all("a", string=re.compile(".*" + Document.rexeg_str + ".*"))
-    all_items += html.find_all("p", string=re.compile(".*" + Document.rexeg_str + ".*"))
+    all_items = find_all_fixed(html, "a", string=re.compile(".*" + Document.rexeg_str + ".*"))
+    all_items += find_all_fixed(html,"p", string=re.compile(".*" + Document.rexeg_str + ".*"))
 
     # Remove matches that are not the "header" of a table
     # In practice, headers are <p></p>, and sometimes in <p><a></a></p>
@@ -50,10 +55,15 @@ def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
         if item.name == "p" or item.name == "a" and item.parent.name == "p":
             if item.name == "a":
                 item = item.parent
-            all_documents = scrap_documents_from_string(item.parent.prettify(formatter="html"))
+            all_documents = scrap_documents_from_string(item.parent.prettify(formatter="html") + " " + item.text)
+            if not all_documents:
+                continue
             eu_document_code, succeeded = __get_main_eu_document(all_documents)
             if not succeeded:
-                eu_document_code = list(scrap_documents_from_string(item.find_next(string=re.compile(".*" + Document.rexeg_str + ".*"))))[0]
+                next_td = find_all_next_fixed(item,"td", string=re.compile(".*" + Document.rexeg_str + ".*"))
+                if next_td is None or len(next_td) == 0:
+                    continue
+                eu_document_code = list(scrap_documents_from_string(next_td[0].prettify()))[0]
             if str(eu_document_code) not in processed_documents:
                 valid_items[str(eu_document_code)] = item
                 processed_documents.update([str(doc) for doc in all_documents])
@@ -68,7 +78,7 @@ def __find_vote_result_element(tag: bs4.Tag):
     :return: table row containing the vote results
     """
     table_results = tag.find_next("table")
-    tds = table_results.find_all("td", string=re.compile(r"^[+\-—]$"))
+    tds = find_all_fixed(table_results, "td", string=re.compile(r"^[+\-—]$"))
     td = tds[-1] if len(tds) > 0 else None
     if td is None:
         return table_results.find_all("tr")[-1]
@@ -82,6 +92,8 @@ def __get_votes_count(td: bs4.Tag) -> dict:
     :param td: table cell containing the votes
     :return: dict of votes count
     """
+    if td is None:
+        return {"+": "Données indisponibles", "-": "Données indisponibles", "0": "Données indisponibles"}
     text = td.text
     while td.text == "" and td.next_element is not None:
         td = td.next_element
@@ -98,7 +110,7 @@ def __parse_vote_results(tr: bs4.Tag) -> dict:
     """
     roll_name_voted_td = tr.find("td", recursive=False, string="AN")
     was_adopted_td = tr.find("td", recursive=False, string=re.compile(r"[+\-—]"))
-    votes_result_td = was_adopted_td.find_next_sibling("td") if was_adopted_td is not None else None
+    votes_result_td = tr.find("td", recursive=False, string=re.compile(r"\s*\d+,\s*\d+,\s*\d+\s*"))
     if roll_name_voted_td is None and was_adopted_td is None:
         return {"was_roll_call_voted": False, "was_adopted": True}
     if roll_name_voted_td is not None and was_adopted_td is not None:
@@ -121,12 +133,15 @@ def __get_vote_results_for_all_documents(documents: dict):
         results[eu_document_code] = __parse_vote_results(__find_vote_result_element(tag))
     return results
 
-def get_vote_results_for_date(date: str):
+def get_vote_results_for_date(date: str) -> dict | None:
     """
     Get the vote results for a given date
     :param date: date as iso string
     :return: dict of all the voted textx {<eu_document_code>: <vote_results>}
     """
-    return __get_vote_results_for_all_documents(
-        __find_eu_document_codes_in_html(__get_votes_html(date))
-    )
+    try:
+        return __get_vote_results_for_all_documents(
+            __find_eu_document_codes_in_html(__get_votes_html(date))
+        )
+    except Error404:
+        return None

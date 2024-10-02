@@ -1,116 +1,7 @@
 {
-  "A9-0171/2022": {
+  "RC-B9-0331/2022": {
     "votes": {
       "+": {
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      },
-      "0": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "RAPPORT sur la mise en œuvre de la facilité pour la reprise et la résilience",
-      "description": "RAPPORT - sur la mise en œuvre de la facilité pour la reprise et la résilience - (2021/2251(INI)) - Commission des budgets - Commission des affaires économiques et monétaires - Rapporteurs: Eider Gardiazabal Rubial, Siegfried Mureşan, Dragos Pîslaru",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0171_FR.html"
-    }
-  },
-  "C9-0185/2022": {
-    "votes": {
-      "+": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
         "France / PPE :": [
           "Bellamy",
           "Colin-Oesterlé",
@@ -152,69 +43,6 @@
         "France / The Left :": [
           "Aubry",
           "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ]
-      },
-      "-": {
-        "France / ID :": [
-          "Mariani"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "Document au nom inconnu",
-      "description": "Nous ne sommes pas parvenus à récupérer le nom de ce document",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/C-9-2022-0185_FR.html"
-    }
-  },
-  "B9-0329/2022": {
-    "votes": {
-      "+": {
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
           "Pelletier"
         ],
         "France / Verts/ALE :": [
@@ -240,551 +68,6 @@
           "Griset",
           "Jalkh",
           "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ]
-      },
-      "0": {
-        "France / Renew :": [
-          "Decerle",
-          "Riquet"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "PROPOSITION DE RÉSOLUTION sur l’exploitation illégale des forêts dans l’Union européenne",
-      "description": "PROPOSITION DE RÉSOLUTION - déposée à la suite de la question avec demande de réponse orale B9-0016/2022 - déposée conformément à l’article 136, paragraphe 5, du règlement intérieur - sur l’exploitation illégale des forêts dans l’Union européenne - (2022/2523(RSP)) - Dolors Montserrat - au nom de la commission des pétitions",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/B-9-2022-0329_FR.html"
-    }
-  },
-  "A9-0177/2022": {
-    "votes": {
-      "+": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "RECOMMANDATION sur le projet de décision du Conseil concernant l’adhésion de l’Union européenne à la convention sur la reconnaissance et l’exécution des jugements étrangers en matière civile ou commerciale",
-      "description": "RECOMMANDATION<br/>sur le projet de décision du Conseil concernant l’adhésion de l’Union européenne à la convention sur la reconnaissance et l’exécution des jugements étrangers en matière civile ou commerciale<br/>(13494/2021 - C9-0465/2021 - 2021/0208(NLE))<br/>Commission des affaires juridiques<br/>Rapporteure: Sabrina Pignedoli",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0177_FR.html"
-    }
-  },
-  "A9-0185/2022": {
-    "votes": {
-      "+": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "RAPPORT sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds européen d’ajustement à la mondialisation en faveur des travailleurs licenciés à la suite d’une demande de la Grèce – EGF/2021/008 EL/Attica electrical equipment manufacturing",
-      "description": "RAPPORT<br/>sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds européen d’ajustement à la mondialisation en faveur des travailleurs licenciés à la suite d’une demande de la Grèce - EGF/2021/008 EL/Attica electrical equipment manufacturing<br/>(COM(2022)0248 - C9-0190/2022 - 2022/0170(BUD))<br/>Commission des budgets<br/>Rapporteur: Bogdan Rzońca",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0185_FR.html"
-    }
-  },
-  "A9-0183/2022": {
-    "votes": {
-      "+": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "RAPPORT sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds européen d’ajustement à la mondialisation en faveur des travailleurs licenciés à la suite d’une demande de la France – EGF/2022/001 FR/Air France",
-      "description": "RAPPORT<br/>sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds européen d’ajustement à la mondialisation en faveur des travailleurs licenciés à la suite d’une demande de la France - EGF/2022/001 FR/Air France<br/>(COM(2022)0201 - C9-0170/2022 - 2022/0143(BUD))<br/>Commission des budgets<br/>Rapporteure: Fabienne Keller",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0183_FR.html"
-    }
-  },
-  "A9-0176/2022": {
-    "votes": {
-      "+": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Rivière"
-        ],
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ]
-      },
-      "-": {
-        "France / Renew :": [
-          "Loiseau"
-        ]
-      },
-      "0": {
-        "France / NI :": [
-          "Bay"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "RECOMMANDATION sur le projet de décision du Conseil concernant le renouvellement de l’accord de coopération scientifique et technologique entre la Communauté européenne et la République fédérative du Brésil",
-      "description": "RECOMMANDATION<br/>sur le projet de décision du Conseil concernant le renouvellement de l’accord de coopération scientifique et technologique entre la Communauté européenne et la République fédérative du Brésil<br/>(14207/2021 - C9-0478/2021 - 2021/0336(NLE))<br/>Commission de l’industrie, de la recherche et de l’énergie<br/>Rapporteur: Cristian-Silviu Buşoi",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0176_FR.html"
-    }
-  },
-  "B9-0326/2022": {
-    "votes": {
-      "+": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "PROPOSITION DE RÉSOLUTION sur la décision d’exécution (UE) 2022/797 de la Commission du 19 mai 2022 autorisant la mise sur le marché de produits contenant le maïs génétiquement modifié NK603 × T25 × DAS-40278-9 et sa sous-combinaison T25 × DAS-40278-9, consistant en ce maïs et sa sous-combinaison ou produits à partir de ceux-ci, conformément au règlement (CE) no 1829/2003 du Parlement européen et du Conseil",
-      "description": "PROPOSITION DE RÉSOLUTION - déposée conformément à l’article 112, paragraphes 2 et 3, du règlement intérieur - sur la décision d’exécution (UE) 2022/797 de la Commission du 19 mai 2022 autorisant la mise sur le marché de produits contenant le maïs génétiquement modifié NK603 × T25 × DAS-40278-9 et sa sous-combinaison T25 × DAS-40278-9, consistant en ce maïs et sa sous-combinaison ou produits à partir de ceux-ci, conformément au règlement (CE) no 1829/2003 du Parlement européen et du Conseil - (D080148/03 - 2022/2713(RSP)) - Commission de l’environnement, de la santé publique et de la sécurité alimentaire",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/B-9-2022-0326_FR.html"
-    }
-  },
-  "A9-0151/2022": {
-    "votes": {
-      "+": {
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      },
-      "-": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
           "Juvin",
           "Lacapelle",
           "Lebreton",
@@ -797,406 +80,26 @@
         ]
       },
       "0": {
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
         "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
+          "Maurel"
         ]
       }
     },
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
-      "title": "RAPPORT sur le rapport 2021 de la Commission sur le Monténégro",
-      "description": "RAPPORT - sur le rapport 2021 de la Commission sur le Monténégro - (2021/2247(INI)) - Commission des affaires étrangères - Rapporteur: Tonino Picula",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0151_FR.html"
-    }
-  },
-  "A9-0158/2022": {
-    "votes": {
-      "+": {
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      },
-      "-": {
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ]
-      },
-      "0": {
-        "France / ID :": [
-          "Androuët",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ]
-      }
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur le statut de pays candidat de l’Ukraine, de la République de Moldavie et de la Géorgie",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 132, paragraphes 2 et 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B9-0331/2022 (Renew) - B9-0332/2022 (Verts/ALE) - B9-0334/2022 (PPE) - B9-0335/2022 (S&D) - B9-0336/2022 (ECR) - sur le statut de pays candidat de l’Ukraine, de la République de Moldavie et de la Géorgie - (2022/2716(RSP)) - Manfred Weber, Michael Gahler, Andrzej Halicki, Miriam Lexmann, Rasa Juknevičienė, David McAllister, Željana Zovko, Siegfried Mureşan, Paulo Rangel, Andrius Kubilius, Jerzy Buzek, Traian Băsescu, Vladimír Bilčík, Vasile Blaga, Ioan-Rareş Bogdan, Daniel Buda, Cristian-Silviu Buşoi, Gheorghe Falcă, Tomasz Frankowski, Sunčana Glavak, Mircea-Gheorghe Hava, Sandra Kalniete, Arba Kokalari, Andrey Kovatchev, David Lega, Antonio López-Istúriz White, Elżbieta Katarzyna Łukacijewska, Aušra Maldeikienė, Lukas Mandl, Marian-Jean Marinescu, Liudas Mažylis, Dan-Ştefan Motreanu, Gheorghe-Vlad Nistor, Janina Ochojska, Radosław Sikorski, Michaela Šojdrová, Eugen Tomac, Inese Vaidere, Loránt Vincze, Iuliu Winkler, Isabel Wiseler-Lima, Alexander Alexandrov Yordanov, Milan Zver - au nom du groupe PPE - Pedro Marques, Sven Mikser, Włodzimierz Cimoszewicz, Juozas Olekas, Victor Negrescu, Tonino Picula - au nom du groupe S&D - Petras Auštrevičius, Dragoş Tudorache, José Ramón Bauzá Díaz, Dita Charanzová, Vlad Gheorghe, Bernard Guetta, Nathalie Loiseau, Urmas Paet, Frédérique Ries, Michal Šimečka, Ramona Strugariu - au nom du groupe Renew - Viola Von Cramon-Taubadel - au nom du groupe Verts/ALE - Raffaele Fitto, Anna Fotyga, Witold Jan Waszczykowski, Bogdan Rzońca, Elżbieta Rafalska, Ryszard Czarnecki, Jadwiga Wiśniewska, Valdemar Tomaševski, Alexandr Vondra, Veronika Vrecionová, Adam Bielan, Joanna Kopcińska, Beata Szydło, Assita Kanko, Tomasz Piotr Poręba, Patryk Jaki, Zbigniew Kuźmiuk, Zdzisław Krasnodębski, Eugen Jurzyca, Elżbieta Kruk - au nom du groupe ECR - Fabio Massimo Castaldo",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-9-2022-0331_FR.html"
     },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "RAPPORT relatif à la mise en œuvre de mesures d’inclusion dans le cadre d’Erasmus+ 2014-2020",
-      "description": "RAPPORT - relatif à la mise en œuvre de mesures d’inclusion dans le cadre d’Erasmus+ 2014-2020 - (2021/2009(INI)) - Commission de la culture et de l’éducation - Rapporteure: Laurence Farreng",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0158_FR.html"
-    }
-  },
-  "A9-0137/2022": {
-    "votes": {
-      "+": {
-        "France / PPE :": [
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Glucksmann",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      },
-      "-": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
-        "France / PPE :": [
-          "Bellamy"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Maurel",
-          "Pelletier"
-        ],
-        "France / Verts/ALE :": [
-          "Gruffat"
-        ]
-      },
-      "0": {
-        "France / S&D :": [
-          "Andrieu",
-          "Guillaume"
-        ]
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 529,
+        "-": 45,
+        "0": 14
       }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "RAPPORT sur la proposition de règlement du Parlement européen et du Conseil modifiant le règlement (UE) 2021/954 relatif à un cadre pour la délivrance, la vérification et l’acceptation de certificats COVID-19 interopérables de vaccination, de test et de rétablissement (certificat COVID numérique de l’UE) destinés aux ressortissants de pays tiers séjournant ou résidant légalement sur le territoire des États membres pendant la pandémie de COVID-19",
-      "description": "RAPPORT - sur la proposition de règlement du Parlement européen et du Conseil modifiant le règlement (UE) 2021/954 relatif à un cadre pour la délivrance, la vérification et l’acceptation de certificats COVID-19 interopérables de vaccination, de test et de rétablissement (certificat COVID numérique de l’UE) destinés aux ressortissants de pays tiers séjournant ou résidant légalement sur le territoire des États membres pendant la pandémie de COVID-19  - (COM(2022)0055 - C9-0032/2022 - 2022/0030(COD)) - Commission des libertés civiles, de la justice et des affaires intérieures - Rapporteur: Juan Fernando López Aguilar",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0137_FR.html"
-    }
-  },
-  "B9-0327/2022": {
-    "votes": {
-      "+": {
-        "France / NI :": [
-          "Bay",
-          "Rivière"
-        ],
-        "France / Renew :": [
-          "Canfin",
-          "Durand",
-          "Guetta",
-          "Riquet",
-          "Séjourné"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      },
-      "-": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani",
-          "Rougé"
-        ],
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Decerle",
-          "Grudler",
-          "Loiseau"
-        ]
-      },
-      "0": {
-        "France / Renew :": [
-          "Boyer",
-          "Cicurel",
-          "Farreng",
-          "Gozi",
-          "Hayer",
-          "Karleskind",
-          "Orville",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Larrouturou"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "PROPOSITION DE RÉSOLUTION relative au projet de règlement d’exécution de la Commission concernant la désignation d'antimicrobiens ou de groupes d'antimicrobiens réservés au traitement de certaines infections chez l’homme, conformément au règlement (UE) 2019/6 du Parlement européen et du Conseil",
-      "description": "PROPOSITION DE RÉSOLUTION<br/>déposée conformément à l’article 112, paragraphes 2 et 3, du règlement intérieur<br/>relative au projet de règlement d’exécution de la Commission concernant la désignation d'antimicrobiens ou de groupes d'antimicrobiens réservés au traitement de certaines infections chez l’homme, conformément au règlement (UE) 2019/6 du Parlement européen et du Conseil<br/>(D080741/01 - 2022/2693(RSP))<br/>Commission de l’environnement, de la santé publique et de la sécurité alimentaire",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/B-9-2022-0327_FR.html"
-    }
-  },
-  "A9-0166/2022": {
-    "votes": {
-      "+": {
-        "France / PPE :": [
-          "Bellamy",
-          "Colin-Oesterlé",
-          "Danjean",
-          "Didier",
-          "Evren",
-          "Morano",
-          "Sander"
-        ],
-        "France / Renew :": [
-          "Bijoux",
-          "Boyer",
-          "Canfin",
-          "Cicurel",
-          "Decerle",
-          "Durand",
-          "Farreng",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Karleskind",
-          "Loiseau",
-          "Orville",
-          "Riquet",
-          "Séjourné",
-          "Trillet-Lenoir",
-          "Vedrenne",
-          "Yenbou",
-          "Yon-Courtin"
-        ],
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq",
-          "Larrouturou"
-        ],
-        "France / The Left :": [
-          "Aubry",
-          "Chaibi",
-          "Maurel",
-          "Pelletier"
-        ],
-        "France / Verts/ALE :": [
-          "Alfonsi",
-          "Biteau",
-          "Carême",
-          "Cormand",
-          "Delbos-Corfield",
-          "Gruffat",
-          "Jadot",
-          "Roose",
-          "Satouri",
-          "Toussaint"
-        ]
-      },
-      "-": {
-        "France / ID :": [
-          "Androuët",
-          "Beigneux",
-          "Bilde",
-          "Bruna",
-          "Garraud",
-          "Griset",
-          "Jalkh",
-          "Jamet",
-          "Joron",
-          "Juvin",
-          "Lacapelle",
-          "Lebreton",
-          "Mariani"
-        ],
-        "France / NI :": [
-          "Bay"
-        ]
-      }
-    },
-    "date": "2022-06-23",
-    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
-    "details": {
-      "title": "RAPPORT sur l’avenir de la politique de l’Union en matière d’investissements internationaux",
-      "description": "RAPPORT - sur l’avenir de la politique de l’Union en matière d’investissements internationaux - (2021/2176 (INI)) - Commission du commerce international - Rapporteure: Anna Cavazzini",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0166_FR.html"
     }
   },
   "A9-0138/2022": {
@@ -1296,6 +199,122 @@
       "title": "RAPPORT sur la proposition de règlement du Parlement européen et du Conseil modifiant le règlement (UE) 2021/953 relatif à un cadre pour la délivrance, la vérification et l’acceptation de certificats COVID-19 interopérables de vaccination, de test et de rétablissement (certificat COVID numérique de l’UE) afin de faciliter la libre circulation pendant la pandémie de COVID-19",
       "description": "RAPPORT - sur la proposition de règlement du Parlement européen et du Conseil modifiant le règlement (UE) 2021/953 relatif à un cadre pour la délivrance, la vérification et l’acceptation de certificats COVID-19 interopérables de vaccination, de test et de rétablissement (certificat COVID numérique de l’UE) afin de faciliter la libre circulation pendant la pandémie de COVID-19 - (COM(2022)0050 - C9-0031/2022 - 2022/0031(COD)) - Commission des libertés civiles, de la justice et des affaires intérieures - Rapporteur: Juan Fernando López Aguilar",
       "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0138_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 453,
+        "-": 119,
+        "0": 19
+      }
+    }
+  },
+  "A9-0137/2022": {
+    "votes": {
+      "+": {
+        "France / PPE :": [
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Glucksmann",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / PPE :": [
+          "Bellamy"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Gruffat"
+        ]
+      },
+      "0": {
+        "France / S&D :": [
+          "Andrieu",
+          "Guillaume"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "RAPPORT sur la proposition de règlement du Parlement européen et du Conseil modifiant le règlement (UE) 2021/954 relatif à un cadre pour la délivrance, la vérification et l’acceptation de certificats COVID-19 interopérables de vaccination, de test et de rétablissement (certificat COVID numérique de l’UE) destinés aux ressortissants de pays tiers séjournant ou résidant légalement sur le territoire des États membres pendant la pandémie de COVID-19",
+      "description": "RAPPORT - sur la proposition de règlement du Parlement européen et du Conseil modifiant le règlement (UE) 2021/954 relatif à un cadre pour la délivrance, la vérification et l’acceptation de certificats COVID-19 interopérables de vaccination, de test et de rétablissement (certificat COVID numérique de l’UE) destinés aux ressortissants de pays tiers séjournant ou résidant légalement sur le territoire des États membres pendant la pandémie de COVID-19  - (COM(2022)0055 - C9-0032/2022 - 2022/0030(COD)) - Commission des libertés civiles, de la justice et des affaires intérieures - Rapporteur: Juan Fernando López Aguilar",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0137_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 454,
+        "-": 112,
+        "0": 20
+      }
     }
   },
   "A9-0181/2022": {
@@ -1385,6 +404,831 @@
       "title": "RAPPORT concernant la position du Conseil sur le projet de budget rectificatif nº 3/2022 de l’Union européenne pour l’exercice 2022 – Financement du coût de l'accueil des personnes fuyant l’Ukraine",
       "description": "RAPPORT - concernant la position du Conseil sur le projet de budget rectificatif nº 3/2022 de l’Union européenne pour l’exercice 2022 - Financement du coût de l'accueil des personnes fuyant l’Ukraine - (09095/2022 - C9-0182/2022 - 2022/0126(BUD)) - Commission des budgets - Rapporteur: Karlo Ressler",
       "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0181_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 576,
+        "-": 3,
+        "0": 13
+      }
+    }
+  },
+  "A9-0183/2022": {
+    "votes": {
+      "+": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "RAPPORT sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds européen d’ajustement à la mondialisation en faveur des travailleurs licenciés à la suite d’une demande de la France – EGF/2022/001 FR/Air France",
+      "description": "RAPPORT<br/>sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds européen d’ajustement à la mondialisation en faveur des travailleurs licenciés à la suite d’une demande de la France - EGF/2022/001 FR/Air France<br/>(COM(2022)0201 - C9-0170/2022 - 2022/0143(BUD))<br/>Commission des budgets<br/>Rapporteure: Fabienne Keller",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0183_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 564,
+        "-": 18,
+        "0": 16
+      }
+    }
+  },
+  "A9-0185/2022": {
+    "votes": {
+      "+": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "RAPPORT sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds européen d’ajustement à la mondialisation en faveur des travailleurs licenciés à la suite d’une demande de la Grèce – EGF/2021/008 EL/Attica electrical equipment manufacturing",
+      "description": "RAPPORT<br/>sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds européen d’ajustement à la mondialisation en faveur des travailleurs licenciés à la suite d’une demande de la Grèce - EGF/2021/008 EL/Attica electrical equipment manufacturing<br/>(COM(2022)0248 - C9-0190/2022 - 2022/0170(BUD))<br/>Commission des budgets<br/>Rapporteur: Bogdan Rzońca",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0185_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 564,
+        "-": 26,
+        "0": 6
+      }
+    }
+  },
+  "B9-0327/2022": {
+    "votes": {
+      "+": {
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / Renew :": [
+          "Canfin",
+          "Durand",
+          "Guetta",
+          "Riquet",
+          "Séjourné"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Decerle",
+          "Grudler",
+          "Loiseau"
+        ]
+      },
+      "0": {
+        "France / Renew :": [
+          "Boyer",
+          "Cicurel",
+          "Farreng",
+          "Gozi",
+          "Hayer",
+          "Karleskind",
+          "Orville",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Larrouturou"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION relative au projet de règlement d’exécution de la Commission concernant la désignation d'antimicrobiens ou de groupes d'antimicrobiens réservés au traitement de certaines infections chez l’homme, conformément au règlement (UE) 2019/6 du Parlement européen et du Conseil",
+      "description": "PROPOSITION DE RÉSOLUTION<br/>déposée conformément à l’article 112, paragraphes 2 et 3, du règlement intérieur<br/>relative au projet de règlement d’exécution de la Commission concernant la désignation d'antimicrobiens ou de groupes d'antimicrobiens réservés au traitement de certaines infections chez l’homme, conformément au règlement (UE) 2019/6 du Parlement européen et du Conseil<br/>(D080741/01 - 2022/2693(RSP))<br/>Commission de l’environnement, de la santé publique et de la sécurité alimentaire",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/B-9-2022-0327_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": false,
+      "global_votes": {
+        "+": 269,
+        "-": 280,
+        "0": 46
+      }
+    }
+  },
+  "B9-0328/2022": {
+    "votes": {
+      "+": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "MOTION FOR A RESOLUTION on the draft Commission implementing decision authorising the placing on the market of products containing, consisting of or produced from genetically modified maize DP4114 × MON 810 × MIR604 × NK603 and genetically modified maize combining two or three of the single events DP4114, MON 810, MIR604 and NK603, pursuant to Regulation (EC) No 1829/2003 of the European Parliament and of the Council",
+      "description": "MOTION FOR A RESOLUTION - pursuant to Rule 112(2) and (3) of the Rules of Procedure - on the draft Commission implementing decision authorising the placing on the market of products containing, consisting of or produced from genetically modified maize DP4114 × MON 810 × MIR604 × NK603 and genetically modified maize combining two or three of the single events DP4114, MON 810, MIR604 and NK603, pursuant to Regulation (EC) No 1829/2003 of the European Parliament and of the Council - (D081155/01 - 2022/2694(RSP)) - Committee on the Environment, Public Health and Food Safety",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/B-9-2022-0328_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 398,
+        "-": 173,
+        "0": 24
+      }
+    }
+  },
+  "B9-0326/2022": {
+    "votes": {
+      "+": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION sur la décision d’exécution (UE) 2022/797 de la Commission du 19 mai 2022 autorisant la mise sur le marché de produits contenant le maïs génétiquement modifié NK603 × T25 × DAS-40278-9 et sa sous-combinaison T25 × DAS-40278-9, consistant en ce maïs et sa sous-combinaison ou produits à partir de ceux-ci, conformément au règlement (CE) no 1829/2003 du Parlement européen et du Conseil",
+      "description": "PROPOSITION DE RÉSOLUTION - déposée conformément à l’article 112, paragraphes 2 et 3, du règlement intérieur - sur la décision d’exécution (UE) 2022/797 de la Commission du 19 mai 2022 autorisant la mise sur le marché de produits contenant le maïs génétiquement modifié NK603 × T25 × DAS-40278-9 et sa sous-combinaison T25 × DAS-40278-9, consistant en ce maïs et sa sous-combinaison ou produits à partir de ceux-ci, conformément au règlement (CE) no 1829/2003 du Parlement européen et du Conseil - (D080148/03 - 2022/2713(RSP)) - Commission de l’environnement, de la santé publique et de la sécurité alimentaire",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/B-9-2022-0326_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 402,
+        "-": 173,
+        "0": 18
+      }
+    }
+  },
+  "A9-0180/2022": {
+    "votes": {},
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-VOT_FR.html",
+    "details": {
+      "title": "RAPPORT on the nomination of Stephanus Abraham Blok as a Member of the Court of Auditors",
+      "description": "RAPPORT<br/>on the nomination of Stephanus Abraham Blok as a Member of the Court of Auditors<br/>(C9-0150-2022 - 2022/0805(NLE))<br/>Commission du contrôle budgétaire<br/>Rapporteur: Markus Pieper",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0180_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    }
+  },
+  "A9-0176/2022": {
+    "votes": {
+      "+": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Rivière"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ]
+      },
+      "-": {
+        "France / Renew :": [
+          "Loiseau"
+        ]
+      },
+      "0": {
+        "France / NI :": [
+          "Bay"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "RECOMMANDATION sur le projet de décision du Conseil concernant le renouvellement de l’accord de coopération scientifique et technologique entre la Communauté européenne et la République fédérative du Brésil",
+      "description": "RECOMMANDATION<br/>sur le projet de décision du Conseil concernant le renouvellement de l’accord de coopération scientifique et technologique entre la Communauté européenne et la République fédérative du Brésil<br/>(14207/2021 - C9-0478/2021 - 2021/0336(NLE))<br/>Commission de l’industrie, de la recherche et de l’énergie<br/>Rapporteur: Cristian-Silviu Buşoi",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0176_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 519,
+        "-": 5,
+        "0": 74
+      }
+    }
+  },
+  "A9-0177/2022": {
+    "votes": {
+      "+": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "RECOMMANDATION sur le projet de décision du Conseil concernant l’adhésion de l’Union européenne à la convention sur la reconnaissance et l’exécution des jugements étrangers en matière civile ou commerciale",
+      "description": "RECOMMANDATION<br/>sur le projet de décision du Conseil concernant l’adhésion de l’Union européenne à la convention sur la reconnaissance et l’exécution des jugements étrangers en matière civile ou commerciale<br/>(13494/2021 - C9-0465/2021 - 2021/0208(NLE))<br/>Commission des affaires juridiques<br/>Rapporteure: Sabrina Pignedoli",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0177_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 576,
+        "-": 8,
+        "0": 14
+      }
+    }
+  },
+  "B9-0329/2022": {
+    "votes": {
+      "+": {
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ]
+      },
+      "0": {
+        "France / Renew :": [
+          "Decerle",
+          "Riquet"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-VOT_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION sur l’exploitation illégale des forêts dans l’Union européenne",
+      "description": "PROPOSITION DE RÉSOLUTION - déposée à la suite de la question avec demande de réponse orale B9-0016/2022 - déposée conformément à l’article 136, paragraphe 5, du règlement intérieur - sur l’exploitation illégale des forêts dans l’Union européenne - (2022/2523(RSP)) - Dolors Montserrat - au nom de la commission des pétitions",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/B-9-2022-0329_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
     }
   },
   "A9-0174/2022": {
@@ -1476,9 +1320,117 @@
       "title": "RAPPORT sur la mise en œuvre et la réalisation des objectifs de développement durable (ODD)",
       "description": "RAPPORT - sur la mise en œuvre et la réalisation des objectifs de développement durable (ODD) - (2022/2002(INI)) - Commission du développement - Commission de l’environnement, de la santé publique et de la sécurité alimentaire - Rapporteurs: Barry Andrews, Petros Kokkalis",
       "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0174_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 470,
+        "-": 56,
+        "0": 67
+      }
     }
   },
-  "C9-0126/2022": {
+  "A9-0171/2022": {
+    "votes": {
+      "+": {
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      },
+      "0": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "RAPPORT sur la mise en œuvre de la facilité pour la reprise et la résilience",
+      "description": "RAPPORT - sur la mise en œuvre de la facilité pour la reprise et la résilience - (2021/2251(INI)) - Commission des budgets - Commission des affaires économiques et monétaires - Rapporteurs: Eider Gardiazabal Rubial, Siegfried Mureşan, Dragos Pîslaru",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0171_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 420,
+        "-": 90,
+        "0": 83
+      }
+    }
+  },
+  "A9-0158/2022": {
     "votes": {
       "+": {
         "France / PPE :": [
@@ -1513,6 +1465,102 @@
           "Yon-Courtin"
         ],
         "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
+          "Larrouturou"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ]
+      },
+      "0": {
+        "France / ID :": [
+          "Androuët",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "RAPPORT relatif à la mise en œuvre de mesures d’inclusion dans le cadre d’Erasmus+ 2014-2020",
+      "description": "RAPPORT - relatif à la mise en œuvre de mesures d’inclusion dans le cadre d’Erasmus+ 2014-2020 - (2021/2009(INI)) - Commission de la culture et de l’éducation - Rapporteure: Laurence Farreng",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0158_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 471,
+        "-": 55,
+        "0": 66
+      }
+    }
+  },
+  "A9-0151/2022": {
+    "votes": {
+      "+": {
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq",
           "Larrouturou"
         ],
         "France / Verts/ALE :": [
@@ -1551,11 +1599,14 @@
         ]
       },
       "0": {
-        "France / S&D :": [
-          "Andrieu",
-          "Glucksmann",
-          "Guillaume",
-          "Lalucq"
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
         ],
         "France / The Left :": [
           "Aubry",
@@ -1568,9 +1619,18 @@
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
-      "title": "Document au nom inconnu",
-      "description": "Nous ne sommes pas parvenus à récupérer le nom de ce document",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/C-9-2022-0126_FR.html"
+      "title": "RAPPORT sur le rapport 2021 de la Commission sur le Monténégro",
+      "description": "RAPPORT - sur le rapport 2021 de la Commission sur le Monténégro - (2021/2247(INI)) - Commission des affaires étrangères - Rapporteur: Tonino Picula",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0151_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 506,
+        "-": 50,
+        "0": 35
+      }
     }
   },
   "A9-0169/2022": {
@@ -1666,9 +1726,18 @@
       "title": "RAPPORT sur l’avenir des relations commerciales UE-Afrique",
       "description": "RAPPORT - sur l’avenir des relations commerciales UE-Afrique - (2021/2178(INI)) - Commission du commerce international - Rapporteur: Helmut Scholz",
       "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0169_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 463,
+        "-": 43,
+        "0": 81
+      }
     }
   },
-  "RC-B9-0331/2022": {
+  "A9-0166/2022": {
     "votes": {
       "+": {
         "France / PPE :": [
@@ -1688,7 +1757,6 @@
           "Decerle",
           "Durand",
           "Farreng",
-          "Gozi",
           "Grudler",
           "Guetta",
           "Hayer",
@@ -1712,6 +1780,7 @@
         "France / The Left :": [
           "Aubry",
           "Chaibi",
+          "Maurel",
           "Pelletier"
         ],
         "France / Verts/ALE :": [
@@ -1737,32 +1806,35 @@
           "Griset",
           "Jalkh",
           "Jamet",
+          "Joron",
           "Juvin",
           "Lacapelle",
           "Lebreton",
-          "Mariani",
-          "Rougé"
+          "Mariani"
         ],
         "France / NI :": [
-          "Bay",
-          "Rivière"
-        ]
-      },
-      "0": {
-        "France / The Left :": [
-          "Maurel"
+          "Bay"
         ]
       }
     },
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
-      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur le statut de pays candidat de l’Ukraine, de la République de Moldavie et de la Géorgie",
-      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 132, paragraphes 2 et 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B9-0331/2022 (Renew) - B9-0332/2022 (Verts/ALE) - B9-0334/2022 (PPE) - B9-0335/2022 (S&D) - B9-0336/2022 (ECR) - sur le statut de pays candidat de l’Ukraine, de la République de Moldavie et de la Géorgie - (2022/2716(RSP)) - Manfred Weber, Michael Gahler, Andrzej Halicki, Miriam Lexmann, Rasa Juknevičienė, David McAllister, Željana Zovko, Siegfried Mureşan, Paulo Rangel, Andrius Kubilius, Jerzy Buzek, Traian Băsescu, Vladimír Bilčík, Vasile Blaga, Ioan-Rareş Bogdan, Daniel Buda, Cristian-Silviu Buşoi, Gheorghe Falcă, Tomasz Frankowski, Sunčana Glavak, Mircea-Gheorghe Hava, Sandra Kalniete, Arba Kokalari, Andrey Kovatchev, David Lega, Antonio López-Istúriz White, Elżbieta Katarzyna Łukacijewska, Aušra Maldeikienė, Lukas Mandl, Marian-Jean Marinescu, Liudas Mažylis, Dan-Ştefan Motreanu, Gheorghe-Vlad Nistor, Janina Ochojska, Radosław Sikorski, Michaela Šojdrová, Eugen Tomac, Inese Vaidere, Loránt Vincze, Iuliu Winkler, Isabel Wiseler-Lima, Alexander Alexandrov Yordanov, Milan Zver - au nom du groupe PPE - Pedro Marques, Sven Mikser, Włodzimierz Cimoszewicz, Juozas Olekas, Victor Negrescu, Tonino Picula - au nom du groupe S&D - Petras Auštrevičius, Dragoş Tudorache, José Ramón Bauzá Díaz, Dita Charanzová, Vlad Gheorghe, Bernard Guetta, Nathalie Loiseau, Urmas Paet, Frédérique Ries, Michal Šimečka, Ramona Strugariu - au nom du groupe Renew - Viola Von Cramon-Taubadel - au nom du groupe Verts/ALE - Raffaele Fitto, Anna Fotyga, Witold Jan Waszczykowski, Bogdan Rzońca, Elżbieta Rafalska, Ryszard Czarnecki, Jadwiga Wiśniewska, Valdemar Tomaševski, Alexandr Vondra, Veronika Vrecionová, Adam Bielan, Joanna Kopcińska, Beata Szydło, Assita Kanko, Tomasz Piotr Poręba, Patryk Jaki, Zbigniew Kuźmiuk, Zdzisław Krasnodębski, Eugen Jurzyca, Elżbieta Kruk - au nom du groupe ECR - Fabio Massimo Castaldo",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-9-2022-0331_FR.html"
+      "title": "RAPPORT sur l’avenir de la politique de l’Union en matière d’investissements internationaux",
+      "description": "RAPPORT - sur l’avenir de la politique de l’Union en matière d’investissements internationaux - (2021/2176 (INI)) - Commission du commerce international - Rapporteure: Anna Cavazzini",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-9-2022-0166_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 436,
+        "-": 69,
+        "0": 71
+      }
     }
   },
-  "B9-0328/2022": {
+  "C9-0185/2022": {
     "votes": {
       "+": {
         "France / ID :": [
@@ -1778,7 +1850,6 @@
           "Juvin",
           "Lacapelle",
           "Lebreton",
-          "Mariani",
           "Rougé"
         ],
         "France / NI :": [
@@ -1828,6 +1899,11 @@
           "Chaibi",
           "Maurel",
           "Pelletier"
+        ]
+      },
+      "-": {
+        "France / ID :": [
+          "Mariani"
         ],
         "France / Verts/ALE :": [
           "Alfonsi",
@@ -1846,9 +1922,122 @@
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
-      "title": "MOTION FOR A RESOLUTION on the draft Commission implementing decision authorising the placing on the market of products containing, consisting of or produced from genetically modified maize DP4114 × MON 810 × MIR604 × NK603 and genetically modified maize combining two or three of the single events DP4114, MON 810, MIR604 and NK603, pursuant to Regulation (EC) No 1829/2003 of the European Parliament and of the Council",
-      "description": "MOTION FOR A RESOLUTION - pursuant to Rule 112(2) and (3) of the Rules of Procedure - on the draft Commission implementing decision authorising the placing on the market of products containing, consisting of or produced from genetically modified maize DP4114 × MON 810 × MIR604 × NK603 and genetically modified maize combining two or three of the single events DP4114, MON 810, MIR604 and NK603, pursuant to Regulation (EC) No 1829/2003 of the European Parliament and of the Council - (D081155/01 - 2022/2694(RSP)) - Committee on the Environment, Public Health and Food Safety",
-      "source_url": "https://www.europarl.europa.eu/doceo/document/B-9-2022-0328_FR.html"
+      "title": "Document au nom inconnu",
+      "description": "Nous ne sommes pas parvenus à récupérer le nom de ce document",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/C-9-2022-0185_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 508,
+        "-": 72,
+        "0": 10
+      }
+    }
+  },
+  "C9-0126/2022": {
+    "votes": {
+      "+": {
+        "France / PPE :": [
+          "Bellamy",
+          "Colin-Oesterlé",
+          "Danjean",
+          "Didier",
+          "Evren",
+          "Morano",
+          "Sander"
+        ],
+        "France / Renew :": [
+          "Bijoux",
+          "Boyer",
+          "Canfin",
+          "Cicurel",
+          "Decerle",
+          "Durand",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Karleskind",
+          "Loiseau",
+          "Orville",
+          "Riquet",
+          "Séjourné",
+          "Trillet-Lenoir",
+          "Vedrenne",
+          "Yenbou",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Larrouturou"
+        ],
+        "France / Verts/ALE :": [
+          "Alfonsi",
+          "Biteau",
+          "Carême",
+          "Cormand",
+          "Delbos-Corfield",
+          "Gruffat",
+          "Jadot",
+          "Roose",
+          "Satouri",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / ID :": [
+          "Androuët",
+          "Beigneux",
+          "Bilde",
+          "Bruna",
+          "Garraud",
+          "Griset",
+          "Jalkh",
+          "Jamet",
+          "Joron",
+          "Juvin",
+          "Lacapelle",
+          "Lebreton",
+          "Mariani",
+          "Rougé"
+        ],
+        "France / NI :": [
+          "Bay",
+          "Rivière"
+        ]
+      },
+      "0": {
+        "France / S&D :": [
+          "Andrieu",
+          "Glucksmann",
+          "Guillaume",
+          "Lalucq"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Maurel",
+          "Pelletier"
+        ]
+      }
+    },
+    "date": "2022-06-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
+    "details": {
+      "title": "Document au nom inconnu",
+      "description": "Nous ne sommes pas parvenus à récupérer le nom de ce document",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/C-9-2022-0126_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 490,
+        "-": 47,
+        "0": 55
+      }
     }
   }
 }

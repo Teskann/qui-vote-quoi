@@ -1,5 +1,6 @@
 {% from "table_details.html.jinja" import create_table_details %}
 {% from "votes_table.html.jinja" import create_votes_table %}
+{% from "was_not_roll_call.html.jinja" import was_not_roll_call %}
 
 {% macro create_vote_results(eu_document_code, data) %}
 
@@ -9,8 +10,11 @@
 {{ data.details.title | add_flags }}{{ data.details.title | add_emojis }}{{ data.details.title }}
 </div>
 
-{{ create_votes_table(data.votes) }}
-{{ create_table_details(eu_document_code, data.date, data.votes_source_url, data.details.source_url, data.votes["+"] | count_all_votes, data.votes["-"] | count_all_votes, data.votes["0"] | count_all_votes) }}
+{{ was_not_roll_call(data) }}
+{% if data["global"]["was_roll_call_voted"] %}
+    {{ create_votes_table(data.votes) }}
+{% endif %}
+{{ create_table_details(eu_document_code, data.date, data.votes_source_url, data.details.source_url, data.votes["+"] | count_all_votes if "+" in data.votes else 0, data.votes["-"] | count_all_votes if "-" in data.votes else 0, data.votes["0"] | count_all_votes if "0" in data.votes else 0, data["global"]) }}
 
 </div>
 

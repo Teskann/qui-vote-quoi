@@ -28,7 +28,7 @@ def search_eu_document(keywords, date):
     keywords_regex = re.compile(".*" + unidecode(keywords).replace(" ", ".*") + ".*", flags=re.IGNORECASE | re.MULTILINE)
     matching_items = {}
     for eu_document_code, value in all_votes_for_day.items():
-        if keywords_regex.match(unidecode(value["details"]["title"])) or eu_document_code in keywords:
+        if keywords_regex.match(unidecode(" ".join([value["details"]["title"], value["details"]["description"], eu_document_code]))):
             matching_items[eu_document_code] = value
     return matching_items
 

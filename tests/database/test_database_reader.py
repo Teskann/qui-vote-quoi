@@ -15,9 +15,8 @@ def test_find_eu_documents_from_keyword():
 
     # keyword venezuela
     eu_documents = search_eu_document("venezuela", "2024-09-19")
-    assert len(eu_documents) == 2
+    assert len(eu_documents) == 1
     assert "RC-B10-0023/2024" in eu_documents
-    assert "B10-0023/2024" in eu_documents
 
     # Keyword "unknown"
     eu_documents = search_eu_document("unknown", "2024-09-19")

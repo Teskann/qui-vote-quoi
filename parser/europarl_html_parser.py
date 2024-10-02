@@ -18,7 +18,7 @@ def __find_tables_from_eu_document_code(eu_document_code: str, html: BeautifulSo
     """
     # Return the last table matching the search
     spans = html.find_all('span', string=re.compile(
-        r"(^|(.*\s+))" + re.escape(eu_document_code) + r"((\s+.*)|$)", flags=re.IGNORECASE | re.MULTILINE))
+        r"(^|(.*\s+|\(|\)))" + re.escape(eu_document_code) + r"((\s+|\(|\).*)|$)", flags=re.IGNORECASE | re.MULTILINE))
     span = spans[-1]
     return span.find_next('tr')
 
@@ -63,20 +63,16 @@ def __get_voters(eu_document_code: str, html: BeautifulSoup) -> dict:
     return __parse_all_votes_tables(results_table)
 
 
-def parse_all_votes(html: BeautifulSoup, date: str) -> dict:
+def parse_all_votes(html: BeautifulSoup) -> dict:
     """
     Parses the passed html and return the vote result as a dict
     :param html: complete HTML content to parse
-    :param date: date to check
     :return:
     """
     votes_per_document = {}
     all_documents = scrap_documents_from_string(html.prettify(formatter="html"))
     for document in all_documents:
         votes_per_document[str(document)] = {
-            "votes": __get_voters(str(document), html),
-            "date": date,
-            "votes_source_url": date_management.votes_roll_call_source_url(date),
-            "details": document.to_dict()
+            "votes": __get_voters(str(document), html)
         }
     return votes_per_document

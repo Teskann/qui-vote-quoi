@@ -1,4 +1,4 @@
-{% macro create_table_details(eu_document_code, date, votes_source_url, source_url, votes_for, votes_against, votes_abstained) %}
+{% macro create_table_details(eu_document_code, date, votes_source_url, source_url, votes_for, votes_against, votes_abstained, global) %}
 
 <table class="details">
 
@@ -20,26 +20,46 @@
     <td class="details_content"><a href="{{ source_url }}" target="_blank">Lire {{ eu_document_code }} sur europarl.europa.eu</a></td>
 </tr>
 
-<tr>
-<td class="header_details text_adjust_workaround tooltip">
-    Résultat théorique
-    <span class="tooltip_text">Résultat du vote si seuls les français avaient voté.</span>
-</td>
-    <td class="details_content text_adjust_workaround tooltip">
-        {% if votes_for > votes_against %}
-            ✅ 🇫🇷 Le texte aurait été adopté si seuls les députés français avaient voté, par {{ votes_for }} voix contre
-            {{ votes_against }} ({{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
-            <span class="tooltip_text">⚠️ Notez que cela ne signifie pas que le texte a été rejeté par le parlement
-            européen malgré le vote des députés français.</span>
-        {% else %}
-            ❌ 🇫🇷 Le texte aurait été rejeté si seuls les députés français avaient voté ({{ votes_for }} voix pour,
-            {{ votes_against }} voix contre, {{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
-            <span class="tooltip_text">⚠️ Notez que cela ne signifie pas que le texte a été adopté par le parlement
-            européen malgré le vote des députés français.</span>
-        {% endif %}
-    </td>
-</tr>
-
+{% if global["was_roll_call_voted"] == True %}
+    <tr>
+        <td class="header_details text_adjust_workaround tooltip">
+            Résultat théorique
+            <span class="tooltip_text">Résultat du vote si seuls les français avaient voté.</span>
+        </td>
+        <td class="details_content text_adjust_workaround">
+            {% if votes_for > votes_against %}
+                ✅ 🇫🇷 Le texte aurait été adopté si seuls les députés français avaient voté, par {{ votes_for }} voix contre
+                {{ votes_against }} ({{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
+            {% elif votes_for != 0 or votes_against != 0 or votes_abstained != 0%}
+                ❌ 🇫🇷 Le texte aurait été rejeté si seuls les députés français avaient voté ({{ votes_for }} voix pour,
+                {{ votes_against }} voix contre, {{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
+            {% else %}
+                ❔ Les données relatives au vote par appel nominal des députés français ne sont pas disponibles.
+            {% endif %}
+        </td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td class="header_details text_adjust_workaround tooltip">
+            Résultat
+            <span class="tooltip_text">Résultat du vote au parlement européen.</span>
+        </td>
+        <td class="details_content text_adjust_workaround tooltip">
+            {% if global["was_adopted"] %}
+                ✅ 🇪🇺 Le texte a été adopté par le parlement européen
+                {%- if "global_votes" in global %}
+                    par {{ global["global_votes"]["+"] }} voix contre
+                    {{ global["global_votes"]["-"] }} ({{ global["global_votes"]["0"] }} abstention{{ "s" if global["global_votes"]["0"] > 1 else "" }})
+                {%- endif -%}.
+            {% else %}
+                ❌ 🇪🇺 Le texte a été rejeté par le parlement européen
+                {%- if "global_votes" in global %}
+                    ({{ global["global_votes"]["+"] }} voix pour,
+                    {{ global["global_votes"]["-"] }} voix contre et {{ global["global_votes"]["0"] }} abstention{{ "s" if global["global_votes"]["0"] > 1 else "" }})
+                {%- endif %}.
+            {% endif %}
+        </td>
+    </tr>
 </tbody>
 
 </table>

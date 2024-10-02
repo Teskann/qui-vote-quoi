@@ -1,31 +1,36 @@
 {% macro create_votes_table(votes) %}
-<table class="votes_table">
-{% for vote_result in votes %}
-<tr class="{{ vote_result | class_from_vote_result }}">
-    {%- for (i, (group, members)) in votes[vote_result].items() | enumerate %}
-        {% if i != 0 -%}
-            <tr class="{{ vote_result | class_from_vote_result }}">
-        {%- endif -%}
-        <td class="political_group text_adjust_workaround {{ group | political_group_class }} {{ vote_result | class_from_vote_result }}"><a href="{{ group | political_group_url }}" class="tooltip"><span class="political_group_name {{ vote_result | class_from_vote_result }}">{{ group | political_group }}</span><span class="tooltip_text">{{ group | political_group_tooltip }}</span></a></td>
-        <td class="{{ vote_result | class_from_vote_result }}">
-        {% for is_last, member in votes[vote_result][group] | is_last_iterator -%}
-            {{ member }}
-            {%- if not is_last -%}
-                ,
-            {% endif -%}
+
+{% if votes | length > 0 %}
+
+    <table class="votes_table">
+    {% for vote_result in votes %}
+        <tr class="{{ vote_result | class_from_vote_result }}">
+            {%- for (i, (group, members)) in votes[vote_result].items() | enumerate %}
+                {% if i != 0 -%}
+                    <tr class="{{ vote_result | class_from_vote_result }}">
+                {%- endif -%}
+                <td class="political_group text_adjust_workaround {{ group | political_group_class }} {{ vote_result | class_from_vote_result }}"><a href="{{ group | political_group_url }}" class="tooltip"><span class="political_group_name {{ vote_result | class_from_vote_result }}">{{ group | political_group }}</span><span class="tooltip_text">{{ group | political_group_tooltip }}</span></a></td>
+                <td class="{{ vote_result | class_from_vote_result }}">
+                {% for is_last, member in votes[vote_result][group] | is_last_iterator -%}
+                    {{ member }}
+                    {%- if not is_last -%}
+                        ,
+                    {% endif -%}
+                {%- endfor -%}
+            </td>
+        </tr>
         {%- endfor -%}
-    </td>
-</tr>
     {%- endfor -%}
-{%- endfor -%}
 
-</table>
+    </table>
 
-<div class="legend tooltip">
-<span class="legend_item {{ "+" | class_from_vote_result }}">Ont voté pour</span>
-<span class="legend_item {{ "-" | class_from_vote_result }}">Ont voté contre</span>
-<span class="legend_item {{ "0" | class_from_vote_result }}">Se sont abstenus</span>
-<span class="tooltip_text">Les membres du parlement qui ne sont pas mentionnés ici étaient absents lors du vote.</span>
-</div>
+    <div class="legend tooltip">
+    <span class="legend_item {{ "+" | class_from_vote_result }}">Ont voté pour</span>
+    <span class="legend_item {{ "-" | class_from_vote_result }}">Ont voté contre</span>
+    <span class="legend_item {{ "0" | class_from_vote_result }}">Se sont abstenus</span>
+    <span class="tooltip_text">Les membres du parlement qui ne sont pas mentionnés ici étaient absents lors du vote.</span>
+    </div>
+
+{% endif %}
 
 {% endmacro %}

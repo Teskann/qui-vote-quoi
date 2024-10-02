@@ -2,6 +2,8 @@ import json
 import os
 
 from database.database import get_path
+from parser.merger import merge_data
+from parser.votes_page_parser import get_vote_results_for_date
 from utils.date_management import date_range
 from parser.empty_days_management import nothing_happened_on
 from parser.europarl_html_parser import parse_all_votes
@@ -23,7 +25,10 @@ def dump_day_to_json(date: str, overwrite: bool = False):
     html = get_roll_call_votes_html_at_date(date)
     if html is None:
         return
-    votes_per_document = parse_all_votes(html, date)
+    votes_per_document = parse_all_votes(html)
+    global_votes = get_vote_results_for_date(date)
+    if global_votes is not None:
+        votes_per_document = merge_data(votes_per_document, global_votes, date)
     with open(file_name, "w") as f:
         json.dump(votes_per_document, f, indent=2, ensure_ascii=False)
 

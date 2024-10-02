@@ -103,7 +103,7 @@ def scrap_documents_from_string(text) -> set[Document]:
     :param text: text to search
     :return: set of Document
     """
-    rexexp = re.compile(f"(^|\\s+|\\()({Document.rexeg_str})($|\\s+|\\.|,|:|\\))", flags=re.MULTILINE | re.IGNORECASE)
+    rexexp = re.compile(f"(^|\\s+|\\(|\\))({Document.rexeg_str})($|\\s+|\\.|,|:|\\(|\\))", flags=re.MULTILINE | re.IGNORECASE)
     matches = rexexp.findall(text)
     all_documents_str = set()
     for match in matches:
