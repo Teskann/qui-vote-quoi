@@ -13,7 +13,7 @@
             <thead>
                 <tr class="header-row">
                     <th class="header-cell"></th>
-                    {% for key, _ in cor.items() | islice(1, None) %}
+                    {% for key, _ in cor.items() %}
                         <th class="header-cell tooltip">
                             {{ key | political_group }}
                             <span class="tooltip_text">
@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for row_key, row_value in cor.items() | islice(0, (cor|length)-1) %}
+                {% for row_key, row_value in cor.items() %}
                     <tr class="data-row">
                         <th class="data-cell tooltip">
                             {{ row_key | political_group }}
@@ -32,7 +32,8 @@
                                 {{ row_key | political_group_tooltip }}
                             </span>
                         </th>
-                        {% for _, col_value in row_value.items() | islice(1, None) %}
+                        {% for col_key, col_value in row_value.items() %}
+                            {% set col_value = col_value if col_value is not none else cor[col_key][row_key] %}
                             {% if col_value is not none %}
                                 {% set min_hue = 13 %}
                                 {% set max_hue = 154 %}
