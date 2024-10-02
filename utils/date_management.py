@@ -35,8 +35,11 @@ def parliament_number_from_date(date):
     return 0
 
 
-def votes_source_url(date):
+def votes_roll_call_source_url(date):
     return f"https://www.europarl.europa.eu/doceo/document/PV-{parliament_number_from_date(date)}-{date}-RCV_FR.html"
+
+def votes_source_url(date):
+    return f"https://www.europarl.europa.eu/doceo/document/PV-{parliament_number_from_date(date)}-{date}-VOT_FR.html"
 
 
 def date_range(start_date, end_date):

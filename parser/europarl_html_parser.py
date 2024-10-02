@@ -76,7 +76,7 @@ def parse_all_votes(html: BeautifulSoup, date: str) -> dict:
         votes_per_document[str(document)] = {
             "votes": __get_voters(str(document), html),
             "date": date,
-            "votes_source_url": date_management.votes_source_url(date),
+            "votes_source_url": date_management.votes_roll_call_source_url(date),
             "details": document.to_dict()
         }
     return votes_per_document

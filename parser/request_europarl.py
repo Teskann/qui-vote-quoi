@@ -5,7 +5,7 @@ from utils import date_management
 from parser.empty_days_management import set_nothing_happened_for
 
 
-def __create_request(date: str):
+def __create_request_for_roll_call(date: str):
     """
     Create the web request to contact europarl website
     :param date: date as iso-formatted string
@@ -35,7 +35,7 @@ def __create_request(date: str):
     return url, headers, data
 
 
-def __get_votes_html(url: str, headers: dict, data: dict) -> BeautifulSoup | None:
+def __get_roll_call_votes_html(url: str, headers: dict, data: dict) -> BeautifulSoup | None:
     """
     Contacts europarl website and returns the HTML of the response in a BeautifulSoup object
     If the result is empty because nothing happened in parliament on this date, None is returned
@@ -58,7 +58,7 @@ def __get_votes_html(url: str, headers: dict, data: dict) -> BeautifulSoup | Non
     return html
 
 
-def get_votes_html_at_date(date: str) -> BeautifulSoup | None:
+def get_roll_call_votes_html_at_date(date: str) -> BeautifulSoup | None:
     """
     Contacts europarl website and returns the HTML of the response in a BeautifulSoup object
     If the result is empty because nothing happened in parliament on this date, None is returned
@@ -66,8 +66,8 @@ def get_votes_html_at_date(date: str) -> BeautifulSoup | None:
     :param date: date as iso formatted string
     :return: None if nothing was voted on this date, HTML content otherwise
     """
-    req = __create_request(date=date)
-    html = __get_votes_html(*req)
+    req = __create_request_for_roll_call(date=date)
+    html = __get_roll_call_votes_html(*req)
     if html is None:
         set_nothing_happened_for(date)
     return html

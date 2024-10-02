@@ -1,0 +1,419 @@
+{
+  "2020-01-15": {
+    "B9-0039/2020": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    },
+    "A9-0053/2019": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 550,
+        "-": 24,
+        "0": 22
+      }
+    },
+    "A9-0041/2019": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 597,
+        "-": 34,
+        "0": 32
+      }
+    },
+    "A9-0055/2019": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 592,
+        "-": 22,
+        "0": 51
+      }
+    },
+    "RC-B9-0040/2020": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 482,
+        "-": 136,
+        "0": 95
+      }
+    },
+    "B9-0031/2020": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 610,
+        "-": 29,
+        "0": 68
+      }
+    },
+    "A9-0051/2019": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 496,
+        "-": 113,
+        "0": 103
+      }
+    },
+    "A9-0054/2019": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 454,
+        "-": 148,
+        "0": 102
+      }
+    },
+    "A9-0052/2019": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 364,
+        "-": 266,
+        "0": 77
+      }
+    },
+    "B9-0036/2020": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 494,
+        "-": 147,
+        "0": 49
+      }
+    }
+  },
+  "2019-07-18": {
+    "RC-B9-0006/2019": {
+      "global_votes": {
+        "+": 455,
+        "-": 85,
+        "0": 105
+      },
+      "was_adopted": true,
+      "was_roll_call_voted": true
+    },
+    "RC-B9-0012/2019": {
+      "was_adopted": true,
+      "was_roll_call_voted": false
+    },
+    "RC-B9-0013/2019": {
+      "was_adopted": true,
+      "was_roll_call_voted": false
+    },
+    "RC-B9-0014/2019": {
+      "was_adopted": true,
+      "was_roll_call_voted": false
+    }
+  },
+  "2023-12-14": {
+    "B9-0488/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": false,
+      "global_votes": {
+        "+": 317,
+        "-": 148,
+        "0": 77
+      }
+    },
+    "B9-0494/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 500,
+        "-": 42,
+        "0": 4
+      }
+    },
+    "B9-0492/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 380,
+        "-": 156,
+        "0": 16
+      }
+    },
+    "B9-0490/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 382,
+        "-": 153,
+        "0": 11
+      }
+    },
+    "RC-B9-0509/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 489,
+        "-": 7,
+        "0": 42
+      }
+    },
+    "RC-B9-0511/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 493,
+        "-": 29,
+        "0": 17
+      }
+    },
+    "RC-B9-0510/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 477,
+        "-": 14,
+        "0": 45
+      }
+    },
+    "A9-0383/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 465,
+        "-": 36,
+        "0": 50
+      }
+    },
+    "A9-0368/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 366,
+        "-": 145,
+        "0": 23
+      }
+    },
+    "B9-0491/2023": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    },
+    "B9-0499/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 366,
+        "-": 154,
+        "0": 15
+      }
+    },
+    "A9-0379/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 418,
+        "-": 44,
+        "0": 59
+      }
+    },
+    "RC-B9-0526/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 432,
+        "-": 9,
+        "0": 39
+      }
+    }
+  },
+  "2022-12-13": {
+    "A9-0145/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 573,
+        "-": 44,
+        "0": 11
+      }
+    },
+    "A9-0286/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 593,
+        "-": 21,
+        "0": 8
+      }
+    },
+    "A9-0287/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 624,
+        "-": 2,
+        "0": 5
+      }
+    },
+    "A9-0276/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 625,
+        "-": 3,
+        "0": 2
+      }
+    },
+    "A9-0285/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 600,
+        "-": 21,
+        "0": 10
+      }
+    },
+    "B9-0548/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 425,
+        "-": 182,
+        "0": 20
+      }
+    },
+    "B9-0549/2022": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    },
+    "A9-0284/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 526,
+        "-": 10,
+        "0": 83
+      }
+    },
+    "A9-0269/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 465,
+        "-": 29,
+        "0": 131
+      }
+    },
+    "A9-0242/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 524,
+        "-": 38,
+        "0": 50
+      }
+    },
+    "B9-0550/2022": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    }
+  },
+  "2022-12-14": {
+    "A9-0282/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 555,
+        "-": 7,
+        "0": 4
+      }
+    },
+    "A9-0283/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 407,
+        "-": 34,
+        "0": 181
+      }
+    },
+    "A9-0274/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 430,
+        "-": 52,
+        "0": 126
+      }
+    },
+    "RC-B9-0552/2022": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    },
+    "A9-0279/2022": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 455,
+        "-": 114,
+        "0": 44
+      }
+    }
+  },
+  "2024-09-19": {
+    "RC-B10-0024/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 565,
+        "-": 8,
+        "0": 43
+      }
+    },
+    "RC-B10-0026/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 549,
+        "-": 21,
+        "0": 37
+      }
+    },
+    "RC-B10-0022/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 380,
+        "-": 182,
+        "0": 51
+      }
+    },
+    "A10-0001/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 582,
+        "-": 16,
+        "0": 17
+      }
+    },
+    "RC-B10-0028/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 425,
+        "-": 131,
+        "0": 63
+      }
+    },
+    "RC-B10-0023/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 309,
+        "-": 201,
+        "0": 12
+      }
+    },
+    "RC-B10-0057/2024": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    }
+  }
+}

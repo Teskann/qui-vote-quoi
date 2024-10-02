@@ -5,7 +5,7 @@ from database.database import get_path
 from utils.date_management import date_range
 from parser.empty_days_management import nothing_happened_on
 from parser.europarl_html_parser import parse_all_votes
-from parser.request_europarl import get_votes_html_at_date
+from parser.request_europarl import get_roll_call_votes_html_at_date
 
 
 def dump_day_to_json(date: str, overwrite: bool = False):
@@ -20,7 +20,7 @@ def dump_day_to_json(date: str, overwrite: bool = False):
     file_name = get_path(date + ".json")
     if os.path.exists(file_name) and not overwrite or nothing_happened_on(date):
         return
-    html = get_votes_html_at_date(date)
+    html = get_roll_call_votes_html_at_date(date)
     if html is None:
         return
     votes_per_document = parse_all_votes(html, date)
