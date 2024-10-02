@@ -1,0 +1,55 @@
+{% macro get_correlations(data) %}
+
+{% if data | length > 0 %}
+{% set cor = data | correlations %}
+{% set base_saturation = 61 %}
+{% set base_lightness = 66 %}
+
+<div class="wrapper">
+    <input type="checkbox" id="toggleTable"/>
+    <label for="toggleTable">Similarité des votes</label>
+    <div class="correlation-table-container">
+        <table class="correlation-table" id="correlation-table">
+            <thead>
+                <tr class="header-row">
+                    <th class="header-cell"></th>
+                    {% for key, _ in cor.items() | islice(1, None) %}
+                        <th class="header-cell tooltip">
+                            {{ key | political_group }}
+                            <span class="tooltip_text">
+                                {{ key | political_group_tooltip }}
+                            </span>
+                        </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row_key, row_value in cor.items() | islice(0, (cor|length)-1) %}
+                    <tr class="data-row">
+                        <th class="data-cell tooltip">
+                            {{ row_key | political_group }}
+                            <span class="tooltip_text">
+                                {{ row_key | political_group_tooltip }}
+                            </span>
+                        </th>
+                        {% for _, col_value in row_value.items() | islice(1, None) %}
+                            {% if col_value is not none %}
+                                {% set min_hue = 13 %}
+                                {% set max_hue = 154 %}
+                                {% set hue = min_hue + (max_hue - min_hue) * col_value %}
+                                {% set color = "hsl(" ~ hue ~ "," ~ base_saturation ~ "%," ~ base_lightness ~ "%)" %}
+                                <td class="data-cell" style="color: {{ color }}">{{ "{:.0f}%".format(col_value * 100) }}</td>
+                            {% else %}
+                                <td class="data-cell">-</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endif %}
+
+{% endmacro %}

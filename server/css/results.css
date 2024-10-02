@@ -370,3 +370,90 @@ p {
     font-weight: bold;
     margin-bottom: 10px;
 }
+.correlation-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    text-align: center;
+    background-color: #303030;
+    margin: 25px 0;
+}
+
+.correlation-table th, 
+.correlation-table td {
+    border: 1px solid #3e3e3e;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.correlation-table .header-row .header-cell {
+    font-weight: bold;
+    background-color: #353535;
+}
+
+.correlation-table .data-row .data-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.correlation-table tr:hover {
+    background-color: #464646;
+    transition: 0.3s;
+}
+
+.correlation-table tr {
+    transition: 0.3s;
+}
+
+.correlation-table td:hover {
+    background-color: #464646;
+    transition: 0.3s;
+}
+
+.correlation-table td {
+    transition: 0.3s;
+}
+
+.wrapper {
+    margin: 20px 0;
+}
+.wrapper label {
+    cursor: pointer;
+    color: #ffffff;
+    margin: 0;
+    padding: 10px;
+    background: #303030;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+}
+.wrapper label:hover {
+    background-color: #323232;
+    color: #dedede;
+}
+.wrapper label::before {
+    content: '►';
+    display: inline-block;
+    margin-right: 10px;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"]:checked ~ label::before {
+    transform: rotate(90deg);
+}
+.correlation-table-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+input[type="checkbox"]:checked ~ .correlation-table-container {
+    max-height: 1000px;
+    opacity: 1;
+}

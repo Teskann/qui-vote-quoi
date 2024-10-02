@@ -16,6 +16,7 @@ def generate_results_page(data):
     env.filters["enumerate"] = enumerate
     env.filters["reversed"] = reversed
     env.filters["is_last_iterator"] = is_last_iterator
+    env.filters["is_first_iterator"] = is_first_iterator
     env.filters["to_pretty_date"] = to_pretty_date
     env.filters["political_group_url"] = political_group_url
     env.filters["political_group_class"] = political_group_class
@@ -30,6 +31,7 @@ def generate_results_page(data):
     env.filters["page_range"] = page_range
     env.filters["add_flags"] = add_flags
     env.filters["add_emojis"] = add_emojis
+    env.filters["correlations"] = correlations
 
     with open(join(TEMPLATES_PATH, "results.html.jinja")) as f:
         template = env.from_string(f.read())

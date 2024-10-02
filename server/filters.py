@@ -50,8 +50,29 @@ def political_group_tooltip(group_name):
         "France / Verts/ALE :": "Groupe des Verts/Alliance libre européenne (centre gauche à gauche)",
         "France / NI :": "Non-inscrit au Parlement européen",
         "France / GUE/NGL :": "Groupe de la Gauche au Parlement européen (gauche à extrême gauche)",
+        "Total France :": "Tous les groupes français réunis",
+        "Parlement Européen :": "Ensemble du parlement européen"
     }
     return classes[group_name] if group_name in classes else "Aucune information n'est connue au sujet de ce parti"
+
+
+def political_group_spectrum(group_name):
+    classes = {
+        "France / ECR :": 0.85,
+        "France / ENS :": 0.95,
+        "France / PfE :": 0.9,
+        "France / ID :": 0.9,
+        "France / PPE :": 0.8,
+        "France / Renew :": 0.5,
+        "France / S&D :": 0.2,
+        "France / The Left :": 0.1,
+        "France / Verts/ALE :": 0.3,
+        "France / NI :": 1,
+        "France / GUE/NGL :": 0.1,
+        "Parlement Européen :": 3,
+        "Total France :": 2,
+    }
+    return classes[group_name] if group_name in classes else 1
 
 
 def class_from_vote_result(result):
@@ -62,12 +83,20 @@ def class_from_vote_result(result):
 def filter_political_group(group_name):
     group_name = group_name.replace("France / ", "")
     group_name = group_name[:-2]
-    group_name = group_name.replace("The Left", "La Gauche").replace("Verts/ALE", "Les&nbsp;Verts")
+    group_name = (group_name
+                  .replace("The Left", "La Gauche")
+                  .replace("Verts/ALE", "Les&nbsp;Verts")
+                  .replace("Total France", "🇫🇷 Total France")
+                  .replace("Parlement Européen", "🇪🇺 Parlement Européen"))
     return group_name
 
 def is_last_iterator(iterator):
     for i, item in enumerate(iterator):
         yield i == len(iterator) - 1, item
+
+def is_first_iterator(iterator):
+    for i, item in enumerate(iterator):
+        yield i == 0, item
 
 def to_pretty_date(date):
     return format_date(datetime.date.fromisoformat(date), format='long', locale='fr')
@@ -373,3 +402,88 @@ def add_emojis(title):
         if len(emojis) >= 3:
             break
     return " ".join(emojis) + " "
+
+
+def vote_results_per_group(data: dict):
+    results_per_group = {}
+
+    def get_number_of_votes(group, vote_type, votes):
+        if vote_type not in votes:
+            return 0
+        if group not in votes[vote_type]:
+            return 0
+        return len(votes[vote_type][group])
+
+    def voted_for_this_document(group, votes):
+        votes_for = get_number_of_votes(group, "+", votes)
+        votes_against = get_number_of_votes(group, "-", votes)
+        votes_abstained = get_number_of_votes(group, "0", votes)
+        if  votes_for + votes_against + votes_abstained == 0:
+            return None
+        return get_number_of_votes(group, "+", votes) > get_number_of_votes(group, "-", votes)
+
+    def france_voted_for_this_document(votes):
+        votes_pro = 0
+        votes_against = 0
+        if "+" in votes:
+            votes_pro = sum([len(x) for x in votes['+']])
+        if "-" in votes:
+            votes_against = sum([len(x) for x in votes['-']])
+        return votes_pro > votes_against
+
+    def get_all_groups(votes):
+        all_groups = set()
+        for vote_type in votes:
+            all_groups.update(set(votes[vote_type].keys()))
+        return all_groups
+
+    for document, results in data.items():
+        if "votes" not in results or results["votes"] == {} or not results["global"]["was_roll_call_voted"]:
+            continue
+        all_groups = get_all_groups(results["votes"])
+        results_per_group[document] = {}
+        for group in all_groups:
+            results_per_group[document][group] = voted_for_this_document(group, results["votes"])
+        results_per_group[document]["Parlement Européen :"] = results["global"]["was_adopted"]
+        results_per_group[document]["Parlement Européen :"] = results["global"]["was_adopted"]
+        results_per_group[document]["Total France :"] = france_voted_for_this_document(results["votes"])
+
+    return results_per_group
+
+def correlations(data: dict):
+    def get_all_groups():
+        all_groups = set()
+        for results in data.values():
+            for vote_type in results["votes"]:
+                all_groups.update(set(results["votes"][vote_type].keys()))
+        all_groups.add("Parlement Européen :")
+        all_groups.add("Total France :")
+        return all_groups
+
+    all_groups = sorted(get_all_groups(), key=political_group_spectrum)
+    votes_per_group = vote_results_per_group(data)
+
+    correlations = {}
+    for i, group_1 in enumerate(all_groups):
+        correlations[group_1] = {}
+        for j in range(len(all_groups)):
+            group_2 = all_groups[j]
+            if j <= i:
+                correlations[group_1][group_2] = None
+                continue
+            print(group_1, group_2)
+            correlations[group_1][group_2] = 0
+            valid_documents = 0
+            for document, per_group in votes_per_group.items():
+                if group_1 not in per_group and group_2 not in per_group:
+                    continue
+                elif group_1 in per_group and per_group[group_1] is None or group_2 in per_group and per_group[group_2] is None:
+                    continue
+                elif group_1 in per_group and group_2 in per_group:
+                    valid_documents += 1
+                    correlations[group_1][group_2] += per_group[group_1] == per_group[group_2]
+            if valid_documents == 0:
+                correlations[group_1][group_2] = None
+            else:
+                correlations[group_1][group_2] /= valid_documents
+    return correlations
