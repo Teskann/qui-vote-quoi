@@ -471,7 +471,6 @@ def correlations(data: dict):
             if j <= i:
                 correlations[group_1][group_2] = None
                 continue
-            print(group_1, group_2)
             correlations[group_1][group_2] = 0
             valid_documents = 0
             for document, per_group in votes_per_group.items():
