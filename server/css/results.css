@@ -387,7 +387,7 @@ p {
 .correlation-table {
     width: 100%;
     border-collapse: collapse;
-    color: white;
+    color: rgba(255,255,255,0.9);;
     text-align: center;
     background-color: #303030;
     margin: 25px 0;
