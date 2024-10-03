@@ -47,13 +47,13 @@
         <td class="details_content text_adjust_workaround tooltip">
             {% if global["was_adopted"] %}
                 ✅ 🇪🇺 Le texte a été adopté par le parlement européen
-                {%- if "global_votes" in global %}
+                {%- if "global_votes" in global and global["global_votes"]["+"] != "Données indisponibles" %}
                     par {{ global["global_votes"]["+"] }} voix contre
                     {{ global["global_votes"]["-"] }} ({{ global["global_votes"]["0"] }} abstention{{ "s" if global["global_votes"]["0"] > 1 else "" }})
                 {%- endif -%}.
             {% else %}
                 ❌ 🇪🇺 Le texte a été rejeté par le parlement européen
-                {%- if "global_votes" in global %}
+                {%- if "global_votes" in global and global["global_votes"]["+"] != "Données indisponibles" %}
                     ({{ global["global_votes"]["+"] }} voix pour,
                     {{ global["global_votes"]["-"] }} voix contre et {{ global["global_votes"]["0"] }} abstention{{ "s" if global["global_votes"]["0"] > 1 else "" }})
                 {%- endif %}.
