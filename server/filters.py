@@ -3,11 +3,13 @@ import re
 
 from babel.dates import format_date
 
+from utils.date_management import parliament_number_from_date, year_from_parliament_number
+
 
 def political_group_url(group_name):
     links = {
         "France / ECR :": "https://www.ecrgroup.eu/",
-        "France / ENS :": "https://fr.wikipedia.org/wiki/L%27Europe_des_nations_souveraines",
+        "France / ESN :": "https://fr.wikipedia.org/wiki/L%27Europe_des_nations_souveraines",
         "France / PfE :": "https://www.patriotsforeurope.org/",
         "France / ID :": "https://www.facebook.com/IDgroupEP/",
         "France / PPE :": "https://www.eppgroup.eu/fr/",
@@ -24,7 +26,7 @@ def political_group_url(group_name):
 def political_group_class(group_name):
     classes = {
         "France / ECR :": "group_ecr",
-        "France / ENS :": "group_ens",
+        "France / ESN :": "group_ens",
         "France / PfE :": "group_pfe",
         "France / ID :": "group_id",
         "France / PPE :": "group_ppe",
@@ -37,10 +39,10 @@ def political_group_class(group_name):
     }
     return classes[group_name] if group_name in classes else "group_ni"
 
-def political_group_tooltip(group_name):
+def political_group_tooltip(group_name, date_1, date_2=None):
     classes = {
         "France / ECR :": "Conservateurs et réformistes européens (droite à extrême droite)",
-        "France / ENS :": "L'Europe des nations souveraines (extrême droite)",
+        "France / ESN :": "L'Europe des nations souveraines (extrême droite)",
         "France / PfE :": "Patriotes pour l'Europe (droite à extrême droite)",
         "France / ID :": "Parti Identité et démocratie (droite radicale à extrême)",
         "France / PPE :": "Groupe du Parti populaire européen (centre droit à droite)",
@@ -53,13 +55,15 @@ def political_group_tooltip(group_name):
         "Total France :": "Tous les groupes français réunis",
         "Parlement Européen :": "Ensemble du parlement européen"
     }
-    return classes[group_name] if group_name in classes else "Aucune information n'est connue au sujet de ce parti"
+    group_list = political_group_french_list(group_name, date_1, date_2)
+    descr = classes[group_name] if group_name in classes else "Aucune information n'est connue au sujet de ce parti"
+    return descr + ("<br/>" if group_list != "" else "") + group_list
 
 
 def political_group_spectrum(group_name):
     classes = {
         "France / ECR :": 0.85,
-        "France / ENS :": 0.95,
+        "France / ESN :": 0.95,
         "France / PfE :": 0.9,
         "France / ID :": 0.9,
         "France / PPE :": 0.8,
@@ -74,6 +78,46 @@ def political_group_spectrum(group_name):
     }
     return classes[group_name] if group_name in classes else 1
 
+def political_group_french_list(group_name, date_1, date_2 = None):
+    classes = {
+        10: {
+            "France / ECR :": "Liste Reconquête {}(Maréchal)",
+            "France / ESN :": "Liste Reconquête {}(Maréchal)",
+            "France / PfE :": "Liste RN {}(Bardella)",
+            "France / PPE :": "Liste LR {}(Bellamy)",
+            "France / Renew :": "Liste Ensemble {}(Hayer)",
+            "France / S&D :": "Liste PS {}(Glucksmann)",
+            "France / The Left :": "Liste LFI {}(Aubry)",
+            "France / Verts/ALE :": "Liste EELV {}(Toussaint)",
+            "France / GUE/NGL :": "Liste LFI {}(Aubry)"
+        },
+        9: {
+            "France / ID :": "Liste RN {}(Bardella)",
+            "France / PPE :": "Liste LR {}(Bellamy)",
+            "France / Renew :": "Liste LREM {}(Loiseau)",
+            "France / S&D :": "Liste PS {}(Glucksmann)",
+            "France / The Left :": "Liste LFI {}(Manon Aubry)",
+            "France / Verts/ALE :": "Liste EELV {}(Jadot)",
+            "France / GUE/NGL :": "Liste LFI {}(Manon Aubry)"
+        }
+    }
+
+    if date_2 is None:
+        nb = parliament_number_from_date(date_1)
+        if nb not in classes:
+            return ""
+        return classes[nb][group_name].replace("{}", "") if group_name in classes[nb] else ""
+
+    def name_from_nb(nb):
+        if group_name in classes[nb]:
+            return classes[nb][group_name].replace("{}", f"{year_from_parliament_number(nb)} ")
+        return ""
+
+    nb1 = parliament_number_from_date(date_1)
+    nb2 = parliament_number_from_date(date_2)
+    names = [name_from_nb(nb) for nb in range(nb1, nb2 + 1) if nb in classes]
+    return ", ".join(filter(lambda x: x != "", names))
+
 
 def class_from_vote_result(result):
     classes = {"+": "voted_for", "-": "voted_against", "0": "abstained"}
@@ -86,8 +130,8 @@ def filter_political_group(group_name):
     group_name = (group_name
                   .replace("The Left", "La Gauche")
                   .replace("Verts/ALE", "Les&nbsp;Verts")
-                  .replace("Total France", "🇫🇷 Total France")
-                  .replace("Parlement Européen", "🇪🇺 Parlement Européen"))
+                  .replace("Total France", "🇫🇷")
+                  .replace("Parlement Européen", "🇪🇺"))
     return group_name
 
 def is_last_iterator(iterator):
@@ -384,7 +428,7 @@ def create_emojis_keywords():
         "🌍": ["frontière", "frontières", "mondialisation", "libre-échange", "transfrontalier", "transfrontaliers", "transfrontalières", "transfrontalière", "transfrontière", "transfrontières"],
         "❓": ["Document au nom inconnu"],
         "♿": ["handicap", "handicapés", "handicapées", "handicapé", "handicapée"],
-        "📈": ["marché", "marchés", "croissance"],
+        "📈": ["croissance"],
         "🔒": ["sécurité", "sécurités", "chiffrement"],
         "⚖️": ["parquet", "justice", "judiciaire", "judiciaires", "cour de justice", "pénale", "pénal", "pénales", "sanctions", "tribunal", "tribunaux", "condamnation"]
     }

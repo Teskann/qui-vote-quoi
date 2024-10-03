@@ -1,4 +1,4 @@
-{% macro create_votes_table(votes) %}
+{% macro create_votes_table(votes, date) %}
 
 {% if votes | length > 0 %}
 
@@ -9,7 +9,7 @@
                 {% if i != 0 -%}
                     <tr class="{{ vote_result | class_from_vote_result }}">
                 {%- endif -%}
-                <td class="political_group text_adjust_workaround {{ group | political_group_class }} {{ vote_result | class_from_vote_result }}"><a href="{{ group | political_group_url }}" class="tooltip"><span class="political_group_name {{ vote_result | class_from_vote_result }}">{{ group | political_group }}</span><span class="tooltip_text">{{ group | political_group_tooltip }}</span></a></td>
+                <td class="political_group text_adjust_workaround {{ group | political_group_class }} {{ vote_result | class_from_vote_result }}"><a href="{{ group | political_group_url }}" class="tooltip"><span class="political_group_name {{ vote_result | class_from_vote_result }}">{{ group | political_group }}</span><span class="tooltip_text">{{ group | political_group_tooltip(date) }}</span></a></td>
                 <td class="{{ vote_result | class_from_vote_result }}">
                 {% for is_last, member in votes[vote_result][group] | is_last_iterator -%}
                     {{ member }}

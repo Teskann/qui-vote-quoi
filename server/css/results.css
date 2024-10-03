@@ -30,20 +30,34 @@ body {
 .tooltip_text {
     visibility: hidden;
     background-color: #222;
-    color: rgba(255,255,255,0.9);;
+    color: rgba(255,255,255,0.9);
     padding: 8px;
     position: absolute;
     z-index: 1;
     bottom: 100%;
-    left: 0%;
+    left: 0;
     opacity: 0;
     transition: opacity 0.6s;
-    font-size: 10pt;
+    font-size: 0.8em;
+    font-weight: normal;
+    width: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space:nowrap;
+}
+
+.tooltip_text_below {
+    top: 100%;
+    bottom: 0;
 }
 
 .tooltip:hover .tooltip_text {
     visibility: visible;
     opacity: 1;
+    transition: opacity 0.6s;
+    transition-delay: 0.4s;
+    width: fit-content;
+    height: fit-content;
 }
 
 
@@ -236,7 +250,7 @@ a:hover {
 }
 
 .date-input:focus {
-    border-color: #007BFF;
+    border-color: #4ab6c8;
 }
 
 button {
@@ -377,6 +391,7 @@ p {
     text-align: center;
     background-color: #303030;
     margin: 25px 0;
+    overflow: visible;
 }
 
 .correlation-table th, 
@@ -420,22 +435,24 @@ p {
 }
 .wrapper label {
     cursor: pointer;
-    color: #ffffff;
+    color:#4ab6c8;
     margin: 0;
     padding: 10px;
     background: #303030;
     display: block;
     text-align: center;
     font-weight: bold;
+    font-size: 15pt;
     transition: background-color 0.3s ease, color 0.3s ease;
     position: relative;
 }
 .wrapper label:hover {
-    background-color: #323232;
-    color: #dedede;
+    background-color: #353535;
 }
 .wrapper label::before {
     content: '►';
+    position: relative;
+    bottom: 2px;
     display: inline-block;
     margin-right: 10px;
     transform: rotate(0deg);
@@ -446,14 +463,44 @@ input[type="checkbox"] {
 }
 input[type="checkbox"]:checked ~ label::before {
     transform: rotate(90deg);
+    bottom: 0px;
 }
 .correlation-table-container {
     max-height: 0;
     opacity: 0;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     transition: max-height 0.5s ease, opacity 0.5s ease;
+    text-align: center;
 }
 input[type="checkbox"]:checked ~ .correlation-table-container {
     max-height: 1000px;
     opacity: 1;
+}
+
+.correlation-table-container::-webkit-scrollbar {
+    height: 6px;
+}
+.correlation-table-container::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+.correlation-table-container::-webkit-scrollbar-thumb {
+    background: #4d4d4d;
+    border-radius: 10px;
+}
+.correlation-table-container::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+}
+
+.more_info {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #4ab6c8;
+    color: white;
+    text-align: center;
+    line-height: 24px;
+    font-weight: bold;
+    cursor: default;
 }

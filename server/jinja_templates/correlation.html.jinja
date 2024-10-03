@@ -1,9 +1,23 @@
-{% macro get_correlations(data) %}
+{% from "more_info.html.jinja" import more_info %}
+
+{% macro get_correlations(data, request) %}
 
 {% if data | length > 0 %}
 {% set cor = data | correlations %}
 {% set base_saturation = 61 %}
 {% set base_lightness = 66 %}
+
+{% set explainations ="""
+    Ce tableau indique les pourcentages de résultats de votes similaires parti par parti
+    pour les résultats de cette recherche.<br/>
+    Lors de la comparaison du parti A avec le parti B, les seuls textes comptabilisés sont ceux pour<br/>
+    lesquels au moins un député de A et au moins un député de B ont voté. «&nbsp;&#8209;&nbsp;» signifie<br/>
+    que A et B n'ont jamais voté simultanément. Les issues théoriques du vote du parti A et du parti B<br/>
+    sont utilisées pour quantifier la comparaison&nbsp;: si A et B avaient tous deux adopté ou rejeté ce<br/>
+    texte, on considère qu'ils ont voté la même chose. Si les issues sont différentes, on considère qu'ils<br/>
+    n'ont pas voté la même chose. Le pourcentage correspond au quotient du nombre d'issues similaires par<br/>
+    le nombre total de textes votés.
+""" %}
 
 <div class="wrapper">
     <input type="checkbox" id="toggleTable"/>
@@ -12,13 +26,13 @@
         <table class="correlation-table" id="correlation-table">
             <thead>
                 <tr class="header-row">
-                    <th class="header-cell"></th>
+                    <th class="header-cell">{{ more_info(explainations, True) }}</th>
                     {% for key, _ in cor.items() %}
                         <th class="header-cell tooltip">
-                            {{ key | political_group }}
-                            <span class="tooltip_text">
-                                {{ key | political_group_tooltip }}
-                            </span>
+                                {{ key | political_group }}
+                                <span class="tooltip_text tooltip_text_below">
+                                    {{ key | political_group_tooltip(request.start_date, request.end_date) }}
+                                </span>
                         </th>
                     {% endfor %}
                 </tr>
@@ -29,7 +43,7 @@
                         <th class="data-cell tooltip">
                             {{ row_key | political_group }}
                             <span class="tooltip_text">
-                                {{ row_key | political_group_tooltip }}
+                                {{ row_key | political_group_tooltip(request.start_date, request.end_date) }}
                             </span>
                         </th>
                         {% for col_key, col_value in row_value.items() %}

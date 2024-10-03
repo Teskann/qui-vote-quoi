@@ -19,7 +19,7 @@
      {% include "toolbar.html.jinja" %}
        <div id="content">
        <h1>🔎 {{ data | length }} {{ "résultat" + ("s" if data | length > 1 else "") }} {{ " pour «&nbsp;" + keywords.strip() + "&nbsp;»" if keywords.strip() else "(tous les votes)" }}</h1>
-       {{ get_correlations(data) }}
+       {{ get_correlations(data, request) }}
            {{ page_navigation(data | length, request) }}
 
        {% for eu_document_code, data in data.items() | reversed | islice(25 * (request.page - 1), 25*(request.page)) %}

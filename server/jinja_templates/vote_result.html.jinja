@@ -12,7 +12,7 @@
 
 {{ was_not_roll_call(data) }}
 {% if data["global"]["was_roll_call_voted"] %}
-    {{ create_votes_table(data.votes) }}
+    {{ create_votes_table(data.votes, data.date) }}
 {% endif %}
 {{ create_table_details(eu_document_code, data.date, data.votes_source_url, data.details.source_url, data.votes["+"] | count_all_votes if "+" in data.votes else 0, data.votes["-"] | count_all_votes if "-" in data.votes else 0, data.votes["0"] | count_all_votes if "0" in data.votes else 0, data["global"]) }}
 

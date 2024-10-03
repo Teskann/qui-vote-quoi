@@ -1,0 +1,12 @@
+{% macro more_info(text, tooltip_text_below=False) %}
+
+<div class="more_info tooltip">
+    <span>
+        ❔
+        <span class="tooltip_text{{ ' tooltip_text_below' if tooltip_text_below else '' }}">
+            {{ text }}
+        </span>
+    </span>
+</div>
+
+{% endmacro %}

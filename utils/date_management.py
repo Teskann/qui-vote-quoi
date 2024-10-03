@@ -1,6 +1,6 @@
 import datetime
 
-def parliament_number_from_date(date):
+def parliament_number_from_date(date: str) -> int:
     isodate = datetime.date.fromisoformat(date)
     # https://fr.wikipedia.org/wiki/Dixi%C3%A8me_l%C3%A9gislature_du_Parlement_europ%C3%A9en
     if isodate >= datetime.date.fromisoformat("2024-07-16"):
@@ -33,6 +33,23 @@ def parliament_number_from_date(date):
     if isodate >= datetime.date.fromisoformat("1979-07-16"):
         return 1
     return 0
+
+def year_from_parliament_number(number: int) -> int:
+    matches = {
+        1: 1979,
+        2: 1984,
+        3: 1989,
+        4: 1994,
+        5: 1999,
+        6: 2004,
+        7: 2009,
+        8: 2014,
+        9: 2019,
+        10: 2024,
+        11: 2029,
+        12: 2034,
+    }
+    return matches[number] if number in matches else None
 
 
 def votes_roll_call_source_url(date):
