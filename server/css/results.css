@@ -44,6 +44,7 @@ body {
     overflow: hidden;
     text-align: center;
     white-space:nowrap;
+    line-height: 1.2;
 }
 
 .tooltip_text_below {
