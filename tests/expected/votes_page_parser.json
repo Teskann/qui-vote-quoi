@@ -1,4 +1,82 @@
 {
+  "2024-02-07": {
+    "A9-0021/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 496,
+        "-": 111,
+        "0": 22
+      }
+    },
+    "A9-0018/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 636,
+        "-": 2,
+        "0": 3
+      }
+    },
+    "A9-0005/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 488,
+        "-": 39,
+        "0": 108
+      }
+    },
+    "A9-0020/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 576,
+        "-": 40,
+        "0": 19
+      }
+    },
+    "A9-0230/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 599,
+        "-": 7,
+        "0": 35
+      }
+    },
+    "A9-0263/2023": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 589,
+        "-": 10,
+        "0": 40
+      }
+    },
+    "A9-0014/2024": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    },
+    "B9-0095/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 523,
+        "-": 34,
+        "0": 59
+      }
+    },
+    "B9-0098/2024": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 330,
+        "-": 254,
+        "0": 26
+      }
+    }
+  },
   "2020-01-15": {
     "B9-0039/2020": {
       "was_roll_call_voted": false,

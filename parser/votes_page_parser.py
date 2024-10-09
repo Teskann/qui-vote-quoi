@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from parser.Document import Document, scrap_documents_from_string
-from tests.utils.workarounds import find_all_next_fixed, find_all_fixed
+from tests.utils.workarounds import find_all_next_fixed, find_all_fixed, find_all_previous_fixed
 from utils.date_management import votes_source_url
 
 
@@ -26,16 +26,25 @@ def __get_votes_html(date: str) -> BeautifulSoup:
     return BeautifulSoup(response.text, 'lxml')
 
 
-def __get_main_eu_document(documents: set[Document]) -> tuple[Document, bool]:
+def __get_main_eu_document(documents: set[Document], item_html: bs4.Tag) -> tuple[Document, bool]:
     """
     Get the main document among a list of documents. The documents RC-B* have priority over B-*
     :param documents: list of documents
     :return: main document, True if it could find a main document, False otherwise
     """
-    for document in documents:
-        if document.prefix == "RC":
-            return document, True
-    return list(documents)[0], len(documents) == 1
+    if len(documents) == 1:
+        return list(documents)[0], True
+    else :
+        pass
+
+    last_vote_cell = __find_last_vote_cell(item_html)
+    if last_vote_cell is not None:
+        all_code_items = find_all_previous_fixed(last_vote_cell, ["a", "p", "td"], string=re.compile(r"(?<!-)" + "|".join([re.escape(str(doc)) for doc in documents]) + ".*"))
+        if len(all_code_items) > 0:
+            code_item = all_code_items[0]
+            return list(scrap_documents_from_string(code_item.prettify() + " " + code_item.text))[0], True
+
+    return list(documents)[0], False
 
 
 def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
@@ -55,10 +64,11 @@ def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
         if item.name == "p" or item.name == "a" and item.parent.name == "p":
             if item.name == "a":
                 item = item.parent
-            all_documents = scrap_documents_from_string(item.parent.prettify(formatter="html") + " " + item.text)
+            item_html = item.parent.prettify(formatter="html")
+            all_documents = scrap_documents_from_string(item_html + " " + item.text)
             if not all_documents:
                 continue
-            eu_document_code, succeeded = __get_main_eu_document(all_documents)
+            eu_document_code, succeeded = __get_main_eu_document(all_documents, item)
             if not succeeded:
                 next_td = find_all_next_fixed(item,"td", string=re.compile(".*" + Document.rexeg_str + ".*"))
                 if next_td is None or len(next_td) == 0:
@@ -70,6 +80,12 @@ def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
     return valid_items
 
 
+def __find_last_vote_cell(tag: bs4.Tag) -> bs4.Tag | None:
+    table_results = tag.find_next("table")
+    tds = find_all_fixed(table_results, "td", string=re.compile(r"^[+\-—]$"))
+    return tds[-1] if len(tds) > 0 else None
+
+
 def __find_vote_result_element(tag: bs4.Tag):
     """
     Find the vote result element of the page. Assume it's the last voted line (the last line of the table to contain
@@ -78,8 +94,7 @@ def __find_vote_result_element(tag: bs4.Tag):
     :return: table row containing the vote results
     """
     table_results = tag.find_next("table")
-    tds = find_all_fixed(table_results, "td", string=re.compile(r"^[+\-—]$"))
-    td = tds[-1] if len(tds) > 0 else None
+    td = __find_last_vote_cell(tag)
     if td is None:
         return table_results.find_all("tr")[-1]
     return td.parent

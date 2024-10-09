@@ -23,7 +23,10 @@ def results():
     data = {"keywords": search, "data": {}}
 
     for result in search_in_time_range(start_date, end_date, search):
-        data["data"] |= result
+        for eu_document, content in result.items():
+            if eu_document in data["data"] and content["votes"] == {}:
+                continue
+            data["data"][eu_document] = content
 
     data["request"] = dict(request.args)
     data["request"]["page"] = 1 if "page" not in data["request"] else int(data["request"]["page"])

@@ -1,0 +1,113 @@
+{
+  "A10-0002/2024": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay Nicolas",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Imart",
+          "Le Callennec",
+          "Morano"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Bardella",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Disdier",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ],
+        "France / Renew :": [
+          "Allione",
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne",
+          "Yon-Courtin"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Ridel",
+          "Sargiacomo"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Carême",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2024-10-08",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-10-08-RCV_FR.html",
+    "details": {
+      "title": "RAPPORT sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds de solidarité de l’Union européenne pour venir en aide à l’Italie, à la Slovénie, à l’Autriche, à la Grèce et à la France à la suite de six catastrophes naturelles survenues en 2023",
+      "description": "RAPPORT - sur la proposition de décision du Parlement européen et du Conseil relative à la mobilisation du Fonds de solidarité de l’Union européenne pour venir en aide à l’Italie, à la Slovénie, à l’Autriche, à la Grèce et à la France à la suite de six catastrophes naturelles survenues en 2023 - (COM(2024)0325 - C10-0088/2024 - 2024/0212(BUD)) - Commission des budgets - Rapporteur: Georgios Aftias",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/A-10-2024-0002_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 632,
+        "-": 7,
+        "0": 3
+      }
+    }
+  }
+}

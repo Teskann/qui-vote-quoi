@@ -5,6 +5,18 @@ from utils import date_management
 from parser.empty_days_management import set_nothing_happened_for
 
 
+def __get_xm_for_date(date:str):
+    url = f"https://www.europarl.europa.eu/doceo/document/PV-{date_management.parliament_number_from_date(date)}-{date}-RCV_FR.html"
+    response = requests.get(url)
+    if response.status_code != 200:
+        return "N"
+    soup = BeautifulSoup(response.text, 'html.parser')
+    xm = soup.find("div", id="xmhidden")
+    if xm is None:
+        return "N"
+    return xm.text
+
+
 def __create_request_for_roll_call(date: str):
     """
     Create the web request to contact europarl website
@@ -30,7 +42,7 @@ def __create_request_for_roll_call(date: str):
         "langNav": "FR",
         "langDoc": "FR",
         "mep": "",
-        "xm": "N"
+        "xm": __get_xm_for_date(date)
     }
     return url, headers, data
 

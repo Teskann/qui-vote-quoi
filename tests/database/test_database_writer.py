@@ -28,6 +28,12 @@ def open_actual(date):
 
 def test_dump_day_to_json():
     clear_database()
+
+    assert not exists("2024-10-08.json")
+    dump_day_to_json("2024-10-08", True)
+    assert exists("2024-10-08.json")
+    assert open_actual("2024-10-08") == open_expected("2024-10-08")
+
     assert not exists("2024-09-19.json")
     dump_day_to_json("2024-09-19", True)
     assert exists("2024-09-19.json")
