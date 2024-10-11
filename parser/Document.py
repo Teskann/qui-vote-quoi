@@ -14,8 +14,8 @@ class Document:
     Manage European Parliament Documents
     """
 
-    rexeg_str = r"([^-\s]+-)?([ABCPTM])(\d{1,2})-(\d{4})/(\d{4})"
-    regex = re.compile("^" + rexeg_str + "$")
+    rexeg_str = r"([^-\s]+-)?([ABCPTM])(\d{1,2})-(\d{4})/(\d{4})(/((REV)|(rev)|(Rev))\d+)?"
+    regex = re.compile("^" + rexeg_str + "$", re.IGNORECASE)
 
     def __init__(self, eu_document_code: str):
         """
@@ -31,11 +31,12 @@ class Document:
         self.legislature_number = match.group(3)
         self.document_number = match.group(4)
         self.publication_date = match.group(5)
+        self.revision = match.group(6)[1:] if match.group(6) else None
         self.__title = None
         self.__description = None
 
     def __str__(self) -> str:
-        return f"{self.prefix + "-" if self.prefix else ""}{self.letter}{self.legislature_number}-{self.document_number}/{self.publication_date}"
+        return f"{self.prefix + "-" if self.prefix else ""}{self.letter}{self.legislature_number}-{self.document_number}/{self.publication_date}{'/' + self.revision if self.revision is not None else ''}"
 
     def __letter_conversion(self) -> str:
         if self.prefix == "RC":
@@ -103,7 +104,7 @@ def scrap_documents_from_string(text) -> set[Document]:
     :param text: text to search
     :return: set of Document
     """
-    rexexp = re.compile(f"(^|\\s+|\\(|\\))({Document.rexeg_str})($|\\s+|\\.|,|:|\\(|\\))", flags=re.MULTILINE | re.IGNORECASE)
+    rexexp = re.compile(f"(^|\\s+|\\(|\\))({Document.rexeg_str})($|\\s+|\\.|,|:|\\(|\\))", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE)
     matches = rexexp.findall(text)
     all_documents_str = set()
     for match in matches:

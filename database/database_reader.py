@@ -18,7 +18,7 @@ def get_all_votes_for_day(date: str) -> dict:
     if not os.path.exists(file_name):
         return {}
     else:
-        with open(file_name, "r") as f:
+        with open(file_name, "r", encoding="utf-8") as f:
             return json.load(f)
 
 

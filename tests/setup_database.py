@@ -14,4 +14,6 @@ def clear_database():
 def setup():
     HERE = os.path.dirname(os.path.abspath(__file__))
     set_database_path(os.path.join(HERE, "actual"))
+    if not os.path.exists(get_database_path()):
+        os.makedirs(get_database_path())
     clear_database()

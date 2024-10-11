@@ -29,7 +29,7 @@ def dump_day_to_json(date: str, overwrite: bool = False):
     global_votes = get_vote_results_for_date(date)
     if global_votes is not None:
         votes_per_document = merge_data(votes_per_document, global_votes, date)
-    with open(file_name, "w") as f:
+    with open(file_name, "w", encoding="utf-8") as f:
         json.dump(votes_per_document, f, indent=2, ensure_ascii=False)
 
 

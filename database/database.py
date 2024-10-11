@@ -9,7 +9,7 @@ class DataBasePathNotSet(Exception):
 
 def set_root_database_path():
     HERE = os.path.dirname(os.path.abspath(__file__))
-    with open(os.path.join(HERE, "..", "database_path.txt"), "r") as f:
+    with open(os.path.join(HERE, "..", "database_path.txt"), "r", encoding="utf-8") as f:
         set_database_path(f.read().replace("\n", "").strip())
 
 

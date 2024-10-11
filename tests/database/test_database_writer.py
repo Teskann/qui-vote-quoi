@@ -17,12 +17,12 @@ def actual_path(date):
 
 
 def open_expected(date):
-    with open(expected_path(date), "r") as f:
+    with open(expected_path(date), "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def open_actual(date):
-    with open(actual_path(date), "r") as f:
+    with open(actual_path(date), "r", encoding="utf-8") as f:
         return json.load(f)
 
 
