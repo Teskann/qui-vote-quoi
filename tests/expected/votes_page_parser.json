@@ -1,4 +1,23 @@
 {
+  "2024-10-10": {
+    "RC-B10-0095/2024": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    },
+    "RC-B10-0101/2024/REV1": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 540,
+        "-": 23,
+        "0": 47
+      }
+    },
+    "RC-B10-0089/2024": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    }
+  },
   "2024-02-07": {
     "A9-0021/2024": {
       "was_roll_call_voted": true,

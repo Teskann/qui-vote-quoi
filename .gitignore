@@ -3,3 +3,4 @@
 data
 .venv
 database_path.txt
+tests/actual

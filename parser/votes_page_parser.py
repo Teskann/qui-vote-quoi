@@ -19,7 +19,19 @@ def __get_votes_html(date: str) -> BeautifulSoup:
     :param date: date as iso string
     :return: beautiful soup
     """
-    response = requests.get(votes_source_url(date))
+    headers = {
+        'accept': '*/*',
+        'accept-language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+        'content-type': 'application/json',
+        'origin': 'https://www.europarl.europa.eu',
+        'priority': 'u=1, i',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'sec-gpc': '1',
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+    }
+    response = requests.get(votes_source_url(date), headers=headers)
 
     if response.status_code != 200:
         raise Error404("Error", response.status_code, "for", date)
@@ -39,7 +51,7 @@ def __get_main_eu_document(documents: set[Document], item_html: bs4.Tag) -> tupl
 
     last_vote_cell = __find_last_vote_cell(item_html)
     if last_vote_cell is not None:
-        all_code_items = find_all_previous_fixed(last_vote_cell, ["a", "p", "td"], string=re.compile(r"(?<!-)" + "|".join([re.escape(str(doc)) for doc in documents]) + ".*"))
+        all_code_items = find_all_previous_fixed(last_vote_cell, ["a", "p", "td"], string=re.compile(r".*(?<!-)(" + "|".join([re.escape(str(doc)) for doc in documents]) + ").*", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE))
         if len(all_code_items) > 0:
             code_item = all_code_items[0]
             return list(scrap_documents_from_string(code_item.prettify() + " " + code_item.text))[0], True
@@ -53,8 +65,8 @@ def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
     :param html: input beautiful soup (whole page)
     :return: {"document code": <bs4.Tag>}
     """
-    all_items = find_all_fixed(html, "a", string=re.compile(".*" + Document.rexeg_str + ".*"))
-    all_items += find_all_fixed(html,"p", string=re.compile(".*" + Document.rexeg_str + ".*"))
+    all_items = find_all_fixed(html, "a", string=re.compile(".*" + Document.rexeg_str + ".*", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE))
+    all_items += find_all_fixed(html,"p", string=re.compile(".*" + Document.rexeg_str + ".*", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE))
 
     # Remove matches that are not the "header" of a table
     # In practice, headers are <p></p>, and sometimes in <p><a></a></p>
@@ -70,7 +82,7 @@ def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
                 continue
             eu_document_code, succeeded = __get_main_eu_document(all_documents, item)
             if not succeeded:
-                next_td = find_all_next_fixed(item,"td", string=re.compile(".*" + Document.rexeg_str + ".*"))
+                next_td = find_all_next_fixed(item,"td", string=re.compile(".*" + Document.rexeg_str + ".*", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE))
                 if next_td is None or len(next_td) == 0:
                     continue
                 eu_document_code = list(scrap_documents_from_string(next_td[0].prettify()))[0]
@@ -82,7 +94,7 @@ def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
 
 def __find_last_vote_cell(tag: bs4.Tag) -> bs4.Tag | None:
     table_results = tag.find_next("table")
-    tds = find_all_fixed(table_results, "td", string=re.compile(r"^[+\-—]$"))
+    tds = find_all_fixed(table_results, "td", string=re.compile(r"^\s*[+\-—]\s*$"))
     return tds[-1] if len(tds) > 0 else None
 
 
@@ -123,17 +135,17 @@ def __parse_vote_results(tr: bs4.Tag) -> dict:
     :param tr: table row containing the vote results
     :return: dict
     """
-    roll_name_voted_td = tr.find("td", recursive=False, string="AN")
-    was_adopted_td = tr.find("td", recursive=False, string=re.compile(r"[+\-—]"))
-    votes_result_td = tr.find("td", recursive=False, string=re.compile(r"\s*\d+,\s*\d+,\s*\d+\s*"))
+    roll_name_voted_td = tr.find("td", recursive=False, string=re.compile("\s*AN\s*"))
+    was_adopted_td = tr.find("td", recursive=False, string=re.compile(r"\s*[+\-—]\s*"))
+    votes_result_td = tr.find(["td", "a"], recursive=True, string=re.compile(r"\s*\d+,\s*\d+,\s*\d+\s*"))
     if roll_name_voted_td is None and was_adopted_td is None:
         return {"was_roll_call_voted": False, "was_adopted": True}
     if roll_name_voted_td is not None and was_adopted_td is not None:
-        was_adopted = was_adopted_td.text == "+"
+        was_adopted = was_adopted_td.text.strip() == "+"
         return {"was_roll_call_voted": True, "was_adopted": was_adopted, "global_votes": __get_votes_count(votes_result_td)}
 
     else:
-        was_adopted = was_adopted_td.text == "+" if was_adopted_td is not None else True
+        was_adopted = was_adopted_td.text.strip() == "+" if was_adopted_td is not None else True
         return {"was_roll_call_voted": False, "was_adopted": was_adopted}
 
 

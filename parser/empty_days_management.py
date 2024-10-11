@@ -9,7 +9,7 @@ def empty_days_txt_path() -> str:
 
 
 def create_empty_days_txt_file():
-    with open(empty_days_txt_path(), "w"):
+    with open(empty_days_txt_path(), "w", encoding="utf-8"):
         pass
 
 
@@ -24,7 +24,7 @@ def set_nothing_happened_for(date: str):
     :param date: date to write
     :return: None
     """
-    with open(empty_days_txt_path(), "a") as f:
+    with open(empty_days_txt_path(), "a", encoding="utf-8") as f:
         f.write(date + "\n")
 
 
@@ -34,6 +34,6 @@ def nothing_happened_on(date: str) -> bool:
     :param date: date to check as iso formatted string
     :return: True if nothing happened in this date, False otherwise
     """
-    with open(empty_days_txt_path(), "r") as f:
+    with open(empty_days_txt_path(), "r", encoding="utf-8") as f:
         empty_days = f.read().split('\n')
     return date in empty_days

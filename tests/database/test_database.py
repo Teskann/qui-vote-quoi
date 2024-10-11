@@ -14,7 +14,7 @@ def test_exists():
     assert not exists("Unknown dir", "Unknown file")
 
     assert not exists("tmpFile")
-    with open(get_path("tmpFile"), "w"):
+    with open(get_path("tmpFile"), "w", encoding="utf-8"):
         pass
     assert exists("tmpFile")
     os.remove(get_path("tmpFile"))

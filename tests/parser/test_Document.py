@@ -6,7 +6,7 @@ from parser.Document import Document, InvalidDocumentException, scrap_documents_
 def test_init_and_str():
     # Valid document names => Should work as expected
     valid_documents = ["RC-B10-0023/2024", "RC-B10-0028/2024", "B9-0331/2022", "C9-0185/2022", "A9-0181/2022",
-                       "A9-0138/2022", "A9-0137/2022"]
+                       "A9-0138/2022", "A9-0137/2022", "RC-B10-0023/2024/REV1", "RC-B10-0023/2024/rev1"]
     for document in valid_documents:
         assert str(Document(document)) == document
 
@@ -22,6 +22,7 @@ def test_document_id():
     expected = {
         "RC-B10-0023/2024": "RC-10-2024-0023",
         "RC-B10-0028/2024": "RC-10-2024-0028",
+        "RC-B10-0028/2024/REV1": "RC-10-2024-0028",
         "B9-0331/2022": "B-9-2022-0331",
         "C9-0185/2022": "C-9-2022-0185",
         "A9-0181/2022": "A-9-2022-0181",

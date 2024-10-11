@@ -6,8 +6,19 @@ from parser.empty_days_management import set_nothing_happened_for
 
 
 def __get_xm_for_date(date:str):
+    headers = {
+        'accept': '*/*',
+        'accept-language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+        'content-type': 'application/json',
+        'origin': 'https://www.europarl.europa.eu',
+        'priority': 'u=1, i',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'sec-gpc': '1',
+    }
     url = f"https://www.europarl.europa.eu/doceo/document/PV-{date_management.parliament_number_from_date(date)}-{date}-RCV_FR.html"
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     if response.status_code != 200:
         return "N"
     soup = BeautifulSoup(response.text, 'html.parser')

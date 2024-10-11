@@ -33,14 +33,14 @@ def generate_results_page(data):
     env.filters["add_emojis"] = add_emojis
     env.filters["correlations"] = correlations
 
-    with open(join(TEMPLATES_PATH, "results.html.jinja")) as f:
+    with open(join(TEMPLATES_PATH, "results.html.jinja"), encoding="utf-8") as f:
         template = env.from_string(f.read())
     return template.render(data)
 
 
 if __name__ == "__main__":
-    with open("/home/clement/dbtest/2024-03-14.json", 'r') as f:
+    with open("/home/clement/dbtest/2024-03-14.json", 'r', encoding="utf-8") as f:
         data = json.load(f)
     html = generate_results_page({"data":data})
-    with open("/home/clement/dbtest/2024-03-14.html", 'w') as f:
+    with open("/home/clement/dbtest/2024-03-14.html", 'w', encoding="utf-8") as f:
         f.write(html)
