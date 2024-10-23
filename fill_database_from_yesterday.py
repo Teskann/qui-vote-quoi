@@ -9,7 +9,7 @@ def main():
     set_root_database_path()
     create_empty_days_txt_file_if_does_not_exist()
     yesterday = datetime.date.today() - datetime.timedelta(days=1)
-    fill_database(yesterday.isoformat(), yesterday.isoformat())
+    fill_database(yesterday.isoformat(), yesterday.isoformat(), overwrite=True)
 
 
 if __name__ == "__main__":
