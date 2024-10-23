@@ -252,7 +252,7 @@ def create_flags_keywords():
             "🇮🇳": ["Inde", "Indien", "Indiens", "Indienne", "Indiennes", "New Delhi", "Mumbai"],
             "🇮🇩": ["Indonésie", "Indonésien", "Indonésiens", "Indonésienne", "Indonésiennes", "Jakarta", "Surabaya"],
             "🇮🇷": ["Iran", "Iranien", "Iraniens", "Iranienne", "Iraniennes", "Téhéran", "Ispahan"],
-            "🇮🇶": ["Irak", "Irakien", "Irakiens", "Irakienne", "Irakiennes", "Bagdad", "Bassorah"],
+            "🇮🇶": ["Iraq", "Irak", "Irakien", "Irakiens", "Irakienne", "Irakiennes", "Bagdad", "Bassorah"],
             "🇮🇪": ["Irlande", "Irlandais", "Irlandais", "Irlandaise", "Irlandaises", "Dublin", "Cork"],
             "🇮🇱": ["Israël", "Israélien", "Israéliens", "Israélienne", "Israéliennes", "Jérusalem", "Tel Aviv"],
             "🇮🇹": ["Italie", "Italien", "Italiens", "Italienne", "Italiennes", "Rome", "Milan"],
