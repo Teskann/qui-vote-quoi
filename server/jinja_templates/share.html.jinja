@@ -1,0 +1,56 @@
+{% macro share(eu_document_code) %}
+
+<button class="share-btn" onclick="copyAbsoluteLink(`{{eu_document_code}}`, `share_{{ eu_document_code | to_html_id }}`)" id="share_{{ eu_document_code | to_html_id }}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+      <path fill="none" d="M0 0h24v24H0z"/>
+      <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7a3.516 3.516 0 000-1.39l7.05-4.11c.54.5 1.23.81 2.04.81 1.66 0 3-1.34 3-3S19.66 2 18 2 15 3.34 15 5c0 .25.03.5.08.72L8.03 9.87c-.5-.38-1.12-.61-1.79-.61-1.66 0-3 1.34-3 3s1.34 3 3 3c.67 0 1.29-.23 1.79-.61l7.07 4.13c-.05.23-.08.47-.08.72 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+    </svg>
+</button>
+<script>
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.appendChild(document.createTextNode(text));
+    return div.innerHTML;
+  }
+
+  function showToast(message, buttonId, isSuccess = true) {
+    const button = document.getElementById(buttonId);
+
+    if (!button) {
+      console.error(`Button with ID "${buttonId}" not found.`);
+      return;
+    }
+
+    const buttonRect = button.getBoundingClientRect();
+
+    const toast = document.createElement("div");
+    toast.textContent = message;
+
+    toast.classList.add("toast");
+    toast.classList.add(isSuccess ? "toast-success" : "toast-failure");
+
+    toast.style.position = "absolute";
+    toast.style.top = `${window.scrollY + buttonRect.top - 40}px`;
+    toast.style.left = `${window.scrollX + buttonRect.left + buttonRect.width / 2}px`;
+    toast.style.transform = "translateX(-50%)";
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  }
+
+  function copyAbsoluteLink(eu_document_code, btnId) {
+    const safeCode = escapeHtml(eu_document_code);
+    const link = `${window.location.origin}/results?search=` + safeCode;
+
+    navigator.clipboard.writeText(link).then(() => {
+      showToast("Lien copié !", btnId, true);
+    }).catch((error) => {
+      showToast("Erreur lors de la copie du lien", btnId, false);
+      console.error("Failed to copy the link:", error);
+    });
+  }
+</script>
+{% endmacro %}

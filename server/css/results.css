@@ -375,6 +375,12 @@ p {
     height: 100%;
 }
 
+.share-btn
+{
+    border-radius: 8px;
+    margin: 0 10px;
+}
+
 .current_page a {
     color: #4ab6c8;
     font-weight: bold;
@@ -504,4 +510,29 @@ input[type="checkbox"]:checked ~ .correlation-table-container {
     line-height: 24px;
     font-weight: bold;
     cursor: default;
+}
+
+.toast {
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    white-space: nowrap;
+}
+  
+.toast-success {
+    background-color: #00804e;
+}
+
+.toast-failure {
+    background-color: red;
+}
+
+.h2-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

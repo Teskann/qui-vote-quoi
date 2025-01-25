@@ -1,13 +1,18 @@
 {% from "table_details.html.jinja" import create_table_details %}
 {% from "votes_table.html.jinja" import create_votes_table %}
 {% from "was_not_roll_call.html.jinja" import was_not_roll_call %}
+{% from "share.html.jinja" import share %}
 
 {% macro create_vote_results(eu_document_code, data) %}
 
 <div class="vote_results">
 
-<div class="h2"><a href="{{ data.details.source_url }}" target="_blank">🗳️ {{ eu_document_code }}</a> -
-{{ data.details.title | add_flags }}{{ data.details.title | add_emojis }}{{ data.details.title }}
+<div class="h2-container">
+    <div class="h2">
+        <a href="{{ data.details.source_url }}" target="_blank">🗳️ {{ eu_document_code }}</a> -
+        {{ data.details.title | add_flags }}{{ data.details.title | add_emojis }}{{ data.details.title }}
+    </div>
+        {{ share(eu_document_code) }}
 </div>
 
 {{ was_not_roll_call(data) }}

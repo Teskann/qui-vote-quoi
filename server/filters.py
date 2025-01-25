@@ -540,3 +540,7 @@ def votes_on_day(date: str, data: dict) -> bool:
     :return: bool
     """
     return any([vote["date"] == date for vote in data.values()])
+
+
+def to_html_id(input_string: str):
+    return re.sub(r'[^a-zA-Z0-9\-]', '-', input_string)

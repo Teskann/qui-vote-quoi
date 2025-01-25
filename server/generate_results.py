@@ -35,6 +35,7 @@ def generate_results_page(data):
     env.filters["correlations"] = correlations
     env.filters["parliament_number_from_date"] = parliament_number_from_date
     env.filters["votes_on_day"] = votes_on_day
+    env.filters["to_html_id"] = to_html_id
 
     env.globals["today"] = datetime.date.today().isoformat()
     env.globals["yesterday"] = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
