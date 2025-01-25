@@ -1,3 +1,4 @@
+import datetime
 import json
 from itertools import islice
 from os.path import join, abspath, dirname
@@ -32,6 +33,11 @@ def generate_results_page(data):
     env.filters["add_flags"] = add_flags
     env.filters["add_emojis"] = add_emojis
     env.filters["correlations"] = correlations
+    env.filters["parliament_number_from_date"] = parliament_number_from_date
+    env.filters["votes_on_day"] = votes_on_day
+
+    env.globals["today"] = datetime.date.today().isoformat()
+    env.globals["yesterday"] = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
 
     with open(join(TEMPLATES_PATH, "results.html.jinja"), encoding="utf-8") as f:
         template = env.from_string(f.read())

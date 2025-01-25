@@ -52,14 +52,14 @@ def year_from_parliament_number(number: int) -> int:
     return matches[number] if number in matches else None
 
 
-def votes_roll_call_source_url(date):
+def votes_roll_call_source_url(date: str):
     return f"https://www.europarl.europa.eu/doceo/document/PV-{parliament_number_from_date(date)}-{date}-RCV_FR.html"
 
-def votes_source_url(date):
+def votes_source_url(date: str):
     return f"https://www.europarl.europa.eu/doceo/document/PV-{parliament_number_from_date(date)}-{date}-VOT_FR.html"
 
 
-def date_range(start_date, end_date):
+def date_range(start_date: str, end_date: str):
     start_date = datetime.date.fromisoformat(start_date)
     end_date = datetime.date.fromisoformat(end_date)
     days = int((end_date - start_date).days)

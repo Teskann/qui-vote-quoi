@@ -530,3 +530,13 @@ def correlations(data: dict):
             else:
                 correlations[group_1][group_2] /= valid_documents
     return correlations
+
+
+def votes_on_day(date: str, data: dict) -> bool:
+    """
+    Return True if documents were voted on the passed date, for the given data
+    :param date: date to check
+    :param data: votes database
+    :return: bool
+    """
+    return any([vote["date"] == date for vote in data.values()])

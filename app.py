@@ -1,3 +1,5 @@
+import datetime
+
 from flask import Flask, request
 
 from database.database import set_root_database_path
@@ -17,9 +19,10 @@ def index():
 @app.route('/results')
 def results():
     args = request.args
-    search = args.get('search')
-    start_date = args.get('start_date')
-    end_date = args.get('end_date')
+    search = args.get('search') or ""
+    start_date = args.get('start_date') or "2019-07-15"
+    end_date = args.get('end_date') or datetime.date.today().isoformat()
+    page = int(args.get('page') or 1)
     data = {"keywords": search, "data": {}}
 
     for result in search_in_time_range(start_date, end_date, search):
@@ -28,8 +31,7 @@ def results():
                 continue
             data["data"][eu_document] = content
 
-    data["request"] = dict(request.args)
-    data["request"]["page"] = 1 if "page" not in data["request"] else int(data["request"]["page"])
+    data["request"] = {"search": search, "start_date": start_date, "end_date": end_date, "page": page}
     return generate_results_page(data)
 
 @app.route('/about')

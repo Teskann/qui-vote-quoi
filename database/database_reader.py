@@ -22,10 +22,10 @@ def get_all_votes_for_day(date: str) -> dict:
             return json.load(f)
 
 
-def search_eu_document(keywords, date):
+def search_eu_document(keywords: str, date: str):
     all_votes_for_day = get_all_votes_for_day(date)
-
-    keywords_regex = re.compile(".*" + unidecode(keywords).replace(" ", ".*") + ".*", flags=re.IGNORECASE | re.MULTILINE)
+    keywords_re = ".*".join(map(lambda kw: re.escape(unidecode(kw)), keywords.split(" ")))
+    keywords_regex = re.compile(f".*{keywords_re}.*", flags=re.IGNORECASE | re.MULTILINE)
     matching_items = {}
     for eu_document_code, value in all_votes_for_day.items():
         # This might happen if data is not completely available in europarl.europa.eu
@@ -36,6 +36,6 @@ def search_eu_document(keywords, date):
     return matching_items
 
 
-def search_in_time_range(start_date, end_date, keywords):
+def search_in_time_range(start_date: str, end_date: str, keywords: str):
     for date in date_management.date_range(start_date, end_date):
         yield search_eu_document(keywords, date)

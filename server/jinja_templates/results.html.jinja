@@ -1,6 +1,7 @@
    {% from "vote_result.html.jinja" import create_vote_results %}
    {% from "page_navigation.html.jinja" import page_navigation %}
    {% from "correlation.html.jinja" import get_correlations %}
+   {% from "recent_update.html.jinja" import recent_update %}
 
    <!doctype html>
    <html lang="fr">
@@ -21,6 +22,14 @@
        <h1>🔎 {{ data | length }} {{ "résultat" + ("s" if data | length > 1 else "") }} {{ " pour «&nbsp;" + keywords.strip() + "&nbsp;»" if keywords.strip() else "(tous les votes)" }}</h1>
        {{ get_correlations(data, request) }}
            {{ page_navigation(data | length, request) }}
+
+       {% if today | votes_on_day(data) and yesterday | votes_on_day(data) %}
+           {{ recent_update([today, yesterday]) }}
+       {% elif today | votes_on_day(data) %}
+           {{ recent_update([today]) }}
+       {% elif yesterday | votes_on_day(data) %}
+           {{ recent_update([yesterday]) }}
+       {% endif %}
 
        {% for eu_document_code, data in data.items() | reversed | islice(25 * (request.page - 1), 25*(request.page)) %}
             {{ create_vote_results(eu_document_code, data) }}

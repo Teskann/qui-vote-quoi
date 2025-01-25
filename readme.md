@@ -59,12 +59,11 @@ Pour savoir comment récupérer la base de données.
 
 ## Mise à jour automatique de la base de données quotidiennement
 
-Pour la mise à jour quotidienne automatique de votre base de données, vous pouvez lancer
+Pour la mise à jour automatique de votre base de données, vous pouvez lancer
 ```bash
-python fill_database_from_yesterday.py
+python fill_database_from.py today  # Récupère les données des votes d'aujourd'hui
+python fill_database_from.py yesterday  # Récupère les données des votes d'hier
 ```
-
-Ce script va récupérer les données de la veille (uniquement) et les ajouter à votre base de données.
 
 Vous pouvez ajouter le lancement de ce script à crontab pour que cela se fasse automatiquement:
 
@@ -73,7 +72,8 @@ Vous pouvez ajouter le lancement de ce script à crontab pour que cela se fasse 
 #!/bin/bash
 cd /home/user/qui-vote-quoi
 source ./.venv/bin/activate
-python fill_database_from_yesterday.py
+python fill_database_from.py yesterday
+# python fill_database_from.py today 
 deactivate
 cd -
 ```

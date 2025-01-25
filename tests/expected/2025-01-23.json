@@ -1,0 +1,550 @@
+{
+  "RC-B10-0069/2025": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay Nicolas",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Bardella",
+          "Bay Christophe",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut",
+          "Werbrouck"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Le Callennec"
+        ],
+        "France / Renew :": [
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Rafowicz",
+          "Sargiacomo"
+        ]
+      },
+      "0": {
+        "France / PfE :": [
+          "Sorel"
+        ],
+        "France / S&D :": [
+          "Kalfon"
+        ]
+      }
+    },
+    "date": "2025-01-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2025-01-23-VOT_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur le cas de Jean-Jacques Wondo en République démocratique du Congo",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 150, paragraphe 5, et à l’article 136, paragraphe 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0069/2025 (S&D) - B10-0072/2025 (Verts/ALE) - B10-0078/2025 (Renew) - B10-0081/2025 (PPE) - B10-0084/2025 (ECR) - sur le cas de Jean-Jacques Wondo en République démocratique du Congo - (2025/2510(RSP)) - Sebastião Bugalho, Wouter Beke, Isabel Wiseler-Lima, Michael Gahler, Luděk Niedermayer, Christophe Gomart, Antonio López-Istúriz White, Danuše Nerudová, Davor Ivo Stier, Michał Wawrykiewicz, Jessica Polfjärd, Tomáš Zdechovský, Andrey Kovatchev, Inese Vaidere - au nom du groupe PPE - Yannis Maniatis, Francisco Assis, Elio Di Rupo - au nom du groupe S&D - Waldemar Tomaszewski, Joachim Stanisław Brudziński, Sebastian Tynkkynen - au nom du groupe ECR - Bernard Guetta, Petras Auštrevičius, Oihane Agirregoitia Martínez, Malik Azmani, Dan Barna, Benoit Cassart, Olivier Chastel, Svenja Hahn, Karin Karlsbro, Ľubica Karvašová, Ilhan Kyuchyuk, Jan-Christoph Oetjen, Urmas Paet, Marie-Agnes Strack-Zimmermann, Hilde Vautmans, Lucia Yar - au nom du groupe Renew - Catarina Vieira - au nom du groupe Verts/ALE",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2025-0069_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": false,
+      "was_adopted": true
+    }
+  },
+  "RC-B10-0066/2025": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay Nicolas",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Le Callennec"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Bardella",
+          "Bay Christophe",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut",
+          "Werbrouck"
+        ],
+        "France / Renew :": [
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Loiseau",
+          "Vedrenne"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Sargiacomo"
+        ],
+        "France / The Left :": [
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      }
+    },
+    "date": "2025-01-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2025-01-23-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur la répression systématique des droits de l’homme en Iran, notamment les cas de Pakhshan Azizi et de Wrisha Moradi, et la prise en otage de citoyens de l’Union",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 150, paragraphe 5, et à l’article 136, paragraphe 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0066/2025 (Verts/ALE) - B10-0073/2025 (S&D) - B10-0082/2025 (Renew) - B10-0085/2025 (PPE) - B10-0086/2025 (ECR) - sur la répression systématique des droits de l’homme en Iran, notamment les cas de Pakhshan Azizi et de Wrisha Moradi, et la prise en otage de citoyens de l’Union - (2025/2511(RSP)) - Sebastião Bugalho, Tomáš Zdechovský, Loucas Fourlas, Isabel Wiseler-Lima, David McAllister, Michael Gahler, Željana Zovko, Christophe Gomart, Isabel Benjumea Benjumea, Javier Zarzalejos, Luděk Niedermayer, Wouter Beke, Davor Ivo Stier, Michał Wawrykiewicz, Jessica Polfjärd, Danuše Nerudová, Andrey Kovatchev, Inese Vaidere - au nom du groupe PPE - Yannis Maniatis, Francisco Assis, Evin Incir, Chloé Ridel, Daniel Attard, Alessandra Moretti - au nom du groupe S&D - Rihards Kols, Mariusz Kamiński, Sebastian Tynkkynen, Carlo Fidanza, Reinis Pozņaks, Aurelijus Veryga, Ondřej Krutílek, Veronika Vrecionová, Alberico Gambino, Joachim Stanisław Brudziński, Dick Erixon, Beatrice Timgren, Waldemar Tomaszewski, Alexandr Vondra, Marion Maréchal, Małgorzata Gosiewska, Carlo Ciccioli, Charlie Weimers - au nom du groupe ECR - Petras Auštrevičius, Oihane Agirregoitia Martínez, Malik Azmani, Dan Barna, Benoit Cassart, Olivier Chastel, Veronika Cifrová Ostrihoňová, Bart Groothuis, Bernard Guetta, Svenja Hahn, Karin Karlsbro, Ľubica Karvašová, Ilhan Kyuchyuk, Nathalie Loiseau, Jan-Christoph Oetjen, Urmas Paet, Marie-Agnes Strack-Zimmermann, Hilde Vautmans, Sophie Wilmès, Lucia Yar - au nom du groupe Renew - Hannah Neumann - au nom du groupe Verts/ALE - Per Clausen, Hanna Gedin, Jonas Sjöstedt",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2025-0066_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 556,
+        "-": 6,
+        "0": 42
+      }
+    }
+  },
+  "RC-B10-0087/2025": {
+    "votes": {
+      "+": {
+        "France / ECR :": [
+          "Bay Nicolas",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Le Callennec"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Bardella",
+          "Bay Christophe",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Nikolic",
+          "Olivier",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut",
+          "Werbrouck"
+        ],
+        "France / Renew :": [
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Sargiacomo"
+        ],
+        "France / Verts/ALE :": [
+          "Cormand",
+          "Satouri",
+          "Sbai",
+          "Toussaint"
+        ]
+      },
+      "-": {
+        "France / The Left :": [
+          "Fourreau",
+          "Hassan",
+          "Saeidi",
+          "Smith"
+        ]
+      },
+      "0": {
+        "France / The Left :": [
+          "Aubry",
+          "Omarjee"
+        ]
+      }
+    },
+    "date": "2025-01-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2025-01-23-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur le cas de Boualem Sansal en Algérie",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 150, paragraphe 5, et à l’article 136, paragraphe 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0087/2025 (Verts/ALE) - B10-0089/2025 (S&D) - B10-0091/2025 (Renew) - B10-0092/2025 (PPE) - B10-0093/2025 (ECR) - sur le cas de Boualem Sansal en Algérie - (2025/2512(RSP)) - Sebastião Bugalho, Christophe Gomart, Isabel Wiseler-Lima, Michael Gahler, Luděk Niedermayer, Wouter Beke, Davor Ivo Stier, Michał Wawrykiewicz, Jessica Polfjärd, Tomáš Zdechovský, Andrey Kovatchev, Inese Vaidere - au nom du groupe PPE - Yannis Maniatis, Francisco Assis, Marta Temido - au nom du groupe S&D - Adam Bielan, Ondřej Krutílek, Veronika Vrecionová, Joachim Stanisław Brudziński, Waldemar Tomaszewski, Alexandr Vondra, Marion Maréchal, Sebastian Tynkkynen, Małgorzata Gosiewska - au nom du groupe ECR - Helmut Brandstätter, Petras Auštrevičius, Malik Azmani, Dan Barna, Benoit Cassart, Olivier Chastel, Bernard Guetta, Ilhan Kyuchyuk, Nathalie Loiseau, Urmas Paet, Lucia Yar - au nom du groupe Renew - Leoluca Orlando - au nom du groupe Verts/ALE",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2025-0087_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 533,
+        "-": 24,
+        "0": 48
+      }
+    }
+  },
+  "RC-B10-0074/2025": {
+    "votes": {
+      "+": {
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Le Callennec"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Bardella",
+          "Bay Christophe",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Nikolic",
+          "Olivier",
+          "Pennelle",
+          "Piera",
+          "Pimpie",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Werbrouck"
+        ],
+        "France / Renew :": [
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Grudler",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Sargiacomo"
+        ],
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai"
+        ]
+      },
+      "0": {
+        "France / ECR :": [
+          "Bay Nicolas",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / PfE :": [
+          "Mariani"
+        ]
+      }
+    },
+    "date": "2025-01-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2025-01-23-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur la désinformation et falsification de l’histoire par la Russie pour justifier sa guerre d’agression contre l’Ukraine",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 136, paragraphes 2 et 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0074/2025 (S&D) - B10-0075/2025 (PPE) - B10-0076/2025 (Verts/ALE) - B10-0077/2025 (Renew) - B10-0079/2025 (ECR) - sur la désinformation et falsification de l’histoire par la Russie pour justifier sa guerre d’agression contre l’Ukraine - (2024/2988(RSP)) - Rasa Juknevičienė, Michael Gahler, Andrzej Halicki, Sebastião Bugalho, David McAllister, Siegfried Mureşan, Željana Zovko, Isabel Wiseler-Lima, Nicolás Pascual de la Parte, Mika Aaltola, Krzysztof Brejza, Daniel Caspary, Sandra Kalniete, Seán Kelly, Ondřej Kolář, Łukasz Kohut, Andrey Kovatchev, Miriam Lexmann, Antonio López-Istúriz White, Danuše Nerudová, Mirosława Nykiel, Ana Miguel Pedro, Paulius Saudargas, Davor Ivo Stier, Michał Szczerba, Alice Teodorescu Måwe, Ingeborg Ter Laak, Matej Tonin, Pekka Toveri, Inese Vaidere, Milan Zver - au nom du groupe PPE - Yannis Maniatis, Nacho Sánchez Amor, Thijs Reuten, Raphaël Glucksmann - au nom du groupe S&D - Adam Bielan, Rihards Kols, Reinis Pozņaks, Jadwiga Wiśniewska, Roberts Zīle, Ondřej Krutílek, Veronika Vrecionová, Jaak Madison, Małgorzata Gosiewska, Cristian Terheş, Maciej Wąsik, Ivaylo Valchev, Aurelijus Veryga, Joachim Stanisław Brudziński - au nom du groupe ECR - Bernard Guetta, Petras Auštrevičius, Malik Azmani, Dan Barna, Benoit Cassart, Olivier Chastel, Karin Karlsbro, Veronika Cifrová Ostrihoňová, Ľubica Karvašová, Ilhan Kyuchyuk, Michał Kobosko, Nathalie Loiseau, Jan-Christoph Oetjen, Urmas Paet, Marie-Agnes Strack-Zimmermann, Eugen Tomac, Hilde Vautmans, Sophie Wilmès, Lucia Yar, Dainius Žalimas - au nom du groupe Renew - Sergey Lagodinsky - au nom du groupe Verts/ALE",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2025-0074_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 480,
+        "-": 58,
+        "0": 48
+      }
+    }
+  },
+  "RC-B10-0064/2025": {
+    "votes": {
+      "+": {
+        "France / PPE :": [
+          "Bellamy",
+          "Castillo",
+          "Gomart",
+          "Imart",
+          "Le Callennec"
+        ],
+        "France / PfE :": [
+          "Pimpie",
+          "Werbrouck"
+        ],
+        "France / Renew :": [
+          "Boyer",
+          "Canfin",
+          "Devaux",
+          "Farreng",
+          "Gozi",
+          "Guetta",
+          "Hayer",
+          "Keller",
+          "Loiseau",
+          "Vedrenne"
+        ],
+        "France / S&D :": [
+          "Clergeau",
+          "Fita",
+          "Germain",
+          "Glucksmann",
+          "Jouvet",
+          "Kalfon",
+          "Lalucq",
+          "Laurent",
+          "Mebarek",
+          "Pellerin-Carlin",
+          "Rafowicz",
+          "Sargiacomo"
+        ]
+      },
+      "-": {
+        "France / The Left :": [
+          "Aubry",
+          "Chaibi",
+          "Fourreau",
+          "Hassan",
+          "Mesure",
+          "Omarjee",
+          "Saeidi",
+          "Smith"
+        ]
+      },
+      "0": {
+        "France / ECR :": [
+          "Bay Nicolas",
+          "Peltier",
+          "Trochu"
+        ],
+        "France / PfE :": [
+          "Androuët",
+          "Bardella",
+          "Bay Christophe",
+          "Brasier-Clain",
+          "Dauchy",
+          "Deloge",
+          "Frigout",
+          "Furet",
+          "Garraud",
+          "Griset",
+          "Jamet",
+          "Joron",
+          "Leggeri",
+          "Leonardelli",
+          "Mariani",
+          "Nikolic",
+          "Olivier",
+          "Piera",
+          "Rechagneux",
+          "Rougé",
+          "Sanchez",
+          "Sorel",
+          "Thionnet",
+          "Tolassy",
+          "Valet",
+          "Varaut"
+        ],
+        "France / Verts/ALE :": [
+          "Camara",
+          "Cormand",
+          "Satouri",
+          "Sbai"
+        ]
+      }
+    },
+    "date": "2025-01-23",
+    "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2025-01-23-RCV_FR.html",
+    "details": {
+      "title": "PROPOSITION DE RÉSOLUTION COMMUNE sur la situation au Venezuela après l’usurpation de la présidence le 10 janvier 2025",
+      "description": "PROPOSITION DE RÉSOLUTION COMMUNE - déposée conformément à l’article 136, paragraphes 2 et 4, du règlement intérieur - en remplacement des propositions de résolution suivantes: - B10-0064/2025 (PPE) - B10-0080/2025 (Renew) - B10-0083/2025 (ECR) - sur la situation au Venezuela après l’usurpation de la présidence le 10 janvier 2025 - (2025/2519(RSP)) - Gabriel Mato, Sebastião Bugalho, Davor Ivo Stier, Francisco José Millán Mon - au nom du groupe PPE - Carlo Fidanza, Adam Bielan, Mariusz Kamiński, Ivaylo Valchev, Sebastian Tynkkynen, Ondřej Krutílek, Veronika Vrecionová, Rihards Kols, Alexandr Vondra, Małgorzata Gosiewska, Alberico Gambino, Joachim Stanisław Brudziński - au nom du groupe ECR - Oihane Agirregoitia Martínez, Petras Auštrevičius, Dan Barna, Helmut Brandstätter, Benoit Cassart, Olivier Chastel, Veronika Cifrová Ostrihoňová, João Cotrim De Figueiredo, Karin Karlsbro, Ľubica Karvašová, Ilhan Kyuchyuk, Urmas Paet, Marie-Agnes Strack-Zimmermann, Ana Vasconcelos, Hilde Vautmans, Lucia Yar - au nom du groupe Renew",
+      "source_url": "https://www.europarl.europa.eu/doceo/document/RC-10-2025-0064_FR.html"
+    },
+    "global": {
+      "was_roll_call_voted": true,
+      "was_adopted": true,
+      "global_votes": {
+        "+": 374,
+        "-": 53,
+        "0": 163
+      }
+    }
+  }
+}

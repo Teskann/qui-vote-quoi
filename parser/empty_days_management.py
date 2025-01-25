@@ -28,6 +28,20 @@ def set_nothing_happened_for(date: str):
         f.write(date + "\n")
 
 
+def set_something_happened_for(date: str):
+    """
+    Remove date from DATABASE/empty_days.txt
+    :param date: date to remove
+    :return: None
+    """
+    with open(empty_days_txt_path(), "r", encoding="utf-8") as f:
+        dates = f.read().split("\n")
+    if date in dates:
+        dates.remove(date)
+    with open(empty_days_txt_path(), "w", encoding="utf-8") as f:
+        f.write("\n".join(dates))
+
+
 def nothing_happened_on(date: str) -> bool:
     """
     Check if nothing happened in the passed date, checking empty_days.txt in the database.

@@ -1,0 +1,22 @@
+{% macro recent_update(dates) %}
+
+<div class="avertissement">
+<div class="avertissement_titre">⚠️ Avertissement</div>
+<div>
+    <p>
+        Des votes {{ "ont eu lieu hier et aujourd'hui" if today in dates and yesterday in dates else "ont lieu aujourd'hui" if today in dates else "ont eu lieu hier" }} au parlement européen. Il se peut que les données
+        relatives aux votes d'{{ "hier et d'aujourd'hui" if today in dates and yesterday in dates else "aujourd'hui" if today in dates else "hier" }} soient erronées ou incomplètes.
+    </p>
+    <p>
+        Merci de vous rendre directement
+        <a href="https://www.europarl.europa.eu/doceo/document/PV-{{ dates[0] | parliament_number_from_date }}-{{ dates[0] }}-TOC_FR.html">
+            le site du parlement européen
+        </a> pour consulter les données les plus
+        récentes.
+        Des mises à jour sont effectuées régulièrement.
+        Les données exhaustives sont parfois publiées sur le site du parlement européen le lendemain.
+    </p>
+</div>
+</div>
+
+{% endmacro %}
