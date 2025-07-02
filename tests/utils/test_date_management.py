@@ -23,6 +23,17 @@ def test_year_from_parliament_number():
     assert year_from_parliament_number(1) == 1979
     assert year_from_parliament_number(0) is None
 
+def test_date_from_parliament_number():
+    assert date_from_parliament_number(1) == datetime.date.fromisoformat("1979-07-16")
+    assert date_from_parliament_number(2) == datetime.date.fromisoformat("1984-07-24")
+    assert date_from_parliament_number(3) == datetime.date.fromisoformat("1989-07-25")
+    assert date_from_parliament_number(4) == datetime.date.fromisoformat("1994-07-19")
+    assert date_from_parliament_number(5) == datetime.date.fromisoformat("1999-07-20")
+    assert date_from_parliament_number(6) == datetime.date.fromisoformat("2004-07-20")
+    assert date_from_parliament_number(7) == datetime.date.fromisoformat("2009-07-14")
+    assert date_from_parliament_number(8) == datetime.date.fromisoformat("2014-07-01")
+    assert date_from_parliament_number(9) == datetime.date.fromisoformat("2019-07-02")
+    assert date_from_parliament_number(10) == datetime.date.fromisoformat("2024-07-16")
 
 def test_date_range():
     expected = ["2022-05-29", "2022-05-30", "2022-05-31", "2022-06-01", "2022-06-02"]

@@ -51,6 +51,20 @@ def year_from_parliament_number(number: int) -> int:
     }
     return matches[number] if number in matches else None
 
+def date_from_parliament_number(number: int) -> datetime.date | None:
+    matches = {
+        1: datetime.date.fromisoformat("1979-07-16"),
+        2: datetime.date.fromisoformat("1984-07-24"),
+        3: datetime.date.fromisoformat("1989-07-25"),
+        4: datetime.date.fromisoformat("1994-07-19"),
+        5: datetime.date.fromisoformat("1999-07-20"),
+        6: datetime.date.fromisoformat("2004-07-20"),
+        7: datetime.date.fromisoformat("2009-07-14"),
+        8: datetime.date.fromisoformat("2014-07-01"),
+        9: datetime.date.fromisoformat("2019-07-02"),
+        10: datetime.date.fromisoformat("2024-07-16")
+    }
+    return matches[number] if number in matches else None
 
 def votes_roll_call_source_url(date: str):
     return f"https://www.europarl.europa.eu/doceo/document/PV-{parliament_number_from_date(date)}-{date}-RCV_FR.html"

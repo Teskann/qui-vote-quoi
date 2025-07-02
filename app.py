@@ -1,12 +1,13 @@
 import datetime
+from urllib.parse import urlencode
 
-from flask import Flask, request
+from flask import Flask, request, redirect
 
 from database.database import set_root_database_path
 from database.database_reader import search_in_time_range
 from server.generate_about import generate_about
-from server.generate_index import generate_index
 from server.generate_results import generate_results_page
+from utils.date_management import parliament_number_from_date, date_from_parliament_number
 
 set_root_database_path()
 app = Flask(__name__)
@@ -14,7 +15,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return generate_index()
+    today = datetime.date.today().isoformat()
+    current_parliament_date = date_from_parliament_number(parliament_number_from_date(today))
+    args = {"start_date": current_parliament_date} if current_parliament_date else {}
+    return redirect(f"/results?{urlencode(args)}")
 
 @app.route('/results')
 def results():
