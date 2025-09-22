@@ -1,10 +1,10 @@
 # Qui vote quoi ?
 
-### *Surveillez les votes des députés européens français*
+### *Surveillez les votes des députés français au parlement européen*
 
 Ce projet vise à faciliter l'accès aux données du parlement européen relatives aux votes. Il vous permet de facilement retrouver tous les textes de loi votés contenant certains mots clés.
 
-### [https://qui-vote-quoi.fr](https://qui-vote-quoi.fr)
+### [https://qui-vote-quoi.org](https://qui-vote-quoi.org)
 
 ## Pourquoi ce projet ?
 
@@ -18,8 +18,6 @@ Le site web du parlement européen est peu ergonomique et ne permet pas de reche
 > Ce site n'est aucunement affilié au parlement européen et n'est pas officiel.
 
 Les données des votes par pays ne sont disponibles que depuis la mandature de 2019. Ainsi, ce site ne posède aucune donnée concernant les votes antérieurs à cette mandature.
-
-Si plusieurs votes ont eu lieu pour un même document (par exemple `RC-B-10-0035-2024`), le seul qui est affiché correspond au dernier de la liste sur le site de europarl. En pratique, cela correspond presque toujours à la proposition de résolution associée à ce document. Les votes au détail par amendement ne sont pas disponibles.
 
 ## Contact
 
