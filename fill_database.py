@@ -11,11 +11,14 @@ def main():
     arg_parser.add_argument("--end-date", required=True, help="End date in ISO format (YYYY-MM-DD)")
     arg_parser.add_argument("--overwrite", required=False, action="store_true",
                             help="Use this flag to overwrite the existing files in the database")
+    arg_parser.add_argument("--overwrite-empty-days", required=False, action="store_true",
+                            help="Use this flag to process again the days registered as days without votes")
 
     args = arg_parser.parse_args()
     set_root_database_path()
     create_empty_days_txt_file_if_does_not_exist()
-    fill_database(args.start_date, args.end_date, overwrite=args.overwrite)
+    fill_database(args.start_date, args.end_date, overwrite=args.overwrite,
+                  overwrite_empty_days=args.overwrite_empty_days)
 
 
 if __name__ == "__main__":

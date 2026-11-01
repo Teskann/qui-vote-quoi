@@ -791,7 +791,7 @@
     },
     "B9-0319/2021": {
       "was_roll_call_voted": true,
-      "was_adopted": false,
+      "was_adopted": true,
       "global_votes": {
         "+": 506,
         "-": 150,

@@ -13,7 +13,7 @@ Le site web du parlement européen est peu ergonomique et ne permet pas de reche
 ## Limites
 
 > [!WARNING]  
-> Les données utilisées dans ce projet proviennent de europarl.europa.eu qui ne fournit pas d'API pour récupérer les données relatives aux votes. Elles ont été extraites à partir du HTML retourné par certaines requêtes. Il est donc envisageable que ce site contienne des erreurs. N'hésitez pas à vérifier les données en cliquant sur les sources dans le détail des votes.
+> Les données utilisées dans ce projet proviennent du portail de données ouvertes du parlement européen ([data.europarl.europa.eu](https://data.europarl.europa.eu)). Elles sont extraites des procès-verbaux des votes publiés au format XML, dont la structure a changé au fil des années. Il est donc envisageable que ce site contienne des erreurs. N'hésitez pas à vérifier les données en cliquant sur les sources dans le détail des votes.
 >
 > Ce site n'est aucunement affilié au parlement européen et n'est pas officiel.
 
