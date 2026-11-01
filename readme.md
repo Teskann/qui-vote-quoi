@@ -17,7 +17,7 @@ Le site web du parlement européen est peu ergonomique et ne permet pas de reche
 >
 > Ce site n'est aucunement affilié au parlement européen et n'est pas officiel.
 
-Les données des votes par pays ne sont disponibles que depuis la mandature de 2019. Ainsi, ce site ne posède aucune donnée concernant les votes antérieurs à cette mandature.
+Les données des votes par pays ne sont disponibles que depuis la mandature de 2014. Ainsi, ce site ne possède aucune donnée concernant les votes antérieurs à cette mandature.
 
 ## Contact
 

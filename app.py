@@ -24,7 +24,7 @@ def index():
 def results():
     args = request.args
     search = args.get('search') or ""
-    start_date = args.get('start_date') or "2019-07-15"
+    start_date = args.get('start_date') or "2014-07-01"
     end_date = args.get('end_date') or datetime.date.today().isoformat()
     page = int(args.get('page') or 1)
     data = {"keywords": search, "data": {}}

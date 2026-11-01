@@ -8,7 +8,7 @@ from unidecode import unidecode
 
 from parser.Document import scrap_documents_from_string
 from parser.empty_days_management import set_nothing_happened_for
-from parser.open_data import get_plenary_document_xml, get_meps_ids, plenary_document_reference
+from parser.open_data import get_plenary_document_xml, get_meps, plenary_document_reference
 from utils.date_management import parliament_number_from_date
 
 COUNTRY = "FR"
@@ -45,12 +45,48 @@ def __document_regex(eu_document_code: str) -> re.Pattern:
                       flags=re.IGNORECASE | re.DOTALL)
 
 
-def __parse_vote(vote: etree._Element, meps_ids: set[str]) -> dict:
+class MembersSelector:
+    """
+    Select the members of a country in the roll-call votes results.
+    Since 2019, the members are identified by their PersId, which is the identifier used by the open data API.
+    Before, only an internal identifier is given, so the members are identified by their name. The names are
+    unique among the members of the parliament: the first name is added when several members share the same family
+    name (for example "Martin Dominique").
+    """
+
+    def __init__(self, parliamentary_term: int, country: str):
+        meps = get_meps(parliamentary_term, country)
+        self.ids = {mep["identifier"] for mep in meps}
+        self.names = set()
+        if parliamentary_term >= 9:
+            return  # The members are identified by their PersId
+        normalize = self.__normalize
+        other_family_names = {normalize(mep.get("familyName", "")) for mep in get_meps(parliamentary_term, None)
+                              if mep["identifier"] not in self.ids}
+        for mep in meps:
+            family_name, given_name = normalize(mep.get("familyName", "")), normalize(mep.get("givenName", ""))
+            self.names |= {family_name, f"{family_name} {given_name}", f"{given_name} {family_name}"}
+            # Compound family names are sometimes shortened ("Letard-Lechevalier" is "Lechevalier")
+            parts = family_name.split()
+            if len(parts) > 1:
+                self.names |= {part for part in parts if len(part) > 3 and part not in other_family_names}
+
+    @staticmethod
+    def __normalize(name: str) -> str:
+        return " ".join(unidecode(name).lower().replace("-", " ").split())
+
+    def __contains__(self, member: etree._Element) -> bool:
+        if member.get("PersId") is not None:
+            return member.get("PersId") in self.ids
+        return self.__normalize(member.text or "") in self.names
+
+
+def __parse_vote(vote: etree._Element, members: MembersSelector) -> dict:
     """
     Get the votes of the selected members for one roll-call vote, grouped by vote type and political group.
     The corrections and voting intentions are not taken into account, as they do not change the result.
     :param vote: <RollCallVote.Result> element
-    :param meps_ids: identifiers of the members to keep
+    :param members: members to keep
     :return: {"+": {"France / <group> :": [<names>]}, "-": {...}, "0": {...}}
     """
     results = {}
@@ -60,8 +96,10 @@ def __parse_vote(vote: etree._Element, meps_ids: set[str]) -> dict:
             continue
         groups = {}
         for group in element.findall("Result.PoliticalGroup.List"):
-            names = [member.text.strip() for member in group.findall("PoliticalGroup.Member.Name")
-                     if member.get("PersId") in meps_ids]
+            names = [member.text.strip() for member in group
+                     # The tag is "Member.Name" in some documents of 2018 and 2019
+                     if member.tag in ("PoliticalGroup.Member.Name", "Member.Name")
+                     if member in members]
             if names:
                 groups[unidecode(f"{COUNTRY_NAME} / {group.get('Identifier')} :")] = names
         if groups:
@@ -78,7 +116,7 @@ def __votes_count(vote: etree._Element) -> dict:
     return counts
 
 
-def __amendment(vote: etree._Element, description: str, eu_document_code: str, meps_ids: set[str]) -> dict:
+def __amendment(vote: etree._Element, description: str, eu_document_code: str, members: MembersSelector) -> dict:
     """
     Description of one roll-call vote on a document (amendment, paragraph, final vote, ...)
     The result (adopted or not) is not part of the roll-call votes results, it comes from the votes results.
@@ -94,7 +132,7 @@ def __amendment(vote: etree._Element, description: str, eu_document_code: str, m
         "was_roll_call_voted": True,
         "result": None,
         "global_votes": __votes_count(vote),
-        "votes": __parse_vote(vote, meps_ids),
+        "votes": __parse_vote(vote, members),
     }
 
 
@@ -107,7 +145,7 @@ def parse_all_votes(xml: etree._Element, date: str) -> dict:
     :param date: date of the votes as iso formatted string
     :return: {<eu_document_code>: {"votes": {...}, "amendments": [...]}}
     """
-    meps_ids = get_meps_ids(parliament_number_from_date(date), COUNTRY)
+    members = MembersSelector(parliament_number_from_date(date), COUNTRY)
     votes = [(vote, __text(vote.find("RollCallVote.Description.Text")))
              for vote in xml.iter("RollCallVote.Result")]
 
@@ -122,8 +160,8 @@ def parse_all_votes(xml: etree._Element, date: str) -> dict:
         if not matching_votes:
             continue
         votes_per_document[eu_document_code] = {
-            "votes": __parse_vote(matching_votes[-1][0], meps_ids),
-            "amendments": [__amendment(vote, description, eu_document_code, meps_ids)
+            "votes": __parse_vote(matching_votes[-1][0], members),
+            "amendments": [__amendment(vote, description, eu_document_code, members)
                            for vote, description in matching_votes],
         }
     return votes_per_document

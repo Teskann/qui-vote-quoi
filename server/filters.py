@@ -19,6 +19,9 @@ def political_group_url(group_name):
         "France / Verts/ALE :": "https://www.greens-efa.eu/en/",
         "France / NI :": "https://en.wikipedia.org/wiki/Non-attached_members",
         "France / GUE/NGL :": "https://left.eu/the-group/",
+        "France / ALDE :": "https://fr.wikipedia.org/wiki/Groupe_de_l%27Alliance_des_d%C3%A9mocrates_et_des_lib%C3%A9raux_pour_l%27Europe",
+        "France / EFDD :": "https://fr.wikipedia.org/wiki/Groupe_Europe_de_la_libert%C3%A9_et_de_la_d%C3%A9mocratie_directe",
+        "France / ENF :": "https://fr.wikipedia.org/wiki/Groupe_Europe_des_nations_et_des_libert%C3%A9s",
     }
     return links[group_name] if group_name in links else ""
 
@@ -36,6 +39,9 @@ def political_group_class(group_name):
         "France / Verts/ALE :": "group_verts",
         "France / NI :": "group_ni",
         "France / GUE/NGL :": "group_guengl",
+        "France / ALDE :": "group_renew",
+        "France / EFDD :": "group_ni",
+        "France / ENF :": "group_id",
     }
     return classes[group_name] if group_name in classes else "group_ni"
 
@@ -52,6 +58,9 @@ def political_group_tooltip(group_name, date_1, date_2=None):
         "France / Verts/ALE :": "Groupe des Verts/Alliance libre européenne (centre gauche à gauche)",
         "France / NI :": "Non-inscrit au Parlement européen",
         "France / GUE/NGL :": "Groupe de la Gauche au Parlement européen (gauche à extrême gauche)",
+        "France / ALDE :": "Alliance des démocrates et des libéraux pour l'Europe (centre)",
+        "France / EFDD :": "Europe de la liberté et de la démocratie directe (droite à extrême droite)",
+        "France / ENF :": "Europe des nations et des libertés (extrême droite)",
         "Total France :": "Tous les groupes français réunis",
         "Parlement Européen :": "Ensemble du parlement européen"
     }
@@ -73,6 +82,9 @@ def political_group_spectrum(group_name):
         "France / Verts/ALE :": 0.3,
         "France / NI :": 1,
         "France / GUE/NGL :": 0.1,
+        "France / ALDE :": 0.5,
+        "France / EFDD :": 0.9,
+        "France / ENF :": 0.95,
         "Parlement Européen :": 3,
         "Total France :": 2,
     }
@@ -99,6 +111,14 @@ def political_group_french_list(group_name, date_1, date_2 = None):
             "France / The Left :": "Liste LFI {}(Manon Aubry)",
             "France / Verts/ALE :": "Liste EELV {}(Jadot)",
             "France / GUE/NGL :": "Liste LFI {}(Manon Aubry)"
+        },
+        8: {
+            "France / ENF :": "Liste FN {}",
+            "France / PPE :": "Liste UMP {}",
+            "France / ALDE :": "Liste UDI-MoDem {}",
+            "France / S&D :": "Liste PS {}",
+            "France / Verts/ALE :": "Liste EELV {}",
+            "France / GUE/NGL :": "Liste Front de gauche {}",
         }
     }
 
@@ -106,11 +126,11 @@ def political_group_french_list(group_name, date_1, date_2 = None):
         nb = parliament_number_from_date(date_1)
         if nb not in classes:
             return ""
-        return classes[nb][group_name].replace("{}", "") if group_name in classes[nb] else ""
+        return classes[nb][group_name].replace("{}", "").strip() if group_name in classes[nb] else ""
 
     def name_from_nb(nb):
         if group_name in classes[nb]:
-            return classes[nb][group_name].replace("{}", f"{year_from_parliament_number(nb)} ")
+            return classes[nb][group_name].replace("{}", f"{year_from_parliament_number(nb)} ").strip()
         return ""
 
     nb1 = parliament_number_from_date(date_1)

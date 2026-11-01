@@ -23,3 +23,15 @@ def test_parse_all_votes():
     # Only French members are kept
     assert sum(len(names) for names in votes["+"].values()) == 75
 
+
+
+def test_parse_all_votes_before_2019():
+    # Before 2019, the members are identified by their name, as the documents don't give their PersId
+    votes = parse_all_votes(get_roll_call_votes_xml_at_date("2015-03-11"), "2015-03-11")
+    votes = votes["A8-0014/2015"]["votes"]
+    names = [name for groups in votes.values() for members in groups.values() for name in members]
+    assert len(names) == 72
+    assert "Le Pen Marine" in names
+    assert "France / ALDE :" in votes["+"]
+    # Homonyms of other countries are not selected
+    assert all(name not in names for name in ["Martin David", "Martin Hans-Peter"])
