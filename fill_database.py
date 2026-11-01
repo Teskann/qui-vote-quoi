@@ -1,6 +1,6 @@
 import argparse
 
-from database.database import set_database_path, set_root_database_path
+from database.database import set_root_database_path
 from database.database_writer import fill_database
 from parser.empty_days_management import create_empty_days_txt_file_if_does_not_exist
 

@@ -321,7 +321,6 @@ def create_flags_keywords():
             "🇳🇪": ["Niger", "Nigérien", "Nigériens", "Nigérienne", "Nigériennes", "Niamey", "Zinder"],
             "🇳🇬": ["Nigeria", "Nigérian", "Nigérians", "Nigériane", "Nigérianes", "Abuja", "Lagos"],
             "🇰🇵": ["Corée du Nord", "Nord-Coréen", "Nord-Coréens", "Nord-Coréenne", "Nord-Coréennes", "Pyongyang", "Kaesong"],
-            "🇲🇰": ["Macédoine du Nord", "Macédonien", "Macédoniens", "Macédonienne", "Macédoniennes", "Skopje", "Bitola"],
             "🇳🇴": ["Norvège", "Norvégien", "Norvégiens", "Norvégienne", "Norvégiennes", "Oslo", "Bergen"],
             "🇴🇲": ["Oman", "Omanais", "Omanais", "Omanienne", "Omaniennes", "Mascate", "Salalah"],
             "🇵🇰": ["Pakistan", "Pakistanais", "Pakistanais", "Pakistanaise", "Pakistanaises", "Islamabad", "Karachi"],
@@ -335,7 +334,6 @@ def create_flags_keywords():
             "🇵🇹": ["Portugal", "Portugais", "Portugais", "Portugaise", "Portugaises", "Lisbonne", "Porto"],
             "🇶🇦": ["Qatar", "Qatarien", "Qatariens", "Qatarienne", "Qatariennes", "Doha", "Al Wakrah"],
             "🇰🇷": ["Corée du Sud", "Sud-Coréen", "Sud-Coréens", "Sud-Coréenne", "Sud-Coréennes", "Séoul", "Busan"],
-            "🇲🇩": ["Moldavie", "Moldave", "Moldaves", "Moldave", "Moldaves", "Chisinau", "Tiraspol"],
             "🇷🇴": ["Roumanie", "Roumain", "Roumains", "Roumaine", "Roumaines", "Bucarest", "Cluj-Napoca"],
             "🇷🇺": ["Russie", "Russe", "Russes", "Russe", "Russes", "Moscou", "Saint-Pétersbourg"],
             "🇷🇼": ["Rwanda", "Rwandais", "Rwandais", "Rwandaise", "Rwandaises", "Kigali", "Butare"],
@@ -391,8 +389,6 @@ def create_flags_keywords():
             "🇭🇰": ["Hong Kong", "Hongkongais", "Hongkongais", "Hongkongaise", "Hongkongaises", "Hong Kong", "Kowloon"],
             "🇲🇴": ["Macao", "Macanais", "Macanais", "Macanaise", "Macanaises", "Macao", "Taipa"],
             "🇽🇰": ["Kosovo", "Kosovar", "Kosovars", "Kosovare", "Kosovares", "Pristina", "Mitrovica"],
-            "🇼🇸": ["Samoa", "Samoan", "Samoans", "Samoane", "Samoanes", "Apia", "Faleasiu"],
-            "🇹🇼": ["Taïwan", "Taïwanais", "Taïwanais", "Taïwanaise", "Taïwanaises", "Taipei", "Kaohsiung"],
             "🇪🇭": ["Sahara occidental", "Sahraoui", "Sahraouis", "Sahraouie", "Sahraouies", "El-Aaiun", "Dakhla"],
             "🏳️‍🌈": ["LGBT", "LGBTI", "LGBTI+", "LGBTIQ", "LGBTIQ+", "LGBTQI", "LGBTQI+", "LGBTQIA+", "homosexuel", "homosexuels", "homosexuelle", "homosexuelles", "transsexuel", "transsexuels"]
         }

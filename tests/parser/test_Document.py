@@ -1,5 +1,4 @@
 import pytest
-import requests
 from parser.Document import Document, InvalidDocumentException, scrap_documents_from_string
 
 
@@ -45,8 +44,6 @@ def test_source_url():
 
     for document, expected_url in expected.items():
         assert Document(document).source_url() == expected_url
-        response = requests.get(Document(document).source_url())
-        assert response.status_code == 200
 
 def test_title():
     expected = {

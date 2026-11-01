@@ -6,7 +6,6 @@ from unidecode import unidecode
 
 from utils import date_management
 from database.database import get_path
-from database.database_writer import dump_day_to_json
 
 
 def get_all_votes_for_day(date: str) -> dict:

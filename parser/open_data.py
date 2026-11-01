@@ -133,13 +133,6 @@ def get_meps(parliamentary_term: int, country: str | None = "FR") -> list[dict]:
     return __meps_cache[key]
 
 
-def get_meps_ids(parliamentary_term: int, country: str = "FR") -> set[str]:
-    """
-    Identifiers (PersId) of all the members who represented the given country during the given term
-    """
-    return {mep["identifier"] for mep in get_meps(parliamentary_term, country)}
-
-
 def get_sitting_dates(year: int) -> set[str]:
     """
     Dates of the plenary sittings of the given year, as iso formatted strings.
