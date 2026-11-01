@@ -55,6 +55,13 @@ python fill_database.py -h
 ```
 Pour savoir comment récupérer la base de données.
 
+Seuls les jours de séance plénière sont traités (le calendrier est récupéré via l'API open data), plusieurs jours en parallèle.
+Le nombre de jours traités en parallèle se règle avec `--jobs`. Si le serveur limite les requêtes (erreurs HTTP 429),
+elles sont réessayées automatiquement et leur nombre est affiché à la fin : diminuez alors `--jobs`.
+
+Chaque texte contient aussi la liste `amendments` de tous les votes qui ont eu lieu dessus (amendements, paragraphes,
+vote final). Depuis 2024, le résultat de chaque vote est connu ; avant, seuls les votes par appel nominal sont listés.
+
 ## Mise à jour automatique de la base de données quotidiennement
 
 Pour la mise à jour automatique de votre base de données, vous pouvez lancer

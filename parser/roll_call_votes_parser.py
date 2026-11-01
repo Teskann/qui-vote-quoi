@@ -1,7 +1,6 @@
 """
 Parser of the roll-call votes results (documents PV-<term>-<date>-RCV), which give the vote of each member.
 """
-import datetime
 import re
 
 from lxml import etree
@@ -70,14 +69,43 @@ def __parse_vote(vote: etree._Element, meps_ids: set[str]) -> dict:
     return results
 
 
+def __votes_count(vote: etree._Element) -> dict:
+    counts = {}
+    for tag, vote_type in VOTE_TYPES.items():
+        element = vote.find(tag)
+        number = element.get("Number") if element is not None else None
+        counts[vote_type] = int(number) if number and number.isdigit() else 0
+    return counts
+
+
+def __amendment(vote: etree._Element, description: str, eu_document_code: str, meps_ids: set[str]) -> dict:
+    """
+    Description of one roll-call vote on a document (amendment, paragraph, final vote, ...)
+    The result (adopted or not) is not part of the roll-call votes results, it comes from the votes results.
+    """
+    position = description.upper().find(eu_document_code.upper())
+    return {
+        "id": vote.get("Identifier"),
+        "label": " ".join(description[position if position >= 0 else 0:].split()),
+        "subject": None,
+        "amendment": None,
+        "part": None,
+        "author": None,
+        "was_roll_call_voted": True,
+        "result": None,
+        "global_votes": __votes_count(vote),
+        "votes": __parse_vote(vote, meps_ids),
+    }
+
+
 def parse_all_votes(xml: etree._Element, date: str) -> dict:
     """
     Parse the roll-call votes results and return the votes of the French members for each document.
-    When a document was voted several times (amendments, paragraphs, ...), the last vote is kept, as it's
-    usually the vote on the whole text.
+    When a document was voted several times (amendments, paragraphs, ...), the last vote is kept in "votes", as it's
+    usually the vote on the whole text. All the votes on the document are listed in "amendments".
     :param xml: root of the roll-call votes results XML document
     :param date: date of the votes as iso formatted string
-    :return: {<eu_document_code>: {"votes": {...}}}
+    :return: {<eu_document_code>: {"votes": {...}, "amendments": [...]}}
     """
     meps_ids = get_meps_ids(parliament_number_from_date(date), COUNTRY)
     votes = [(vote, __text(vote.find("RollCallVote.Description.Text")))
@@ -90,38 +118,22 @@ def parse_all_votes(xml: etree._Element, date: str) -> dict:
     votes_per_document = {}
     for eu_document_code in all_documents:
         regex = __document_regex(eu_document_code)
-        matching_votes = [vote for vote, description in votes if regex.match(description)]
+        matching_votes = [(vote, description) for vote, description in votes if regex.match(description)]
         if not matching_votes:
             continue
-        votes_per_document[eu_document_code] = {"votes": __parse_vote(matching_votes[-1], meps_ids)}
+        votes_per_document[eu_document_code] = {
+            "votes": __parse_vote(matching_votes[-1][0], meps_ids),
+            "amendments": [__amendment(vote, description, eu_document_code, meps_ids)
+                           for vote, description in matching_votes],
+        }
     return votes_per_document
 
 
-def find_votes_in_previous_days(eu_document_codes: set[str], date: str, max_days: int = 3) -> dict:
+def roll_call_votes_by_id(votes_per_document: dict) -> dict:
     """
-    Look for the roll-call votes of the given documents in the previous days.
-    During the remote voting period (2020-2022), the results of the votes were announced the day after the vote,
-    so the votes results document of a day refers to votes whose roll-call results are published the day before.
-    :param eu_document_codes: documents to look for
-    :param date: date of the votes results document, as iso formatted string
-    :param max_days: maximum number of days to look back
-    :return: {<eu_document_code>: {"votes": {...}, "date": <date of the roll-call vote>}}
+    Index the roll-call votes returned by parse_all_votes by their identifier
+    :return: {<vote identifier>: <amendment>}
     """
-    found = {}
-    remaining = set(eu_document_codes)
-    day = datetime.date.fromisoformat(date)
-    for _ in range(max_days):
-        if not remaining:
-            break
-        day -= datetime.timedelta(days=1)
-        previous_date = day.isoformat()
-        if parliament_number_from_date(previous_date) != parliament_number_from_date(date):
-            break
-        xml = get_plenary_document_xml(plenary_document_reference(previous_date, "RCV"))
-        if xml is None:
-            continue
-        for eu_document_code, content in parse_all_votes(xml, previous_date).items():
-            if eu_document_code in remaining and content["votes"]:
-                found[eu_document_code] = content | {"date": previous_date}
-                remaining.remove(eu_document_code)
-    return found
+    return {amendment["id"]: amendment
+            for content in votes_per_document.values()
+            for amendment in content.get("amendments", [])}

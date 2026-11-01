@@ -1,5 +1,6 @@
 import re
-import requests
+
+from parser.open_data import session, TIMEOUT
 
 
 class InvalidDocumentException(Exception):
@@ -55,7 +56,7 @@ class Document:
         :return:
         """
         url = f"https://data.europarl.europa.eu/api/v2/documents/{self.document_id()}?format=application%2Fld%2Bjson&language=fr"
-        response = requests.get(url)
+        response = session().get(url, timeout=TIMEOUT)
         if response.status_code != 200:
             self.__title = "Document au nom inconnu"
             self.__description = "Nous ne sommes pas parvenus à récupérer le nom de ce document"

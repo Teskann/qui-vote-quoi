@@ -93,6 +93,47 @@ def __parse_structured_format(xml: etree._Element) -> dict:
     return results
 
 
+def __structured_amendment(voting: etree._Element) -> dict:
+    def text(tag):
+        value = " ".join((voting.findtext(tag) or "").split())
+        return value or None
+    result = __parse_structured_voting(voting)
+    # "§" means that the original text is voted, not an amendment
+    amendment = text("amendmentNumber") if text("amendmentNumber") != "§" else None
+    # Part of a split vote ("1", "2", "2/AN", ...)
+    part = re.match(r"^(\d+)", text("rcv/value") or "")
+    label = text("label") or " - ".join(filter(None, [text("amendmentSubject"),
+                                                      f"Am {amendment}" if amendment else None]))
+    if part and not text("label"):
+        label = f"{label}/{part[1]}"
+    return {
+        "id": voting.get("votingId"),
+        "label": label or None,
+        "subject": text("amendmentSubject"),
+        "amendment": amendment,
+        "part": part[1] if part else None,
+        "author": text("amendmentAuthor"),
+        "was_roll_call_voted": result["was_roll_call_voted"],
+        "result": voting.get("result"),
+        "global_votes": result.get("global_votes"),
+        "votes": {},
+    }
+
+
+def __parse_structured_amendments(xml: etree._Element) -> dict:
+    results = {}
+    for vote in xml.iter("vote"):
+        documents = vote.findall("documents/document")
+        if not documents:
+            continue
+        eu_document_code = __main_document(documents)
+        if eu_document_code in results:
+            continue
+        results[eu_document_code] = [__structured_amendment(voting) for voting in vote.findall("votings/voting")
+                                     if voting.get("type") != "TITLE_BLOCK" and voting.get("result")]
+    return results
+
+
 # Tabular format #######################################################################################################
 
 def __parse_votes_count(row: etree._Element) -> dict | None:
@@ -169,13 +210,33 @@ def parse_vote_results(xml: etree._Element) -> dict:
     return __parse_tabular_format(xml)
 
 
+def parse_amendments(xml: etree._Element) -> dict:
+    """
+    Parse all the votes held on each document (amendments, paragraphs, final vote, ...).
+    Only the structured format (since 2024) is supported: the tabular format cannot be parsed reliably.
+    The votes of the members are not part of this document, they come from the roll-call votes results.
+    :param xml: root of the XML document
+    :return: {<eu_document_code>: [<amendment>]}
+    """
+    if xml.tag == "file":
+        return __parse_structured_amendments(xml)
+    return {}
+
+
+def get_votes_results_xml(date: str) -> etree._Element | None:
+    """
+    Download the votes results XML document of the given date, None if it does not exist
+    """
+    return get_plenary_document_xml(plenary_document_reference(date, "VOT"))
+
+
 def get_vote_results_for_date(date: str) -> dict | None:
     """
     Get the vote results for a given date
     :param date: date as iso string
     :return: dict of all the voted texts {<eu_document_code>: <vote_results>}, None if the document does not exist
     """
-    xml = get_plenary_document_xml(plenary_document_reference(date, "VOT"))
+    xml = get_votes_results_xml(date)
     if xml is None:
         return None
     return parse_vote_results(xml)

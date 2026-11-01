@@ -1,5 +1,5 @@
 from parser.empty_days_management import nothing_happened_on
-from parser.roll_call_votes_parser import get_roll_call_votes_xml_at_date, parse_all_votes, find_votes_in_previous_days
+from parser.roll_call_votes_parser import get_roll_call_votes_xml_at_date, parse_all_votes
 
 
 def test_get_roll_call_votes_xml_at_date():
@@ -23,10 +23,3 @@ def test_parse_all_votes():
     # Only French members are kept
     assert sum(len(names) for names in votes["+"].values()) == 75
 
-
-def test_find_votes_in_previous_days():
-    # During the remote voting period, the votes results of 2021-07-07 refer to roll-call votes of 2021-07-06
-    found = find_votes_in_previous_days({"A9-0210/2021", "UNKNOWN"}, "2021-07-07")
-    assert list(found.keys()) == ["A9-0210/2021"]
-    assert found["A9-0210/2021"]["date"] == "2021-07-06"
-    assert found["A9-0210/2021"]["votes"] != {}
