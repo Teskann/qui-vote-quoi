@@ -1,7 +1,7 @@
 import datetime
 import json
 from itertools import islice
-from os.path import join, abspath, dirname
+from os.path import join
 
 import jinja2
 
