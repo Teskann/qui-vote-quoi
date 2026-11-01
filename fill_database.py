@@ -14,11 +14,14 @@ def main():
     arg_parser.add_argument("--overwrite-empty-days", required=False, action="store_true",
                             help="Use this flag to process again the days registered as days without votes")
 
+    arg_parser.add_argument("--jobs", required=False, type=int, default=None,
+                            help="Number of days processed in parallel")
+
     args = arg_parser.parse_args()
     set_root_database_path()
     create_empty_days_txt_file_if_does_not_exist()
     fill_database(args.start_date, args.end_date, overwrite=args.overwrite,
-                  overwrite_empty_days=args.overwrite_empty_days)
+                  overwrite_empty_days=args.overwrite_empty_days, jobs=args.jobs)
 
 
 if __name__ == "__main__":

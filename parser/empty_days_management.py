@@ -1,4 +1,9 @@
+import threading
+
 import database.database
+
+# The database can be filled by several threads at once
+__lock = threading.Lock()
 
 
 def empty_days_txt_path() -> str:
@@ -24,7 +29,7 @@ def set_nothing_happened_for(date: str):
     :param date: date to write
     :return: None
     """
-    with open(empty_days_txt_path(), "a", encoding="utf-8") as f:
+    with __lock, open(empty_days_txt_path(), "a", encoding="utf-8") as f:
         f.write(date + "\n")
 
 
@@ -34,12 +39,13 @@ def set_something_happened_for(date: str):
     :param date: date to remove
     :return: None
     """
-    with open(empty_days_txt_path(), "r", encoding="utf-8") as f:
-        dates = f.read().split("\n")
-    if date in dates:
-        dates.remove(date)
-    with open(empty_days_txt_path(), "w", encoding="utf-8") as f:
-        f.write("\n".join(dates))
+    with __lock:
+        with open(empty_days_txt_path(), "r", encoding="utf-8") as f:
+            dates = f.read().split("\n")
+        if date in dates:
+            dates.remove(date)
+        with open(empty_days_txt_path(), "w", encoding="utf-8") as f:
+            f.write("\n".join(dates))
 
 
 def nothing_happened_on(date: str) -> bool:

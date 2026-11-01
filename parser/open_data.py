@@ -20,6 +20,17 @@ TIMEOUT = 60
 __session = None
 __meps_cache = {}
 
+# Number of "429 Too Many Requests" responses received, to tune the parallelism
+throttled_requests = 0
+
+
+class __CountingRetry(Retry):
+    def increment(self, method=None, url=None, response=None, *args, **kwargs):
+        global throttled_requests
+        if response is not None and response.status == 429:
+            throttled_requests += 1
+        return super().increment(method, url, response, *args, **kwargs)
+
 
 class OpenDataError(Exception):
     pass
@@ -32,9 +43,9 @@ def session() -> requests.Session:
     global __session
     if __session is None:
         __session = requests.Session()
-        retries = Retry(total=5, backoff_factor=2, status_forcelist=[429, 500, 502, 503, 504],
+        retries = __CountingRetry(total=8, backoff_factor=2, status_forcelist=[429, 500, 502, 503, 504],
                         allowed_methods=["GET"])
-        __session.mount("https://", HTTPAdapter(max_retries=retries))
+        __session.mount("https://", HTTPAdapter(max_retries=retries, pool_maxsize=64))
         __session.headers.update({"User-Agent": "qui-vote-quoi (https://qui-vote-quoi.org)"})
     return __session
 
@@ -123,3 +134,15 @@ def get_meps_ids(parliamentary_term: int, country: str = "FR") -> set[str]:
             raise OpenDataError(f"Could not get the MEPs of {country} for term {parliamentary_term}")
         __meps_cache[key] = {mep["identifier"] for mep in response.json()["data"]}
     return __meps_cache[key]
+
+
+def get_sitting_dates(year: int) -> set[str]:
+    """
+    Dates of the plenary sittings of the given year, as iso formatted strings.
+    The calendar is published in advance, so future sittings are included.
+    """
+    response = __get(f"{API_URL}/meetings", params={"year": year, "format": JSON_LD, "offset": 0, "limit": 1000})
+    if response is None:
+        return set()
+    return {meeting["activity_date"] for meeting in response.json().get("data", [])
+            if meeting.get("activity_date") and meeting.get("had_activity_type", "").endswith("PLENARY_SITTING")}
