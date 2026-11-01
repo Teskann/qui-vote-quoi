@@ -114,26 +114,30 @@ def get_plenary_document_xml(reference: str, language: str = "fr") -> etree._Ele
     return None
 
 
-def get_meps_ids(parliamentary_term: int, country: str = "FR") -> set[str]:
+def get_meps(parliamentary_term: int, country: str | None = "FR") -> list[dict]:
     """
-    Identifiers (PersId) of all the members who represented the given country during the given term
-    :param parliamentary_term: parliamentary term number (9, 10, ...)
-    :param country: ISO code of the country
-    :return: set of identifiers
+    All the members who represented the given country during the given term
+    :param parliamentary_term: parliamentary term number (8, 9, 10, ...)
+    :param country: ISO code of the country, None for all the members
+    :return: list of {"identifier": ..., "familyName": ..., "givenName": ..., ...}
     """
     key = (parliamentary_term, country)
     if key not in __meps_cache:
-        response = __get(f"{API_URL}/meps", params={
-            "parliamentary-term": parliamentary_term,
-            "country-of-representation": country,
-            "format": JSON_LD,
-            "offset": 0,
-            "limit": 1000,
-        })
+        params = {"parliamentary-term": parliamentary_term, "format": JSON_LD, "offset": 0, "limit": 5000}
+        if country is not None:
+            params["country-of-representation"] = country
+        response = __get(f"{API_URL}/meps", params=params)
         if response is None:
             raise OpenDataError(f"Could not get the MEPs of {country} for term {parliamentary_term}")
-        __meps_cache[key] = {mep["identifier"] for mep in response.json()["data"]}
+        __meps_cache[key] = response.json()["data"]
     return __meps_cache[key]
+
+
+def get_meps_ids(parliamentary_term: int, country: str = "FR") -> set[str]:
+    """
+    Identifiers (PersId) of all the members who represented the given country during the given term
+    """
+    return {mep["identifier"] for mep in get_meps(parliamentary_term, country)}
 
 
 def get_sitting_dates(year: int) -> set[str]:
@@ -144,5 +148,14 @@ def get_sitting_dates(year: int) -> set[str]:
     response = __get(f"{API_URL}/meetings", params={"year": year, "format": JSON_LD, "offset": 0, "limit": 1000})
     if response is None:
         return set()
-    return {meeting["activity_date"] for meeting in response.json().get("data", [])
-            if meeting.get("activity_date") and meeting.get("had_activity_type", "").endswith("PLENARY_SITTING")}
+    dates = set()
+    for meeting in response.json().get("data", []):
+        if not str(meeting.get("had_activity_type", "")).endswith("PLENARY_SITTING"):
+            continue
+        # Depending on the year, the date is "2024-10-08" or {"@value": "2019-12-17T00:00:00+01:00", ...}
+        date = meeting.get("activity_date") or meeting.get("eli-dl:activity_date")
+        if isinstance(date, dict):
+            date = date.get("@value")
+        if date:
+            dates.add(str(date)[:10])
+    return dates
