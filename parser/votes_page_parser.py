@@ -1,174 +1,181 @@
+"""
+Parser of the votes results (documents PV-<term>-<date>-VOT), which give the global result of each vote.
+
+Two XML formats exist:
+- the structured format (root <file>), used since 2024, which describes each vote with attributes
+- the tabular format (root <documents>), used before, which is a conversion of the tables of the HTML page
+"""
 import re
 
-import bs4
-import requests
-from bs4 import BeautifulSoup
+from lxml import etree
 
-from parser.Document import Document, scrap_documents_from_string
-from tests.utils.workarounds import find_all_next_fixed, find_all_fixed, find_all_previous_fixed
-from utils.date_management import votes_source_url
+from parser.Document import scrap_documents_from_string
+from parser.open_data import get_plenary_document_xml, plenary_document_reference
 
+UNAVAILABLE = "Données indisponibles"
 
-class Error404(Exception):
-    pass
+# Results that end the voting procedure. The other ones are lapsed (LAPSED), withdrawn, etc.
+FINAL_RESULTS = {"ADOPTED", "REJECTED"}
 
-
-def __get_votes_html(date: str) -> BeautifulSoup:
-    """
-    Return the votes html for a given date. Throws in case of error 404
-    :param date: date as iso string
-    :return: beautiful soup
-    """
-    headers = {
-        'accept': '*/*',
-        'accept-language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
-        'content-type': 'application/json',
-        'origin': 'https://www.europarl.europa.eu',
-        'priority': 'u=1, i',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'sec-gpc': '1',
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
-    }
-    response = requests.get(votes_source_url(date), headers=headers)
-
-    if response.status_code != 200:
-        raise Error404("Error", response.status_code, "for", date)
-    return BeautifulSoup(response.text, 'lxml')
+# Cell of the tabular format containing the result of a vote
+VOTE_CELL_REGEX = re.compile(r"^\s*[+\-—]\s*$")
+ROLL_CALL_REGEX = re.compile(r"\bAN\b")
+VOTES_COUNT_REGEX = re.compile(r"(\d+)\s*,\s*(\d+)\s*,\s*(\d+)")
+REVISION_REGEX = re.compile(r"/rev\d+$", flags=re.IGNORECASE)
 
 
-def __get_main_eu_document(documents: set[Document], item_html: bs4.Tag) -> tuple[Document, bool]:
-    """
-    Get the main document among a list of documents. The documents RC-B* have priority over B-*
-    :param documents: list of documents
-    :return: main document, True if it could find a main document, False otherwise
-    """
-    if len(documents) == 1:
-        return list(documents)[0], True
-    else :
-        pass
-
-    last_vote_cell = __find_last_vote_cell(item_html)
-    if last_vote_cell is not None:
-        all_code_items = find_all_previous_fixed(last_vote_cell, ["a", "p", "td"], string=re.compile(r".*(?<!-)(" + "|".join([re.escape(str(doc)) for doc in documents]) + ").*", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE))
-        if len(all_code_items) > 0:
-            code_item = all_code_items[0]
-            return list(scrap_documents_from_string(code_item.prettify() + " " + code_item.text))[0], True
-
-    return list(documents)[0], False
+def __text(element: etree._Element | None) -> str:
+    return "".join(element.itertext()) if element is not None else ""
 
 
-def __find_eu_document_codes_in_html(html: BeautifulSoup) -> dict:
-    """
-    This returns all the voted document codes from the html, along with their tag
-    :param html: input beautiful soup (whole page)
-    :return: {"document code": <bs4.Tag>}
-    """
-    all_items = find_all_fixed(html, "a", string=re.compile(".*" + Document.rexeg_str + ".*", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE))
-    all_items += find_all_fixed(html,"p", string=re.compile(".*" + Document.rexeg_str + ".*", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE))
-
-    # Remove matches that are not the "header" of a table
-    # In practice, headers are <p></p>, and sometimes in <p><a></a></p>
-    valid_items = {}
-    processed_documents = set()
-    for item in all_items:
-        if item.name == "p" or item.name == "a" and item.parent.name == "p":
-            if item.name == "a":
-                item = item.parent
-            item_html = item.parent.prettify(formatter="html")
-            all_documents = scrap_documents_from_string(item_html + " " + item.text)
-            if not all_documents:
-                continue
-            eu_document_code, succeeded = __get_main_eu_document(all_documents, item)
-            if not succeeded:
-                next_td = find_all_next_fixed(item,"td", string=re.compile(".*" + Document.rexeg_str + ".*", flags=re.MULTILINE | re.DOTALL | re.IGNORECASE))
-                if next_td is None or len(next_td) == 0:
-                    continue
-                eu_document_code = list(scrap_documents_from_string(next_td[0].prettify()))[0]
-            if str(eu_document_code) not in processed_documents:
-                valid_items[str(eu_document_code)] = item
-                processed_documents.update([str(doc) for doc in all_documents])
-    return valid_items
+def __documents_in(text: str) -> set[str]:
+    return {str(document) for document in scrap_documents_from_string(text)}
 
 
-def __find_last_vote_cell(tag: bs4.Tag) -> bs4.Tag | None:
-    table_results = tag.find_next("table")
-    tds = find_all_fixed(table_results, "td", string=re.compile(r"^\s*[+\-—]\s*$"))
-    return tds[-1] if len(tds) > 0 else None
+def __unavailable_votes_count() -> dict:
+    return {"+": UNAVAILABLE, "-": UNAVAILABLE, "0": UNAVAILABLE}
 
 
-def __find_vote_result_element(tag: bs4.Tag):
-    """
-    Find the vote result element of the page. Assume it's the last voted line (the last line of the table to contain
-    either a "+" or a "-" in a cell)
-    :param tag: tag containing the document code, typically a <p>
-    :return: table row containing the vote results
-    """
-    table_results = tag.find_next("table")
-    td = __find_last_vote_cell(tag)
-    if td is None:
-        return table_results.find_all("tr")[-1]
-    return td.parent
-
-
-def __get_votes_count(td: bs4.Tag) -> dict:
-    """
-    Parse the votes cell and return them in a dict.
-    This function applies a locig to process <p>1, 2, 3</p> as well as <p><a>1, 2, 3</a></p>
-    :param td: table cell containing the votes
-    :return: dict of votes count
-    """
-    if td is None:
-        return {"+": "Données indisponibles", "-": "Données indisponibles", "0": "Données indisponibles"}
-    text = td.text
-    while td.text == "" and td.next_element is not None:
-        td = td.next_element
-        text = td.text
-    parts = text.split(",")
-    return {"+": int(parts[0].strip()), "-": int(parts[1].strip()), "0": int(parts[2].strip())}
-
-
-def __parse_vote_results(tr: bs4.Tag) -> dict:
-    """
-    Parse the vote results and return them in a dict
-    :param tr: table row containing the vote results
-    :return: dict
-    """
-    roll_name_voted_td = tr.find("td", recursive=False, string=re.compile("\s*AN\s*"))
-    was_adopted_td = tr.find("td", recursive=False, string=re.compile(r"\s*[+\-—]\s*"))
-    votes_result_td = tr.find(["td", "a"], recursive=True, string=re.compile(r"\s*\d+,\s*\d+,\s*\d+\s*"))
-    if roll_name_voted_td is None and was_adopted_td is None:
-        return {"was_roll_call_voted": False, "was_adopted": True}
-    if roll_name_voted_td is not None and was_adopted_td is not None:
-        was_adopted = was_adopted_td.text.strip() == "+"
-        return {"was_roll_call_voted": True, "was_adopted": was_adopted, "global_votes": __get_votes_count(votes_result_td)}
-
-    else:
-        was_adopted = was_adopted_td.text.strip() == "+" if was_adopted_td is not None else True
-        return {"was_roll_call_voted": False, "was_adopted": was_adopted}
-
-
-def __get_vote_results_for_all_documents(documents: dict):
-    """
-    Returns the vote results for all the provided documents
-    :param documents: {<eu_document_code>: <bs4.Tag>}
-    :return: dict with the vote results for each document
-    """
-    results = {}
-    for eu_document_code, tag in documents.items():
-        results[eu_document_code] = __parse_vote_results(__find_vote_result_element(tag))
+def __vote_results(was_roll_call_voted: bool, was_adopted: bool, global_votes: dict | None = None) -> dict:
+    results = {"was_roll_call_voted": was_roll_call_voted, "was_adopted": was_adopted}
+    if was_roll_call_voted:
+        results["global_votes"] = global_votes if global_votes is not None else __unavailable_votes_count()
     return results
+
+
+# Structured format ####################################################################################################
+
+def __document_code(document: etree._Element) -> str:
+    number = document.get("documentNumber")
+    return f"RC-{number}" if document.get("documentType") == "RC" else number
+
+
+def __main_document(documents: list[etree._Element]) -> str:
+    """
+    Main document of a vote. Joint motions for resolution (RC) are the ones which are voted, the other motions
+    for resolution are usually lapsed.
+    """
+    joint_motions = [document for document in documents if document.get("documentType") == "RC"]
+    if joint_motions:
+        return __document_code(joint_motions[0])
+    return __document_code(min(documents, key=lambda document: int(document.get("documentOrder") or 0)))
+
+
+def __parse_structured_voting(voting: etree._Element) -> dict:
+    was_adopted = voting.get("result") == "ADOPTED"
+    if voting.get("resultType") != "ROLL_CALL":
+        return __vote_results(False, was_adopted)
+    try:
+        global_votes = {
+            "+": int(voting.get("numberFavor")),
+            "-": int(voting.get("numberAgainst")),
+            "0": int(voting.get("numberAbstention")),
+        }
+    except (TypeError, ValueError):
+        match = VOTES_COUNT_REGEX.search(voting.findtext("observations") or "")
+        global_votes = {"+": int(match[1]), "-": int(match[2]), "0": int(match[3])} if match else None
+    return __vote_results(True, was_adopted, global_votes)
+
+
+def __parse_structured_format(xml: etree._Element) -> dict:
+    results = {}
+    for vote in xml.iter("vote"):
+        documents = vote.findall("documents/document")
+        if not documents:
+            continue
+        votings = [voting for voting in vote.findall("votings/voting") if voting.get("result") in FINAL_RESULTS]
+        if not votings:
+            continue
+        eu_document_code = __main_document(documents)
+        if eu_document_code not in results:
+            # The last vote is the vote on the whole text
+            results[eu_document_code] = __parse_structured_voting(votings[-1])
+    return results
+
+
+# Tabular format #######################################################################################################
+
+def __parse_votes_count(row: etree._Element) -> dict | None:
+    for cell in row.findall("TD"):
+        total_for = cell.find(".//Vote.Result.Table.TotalVote.For")
+        if total_for is not None:
+            def count(name):
+                return int(__text(cell.find(f".//Vote.Result.Table.TotalVote.{name}")).strip())
+            try:
+                return {"+": count("For"), "-": count("Against"), "0": count("Abstention")}
+            except ValueError:
+                return None
+        match = VOTES_COUNT_REGEX.search(__text(cell))
+        if match:
+            return {"+": int(match[1]), "-": int(match[2]), "0": int(match[3])}
+    return None
+
+
+def __main_tabular_document(documents: set[str], cells_before_vote: list[etree._Element]) -> str:
+    """
+    Find the document on which the final vote was held: it's the last document mentioned before the final vote.
+    """
+    for cell in reversed(cells_before_vote):
+        found = __documents_in(__text(cell))
+        if found:
+            main = max(found, key=lambda code: (code.upper().startswith("RC-"), len(code)))
+            break
+    else:
+        joint_motions = sorted(code for code in documents if code.upper().startswith("RC-"))
+        main = joint_motions[0] if joint_motions else min(documents)
+
+    # Use the code as written in the description, which sometimes omits the revision number
+    for code in documents:
+        if code != main and REVISION_REGEX.sub("", code).upper() == REVISION_REGEX.sub("", main).upper():
+            return code
+    return main
+
+
+def __parse_tabular_format(xml: etree._Element) -> dict:
+    results = {}
+    for vote in xml.iter("Vote.Result"):
+        documents = __documents_in(__text(vote.find("Vote.Result.Description.Text")))
+        table = vote.find(".//TABLE")
+        if not documents or table is None:
+            continue
+        cells = list(table.iter("TD"))
+        vote_cells = [cell for cell in cells if VOTE_CELL_REGEX.match(__text(cell))]
+        last_vote_cell = vote_cells[-1] if vote_cells else None
+        cells_before_vote = cells[:cells.index(last_vote_cell)] if last_vote_cell is not None else cells
+        eu_document_code = __main_tabular_document(documents, cells_before_vote)
+        if eu_document_code in results:
+            continue
+        if last_vote_cell is None:
+            results[eu_document_code] = __vote_results(False, True)
+            continue
+        row = last_vote_cell.getparent()
+        was_adopted = __text(last_vote_cell).strip() == "+"
+        was_roll_call_voted = any(ROLL_CALL_REGEX.search(__text(cell)) for cell in row.findall("TD"))
+        results[eu_document_code] = __vote_results(
+            was_roll_call_voted, was_adopted, __parse_votes_count(row) if was_roll_call_voted else None)
+    return results
+
+
+########################################################################################################################
+
+def parse_vote_results(xml: etree._Element) -> dict:
+    """
+    Parse the votes results XML document
+    :param xml: root of the XML document
+    :return: dict of all the voted texts {<eu_document_code>: <vote_results>}
+    """
+    if xml.tag == "file":
+        return __parse_structured_format(xml)
+    return __parse_tabular_format(xml)
+
 
 def get_vote_results_for_date(date: str) -> dict | None:
     """
     Get the vote results for a given date
     :param date: date as iso string
-    :return: dict of all the voted textx {<eu_document_code>: <vote_results>}
+    :return: dict of all the voted texts {<eu_document_code>: <vote_results>}, None if the document does not exist
     """
-    try:
-        return __get_vote_results_for_all_documents(
-            __find_eu_document_codes_in_html(__get_votes_html(date))
-        )
-    except Error404:
+    xml = get_plenary_document_xml(plenary_document_reference(date, "VOT"))
+    if xml is None:
         return None
+    return parse_vote_results(xml)

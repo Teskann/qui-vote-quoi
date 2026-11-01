@@ -6,8 +6,7 @@ from parser.merger import merge_data
 from parser.votes_page_parser import get_vote_results_for_date
 from utils.date_management import date_range
 from parser.empty_days_management import nothing_happened_on, set_something_happened_for
-from parser.europarl_html_parser import parse_all_votes
-from parser.request_europarl import get_roll_call_votes_html_at_date
+from parser.roll_call_votes_parser import get_roll_call_votes_xml_at_date, parse_all_votes, find_votes_in_previous_days
 
 
 def dump_day_to_json(date: str, overwrite: bool = False, overwrite_empty_days: bool = False):
@@ -25,12 +24,15 @@ def dump_day_to_json(date: str, overwrite: bool = False, overwrite_empty_days: b
         return
     if overwrite_empty_days:
         set_something_happened_for(date)
-    html = get_roll_call_votes_html_at_date(date)
-    if html is None:
+    xml = get_roll_call_votes_xml_at_date(date)
+    if xml is None:
         return
-    votes_per_document = parse_all_votes(html)
+    votes_per_document = parse_all_votes(xml, date)
     global_votes = get_vote_results_for_date(date)
     if global_votes is not None:
+        missing_roll_call_votes = {document for document, result in global_votes.items()
+                                   if result["was_roll_call_voted"] and not votes_per_document.get(document, {}).get("votes")}
+        votes_per_document |= find_votes_in_previous_days(missing_roll_call_votes, date)
         votes_per_document = merge_data(votes_per_document, global_votes, date)
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(votes_per_document, f, indent=2, ensure_ascii=False)
