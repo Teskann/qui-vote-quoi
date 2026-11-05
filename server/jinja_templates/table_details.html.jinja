@@ -4,29 +4,29 @@
 
 
 <tbody>
-<tr><td class="header_details text_adjust_workaround">Date</td>
-    <td class="details_content tooltip text_adjust_workaround">{{ date | to_pretty_date }}
+<tr><td class="header_details">Date</td>
+    <td class="details_content tooltip">{{ date | to_pretty_date }}
         <span class="tooltip_text">Le vote a eu lieu le {{ date | to_pretty_date }}</span>
     </td>
 </tr>
 
 <tr>
-    <td class="header_details text_adjust_workaround">Source des données des votes</td>
+    <td class="header_details">Source des données des votes</td>
     <td class="details_content"><a href="{{ votes_source_url }}" target="_blank">Consulter sur europarl.europa.eu</a></td>
 </tr>
 
 <tr>
-    <td class="header_details text_adjust_workaround">Document associé</td>
+    <td class="header_details">Document associé</td>
     <td class="details_content"><a href="{{ source_url }}" target="_blank">Lire {{ eu_document_code }} sur europarl.europa.eu</a></td>
 </tr>
 
 {% if global["was_roll_call_voted"] == True %}
     <tr>
-        <td class="header_details text_adjust_workaround tooltip">
+        <td class="header_details tooltip">
             Résultat théorique
             <span class="tooltip_text">Résultat du vote si seuls les français avaient voté.</span>
         </td>
-        <td class="details_content text_adjust_workaround">
+        <td class="details_content">
             {% if votes_for > votes_against %}
                 ✅ 🇫🇷 Le texte aurait été adopté si seuls les députés français avaient voté, par {{ votes_for }} voix contre
                 {{ votes_against }} ({{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
@@ -40,11 +40,11 @@
     </tr>
     {% endif %}
     <tr>
-        <td class="header_details text_adjust_workaround tooltip">
+        <td class="header_details tooltip">
             Résultat
             <span class="tooltip_text">Résultat du vote au parlement européen.</span>
         </td>
-        <td class="details_content text_adjust_workaround tooltip">
+        <td class="details_content tooltip">
             {% if global["was_adopted"] %}
                 ✅ 🇪🇺 Le texte a été adopté par le parlement européen
                 {%- if "global_votes" in global and global["global_votes"]["+"] != "Données indisponibles" %}

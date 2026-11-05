@@ -2,7 +2,7 @@
 
 {% if size > 25 %}
 
-<div class="page_navigation text_adjust_workaround">
+<div class="page_navigation">
 <div class="current_page_info">
     Affichage des résultats {{ 25 * (request_args.page - 1) + 1 }} à {{ (25 * (request_args.page)) | min(size) }} sur {{ size }}
 </div>

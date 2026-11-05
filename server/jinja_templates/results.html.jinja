@@ -6,15 +6,14 @@
    <!doctype html>
    <html lang="fr">
      <head>
-     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
      {% include "favicon.html.jinja" %}
      <style>
      {{ css }}
      </style>
        <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
        <title>{{ request.search if request.search.strip() else "Tous les votes"}} - Qui vote quoi ?</title>
        <meta name="description" content="Surveillez les votes des députés Français au parlement européen">
-     {% include "workaround_responsive.js.jinja" %}
      </head>
      <body>
      {% include "toolbar.html.jinja" %}
