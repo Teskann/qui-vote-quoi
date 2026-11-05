@@ -1,67 +1,60 @@
+{% macro outcome(title, verdict_class, verdict, n_for, n_against, n_abstained, tooltip) %}
+{% set total = n_for + n_against + n_abstained %}
+<div class="outcome {{ verdict_class }}">
+    <div class="outcome_title{{ ' tooltip' if tooltip else '' }}">
+        {{ title }}
+        {% if tooltip %}<span class="tooltip_text">{{ tooltip }}</span>{% endif %}
+    </div>
+    <div class="outcome_verdict">{{ verdict }}</div>
+    {% if total > 0 %}
+        <div class="vote_bar" aria-hidden="true">
+            {% if n_for %}<span class="voted_for" style="width: {{ 100 * n_for / total }}%"></span>{% endif %}
+            {% if n_against %}<span class="voted_against" style="width: {{ 100 * n_against / total }}%"></span>{% endif %}
+            {% if n_abstained %}<span class="abstained" style="width: {{ 100 * n_abstained / total }}%"></span>{% endif %}
+        </div>
+        <div class="vote_counts">
+            <span class="voted_for"><b>{{ n_for }}</b> pour</span>
+            <span class="voted_against"><b>{{ n_against }}</b> contre</span>
+            <span class="abstained"><b>{{ n_abstained }}</b> abstention{{ "s" if n_abstained > 1 else "" }}</span>
+        </div>
+    {% else %}
+        <div class="vote_counts">Décompte des voix indisponible</div>
+    {% endif %}
+</div>
+{% endmacro %}
+
 {% macro create_table_details(eu_document_code, date, votes_source_url, source_url, votes_for, votes_against, votes_abstained, global) %}
 
-<table class="details">
+<div class="details">
 
+<div class="details_meta">
+    <span>📅 {{ date | to_pretty_date }}</span>
+    <a href="{{ votes_source_url }}" target="_blank">Source des votes ↗</a>
+    <a href="{{ source_url }}" target="_blank">Lire {{ eu_document_code }} ↗</a>
+</div>
 
-<tbody>
-<tr><td class="header_details">Date</td>
-    <td class="details_content tooltip">{{ date | to_pretty_date }}
-        <span class="tooltip_text">Le vote a eu lieu le {{ date | to_pretty_date }}</span>
-    </td>
-</tr>
+<div class="outcomes">
+    {% set gv = global["global_votes"] if "global_votes" in global and global["global_votes"]["+"] != "Données indisponibles" else none %}
+    {{ outcome("🇪🇺 Parlement européen",
+               "adopted" if global["was_adopted"] else "rejected",
+               "Adopté" if global["was_adopted"] else "Rejeté",
+               gv["+"] if gv else 0, gv["-"] if gv else 0, gv["0"] if gv else 0,
+               "Résultat du vote au parlement européen.") }}
 
-<tr>
-    <td class="header_details">Source des données des votes</td>
-    <td class="details_content"><a href="{{ votes_source_url }}" target="_blank">Consulter sur europarl.europa.eu</a></td>
-</tr>
-
-<tr>
-    <td class="header_details">Document associé</td>
-    <td class="details_content"><a href="{{ source_url }}" target="_blank">Lire {{ eu_document_code }} sur europarl.europa.eu</a></td>
-</tr>
-
-{% if global["was_roll_call_voted"] == True %}
-    <tr>
-        <td class="header_details tooltip">
-            Résultat théorique
-            <span class="tooltip_text">Résultat du vote si seuls les français avaient voté.</span>
-        </td>
-        <td class="details_content">
-            {% if votes_for > votes_against %}
-                ✅ 🇫🇷 Le texte aurait été adopté si seuls les députés français avaient voté, par {{ votes_for }} voix contre
-                {{ votes_against }} ({{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
-            {% elif votes_for != 0 or votes_against != 0 or votes_abstained != 0%}
-                ❌ 🇫🇷 Le texte aurait été rejeté si seuls les députés français avaient voté ({{ votes_for }} voix pour,
-                {{ votes_against }} voix contre, {{ votes_abstained }} abstention{{ "s" if votes_abstained > 1 else "" }}).
-            {% else %}
-                ❔ Les données relatives au vote par appel nominal des députés français ne sont pas disponibles.
-            {% endif %}
-        </td>
-    </tr>
+    {% if global["was_roll_call_voted"] == True %}
+        {% if votes_for != 0 or votes_against != 0 or votes_abstained != 0 %}
+            {{ outcome("🇫🇷 Si seuls les Français avaient voté",
+                       "adopted" if votes_for > votes_against else "rejected",
+                       "Aurait été adopté" if votes_for > votes_against else "Aurait été rejeté",
+                       votes_for, votes_against, votes_abstained,
+                       "Résultat théorique du vote si seuls les députés français avaient voté.") }}
+        {% else %}
+            {{ outcome("🇫🇷 Si seuls les Français avaient voté", "unknown", "Données indisponibles", 0, 0, 0,
+                       "Les données relatives au vote par appel nominal des députés français ne sont pas disponibles.") }}
+        {% endif %}
     {% endif %}
-    <tr>
-        <td class="header_details tooltip">
-            Résultat
-            <span class="tooltip_text">Résultat du vote au parlement européen.</span>
-        </td>
-        <td class="details_content tooltip">
-            {% if global["was_adopted"] %}
-                ✅ 🇪🇺 Le texte a été adopté par le parlement européen
-                {%- if "global_votes" in global and global["global_votes"]["+"] != "Données indisponibles" %}
-                    par {{ global["global_votes"]["+"] }} voix contre
-                    {{ global["global_votes"]["-"] }} ({{ global["global_votes"]["0"] }} abstention{{ "s" if global["global_votes"]["0"] > 1 else "" }})
-                {%- endif -%}.
-            {% else %}
-                ❌ 🇪🇺 Le texte a été rejeté par le parlement européen
-                {%- if "global_votes" in global and global["global_votes"]["+"] != "Données indisponibles" %}
-                    ({{ global["global_votes"]["+"] }} voix pour,
-                    {{ global["global_votes"]["-"] }} voix contre et {{ global["global_votes"]["0"] }} abstention{{ "s" if global["global_votes"]["0"] > 1 else "" }})
-                {%- endif %}.
-            {% endif %}
-        </td>
-    </tr>
-</tbody>
+</div>
 
-</table>
+</div>
 
 {% endmacro %}

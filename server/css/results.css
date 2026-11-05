@@ -317,11 +317,11 @@ button.primary:hover {
     height: 20px;
 }
 
-/* ---------- Votes table: one tinted, rounded row per group ---------- */
+/* ---------- Votes table: one continuous rounded block ---------- */
 .votes_table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 4px;
+    border-spacing: 0;
     margin: 16px 0 10px;
 }
 
@@ -331,8 +331,10 @@ button.primary:hover {
     vertical-align: middle;
 }
 
-.votes_table td:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
-.votes_table td:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.votes_table tr:first-child td:first-child { border-top-left-radius: var(--radius-sm); }
+.votes_table tr:first-child td:last-child { border-top-right-radius: var(--radius-sm); }
+.votes_table tr:last-child td:first-child { border-bottom-left-radius: var(--radius-sm); }
+.votes_table tr:last-child td:last-child { border-bottom-right-radius: var(--radius-sm); }
 
 .votes_table tr.voted_for td { background-color: var(--for-soft); }
 .votes_table tr.voted_against td { background-color: var(--against-soft); }
@@ -342,8 +344,7 @@ button.primary:hover {
     box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.04);
 }
 
-.political_group,
-.header_details {
+.political_group {
     white-space: nowrap;
     font-weight: 600;
 }
@@ -387,26 +388,80 @@ button.primary:hover {
 .legend_item.voted_against::before { background-color: var(--against); }
 .legend_item.abstained::before { background-color: var(--abstained); }
 
-/* ---------- Details: plain label / value list ---------- */
+/* ---------- Details: meta line + outcome cards ---------- */
 .details {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0 0;
-    padding-top: 4px;
+    margin-top: 20px;
 }
 
-.details td {
-    padding: 8px 0;
-    text-align: left;
-    vertical-align: top;
-}
-
-.header_details {
-    width: 1%;
-    padding-right: 24px !important;
-    color: var(--text-muted);
+.details_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
     font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
 }
+
+.outcomes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+.outcome {
+    --tone: var(--text-muted);
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-2);
+}
+
+.outcome.adopted { --tone: var(--for); }
+.outcome.rejected { --tone: var(--against); }
+
+.outcome_title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    width: fit-content;
+}
+
+.outcome_verdict {
+    margin: 2px 0 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--tone);
+}
+
+.vote_bar {
+    display: flex;
+    gap: 2px;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    background-color: var(--surface-3);
+    margin-bottom: 10px;
+}
+
+.vote_bar span.voted_for { background-color: var(--for); }
+.vote_bar span.voted_against { background-color: var(--against); }
+.vote_bar span.abstained { background-color: var(--abstained); }
+
+.vote_counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.vote_counts b {
+    font-weight: 700;
+}
+
+.vote_counts .voted_for b { color: var(--for); }
+.vote_counts .voted_against b { color: var(--against); }
+.vote_counts .abstained b { color: var(--abstained); }
 
 /* ---------- Tooltips ---------- */
 .tooltip {
@@ -606,7 +661,7 @@ input[type="checkbox"]:checked ~ .correlation-table-container {
 .correlation-table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 2px;
+    border-spacing: 0;
     text-align: center;
     font-variant-numeric: tabular-nums;
 }
@@ -616,7 +671,6 @@ input[type="checkbox"]:checked ~ .correlation-table-container {
     padding: 8px 10px;
     text-align: center;
     vertical-align: middle;
-    border-radius: 6px;
     transition: background-color 0.15s ease;
 }
 
@@ -629,6 +683,11 @@ input[type="checkbox"]:checked ~ .correlation-table-container {
 .correlation-table td {
     background-color: var(--surface-2);
 }
+
+.correlation-table tbody tr:first-child td:nth-child(2) { border-top-left-radius: var(--radius-sm); }
+.correlation-table tbody tr:first-child td:last-child { border-top-right-radius: var(--radius-sm); }
+.correlation-table tbody tr:last-child td:nth-child(2) { border-bottom-left-radius: var(--radius-sm); }
+.correlation-table tbody tr:last-child td:last-child { border-bottom-right-radius: var(--radius-sm); }
 
 .correlation-table td:hover {
     background-color: var(--surface-4);
@@ -734,16 +793,6 @@ input[type="checkbox"]:checked ~ .correlation-table-container {
 
     .votes_table td {
         padding: 10px 12px;
-    }
-
-    .details tr,
-    .details td {
-        display: block;
-        width: 100%;
-    }
-
-    .header_details {
-        padding-bottom: 0 !important;
     }
 
     .tooltip_text {
