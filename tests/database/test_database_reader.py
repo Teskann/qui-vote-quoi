@@ -1,11 +1,11 @@
-from database.database_reader import search_eu_document
-from database.database_writer import dump_day_to_json
+from database.database_reader import search_eu_document, search_in_time_range
+from database.database_writer import dump_day
 from tests.setup_database import clear_database
 
 
 def test_find_eu_documents_from_keyword():
-    dump_day_to_json("2024-09-19")
-    dump_day_to_json("2022-06-23")
+    dump_day("2024-09-19")
+    dump_day("2022-06-23")
 
     # 1 example in 2024
     # Keyword "Ukraine"
@@ -37,3 +37,17 @@ def test_find_eu_documents_from_keyword():
 
     assert "A9-0138/2022" in eu_documents
     assert "A9-0137/2022" in eu_documents
+
+def test_search_in_time_range():
+    clear_database()
+    dump_day("2024-09-19")
+    dump_day("2022-06-23")
+
+    days = list(search_in_time_range("2022-01-01", "2024-12-31", "ukraine"))
+    assert [set(day) for day in days] == [{"RC-B9-0331/2022", "A9-0181/2022"}, {"RC-B10-0028/2024"}]
+    # The amendments are not needed to display the results
+    assert all("amendments" not in content for day in days for content in day.values())
+
+    # The range is inclusive
+    assert len(list(search_in_time_range("2022-06-23", "2022-06-23", ""))) == 1
+    assert list(search_in_time_range("2023-01-01", "2023-12-31", "")) == []

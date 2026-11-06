@@ -1,7 +1,6 @@
-import json
-
 from database.database import get_database_path, set_database_path
 from database.members_index import get_member
+from database.storage import write_day
 
 
 def member(identifier, name):
@@ -31,11 +30,10 @@ def test_get_member(tmp_path):
                           "details": {"title": "Titre 3"}, "global": {"was_adopted": True, "was_roll_call_voted": False},
                           "amendments": [vote_1]},
     }
-    (tmp_path / "2025-03-12.json").write_text(json.dumps(day), encoding="utf-8")
-
     previous_path = get_database_path()
     set_database_path(str(tmp_path))
     try:
+        write_day("2025-03-12", day)
         b_stats = get_member("2")
         assert get_member("3") is None
     finally:

@@ -1,30 +1,18 @@
 """
 Statistics of each member over the whole database: participation to the roll-call votes, corrections, recent votes.
 Reading the whole database takes a few seconds, so the statistics of each day are kept in memory, and a day is read
-again only when its file changes (database update).
+again only when it is updated in the database.
 """
-import glob
-import json
-import os
 import threading
 
-from database.database import get_database_path
+from database import storage
 
 RECENT_VOTES = 30
 
 __lock = threading.Lock()
-# {<file>: (<modification time>, <statistics of the day, see __day_statistics>)}
+# {<date>: (<time of the last update>, <statistics of the day, see __day_statistics>)}
 __days = {}
 __cache = {"key": None, "index": None}
-
-
-def __files() -> list[str]:
-    return sorted(glob.glob(os.path.join(get_database_path(), "*.json")))
-
-
-def __read(file: str) -> dict:
-    with open(file, "r", encoding="utf-8") as f:
-        return json.load(f)
 
 
 def __members(groups: dict):
@@ -38,7 +26,7 @@ def __members(groups: dict):
                 yield group, member
 
 
-def __day_statistics(file: str) -> dict:
+def __day_statistics(date: str) -> dict:
     """
     :return: {<identifier>: {"full_name", "group", "voted", "absent", "corrections"}} for the roll-call votes of the day
     """
@@ -52,8 +40,8 @@ def __day_statistics(file: str) -> dict:
 
     # A roll-call vote may concern several documents, it's counted once
     roll_call_votes = {}
-    for content in __read(file).values():
-        for vote in content.get("amendments", []):
+    for amendments in storage.read_amendments(date).values():
+        for vote in amendments:
             if vote.get("was_roll_call_voted") and vote.get("absent") is not None and vote.get("id"):
                 roll_call_votes[vote["id"]] = vote
     for vote in roll_call_votes.values():
@@ -68,26 +56,26 @@ def __day_statistics(file: str) -> dict:
     return statistics
 
 
-def __refresh(files: list[str]):
+def __refresh(days: list[tuple[str, float]]):
     """
-    Update the statistics of the days. Only the days whose file changed are read again.
+    Update the statistics of the days. Only the days updated since they were read are read again.
+    :param days: [(<date>, <time of the last update>)]
     """
-    for file in set(__days) - set(files):
-        del __days[file]
-    for file in files:
-        modification_time = os.path.getmtime(file)
-        if file not in __days or __days[file][0] != modification_time:
-            __days[file] = (modification_time, __day_statistics(file))
+    for date in set(__days) - {date for date, _ in days}:
+        del __days[date]
+    for date, updated_at in days:
+        if date not in __days or __days[date][0] != updated_at:
+            __days[date] = (updated_at, __day_statistics(date))
 
 
-def __aggregate(files: list[str]) -> dict:
+def __aggregate(dates: list[str]) -> dict:
     """
     Gather the statistics of the given days (already refreshed), and rank the members
     """
     index = {}
-    for file in files:
-        month = os.path.basename(file)[:7]
-        for identifier, day in __days[file][1].items():
+    for date in dates:
+        month = date[:7]
+        for identifier, day in __days[date][1].items():
             entry = index.setdefault(identifier, {"id": identifier, "months": {}, "corrections": 0})
             # The days are processed in order, so the latest name and group are kept
             entry["full_name"], entry["group"] = day["full_name"], day["group"]
@@ -127,24 +115,24 @@ def __index(start_date: str | None = None, end_date: str | None = None) -> dict:
     :param end_date: last day of the period, included. None for the end of the database.
     """
     with __lock:
-        files = __files()
-        key = tuple((file, os.path.getmtime(file)) for file in files)
+        days = storage.days()
+        key = tuple(days)
+        dates = [date for date, _ in days]
         if __cache["key"] != key:
-            __refresh(files)
-            __cache["index"] = __aggregate(files)
+            __refresh(days)
+            __cache["index"] = __aggregate(dates)
             __cache["key"] = key
         if start_date is None and end_date is None:
             return __cache["index"]
-        return __aggregate([file for file in files
-                            if (start_date or "") <= os.path.basename(file)[:10] <= (end_date or "9999")])
+        return __aggregate([date for date in dates if (start_date or "") <= date <= (end_date or "9999")])
 
 
 def database_dates() -> tuple[str, str] | None:
     """
     :return: (first day, last day) of the database, None if it's empty
     """
-    files = __files()
-    return (os.path.basename(files[0])[:10], os.path.basename(files[-1])[:10]) if files else None
+    days = storage.days()
+    return (days[0][0], days[-1][0]) if days else None
 
 
 def warm_up():
@@ -156,13 +144,12 @@ def warm_up():
 
 def __recent_votes(identifier: str, last_month: str) -> list[dict]:
     """
-    Final votes of the member on the most recent documents. Only the last files are read, from the last month the
+    Final votes of the member on the most recent documents. Only the last days are read, from the last month the
     member voted in.
     """
     recent = []
-    for file in reversed([file for file in __files() if os.path.basename(file)[:7] <= last_month]):
-        date = os.path.basename(file)[:10]
-        for eu_document_code, content in reversed(list(__read(file).items())):
+    for date in reversed([date for date, _ in storage.days() if date[:7] <= last_month]):
+        for eu_document_code, content in reversed(list(storage.read_day(date, with_amendments=False).items())):
             # When the final vote was not a roll-call vote, "votes" and "absent" are those of another roll-call vote
             # on the document (an amendment, ...): they don't say what the member voted on the text
             if content.get("absent") is None or "details" not in content or not content["global"]["was_roll_call_voted"]:

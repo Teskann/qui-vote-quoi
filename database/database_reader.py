@@ -1,40 +1,38 @@
-import json
-import os
 import re
 
 from unidecode import unidecode
 
-from utils import date_management
-from database.database import get_path
+from database import storage
 
 
 def get_all_votes_for_day(date: str) -> dict:
     """
-    Return the votes for a given day
+    Return the votes for a given day, with the amendments
     :param date: date as iso formatted string
     """
-    file_name = get_path(date + ".json")
-    if not os.path.exists(file_name):
-        return {}
-    else:
-        with open(file_name, "r", encoding="utf-8") as f:
-            return json.load(f)
+    return storage.read_day(date)
 
 
-def search_eu_document(keywords: str, date: str):
-    all_votes_for_day = get_all_votes_for_day(date)
+def __keywords_matcher(keywords: str):
     keywords_re = ".*".join(map(lambda kw: re.escape(unidecode(kw)), keywords.split(" ")))
     keywords_regex = re.compile(f".*{keywords_re}.*", flags=re.IGNORECASE | re.MULTILINE)
-    matching_items = {}
-    for eu_document_code, value in all_votes_for_day.items():
-        # This might happen if data is not completely available in europarl.europa.eu
-        if "details" not in value:
-            continue
-        if keywords_regex.match(unidecode(" ".join([value["details"]["title"], value["details"]["description"], eu_document_code]))):
-            matching_items[eu_document_code] = value
-    return matching_items
+    return lambda text: keywords_regex.match(text) is not None
+
+
+def search_eu_document(keywords: str, date: str) -> dict:
+    """
+    Documents voted on the given day whose title, description or code contain the keywords, in this order.
+    The amendments are not returned.
+    """
+    for _, documents in storage.search_documents(__keywords_matcher(keywords), date, date):
+        return documents
+    return {}
 
 
 def search_in_time_range(start_date: str, end_date: str, keywords: str):
-    for date in date_management.date_range(start_date, end_date):
-        yield search_eu_document(keywords, date)
+    """
+    Same as search_eu_document, for all the days between start_date and end_date (included)
+    :return: {<eu_document_code>: <content>} for each day with matching documents, in chronological order
+    """
+    for _, documents in storage.search_documents(__keywords_matcher(keywords), start_date, end_date):
+        yield documents

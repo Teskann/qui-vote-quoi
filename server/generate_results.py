@@ -1,5 +1,5 @@
 import datetime
-import json
+import functools
 from itertools import islice
 from os.path import join
 
@@ -11,8 +11,11 @@ from server.common import get_css, TEMPLATES_PATH
 from server.podiums import search_podiums
 
 
-def generate_results_page(data):
-    data["css"] = get_css()
+@functools.lru_cache(maxsize=1)
+def __template(today: datetime.date) -> jinja2.Template:
+    """
+    Compiled once a day, as the compilation takes longer than the rendering. The template depends on the current date.
+    """
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATES_PATH))
     env.filters["political_group"] = filter_political_group
     env.filters["enumerate"] = enumerate
@@ -40,17 +43,13 @@ def generate_results_page(data):
     env.filters["search_podiums"] = search_podiums
     env.filters["fr_number"] = fr_number
 
-    env.globals["today"] = datetime.date.today().isoformat()
-    env.globals["yesterday"] = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
+    env.globals["today"] = today.isoformat()
+    env.globals["yesterday"] = (today - datetime.timedelta(days=1)).isoformat()
 
     with open(join(TEMPLATES_PATH, "results.html.jinja"), encoding="utf-8") as f:
-        template = env.from_string(f.read())
-    return template.render(data)
+        return env.from_string(f.read())
 
 
-if __name__ == "__main__":
-    with open("/home/clement/dbtest/2024-03-14.json", 'r', encoding="utf-8") as f:
-        data = json.load(f)
-    html = generate_results_page({"data":data})
-    with open("/home/clement/dbtest/2024-03-14.html", 'w', encoding="utf-8") as f:
-        f.write(html)
+def generate_results_page(data):
+    data["css"] = get_css()
+    return __template(datetime.date.today()).render(data)
