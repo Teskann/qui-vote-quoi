@@ -168,6 +168,62 @@ input, button {
     transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Suggestions of members under the search bar */
+.search_group {
+    position: relative;
+}
+
+.mep_suggestions {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 40;
+    padding: 6px;
+    border-radius: var(--radius);
+    background-color: var(--surface-3);
+    box-shadow: var(--shadow);
+}
+
+.mep_suggestions[hidden] {
+    display: none;
+}
+
+.mep_suggestion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    color: var(--text);
+}
+
+.mep_suggestion:hover,
+.mep_suggestion[aria-selected="true"] {
+    text-decoration: none;
+    color: var(--text);
+    background-color: var(--surface-4);
+}
+
+.mep_suggestion img {
+    flex-shrink: 0;
+    width: 32px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: var(--surface-2);
+}
+
+.mep_suggestion_name {
+    flex: 1;
+    font-weight: 600;
+}
+
+.mep_suggestion_group {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
 .search_group:focus-within {
     background-color: var(--surface-3);
     box-shadow: 0 0 0 3px var(--accent-soft);
@@ -339,6 +395,7 @@ button.primary:hover {
 .votes_table tr.voted_for td { background-color: var(--for-soft); }
 .votes_table tr.voted_against td { background-color: var(--against-soft); }
 .votes_table tr.abstained td { background-color: var(--abstained-soft); }
+.votes_table tr.absent td { background-color: rgba(255, 255, 255, 0.03); color: var(--text-muted); }
 
 .votes_table tbody tr:hover td {
     box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.04);
@@ -356,9 +413,72 @@ button.primary:hover {
 .political_group_name.voted_for { color: var(--for); }
 .political_group_name.voted_against { color: var(--against); }
 .political_group_name.abstained { color: var(--abstained); }
+.political_group_name.absent { color: var(--text-muted); }
 
 .political_group a:hover {
     text-decoration: none;
+}
+
+/* ---------- Member card ---------- */
+a.mep {
+    color: inherit;
+    text-decoration: none;
+}
+
+a.mep:hover {
+    color: var(--accent-hover);
+    text-decoration: none;
+}
+
+.mep_card {
+    position: absolute;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: max-content;
+    max-width: min(320px, calc(100vw - 16px));
+    padding: 12px 16px 12px 12px;
+    background-color: var(--surface-4);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+}
+
+.mep_card[hidden] {
+    display: none;
+}
+
+.mep_card_photo {
+    width: 64px;
+    height: 82px;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: var(--surface-3);
+    flex-shrink: 0;
+}
+
+.mep_card.no_photo .mep_card_photo {
+    display: none;
+}
+
+.mep_card_name {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.mep_card_link {
+    font-size: 0.85rem;
+}
+
+@media (hover: hover) {
+    /* The name itself is the link, the card is only informative */
+    .mep_card {
+        pointer-events: none;
+    }
+
+    .mep_card_link {
+        display: none;
+    }
 }
 
 /* ---------- Legend ---------- */
@@ -387,6 +507,55 @@ button.primary:hover {
 .legend_item.voted_for::before { background-color: var(--for); }
 .legend_item.voted_against::before { background-color: var(--against); }
 .legend_item.abstained::before { background-color: var(--abstained); }
+.legend_item.absent::before { background-color: var(--text-muted); }
+
+/* ---------- Corrected votes ---------- */
+.corrections {
+    margin-top: 20px;
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-2);
+}
+
+.corrections_title {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.corrections ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.corrections li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+}
+
+/* Portrait of the member (the photos of the parliament are 4:5) */
+.correction_photo {
+    flex-shrink: 0;
+    width: 40px;
+    height: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--surface-3);
+}
+
+.correction_photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.corrections .voted_for { color: var(--for); }
+.corrections .voted_against { color: var(--against); }
+.corrections .abstained { color: var(--abstained); }
+.corrections .absent { color: var(--text-muted); }
+
 
 /* ---------- Details: meta line + outcome cards ---------- */
 .details {
@@ -403,65 +572,100 @@ button.primary:hover {
 }
 
 .outcomes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Flag on the left of the bar, the explanation in its tooltip */
+.outcome {
+    display: flex;
+    align-items: center;
     gap: 12px;
 }
 
-.outcome {
-    --tone: var(--text-muted);
-    padding: 16px 18px;
-    border-radius: var(--radius-sm);
-    background-color: var(--surface-2);
-}
-
-.outcome.adopted { --tone: var(--for); }
-.outcome.rejected { --tone: var(--against); }
-
-.outcome_title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    width: fit-content;
-}
-
-.outcome_verdict {
-    margin: 2px 0 12px;
+.outcome_flag {
+    flex-shrink: 0;
     font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--tone);
+    line-height: 1;
+    cursor: help;
 }
 
+.outcome .vote_bar,
+.outcome_unavailable {
+    flex: 1;
+    min-width: 0;
+}
+
+.outcome_unavailable {
+    color: var(--text-muted);
+}
+
+/* One thin bar per outcome. Only the winning side stands out, the counts are in the tooltips. */
 .vote_bar {
     display: flex;
-    gap: 2px;
-    height: 8px;
-    border-radius: 999px;
-    overflow: hidden;
-    background-color: var(--surface-3);
-    margin-bottom: 10px;
+    gap: 3px;
+    height: 12px;
 }
 
-.vote_bar span.voted_for { background-color: var(--for); }
-.vote_bar span.voted_against { background-color: var(--against); }
-.vote_bar span.abstained { background-color: var(--abstained); }
+.vote_segment {
+    --tone: var(--abstained);
+    position: relative;
+    flex-basis: 0;
+    min-width: 4px;
+    border-radius: 3px;
+    background-color: color-mix(in srgb, var(--tone) 14%, var(--surface-3));
+    cursor: default;
+    outline: none;
+}
 
-.vote_counts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
+.vote_segment:first-child { border-radius: 999px 3px 3px 999px; }
+.vote_segment:last-child { border-radius: 3px 999px 999px 3px; }
+.vote_segment:only-child { border-radius: 999px; }
+
+.vote_segment.voted_for { --tone: var(--for); }
+.vote_segment.voted_against { --tone: var(--against); }
+
+.vote_segment.winner {
+    background-color: color-mix(in srgb, var(--tone) 85%, var(--surface-2));
+}
+
+.vote_segment:hover,
+.vote_segment:focus-visible {
+    filter: brightness(1.3);
+}
+
+.vote_segment::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-4);
+    box-shadow: var(--shadow);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
     font-variant-numeric: tabular-nums;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
 }
 
-.vote_counts b {
-    font-weight: 700;
-}
+/* At the ends of the bar, the tooltip is aligned on the edge so that it stays on screen */
+.vote_segment:first-child::after { left: 0; transform: none; }
+.vote_segment:last-child:not(:first-child)::after { left: auto; right: 0; transform: none; }
 
-.vote_counts .voted_for b { color: var(--for); }
-.vote_counts .voted_against b { color: var(--against); }
-.vote_counts .abstained b { color: var(--abstained); }
+.vote_segment:hover::after,
+.vote_segment:focus::after {
+    opacity: 1;
+    visibility: visible;
+}
 
 /* ---------- Tooltips ---------- */
 .tooltip {
@@ -619,6 +823,11 @@ button.primary:hover {
     font-size: 1.05rem;
     border-radius: var(--radius);
     transition: background-color 0.15s ease;
+}
+
+.label_detail {
+    font-weight: 400;
+    color: var(--text-muted);
 }
 
 .wrapper label:hover {
@@ -799,4 +1008,647 @@ input[type="checkbox"]:checked ~ .correlation-table-container {
         white-space: normal;
         max-width: 80vw;
     }
+}
+
+/* ---------- Member page ---------- */
+.member_header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 8px 0 24px;
+}
+
+.member_header h1 {
+    margin: 0 0 4px;
+}
+
+.member_photo {
+    width: 88px;
+    height: 112px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-2);
+    flex-shrink: 0;
+}
+
+.member_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    color: var(--text-muted);
+}
+
+.stat_tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.stat_tile {
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+}
+
+.stat_label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.stat_value {
+    font-size: 2rem;
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+.stat_detail {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.stat_rank {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* A tile where the member is on the podium (top 3) takes the color of the medal */
+.stat_tile {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat_podium {
+    --tone: var(--bronze);
+    background-color: color-mix(in srgb, var(--tone) 12%, var(--surface));
+    box-shadow: inset 0 4px 0 var(--tone);
+}
+
+.stat_podium_1 { --tone: var(--gold); }
+.stat_podium_2 { --tone: var(--silver); }
+
+.stat_podium .stat_value,
+.stat_podium .stat_rank {
+    color: var(--tone);
+}
+
+.stat_podium .stat_value,
+.stat_podium .stat_label,
+.stat_podium .stat_detail {
+    padding-right: 56px;
+}
+
+/* Medal hanging from its ribbon, in the top right corner */
+.stat_medal {
+    position: absolute;
+    top: 22px;
+    right: 18px;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: var(--tone);
+    color: #1b1406;
+    font-size: 1.35rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--tone) 35%, var(--surface)), 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.stat_medal::before,
+.stat_medal::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -30px;
+    width: 13px;
+    height: 34px;
+    background-color: color-mix(in srgb, var(--tone) 60%, #000);
+}
+
+.stat_medal::before {
+    left: 9px;
+    transform: rotate(18deg);
+}
+
+.stat_medal::after {
+    right: 9px;
+    transform: rotate(-18deg);
+}
+
+.chart_card {
+    padding: 20px 22px;
+    border-radius: var(--radius);
+    background-color: var(--surface);
+    margin-bottom: 24px;
+}
+
+.chart_card h2 {
+    margin: 0;
+}
+
+.chart_note {
+    margin: 4px 0 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.chart {
+    position: relative;
+    display: flex;
+}
+
+/* The percentages stay visible while the months scroll */
+.chart_yaxis {
+    flex: 0 0 44px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 8px;
+    text-align: right;
+    font-size: 0.75rem;
+    line-height: 0;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.chart_scroll {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+}
+
+.chart_scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.chart_scroll::-webkit-scrollbar-thumb {
+    background: var(--surface-4);
+    border-radius: 10px;
+}
+
+.chart_plot {
+    position: relative;
+}
+
+.chart_grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.chart_gridline {
+    height: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.chart_bars {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 200px;
+}
+
+.chart_slot {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    min-width: 5px;
+    cursor: default;
+}
+
+.chart_slot:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.chart_bar {
+    width: 100%;
+    min-height: 2px;
+    background-color: var(--accent);
+    border-radius: 4px 4px 0 0;
+}
+
+.chart_axis {
+    display: flex;
+    gap: 2px;
+    height: 24px;
+    padding-top: 4px;
+}
+
+.chart_axis span {
+    flex: 1;
+    min-width: 5px;
+    overflow: visible;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.chart_tooltip {
+    position: absolute;
+    top: -8px;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-4);
+    box-shadow: var(--shadow);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.chart_table {
+    margin-top: 12px;
+    font-size: 0.9rem;
+}
+
+.chart_table summary {
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.chart_table table {
+    margin-top: 8px;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+}
+
+.chart_table th,
+.chart_table td {
+    padding: 4px 16px 4px 0;
+    text-align: left;
+}
+
+.chart_table th {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.recent_votes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent_votes td {
+    padding: 10px 12px 10px 0;
+    vertical-align: top;
+}
+
+.recent_votes tr + tr td {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.recent_date,
+.recent_result {
+    white-space: nowrap;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.vote_badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.vote_badge.voted_for { color: var(--for); background-color: var(--for-soft); }
+.vote_badge.voted_against { color: var(--against); background-color: var(--against-soft); }
+.vote_badge.abstained { color: var(--abstained); background-color: var(--abstained-soft); }
+.vote_badge.absent { color: var(--text-muted); background-color: rgba(255, 255, 255, 0.05); }
+
+@media (max-width: 600px) {
+    .recent_votes tr {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        padding: 8px 0;
+    }
+
+    .recent_votes td {
+        padding: 2px 0;
+    }
+
+    .recent_votes td:nth-child(2) {
+        grid-column: 1 / -1;
+        order: -1;
+    }
+
+    .recent_votes tr + tr td {
+        border-top: none;
+    }
+
+    .recent_votes tr + tr {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* ---------- Podiums ---------- */
+:root {
+    --gold: #f2c94c;
+    --silver: #c3c9d2;
+    --bronze: #d08a55;
+}
+
+.podiums_container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    padding: 0 22px;
+}
+
+input[type="checkbox"]:checked ~ .podiums_container {
+    max-height: 3000px;
+    opacity: 1;
+    padding-bottom: 22px;
+}
+
+.podium_cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 16px;
+}
+
+.podium_card {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 16px 0;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-2);
+    overflow: hidden;
+}
+
+.podium_card h3 {
+    margin: 0 0 18px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.podium {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: end;
+    gap: 6px;
+}
+
+.podium_place {
+    --tone: var(--bronze);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 0;
+    color: var(--text);
+}
+
+.podium_rank_1 { --tone: var(--gold); }
+.podium_rank_2 { --tone: var(--silver); }
+
+.podium_place:hover {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.podium_place:hover .podium_photo {
+    transform: translateY(-3px);
+}
+
+.podium_place:hover .podium_name {
+    color: var(--accent-hover);
+}
+
+/* The photos of the parliament are portraits (4:5): they are shown whole, not cropped to a circle */
+.podium_photo {
+    display: block;
+    width: 64px;
+    height: 80px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--surface-3);
+    box-shadow: 0 0 0 3px var(--tone);
+    margin-bottom: 10px;
+    transition: transform 0.15s ease;
+}
+
+.podium_place_1 .podium_photo {
+    width: 88px;
+    height: 110px;
+    box-shadow: 0 0 0 4px var(--tone);
+}
+
+.podium_photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.podium_name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.podium_value {
+    margin: 2px 0 10px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--tone);
+    font-variant-numeric: tabular-nums;
+}
+
+.podium_place_1 .podium_value {
+    font-size: 1.3rem;
+}
+
+.podium_step {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: stretch;
+    padding-top: 6px;
+    border-radius: 8px 8px 0 0;
+    background-color: color-mix(in srgb, var(--tone) 16%, var(--surface-3));
+    color: var(--tone);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.podium_place_1 .podium_step { height: 76px; font-size: 1.9rem; }
+.podium_place_2 .podium_step { height: 52px; }
+.podium_place_3 .podium_step { height: 36px; font-size: 1.2rem; }
+
+.podium_note {
+    padding: 10px 0 12px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.podiums_note {
+    margin: 14px 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+    .podiums_container {
+        padding: 0 12px;
+    }
+
+    .podium_photo {
+        width: 52px;
+        height: 65px;
+    }
+
+    .podium_place_1 .podium_photo {
+        width: 70px;
+        height: 88px;
+    }
+}
+
+/* ---------- Ranking page ---------- */
+.terms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.terms a {
+    padding: 7px 16px;
+    border-radius: 999px;
+    background-color: var(--surface);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.terms a:hover {
+    text-decoration: none;
+    color: var(--text);
+    background-color: var(--surface-2);
+}
+
+.terms a.active {
+    background-color: var(--accent);
+    color: #06121f;
+}
+
+.period {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    width: fit-content;
+    margin-bottom: 24px;
+    padding: 8px 8px 8px 18px;
+    border-radius: 999px;
+    background-color: var(--surface);
+}
+
+.period label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.period .date-input {
+    background-color: var(--surface-2);
+}
+
+
+.toolbar .about {
+    display: flex;
+    gap: 4px;
+}
+
+.ranking_intro {
+    margin-top: -8px;
+    color: var(--text-muted);
+}
+
+.ranking_scroll {
+    overflow-x: auto;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+}
+
+.ranking_table {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+}
+
+.ranking_table th,
+.ranking_table td {
+    padding: 10px 14px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.ranking_table tbody tr + tr td {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ranking_table tbody tr:hover td {
+    background-color: var(--surface-2);
+}
+
+.ranking_table th {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.ranking_table .number {
+    text-align: right;
+}
+
+.ranking_table th button {
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    background: none;
+    border-radius: 0;
+}
+
+.ranking_table th button:hover {
+    color: var(--text);
+    background: none;
+}
+
+.ranking_table th button.sorted {
+    color: var(--text);
+}
+
+.ranking_table th button.sorted::after {
+    content: " ↓";
+}
+
+.ranking_rank {
+    width: 1%;
+    color: var(--text-muted);
+}
+
+.ranking_group {
+    color: var(--text-muted);
 }

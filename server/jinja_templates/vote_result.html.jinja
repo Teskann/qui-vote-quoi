@@ -2,6 +2,7 @@
 {% from "votes_table.html.jinja" import create_votes_table %}
 {% from "was_not_roll_call.html.jinja" import was_not_roll_call %}
 {% from "share.html.jinja" import share %}
+{% from "corrections.html.jinja" import corrections_section %}
 
 {% macro create_vote_results(eu_document_code, data) %}
 
@@ -17,7 +18,8 @@
 
 {{ was_not_roll_call(data) }}
 {% if data["global"]["was_roll_call_voted"] %}
-    {{ create_votes_table(data.votes, data.date) }}
+    {{ create_votes_table(data.votes, data.date, data.absent) }}
+    {{ corrections_section(data.corrections) }}
 {% endif %}
 {{ create_table_details(eu_document_code, data.date, data.votes_source_url, data.details.source_url, data.votes["+"] | count_all_votes if "+" in data.votes else 0, data.votes["-"] | count_all_votes if "-" in data.votes else 0, data.votes["0"] | count_all_votes if "0" in data.votes else 0, data["global"]) }}
 

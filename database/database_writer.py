@@ -23,6 +23,8 @@ def __join_amendments(amendments: dict, roll_call_votes: dict) -> dict:
             roll_call_vote = roll_call_votes.get(amendment["id"])
             if roll_call_vote is not None:
                 amendment["votes"] = roll_call_vote["votes"]
+                amendment["absent"] = roll_call_vote["absent"]
+                amendment["corrections"] = roll_call_vote["corrections"]
                 amendment["was_roll_call_voted"] = True
                 amendment["global_votes"] = amendment["global_votes"] or roll_call_vote["global_votes"]
     return amendments

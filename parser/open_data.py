@@ -19,6 +19,8 @@ TIMEOUT = 60
 
 __session = None
 __meps_cache = {}
+__mep_cache = {}
+__corporate_bodies_cache = {}
 
 # Number of "429 Too Many Requests" responses received, to tune the parallelism
 throttled_requests = 0
@@ -131,6 +133,35 @@ def get_meps(parliamentary_term: int, country: str | None = "FR") -> list[dict]:
             raise OpenDataError(f"Could not get the MEPs of {country} for term {parliamentary_term}")
         __meps_cache[key] = response.json()["data"]
     return __meps_cache[key]
+
+
+def get_mep(identifier: str) -> dict:
+    """
+    Details of a member, including all their memberships: mandates (with the represented country), political groups,
+    committees, ... with their periods
+    :param identifier: identifier of the member (PersId)
+    :return: {"identifier": ..., "hasMembership": [{"memberDuring": {"startDate": ..., "endDate": ...}, ...}], ...}
+    """
+    if identifier not in __mep_cache:
+        response = __get(f"{API_URL}/meps/{identifier}", params={"format": JSON_LD})
+        if response is None:
+            raise OpenDataError(f"Could not get the member {identifier}")
+        __mep_cache[identifier] = response.json()["data"][0]
+    return __mep_cache[identifier]
+
+
+def get_corporate_body_label(identifier: str) -> str:
+    """
+    Short name of a corporate body (political group, committee, ...)
+    :param identifier: identifier of the corporate body, for example "7150"
+    :return: for example "PfE". The political groups have the same names as in the roll-call votes results.
+    """
+    if identifier not in __corporate_bodies_cache:
+        response = __get(f"{API_URL}/corporate-bodies/{identifier}", params={"format": JSON_LD})
+        if response is None:
+            raise OpenDataError(f"Could not get the corporate body {identifier}")
+        __corporate_bodies_cache[identifier] = response.json()["data"][0]["label"]
+    return __corporate_bodies_cache[identifier]
 
 
 def get_sitting_dates(year: int) -> set[str]:

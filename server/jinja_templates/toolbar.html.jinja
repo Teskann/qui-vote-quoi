@@ -17,8 +17,10 @@
         <input type="date" id="max-date" class="date-input" name="max-date">
     </div>
     <button id="search-btn" class="primary" onclick="search()">Rechercher</button>
+    <div id="mep-suggestions" class="mep_suggestions" role="listbox" hidden></div>
 </div>
-<nav class="about"><a href="../about">À propos</a></nav>
+<nav class="about"><a href="/classement">Classement</a><a href="../about">À propos</a></nav>
 </header>
 
 {% include "search_script.js.jinja" %}
+{% include "member_search.js.jinja" %}

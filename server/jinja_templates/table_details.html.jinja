@@ -1,24 +1,22 @@
-{% macro outcome(title, verdict_class, verdict, n_for, n_against, n_abstained, tooltip) %}
+{% macro outcome(flag, verdict_class, verdict, n_for, n_against, n_abstained, tooltip) %}
 {% set total = n_for + n_against + n_abstained %}
-<div class="outcome {{ verdict_class }}">
-    <div class="outcome_title{{ ' tooltip' if tooltip else '' }}">
-        {{ title }}
-        {% if tooltip %}<span class="tooltip_text">{{ tooltip }}</span>{% endif %}
+{# Only the winning side is highlighted: "pour" if the text was adopted, "contre" if it was rejected #}
+{% set winner = "voted_for" if verdict_class == "adopted" else "voted_against" if verdict_class == "rejected" else none %}
+<div class="outcome">
+    <div class="outcome_flag tooltip">
+        {{ flag }}
+        <span class="tooltip_text">{{ tooltip }}</span>
     </div>
-    <div class="outcome_verdict">{{ verdict }}</div>
     {% if total > 0 %}
-        <div class="vote_bar" aria-hidden="true">
-            {% if n_for %}<span class="voted_for" style="width: {{ 100 * n_for / total }}%"></span>{% endif %}
-            {% if n_against %}<span class="voted_against" style="width: {{ 100 * n_against / total }}%"></span>{% endif %}
-            {% if n_abstained %}<span class="abstained" style="width: {{ 100 * n_abstained / total }}%"></span>{% endif %}
-        </div>
-        <div class="vote_counts">
-            <span class="voted_for"><b>{{ n_for }}</b> pour</span>
-            <span class="voted_against"><b>{{ n_against }}</b> contre</span>
-            <span class="abstained"><b>{{ n_abstained }}</b> abstention{{ "s" if n_abstained > 1 else "" }}</span>
+        <div class="vote_bar" role="img" aria-label="{{ verdict }} : {{ n_for }} pour, {{ n_against }} contre, {{ n_abstained }} abstentions">
+            {% for count, vote_class, word in [(n_for, "voted_for", "pour"), (n_against, "voted_against", "contre"), (n_abstained, "abstained", "abstention" ~ ("s" if n_abstained > 1 else ""))] if count %}
+                {# The count is shown on hover, or on tap on touch screens (focus) #}
+                <span class="vote_segment {{ vote_class }}{{ " winner" if vote_class == winner }}" style="flex-grow: {{ count }}" tabindex="0"
+                      data-tip="{{ count | fr_number }} {{ word }} · {{ "{:.0f}".format(100 * count / total) }}&nbsp;%"></span>
+            {% endfor %}
         </div>
     {% else %}
-        <div class="vote_counts">Décompte des voix indisponible</div>
+        <div class="outcome_unavailable">{{ verdict }}{{ " (décompte des voix indisponible)" if verdict_class != "unknown" }}</div>
     {% endif %}
 </div>
 {% endmacro %}
@@ -35,7 +33,7 @@
 
 <div class="outcomes">
     {% set gv = global["global_votes"] if "global_votes" in global and global["global_votes"]["+"] != "Données indisponibles" else none %}
-    {{ outcome("🇪🇺 Parlement européen",
+    {{ outcome("🇪🇺",
                "adopted" if global["was_adopted"] else "rejected",
                "Adopté" if global["was_adopted"] else "Rejeté",
                gv["+"] if gv else 0, gv["-"] if gv else 0, gv["0"] if gv else 0,
@@ -43,13 +41,13 @@
 
     {% if global["was_roll_call_voted"] == True %}
         {% if votes_for != 0 or votes_against != 0 or votes_abstained != 0 %}
-            {{ outcome("🇫🇷 Si seuls les Français avaient voté",
+            {{ outcome("🇫🇷",
                        "adopted" if votes_for > votes_against else "rejected",
                        "Aurait été adopté" if votes_for > votes_against else "Aurait été rejeté",
                        votes_for, votes_against, votes_abstained,
                        "Résultat théorique du vote si seuls les députés français avaient voté.") }}
         {% else %}
-            {{ outcome("🇫🇷 Si seuls les Français avaient voté", "unknown", "Données indisponibles", 0, 0, 0,
+            {{ outcome("🇫🇷", "unknown", "Données indisponibles", 0, 0, 0,
                        "Les données relatives au vote par appel nominal des députés français ne sont pas disponibles.") }}
         {% endif %}
     {% endif %}

@@ -2,6 +2,7 @@
    {% from "page_navigation.html.jinja" import page_navigation %}
    {% from "correlation.html.jinja" import get_correlations %}
    {% from "recent_update.html.jinja" import recent_update %}
+   {% from "podiums.html.jinja" import get_podiums %}
 
    <!doctype html>
    <html lang="fr">
@@ -18,8 +19,9 @@
      <body>
      {% include "toolbar.html.jinja" %}
        <div id="content">
-       <h1>🔎 {{ data | length }} {{ "résultat" + ("s" if data | length > 1 else "") }} {{ " pour «&nbsp;" + keywords.strip() + "&nbsp;»" if keywords.strip() else "(tous les votes)" }}</h1>
+       <h1>🔎 {{ data | length | fr_number }} {{ "résultat" + ("s" if data | length > 1 else "") }} {{ " pour «&nbsp;" + keywords.strip() + "&nbsp;»" if keywords.strip() else "(tous les votes)" }}</h1>
        {{ get_correlations(data, request) }}
+       {{ get_podiums(data) }}
            {{ page_navigation(data | length, request) }}
 
        {% if today | votes_on_day(data) and yesterday | votes_on_day(data) %}
@@ -49,5 +51,6 @@
        {% endif %}
        {{ page_navigation(data | length, request) }}
        </div>
+     {% include "mep_card.html.jinja" %}
      </body>
    </html>

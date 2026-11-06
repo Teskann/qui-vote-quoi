@@ -19,9 +19,13 @@ def test_parse_all_votes():
     votes = votes["A10-0002/2024"]["votes"]
     assert set(votes.keys()) == {"+"}
     assert "France / PfE :" in votes["+"]
-    assert "Bardella" in votes["+"]["France / PfE :"]
+    names = [member["name"] for member in votes["+"]["France / PfE :"]]
+    assert "Bardella" in names
+    # The members are described with their identifier, used for the photo and the link to their page
+    bardella = votes["+"]["France / PfE :"][names.index("Bardella")]
+    assert bardella == {"name": "Bardella", "id": "131580", "full_name": "Jordan Bardella"}
     # Only French members are kept
-    assert sum(len(names) for names in votes["+"].values()) == 75
+    assert sum(len(members) for members in votes["+"].values()) == 75
 
 
 
@@ -29,9 +33,30 @@ def test_parse_all_votes_before_2019():
     # Before 2019, the members are identified by their name, as the documents don't give their PersId
     votes = parse_all_votes(get_roll_call_votes_xml_at_date("2015-03-11"), "2015-03-11")
     votes = votes["A8-0014/2015"]["votes"]
-    names = [name for groups in votes.values() for members in groups.values() for name in members]
+    members = [member for groups in votes.values() for group in groups.values() for member in group]
+    names = [member["name"] for member in members]
     assert len(names) == 72
     assert "Le Pen Marine" in names
+    # The identifier is found from the name
+    assert members[names.index("Le Pen Marine")]["id"] == "28210"
+    assert all(member["id"] is not None for member in members)
     assert "France / ALDE :" in votes["+"]
     # Homonyms of other countries are not selected
     assert all(name not in names for name in ["Martin David", "Martin Hans-Peter"])
+
+
+def test_absent_and_corrections():
+    # Michèle Rivasi died on 2023-11-29 and was replaced by François Thiollet on 2023-11-30
+    documents = parse_all_votes(get_roll_call_votes_xml_at_date("2023-12-12"), "2023-12-12")
+    for document in documents.values():
+        voters = [member for groups in document["votes"].values() for group in groups.values() for member in group]
+        absent = [member for group in document["absent"].values() for member in group]
+        # Every French member in office either voted or is absent: 79 seats between 2020 and 2024
+        assert len(voters) + len(absent) == 79
+        names = {member["full_name"] for member in voters + absent}
+        assert "Michèle Rivasi" not in names
+        assert "François Thiollet" in names
+        for correction in document["corrections"]:
+            assert correction["intended"] in ("+", "-", "0")
+            assert correction["voted"] in ("+", "-", "0", None)
+    assert any(document["corrections"] for document in documents.values())

@@ -3,99 +3,435 @@
     "votes": {
       "+": {
         "France / ECR :": [
-          "Bay Nicolas",
-          "Maréchal",
-          "Peltier",
-          "Trochu"
+          {
+            "name": "Bay Nicolas",
+            "id": "124760",
+            "full_name": "Nicolas Bay"
+          },
+          {
+            "name": "Maréchal",
+            "id": "256922",
+            "full_name": "Marion Maréchal"
+          },
+          {
+            "name": "Peltier",
+            "id": "30123",
+            "full_name": "Guillaume Peltier"
+          },
+          {
+            "name": "Trochu",
+            "id": "256925",
+            "full_name": "Laurence Trochu"
+          }
         ],
         "France / ESN :": [
-          "Knafo"
+          {
+            "name": "Knafo",
+            "id": "256924",
+            "full_name": "Sarah Knafo"
+          }
         ],
         "France / PPE :": [
-          "Bellamy",
-          "Castillo",
-          "Gomart",
-          "Imart",
-          "Morano"
+          {
+            "name": "Bellamy",
+            "id": "197534",
+            "full_name": "François-Xavier Bellamy"
+          },
+          {
+            "name": "Castillo",
+            "id": "256921",
+            "full_name": "Laurent Castillo"
+          },
+          {
+            "name": "Gomart",
+            "id": "256919",
+            "full_name": "Christophe Gomart"
+          },
+          {
+            "name": "Imart",
+            "id": "256918",
+            "full_name": "Céline Imart"
+          },
+          {
+            "name": "Morano",
+            "id": "72779",
+            "full_name": "Nadine Morano"
+          }
         ],
         "France / PfE :": [
-          "Androuët",
-          "Brasier-Clain",
-          "Dauchy",
-          "Deloge",
-          "Disdier",
-          "Frigout",
-          "Furet",
-          "Garraud",
-          "Griset",
-          "Jamet",
-          "Joron",
-          "Leggeri",
-          "Leonardelli",
-          "Mariani",
-          "Olivier",
-          "Pennelle",
-          "Piera",
-          "Pimpie",
-          "Rechagneux",
-          "Rougé",
-          "Sanchez",
-          "Sorel",
-          "Thionnet",
-          "Tolassy",
-          "Valet",
-          "Varaut"
+          {
+            "name": "Androuët",
+            "id": "197691",
+            "full_name": "Mathilde Androuët"
+          },
+          {
+            "name": "Brasier-Clain",
+            "id": "256878",
+            "full_name": "Marie-Luce Brasier-Clain"
+          },
+          {
+            "name": "Dauchy",
+            "id": "236050",
+            "full_name": "Marie Dauchy"
+          },
+          {
+            "name": "Deloge",
+            "id": "256886",
+            "full_name": "Valérie Deloge"
+          },
+          {
+            "name": "Disdier",
+            "id": "256874",
+            "full_name": "Mélanie Disdier"
+          },
+          {
+            "name": "Frigout",
+            "id": "256876",
+            "full_name": "Anne-Sophie Frigout"
+          },
+          {
+            "name": "Furet",
+            "id": "256896",
+            "full_name": "Angéline Furet"
+          },
+          {
+            "name": "Garraud",
+            "id": "197628",
+            "full_name": "Jean-Paul Garraud"
+          },
+          {
+            "name": "Griset",
+            "id": "94649",
+            "full_name": "Catherine Griset"
+          },
+          {
+            "name": "Jamet",
+            "id": "189065",
+            "full_name": "France Jamet"
+          },
+          {
+            "name": "Joron",
+            "id": "197627",
+            "full_name": "Virginie Joron"
+          },
+          {
+            "name": "Leggeri",
+            "id": "256872",
+            "full_name": "Fabrice Leggeri"
+          },
+          {
+            "name": "Leonardelli",
+            "id": "256895",
+            "full_name": "Julien Leonardelli"
+          },
+          {
+            "name": "Mariani",
+            "id": "197623",
+            "full_name": "Thierry Mariani"
+          },
+          {
+            "name": "Olivier",
+            "id": "197687",
+            "full_name": "Philippe Olivier"
+          },
+          {
+            "name": "Pennelle",
+            "id": "126699",
+            "full_name": "Gilles Pennelle"
+          },
+          {
+            "name": "Piera",
+            "id": "256877",
+            "full_name": "Pascale Piera"
+          },
+          {
+            "name": "Pimpie",
+            "id": "256893",
+            "full_name": "Pierre Pimpie"
+          },
+          {
+            "name": "Rechagneux",
+            "id": "256882",
+            "full_name": "Julie Rechagneux"
+          },
+          {
+            "name": "Rougé",
+            "id": "197690",
+            "full_name": "André Rougé"
+          },
+          {
+            "name": "Sanchez",
+            "id": "88552",
+            "full_name": "Julien Sanchez"
+          },
+          {
+            "name": "Sorel",
+            "id": "256871",
+            "full_name": "Malika Sorel"
+          },
+          {
+            "name": "Thionnet",
+            "id": "200345",
+            "full_name": "Pierre-Romain Thionnet"
+          },
+          {
+            "name": "Tolassy",
+            "id": "256888",
+            "full_name": "Rody Tolassy"
+          },
+          {
+            "name": "Valet",
+            "id": "256875",
+            "full_name": "Matthieu Valet"
+          },
+          {
+            "name": "Varaut",
+            "id": "5736",
+            "full_name": "Alexandre Varaut"
+          }
         ],
         "France / Renew :": [
-          "Allione",
-          "Boyer",
-          "Canfin",
-          "Devaux",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Keller",
-          "Loiseau",
-          "Vedrenne",
-          "Yon-Courtin"
+          {
+            "name": "Allione",
+            "id": "256869",
+            "full_name": "Grégory Allione"
+          },
+          {
+            "name": "Boyer",
+            "id": "197577",
+            "full_name": "Gilles Boyer"
+          },
+          {
+            "name": "Canfin",
+            "id": "96711",
+            "full_name": "Pascal Canfin"
+          },
+          {
+            "name": "Devaux",
+            "id": "256870",
+            "full_name": "Valérie Devaux"
+          },
+          {
+            "name": "Farreng",
+            "id": "197589",
+            "full_name": "Laurence Farreng"
+          },
+          {
+            "name": "Gozi",
+            "id": "204419",
+            "full_name": "Sandro Gozi"
+          },
+          {
+            "name": "Grudler",
+            "id": "197557",
+            "full_name": "Christophe Grudler"
+          },
+          {
+            "name": "Guetta",
+            "id": "197543",
+            "full_name": "Bernard Guetta"
+          },
+          {
+            "name": "Hayer",
+            "id": "135511",
+            "full_name": "Valérie Hayer"
+          },
+          {
+            "name": "Keller",
+            "id": "22858",
+            "full_name": "Fabienne Keller"
+          },
+          {
+            "name": "Loiseau",
+            "id": "197494",
+            "full_name": "Nathalie Loiseau"
+          },
+          {
+            "name": "Vedrenne",
+            "id": "197502",
+            "full_name": "Marie-Pierre Vedrenne"
+          },
+          {
+            "name": "Yon-Courtin",
+            "id": "197581",
+            "full_name": "Stéphanie Yon-Courtin"
+          }
         ],
         "France / S&D :": [
-          "Clergeau",
-          "Fita",
-          "Germain",
-          "Glucksmann",
-          "Jouvet",
-          "Kalfon",
-          "Lalucq",
-          "Laurent",
-          "Mebarek",
-          "Pellerin-Carlin",
-          "Rafowicz",
-          "Ridel",
-          "Sargiacomo"
+          {
+            "name": "Clergeau",
+            "id": "245018",
+            "full_name": "Christophe Clergeau"
+          },
+          {
+            "name": "Fita",
+            "id": "256906",
+            "full_name": "Claire Fita"
+          },
+          {
+            "name": "Germain",
+            "id": "256901",
+            "full_name": "Jean-Marc Germain"
+          },
+          {
+            "name": "Glucksmann",
+            "id": "197694",
+            "full_name": "Raphaël Glucksmann"
+          },
+          {
+            "name": "Jouvet",
+            "id": "256898",
+            "full_name": "Pierre Jouvet"
+          },
+          {
+            "name": "Kalfon",
+            "id": "256908",
+            "full_name": "François Kalfon"
+          },
+          {
+            "name": "Lalucq",
+            "id": "197697",
+            "full_name": "Aurore Lalucq"
+          },
+          {
+            "name": "Laurent",
+            "id": "256899",
+            "full_name": "Murielle Laurent"
+          },
+          {
+            "name": "Mebarek",
+            "id": "204418",
+            "full_name": "Nora Mebarek"
+          },
+          {
+            "name": "Pellerin-Carlin",
+            "id": "256903",
+            "full_name": "Thomas Pellerin-Carlin"
+          },
+          {
+            "name": "Rafowicz",
+            "id": "256902",
+            "full_name": "Emma Rafowicz"
+          },
+          {
+            "name": "Ridel",
+            "id": "256904",
+            "full_name": "Chloé Ridel"
+          },
+          {
+            "name": "Sargiacomo",
+            "id": "256905",
+            "full_name": "Eric Sargiacomo"
+          }
         ],
         "France / The Left :": [
-          "Aubry",
-          "Carême",
-          "Chaibi",
-          "Fourreau",
-          "Hassan",
-          "Mesure",
-          "Omarjee",
-          "Saeidi",
-          "Smith"
+          {
+            "name": "Aubry",
+            "id": "197533",
+            "full_name": "Manon Aubry"
+          },
+          {
+            "name": "Carême",
+            "id": "197574",
+            "full_name": "Damien Carême"
+          },
+          {
+            "name": "Chaibi",
+            "id": "197529",
+            "full_name": "Leila Chaibi"
+          },
+          {
+            "name": "Fourreau",
+            "id": "256913",
+            "full_name": "Emma Fourreau"
+          },
+          {
+            "name": "Hassan",
+            "id": "256912",
+            "full_name": "Rima Hassan"
+          },
+          {
+            "name": "Mesure",
+            "id": "236053",
+            "full_name": "Marina Mesure"
+          },
+          {
+            "name": "Omarjee",
+            "id": "30482",
+            "full_name": "Younous Omarjee"
+          },
+          {
+            "name": "Saeidi",
+            "id": "256911",
+            "full_name": "Arash Saeidi"
+          },
+          {
+            "name": "Smith",
+            "id": "256910",
+            "full_name": "Anthony Smith"
+          }
         ],
         "France / Verts/ALE :": [
-          "Camara",
-          "Cormand",
-          "Satouri",
-          "Sbai",
-          "Toussaint"
+          {
+            "name": "Camara",
+            "id": "256915",
+            "full_name": "Mélissa Camara"
+          },
+          {
+            "name": "Cormand",
+            "id": "197503",
+            "full_name": "David Cormand"
+          },
+          {
+            "name": "Satouri",
+            "id": "197500",
+            "full_name": "Mounir Satouri"
+          },
+          {
+            "name": "Sbai",
+            "id": "256917",
+            "full_name": "Majdouline Sbai"
+          },
+          {
+            "name": "Toussaint",
+            "id": "97236",
+            "full_name": "Marie Toussaint"
+          }
         ]
       }
     },
+    "absent": {
+      "France / PPE :": [
+        {
+          "name": "Le Callennec",
+          "id": "256920",
+          "full_name": "Isabelle Le Callennec"
+        }
+      ],
+      "France / PfE :": [
+        {
+          "name": "Bardella",
+          "id": "131580",
+          "full_name": "Jordan Bardella"
+        },
+        {
+          "name": "Dussausaye",
+          "id": "256897",
+          "full_name": "Gaëtan Dussausaye"
+        },
+        {
+          "name": "Josserand",
+          "id": "256894",
+          "full_name": "Sylvie Josserand"
+        },
+        {
+          "name": "Nikolic",
+          "id": "256883",
+          "full_name": "Aleksandar Nikolic"
+        }
+      ]
+    },
+    "corrections": [],
     "date": "2024-09-19",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
     "details": {
@@ -117,104 +453,439 @@
     "votes": {
       "+": {
         "France / ECR :": [
-          "Bay Nicolas",
-          "Maréchal",
-          "Peltier",
-          "Trochu"
+          {
+            "name": "Bay Nicolas",
+            "id": "124760",
+            "full_name": "Nicolas Bay"
+          },
+          {
+            "name": "Maréchal",
+            "id": "256922",
+            "full_name": "Marion Maréchal"
+          },
+          {
+            "name": "Peltier",
+            "id": "30123",
+            "full_name": "Guillaume Peltier"
+          },
+          {
+            "name": "Trochu",
+            "id": "256925",
+            "full_name": "Laurence Trochu"
+          }
         ],
         "France / ESN :": [
-          "Knafo"
+          {
+            "name": "Knafo",
+            "id": "256924",
+            "full_name": "Sarah Knafo"
+          }
         ],
         "France / PPE :": [
-          "Bellamy",
-          "Castillo",
-          "Gomart",
-          "Imart",
-          "Morano"
+          {
+            "name": "Bellamy",
+            "id": "197534",
+            "full_name": "François-Xavier Bellamy"
+          },
+          {
+            "name": "Castillo",
+            "id": "256921",
+            "full_name": "Laurent Castillo"
+          },
+          {
+            "name": "Gomart",
+            "id": "256919",
+            "full_name": "Christophe Gomart"
+          },
+          {
+            "name": "Imart",
+            "id": "256918",
+            "full_name": "Céline Imart"
+          },
+          {
+            "name": "Morano",
+            "id": "72779",
+            "full_name": "Nadine Morano"
+          }
         ],
         "France / PfE :": [
-          "Androuët",
-          "Brasier-Clain",
-          "Dauchy",
-          "Deloge",
-          "Disdier",
-          "Frigout",
-          "Furet",
-          "Garraud",
-          "Griset",
-          "Jamet",
-          "Joron",
-          "Leggeri",
-          "Leonardelli",
-          "Nikolic",
-          "Olivier",
-          "Pennelle",
-          "Piera",
-          "Pimpie",
-          "Rechagneux",
-          "Rougé",
-          "Sanchez",
-          "Sorel",
-          "Thionnet",
-          "Tolassy",
-          "Valet",
-          "Varaut"
+          {
+            "name": "Androuët",
+            "id": "197691",
+            "full_name": "Mathilde Androuët"
+          },
+          {
+            "name": "Brasier-Clain",
+            "id": "256878",
+            "full_name": "Marie-Luce Brasier-Clain"
+          },
+          {
+            "name": "Dauchy",
+            "id": "236050",
+            "full_name": "Marie Dauchy"
+          },
+          {
+            "name": "Deloge",
+            "id": "256886",
+            "full_name": "Valérie Deloge"
+          },
+          {
+            "name": "Disdier",
+            "id": "256874",
+            "full_name": "Mélanie Disdier"
+          },
+          {
+            "name": "Frigout",
+            "id": "256876",
+            "full_name": "Anne-Sophie Frigout"
+          },
+          {
+            "name": "Furet",
+            "id": "256896",
+            "full_name": "Angéline Furet"
+          },
+          {
+            "name": "Garraud",
+            "id": "197628",
+            "full_name": "Jean-Paul Garraud"
+          },
+          {
+            "name": "Griset",
+            "id": "94649",
+            "full_name": "Catherine Griset"
+          },
+          {
+            "name": "Jamet",
+            "id": "189065",
+            "full_name": "France Jamet"
+          },
+          {
+            "name": "Joron",
+            "id": "197627",
+            "full_name": "Virginie Joron"
+          },
+          {
+            "name": "Leggeri",
+            "id": "256872",
+            "full_name": "Fabrice Leggeri"
+          },
+          {
+            "name": "Leonardelli",
+            "id": "256895",
+            "full_name": "Julien Leonardelli"
+          },
+          {
+            "name": "Nikolic",
+            "id": "256883",
+            "full_name": "Aleksandar Nikolic"
+          },
+          {
+            "name": "Olivier",
+            "id": "197687",
+            "full_name": "Philippe Olivier"
+          },
+          {
+            "name": "Pennelle",
+            "id": "126699",
+            "full_name": "Gilles Pennelle"
+          },
+          {
+            "name": "Piera",
+            "id": "256877",
+            "full_name": "Pascale Piera"
+          },
+          {
+            "name": "Pimpie",
+            "id": "256893",
+            "full_name": "Pierre Pimpie"
+          },
+          {
+            "name": "Rechagneux",
+            "id": "256882",
+            "full_name": "Julie Rechagneux"
+          },
+          {
+            "name": "Rougé",
+            "id": "197690",
+            "full_name": "André Rougé"
+          },
+          {
+            "name": "Sanchez",
+            "id": "88552",
+            "full_name": "Julien Sanchez"
+          },
+          {
+            "name": "Sorel",
+            "id": "256871",
+            "full_name": "Malika Sorel"
+          },
+          {
+            "name": "Thionnet",
+            "id": "200345",
+            "full_name": "Pierre-Romain Thionnet"
+          },
+          {
+            "name": "Tolassy",
+            "id": "256888",
+            "full_name": "Rody Tolassy"
+          },
+          {
+            "name": "Valet",
+            "id": "256875",
+            "full_name": "Matthieu Valet"
+          },
+          {
+            "name": "Varaut",
+            "id": "5736",
+            "full_name": "Alexandre Varaut"
+          }
         ],
         "France / Renew :": [
-          "Allione",
-          "Boyer",
-          "Canfin",
-          "Devaux",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Keller",
-          "Loiseau",
-          "Vedrenne",
-          "Yon-Courtin"
+          {
+            "name": "Allione",
+            "id": "256869",
+            "full_name": "Grégory Allione"
+          },
+          {
+            "name": "Boyer",
+            "id": "197577",
+            "full_name": "Gilles Boyer"
+          },
+          {
+            "name": "Canfin",
+            "id": "96711",
+            "full_name": "Pascal Canfin"
+          },
+          {
+            "name": "Devaux",
+            "id": "256870",
+            "full_name": "Valérie Devaux"
+          },
+          {
+            "name": "Farreng",
+            "id": "197589",
+            "full_name": "Laurence Farreng"
+          },
+          {
+            "name": "Gozi",
+            "id": "204419",
+            "full_name": "Sandro Gozi"
+          },
+          {
+            "name": "Grudler",
+            "id": "197557",
+            "full_name": "Christophe Grudler"
+          },
+          {
+            "name": "Guetta",
+            "id": "197543",
+            "full_name": "Bernard Guetta"
+          },
+          {
+            "name": "Hayer",
+            "id": "135511",
+            "full_name": "Valérie Hayer"
+          },
+          {
+            "name": "Keller",
+            "id": "22858",
+            "full_name": "Fabienne Keller"
+          },
+          {
+            "name": "Loiseau",
+            "id": "197494",
+            "full_name": "Nathalie Loiseau"
+          },
+          {
+            "name": "Vedrenne",
+            "id": "197502",
+            "full_name": "Marie-Pierre Vedrenne"
+          },
+          {
+            "name": "Yon-Courtin",
+            "id": "197581",
+            "full_name": "Stéphanie Yon-Courtin"
+          }
         ],
         "France / S&D :": [
-          "Clergeau",
-          "Fita",
-          "Germain",
-          "Glucksmann",
-          "Jouvet",
-          "Kalfon",
-          "Lalucq",
-          "Laurent",
-          "Mebarek",
-          "Pellerin-Carlin",
-          "Rafowicz",
-          "Ridel",
-          "Sargiacomo"
+          {
+            "name": "Clergeau",
+            "id": "245018",
+            "full_name": "Christophe Clergeau"
+          },
+          {
+            "name": "Fita",
+            "id": "256906",
+            "full_name": "Claire Fita"
+          },
+          {
+            "name": "Germain",
+            "id": "256901",
+            "full_name": "Jean-Marc Germain"
+          },
+          {
+            "name": "Glucksmann",
+            "id": "197694",
+            "full_name": "Raphaël Glucksmann"
+          },
+          {
+            "name": "Jouvet",
+            "id": "256898",
+            "full_name": "Pierre Jouvet"
+          },
+          {
+            "name": "Kalfon",
+            "id": "256908",
+            "full_name": "François Kalfon"
+          },
+          {
+            "name": "Lalucq",
+            "id": "197697",
+            "full_name": "Aurore Lalucq"
+          },
+          {
+            "name": "Laurent",
+            "id": "256899",
+            "full_name": "Murielle Laurent"
+          },
+          {
+            "name": "Mebarek",
+            "id": "204418",
+            "full_name": "Nora Mebarek"
+          },
+          {
+            "name": "Pellerin-Carlin",
+            "id": "256903",
+            "full_name": "Thomas Pellerin-Carlin"
+          },
+          {
+            "name": "Rafowicz",
+            "id": "256902",
+            "full_name": "Emma Rafowicz"
+          },
+          {
+            "name": "Ridel",
+            "id": "256904",
+            "full_name": "Chloé Ridel"
+          },
+          {
+            "name": "Sargiacomo",
+            "id": "256905",
+            "full_name": "Eric Sargiacomo"
+          }
         ],
         "France / The Left :": [
-          "Aubry",
-          "Carême",
-          "Chaibi",
-          "Fourreau",
-          "Hassan",
-          "Mesure",
-          "Omarjee",
-          "Saeidi",
-          "Smith"
+          {
+            "name": "Aubry",
+            "id": "197533",
+            "full_name": "Manon Aubry"
+          },
+          {
+            "name": "Carême",
+            "id": "197574",
+            "full_name": "Damien Carême"
+          },
+          {
+            "name": "Chaibi",
+            "id": "197529",
+            "full_name": "Leila Chaibi"
+          },
+          {
+            "name": "Fourreau",
+            "id": "256913",
+            "full_name": "Emma Fourreau"
+          },
+          {
+            "name": "Hassan",
+            "id": "256912",
+            "full_name": "Rima Hassan"
+          },
+          {
+            "name": "Mesure",
+            "id": "236053",
+            "full_name": "Marina Mesure"
+          },
+          {
+            "name": "Omarjee",
+            "id": "30482",
+            "full_name": "Younous Omarjee"
+          },
+          {
+            "name": "Saeidi",
+            "id": "256911",
+            "full_name": "Arash Saeidi"
+          },
+          {
+            "name": "Smith",
+            "id": "256910",
+            "full_name": "Anthony Smith"
+          }
         ],
         "France / Verts/ALE :": [
-          "Camara",
-          "Cormand",
-          "Satouri",
-          "Sbai",
-          "Toussaint"
+          {
+            "name": "Camara",
+            "id": "256915",
+            "full_name": "Mélissa Camara"
+          },
+          {
+            "name": "Cormand",
+            "id": "197503",
+            "full_name": "David Cormand"
+          },
+          {
+            "name": "Satouri",
+            "id": "197500",
+            "full_name": "Mounir Satouri"
+          },
+          {
+            "name": "Sbai",
+            "id": "256917",
+            "full_name": "Majdouline Sbai"
+          },
+          {
+            "name": "Toussaint",
+            "id": "97236",
+            "full_name": "Marie Toussaint"
+          }
         ]
       },
       "0": {
         "France / PfE :": [
-          "Mariani"
+          {
+            "name": "Mariani",
+            "id": "197623",
+            "full_name": "Thierry Mariani"
+          }
         ]
       }
     },
+    "absent": {
+      "France / PPE :": [
+        {
+          "name": "Le Callennec",
+          "id": "256920",
+          "full_name": "Isabelle Le Callennec"
+        }
+      ],
+      "France / PfE :": [
+        {
+          "name": "Bardella",
+          "id": "131580",
+          "full_name": "Jordan Bardella"
+        },
+        {
+          "name": "Dussausaye",
+          "id": "256897",
+          "full_name": "Gaëtan Dussausaye"
+        },
+        {
+          "name": "Josserand",
+          "id": "256894",
+          "full_name": "Sylvie Josserand"
+        }
+      ]
+    },
+    "corrections": [],
     "date": "2024-09-19",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
     "details": {
@@ -236,105 +907,451 @@
     "votes": {
       "+": {
         "France / ECR :": [
-          "Bay Nicolas",
-          "Maréchal",
-          "Peltier",
-          "Trochu"
+          {
+            "name": "Bay Nicolas",
+            "id": "124760",
+            "full_name": "Nicolas Bay"
+          },
+          {
+            "name": "Maréchal",
+            "id": "256922",
+            "full_name": "Marion Maréchal"
+          },
+          {
+            "name": "Peltier",
+            "id": "30123",
+            "full_name": "Guillaume Peltier"
+          },
+          {
+            "name": "Trochu",
+            "id": "256925",
+            "full_name": "Laurence Trochu"
+          }
         ],
         "France / ESN :": [
-          "Knafo"
+          {
+            "name": "Knafo",
+            "id": "256924",
+            "full_name": "Sarah Knafo"
+          }
         ],
         "France / PPE :": [
-          "Bellamy",
-          "Castillo",
-          "Gomart",
-          "Imart",
-          "Morano"
+          {
+            "name": "Bellamy",
+            "id": "197534",
+            "full_name": "François-Xavier Bellamy"
+          },
+          {
+            "name": "Castillo",
+            "id": "256921",
+            "full_name": "Laurent Castillo"
+          },
+          {
+            "name": "Gomart",
+            "id": "256919",
+            "full_name": "Christophe Gomart"
+          },
+          {
+            "name": "Imart",
+            "id": "256918",
+            "full_name": "Céline Imart"
+          },
+          {
+            "name": "Morano",
+            "id": "72779",
+            "full_name": "Nadine Morano"
+          }
         ],
         "France / PfE :": [
-          "Androuët",
-          "Brasier-Clain",
-          "Dauchy",
-          "Deloge",
-          "Disdier",
-          "Frigout",
-          "Furet",
-          "Garraud",
-          "Griset",
-          "Jamet",
-          "Joron",
-          "Leggeri",
-          "Leonardelli",
-          "Mariani",
-          "Nikolic",
-          "Olivier",
-          "Pennelle",
-          "Piera",
-          "Pimpie",
-          "Rechagneux",
-          "Rougé",
-          "Sanchez",
-          "Sorel",
-          "Thionnet",
-          "Tolassy",
-          "Valet",
-          "Varaut"
+          {
+            "name": "Androuët",
+            "id": "197691",
+            "full_name": "Mathilde Androuët"
+          },
+          {
+            "name": "Brasier-Clain",
+            "id": "256878",
+            "full_name": "Marie-Luce Brasier-Clain"
+          },
+          {
+            "name": "Dauchy",
+            "id": "236050",
+            "full_name": "Marie Dauchy"
+          },
+          {
+            "name": "Deloge",
+            "id": "256886",
+            "full_name": "Valérie Deloge"
+          },
+          {
+            "name": "Disdier",
+            "id": "256874",
+            "full_name": "Mélanie Disdier"
+          },
+          {
+            "name": "Frigout",
+            "id": "256876",
+            "full_name": "Anne-Sophie Frigout"
+          },
+          {
+            "name": "Furet",
+            "id": "256896",
+            "full_name": "Angéline Furet"
+          },
+          {
+            "name": "Garraud",
+            "id": "197628",
+            "full_name": "Jean-Paul Garraud"
+          },
+          {
+            "name": "Griset",
+            "id": "94649",
+            "full_name": "Catherine Griset"
+          },
+          {
+            "name": "Jamet",
+            "id": "189065",
+            "full_name": "France Jamet"
+          },
+          {
+            "name": "Joron",
+            "id": "197627",
+            "full_name": "Virginie Joron"
+          },
+          {
+            "name": "Leggeri",
+            "id": "256872",
+            "full_name": "Fabrice Leggeri"
+          },
+          {
+            "name": "Leonardelli",
+            "id": "256895",
+            "full_name": "Julien Leonardelli"
+          },
+          {
+            "name": "Mariani",
+            "id": "197623",
+            "full_name": "Thierry Mariani"
+          },
+          {
+            "name": "Nikolic",
+            "id": "256883",
+            "full_name": "Aleksandar Nikolic"
+          },
+          {
+            "name": "Olivier",
+            "id": "197687",
+            "full_name": "Philippe Olivier"
+          },
+          {
+            "name": "Pennelle",
+            "id": "126699",
+            "full_name": "Gilles Pennelle"
+          },
+          {
+            "name": "Piera",
+            "id": "256877",
+            "full_name": "Pascale Piera"
+          },
+          {
+            "name": "Pimpie",
+            "id": "256893",
+            "full_name": "Pierre Pimpie"
+          },
+          {
+            "name": "Rechagneux",
+            "id": "256882",
+            "full_name": "Julie Rechagneux"
+          },
+          {
+            "name": "Rougé",
+            "id": "197690",
+            "full_name": "André Rougé"
+          },
+          {
+            "name": "Sanchez",
+            "id": "88552",
+            "full_name": "Julien Sanchez"
+          },
+          {
+            "name": "Sorel",
+            "id": "256871",
+            "full_name": "Malika Sorel"
+          },
+          {
+            "name": "Thionnet",
+            "id": "200345",
+            "full_name": "Pierre-Romain Thionnet"
+          },
+          {
+            "name": "Tolassy",
+            "id": "256888",
+            "full_name": "Rody Tolassy"
+          },
+          {
+            "name": "Valet",
+            "id": "256875",
+            "full_name": "Matthieu Valet"
+          },
+          {
+            "name": "Varaut",
+            "id": "5736",
+            "full_name": "Alexandre Varaut"
+          }
         ],
         "France / Renew :": [
-          "Allione",
-          "Boyer",
-          "Canfin",
-          "Devaux",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Keller",
-          "Loiseau",
-          "Vedrenne",
-          "Yon-Courtin"
+          {
+            "name": "Allione",
+            "id": "256869",
+            "full_name": "Grégory Allione"
+          },
+          {
+            "name": "Boyer",
+            "id": "197577",
+            "full_name": "Gilles Boyer"
+          },
+          {
+            "name": "Canfin",
+            "id": "96711",
+            "full_name": "Pascal Canfin"
+          },
+          {
+            "name": "Devaux",
+            "id": "256870",
+            "full_name": "Valérie Devaux"
+          },
+          {
+            "name": "Farreng",
+            "id": "197589",
+            "full_name": "Laurence Farreng"
+          },
+          {
+            "name": "Gozi",
+            "id": "204419",
+            "full_name": "Sandro Gozi"
+          },
+          {
+            "name": "Grudler",
+            "id": "197557",
+            "full_name": "Christophe Grudler"
+          },
+          {
+            "name": "Guetta",
+            "id": "197543",
+            "full_name": "Bernard Guetta"
+          },
+          {
+            "name": "Hayer",
+            "id": "135511",
+            "full_name": "Valérie Hayer"
+          },
+          {
+            "name": "Keller",
+            "id": "22858",
+            "full_name": "Fabienne Keller"
+          },
+          {
+            "name": "Loiseau",
+            "id": "197494",
+            "full_name": "Nathalie Loiseau"
+          },
+          {
+            "name": "Vedrenne",
+            "id": "197502",
+            "full_name": "Marie-Pierre Vedrenne"
+          },
+          {
+            "name": "Yon-Courtin",
+            "id": "197581",
+            "full_name": "Stéphanie Yon-Courtin"
+          }
         ],
         "France / S&D :": [
-          "Clergeau",
-          "Glucksmann",
-          "Jouvet",
-          "Kalfon",
-          "Lalucq",
-          "Laurent",
-          "Pellerin-Carlin",
-          "Rafowicz",
-          "Ridel"
+          {
+            "name": "Clergeau",
+            "id": "245018",
+            "full_name": "Christophe Clergeau"
+          },
+          {
+            "name": "Glucksmann",
+            "id": "197694",
+            "full_name": "Raphaël Glucksmann"
+          },
+          {
+            "name": "Jouvet",
+            "id": "256898",
+            "full_name": "Pierre Jouvet"
+          },
+          {
+            "name": "Kalfon",
+            "id": "256908",
+            "full_name": "François Kalfon"
+          },
+          {
+            "name": "Lalucq",
+            "id": "197697",
+            "full_name": "Aurore Lalucq"
+          },
+          {
+            "name": "Laurent",
+            "id": "256899",
+            "full_name": "Murielle Laurent"
+          },
+          {
+            "name": "Pellerin-Carlin",
+            "id": "256903",
+            "full_name": "Thomas Pellerin-Carlin"
+          },
+          {
+            "name": "Rafowicz",
+            "id": "256902",
+            "full_name": "Emma Rafowicz"
+          },
+          {
+            "name": "Ridel",
+            "id": "256904",
+            "full_name": "Chloé Ridel"
+          }
         ]
       },
       "-": {
         "France / The Left :": [
-          "Aubry",
-          "Carême",
-          "Chaibi",
-          "Fourreau",
-          "Hassan",
-          "Mesure",
-          "Omarjee",
-          "Saeidi",
-          "Smith"
+          {
+            "name": "Aubry",
+            "id": "197533",
+            "full_name": "Manon Aubry"
+          },
+          {
+            "name": "Carême",
+            "id": "197574",
+            "full_name": "Damien Carême"
+          },
+          {
+            "name": "Chaibi",
+            "id": "197529",
+            "full_name": "Leila Chaibi"
+          },
+          {
+            "name": "Fourreau",
+            "id": "256913",
+            "full_name": "Emma Fourreau"
+          },
+          {
+            "name": "Hassan",
+            "id": "256912",
+            "full_name": "Rima Hassan"
+          },
+          {
+            "name": "Mesure",
+            "id": "236053",
+            "full_name": "Marina Mesure"
+          },
+          {
+            "name": "Omarjee",
+            "id": "30482",
+            "full_name": "Younous Omarjee"
+          },
+          {
+            "name": "Saeidi",
+            "id": "256911",
+            "full_name": "Arash Saeidi"
+          },
+          {
+            "name": "Smith",
+            "id": "256910",
+            "full_name": "Anthony Smith"
+          }
         ],
         "France / Verts/ALE :": [
-          "Camara",
-          "Cormand",
-          "Satouri",
-          "Sbai",
-          "Toussaint"
+          {
+            "name": "Camara",
+            "id": "256915",
+            "full_name": "Mélissa Camara"
+          },
+          {
+            "name": "Cormand",
+            "id": "197503",
+            "full_name": "David Cormand"
+          },
+          {
+            "name": "Satouri",
+            "id": "197500",
+            "full_name": "Mounir Satouri"
+          },
+          {
+            "name": "Sbai",
+            "id": "256917",
+            "full_name": "Majdouline Sbai"
+          },
+          {
+            "name": "Toussaint",
+            "id": "97236",
+            "full_name": "Marie Toussaint"
+          }
         ]
       },
       "0": {
         "France / S&D :": [
-          "Germain",
-          "Mebarek",
-          "Sargiacomo"
+          {
+            "name": "Germain",
+            "id": "256901",
+            "full_name": "Jean-Marc Germain"
+          },
+          {
+            "name": "Mebarek",
+            "id": "204418",
+            "full_name": "Nora Mebarek"
+          },
+          {
+            "name": "Sargiacomo",
+            "id": "256905",
+            "full_name": "Eric Sargiacomo"
+          }
         ]
       }
     },
+    "absent": {
+      "France / PPE :": [
+        {
+          "name": "Le Callennec",
+          "id": "256920",
+          "full_name": "Isabelle Le Callennec"
+        }
+      ],
+      "France / PfE :": [
+        {
+          "name": "Bardella",
+          "id": "131580",
+          "full_name": "Jordan Bardella"
+        },
+        {
+          "name": "Dussausaye",
+          "id": "256897",
+          "full_name": "Gaëtan Dussausaye"
+        },
+        {
+          "name": "Josserand",
+          "id": "256894",
+          "full_name": "Sylvie Josserand"
+        }
+      ],
+      "France / S&D :": [
+        {
+          "name": "Fita",
+          "id": "256906",
+          "full_name": "Claire Fita"
+        }
+      ]
+    },
+    "corrections": [
+      {
+        "name": "Germain",
+        "id": "256901",
+        "full_name": "Jean-Marc Germain",
+        "voted": "0",
+        "intended": "+"
+      }
+    ],
     "date": "2024-09-19",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
     "details": {
@@ -356,105 +1373,451 @@
     "votes": {
       "+": {
         "France / ECR :": [
-          "Bay Nicolas",
-          "Maréchal",
-          "Peltier",
-          "Trochu"
+          {
+            "name": "Bay Nicolas",
+            "id": "124760",
+            "full_name": "Nicolas Bay"
+          },
+          {
+            "name": "Maréchal",
+            "id": "256922",
+            "full_name": "Marion Maréchal"
+          },
+          {
+            "name": "Peltier",
+            "id": "30123",
+            "full_name": "Guillaume Peltier"
+          },
+          {
+            "name": "Trochu",
+            "id": "256925",
+            "full_name": "Laurence Trochu"
+          }
         ],
         "France / ESN :": [
-          "Knafo"
+          {
+            "name": "Knafo",
+            "id": "256924",
+            "full_name": "Sarah Knafo"
+          }
         ],
         "France / PPE :": [
-          "Bellamy",
-          "Castillo",
-          "Gomart",
-          "Imart",
-          "Morano"
+          {
+            "name": "Bellamy",
+            "id": "197534",
+            "full_name": "François-Xavier Bellamy"
+          },
+          {
+            "name": "Castillo",
+            "id": "256921",
+            "full_name": "Laurent Castillo"
+          },
+          {
+            "name": "Gomart",
+            "id": "256919",
+            "full_name": "Christophe Gomart"
+          },
+          {
+            "name": "Imart",
+            "id": "256918",
+            "full_name": "Céline Imart"
+          },
+          {
+            "name": "Morano",
+            "id": "72779",
+            "full_name": "Nadine Morano"
+          }
         ],
         "France / PfE :": [
-          "Androuët",
-          "Brasier-Clain",
-          "Dauchy",
-          "Deloge",
-          "Disdier",
-          "Frigout",
-          "Furet",
-          "Garraud",
-          "Griset",
-          "Jamet",
-          "Joron",
-          "Leggeri",
-          "Leonardelli",
-          "Mariani",
-          "Nikolic",
-          "Olivier",
-          "Pennelle",
-          "Piera",
-          "Pimpie",
-          "Rechagneux",
-          "Rougé",
-          "Sanchez",
-          "Sorel",
-          "Thionnet",
-          "Tolassy",
-          "Valet",
-          "Varaut"
+          {
+            "name": "Androuët",
+            "id": "197691",
+            "full_name": "Mathilde Androuët"
+          },
+          {
+            "name": "Brasier-Clain",
+            "id": "256878",
+            "full_name": "Marie-Luce Brasier-Clain"
+          },
+          {
+            "name": "Dauchy",
+            "id": "236050",
+            "full_name": "Marie Dauchy"
+          },
+          {
+            "name": "Deloge",
+            "id": "256886",
+            "full_name": "Valérie Deloge"
+          },
+          {
+            "name": "Disdier",
+            "id": "256874",
+            "full_name": "Mélanie Disdier"
+          },
+          {
+            "name": "Frigout",
+            "id": "256876",
+            "full_name": "Anne-Sophie Frigout"
+          },
+          {
+            "name": "Furet",
+            "id": "256896",
+            "full_name": "Angéline Furet"
+          },
+          {
+            "name": "Garraud",
+            "id": "197628",
+            "full_name": "Jean-Paul Garraud"
+          },
+          {
+            "name": "Griset",
+            "id": "94649",
+            "full_name": "Catherine Griset"
+          },
+          {
+            "name": "Jamet",
+            "id": "189065",
+            "full_name": "France Jamet"
+          },
+          {
+            "name": "Joron",
+            "id": "197627",
+            "full_name": "Virginie Joron"
+          },
+          {
+            "name": "Leggeri",
+            "id": "256872",
+            "full_name": "Fabrice Leggeri"
+          },
+          {
+            "name": "Leonardelli",
+            "id": "256895",
+            "full_name": "Julien Leonardelli"
+          },
+          {
+            "name": "Mariani",
+            "id": "197623",
+            "full_name": "Thierry Mariani"
+          },
+          {
+            "name": "Nikolic",
+            "id": "256883",
+            "full_name": "Aleksandar Nikolic"
+          },
+          {
+            "name": "Olivier",
+            "id": "197687",
+            "full_name": "Philippe Olivier"
+          },
+          {
+            "name": "Pennelle",
+            "id": "126699",
+            "full_name": "Gilles Pennelle"
+          },
+          {
+            "name": "Piera",
+            "id": "256877",
+            "full_name": "Pascale Piera"
+          },
+          {
+            "name": "Pimpie",
+            "id": "256893",
+            "full_name": "Pierre Pimpie"
+          },
+          {
+            "name": "Rechagneux",
+            "id": "256882",
+            "full_name": "Julie Rechagneux"
+          },
+          {
+            "name": "Rougé",
+            "id": "197690",
+            "full_name": "André Rougé"
+          },
+          {
+            "name": "Sanchez",
+            "id": "88552",
+            "full_name": "Julien Sanchez"
+          },
+          {
+            "name": "Sorel",
+            "id": "256871",
+            "full_name": "Malika Sorel"
+          },
+          {
+            "name": "Thionnet",
+            "id": "200345",
+            "full_name": "Pierre-Romain Thionnet"
+          },
+          {
+            "name": "Tolassy",
+            "id": "256888",
+            "full_name": "Rody Tolassy"
+          },
+          {
+            "name": "Valet",
+            "id": "256875",
+            "full_name": "Matthieu Valet"
+          },
+          {
+            "name": "Varaut",
+            "id": "5736",
+            "full_name": "Alexandre Varaut"
+          }
         ],
         "France / Renew :": [
-          "Allione",
-          "Boyer",
-          "Canfin",
-          "Devaux",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Keller",
-          "Loiseau",
-          "Vedrenne",
-          "Yon-Courtin"
+          {
+            "name": "Allione",
+            "id": "256869",
+            "full_name": "Grégory Allione"
+          },
+          {
+            "name": "Boyer",
+            "id": "197577",
+            "full_name": "Gilles Boyer"
+          },
+          {
+            "name": "Canfin",
+            "id": "96711",
+            "full_name": "Pascal Canfin"
+          },
+          {
+            "name": "Devaux",
+            "id": "256870",
+            "full_name": "Valérie Devaux"
+          },
+          {
+            "name": "Farreng",
+            "id": "197589",
+            "full_name": "Laurence Farreng"
+          },
+          {
+            "name": "Gozi",
+            "id": "204419",
+            "full_name": "Sandro Gozi"
+          },
+          {
+            "name": "Grudler",
+            "id": "197557",
+            "full_name": "Christophe Grudler"
+          },
+          {
+            "name": "Guetta",
+            "id": "197543",
+            "full_name": "Bernard Guetta"
+          },
+          {
+            "name": "Hayer",
+            "id": "135511",
+            "full_name": "Valérie Hayer"
+          },
+          {
+            "name": "Keller",
+            "id": "22858",
+            "full_name": "Fabienne Keller"
+          },
+          {
+            "name": "Loiseau",
+            "id": "197494",
+            "full_name": "Nathalie Loiseau"
+          },
+          {
+            "name": "Vedrenne",
+            "id": "197502",
+            "full_name": "Marie-Pierre Vedrenne"
+          },
+          {
+            "name": "Yon-Courtin",
+            "id": "197581",
+            "full_name": "Stéphanie Yon-Courtin"
+          }
         ],
         "France / S&D :": [
-          "Clergeau",
-          "Fita",
-          "Germain",
-          "Glucksmann",
-          "Jouvet",
-          "Kalfon",
-          "Lalucq",
-          "Laurent",
-          "Mebarek",
-          "Pellerin-Carlin",
-          "Rafowicz",
-          "Ridel",
-          "Sargiacomo"
+          {
+            "name": "Clergeau",
+            "id": "245018",
+            "full_name": "Christophe Clergeau"
+          },
+          {
+            "name": "Fita",
+            "id": "256906",
+            "full_name": "Claire Fita"
+          },
+          {
+            "name": "Germain",
+            "id": "256901",
+            "full_name": "Jean-Marc Germain"
+          },
+          {
+            "name": "Glucksmann",
+            "id": "197694",
+            "full_name": "Raphaël Glucksmann"
+          },
+          {
+            "name": "Jouvet",
+            "id": "256898",
+            "full_name": "Pierre Jouvet"
+          },
+          {
+            "name": "Kalfon",
+            "id": "256908",
+            "full_name": "François Kalfon"
+          },
+          {
+            "name": "Lalucq",
+            "id": "197697",
+            "full_name": "Aurore Lalucq"
+          },
+          {
+            "name": "Laurent",
+            "id": "256899",
+            "full_name": "Murielle Laurent"
+          },
+          {
+            "name": "Mebarek",
+            "id": "204418",
+            "full_name": "Nora Mebarek"
+          },
+          {
+            "name": "Pellerin-Carlin",
+            "id": "256903",
+            "full_name": "Thomas Pellerin-Carlin"
+          },
+          {
+            "name": "Rafowicz",
+            "id": "256902",
+            "full_name": "Emma Rafowicz"
+          },
+          {
+            "name": "Ridel",
+            "id": "256904",
+            "full_name": "Chloé Ridel"
+          },
+          {
+            "name": "Sargiacomo",
+            "id": "256905",
+            "full_name": "Eric Sargiacomo"
+          }
         ],
         "France / Verts/ALE :": [
-          "Camara",
-          "Satouri",
-          "Toussaint"
+          {
+            "name": "Camara",
+            "id": "256915",
+            "full_name": "Mélissa Camara"
+          },
+          {
+            "name": "Satouri",
+            "id": "197500",
+            "full_name": "Mounir Satouri"
+          },
+          {
+            "name": "Toussaint",
+            "id": "97236",
+            "full_name": "Marie Toussaint"
+          }
         ]
       },
       "-": {
         "France / The Left :": [
-          "Aubry",
-          "Carême",
-          "Chaibi",
-          "Fourreau",
-          "Hassan",
-          "Mesure",
-          "Omarjee",
-          "Saeidi",
-          "Smith"
+          {
+            "name": "Aubry",
+            "id": "197533",
+            "full_name": "Manon Aubry"
+          },
+          {
+            "name": "Carême",
+            "id": "197574",
+            "full_name": "Damien Carême"
+          },
+          {
+            "name": "Chaibi",
+            "id": "197529",
+            "full_name": "Leila Chaibi"
+          },
+          {
+            "name": "Fourreau",
+            "id": "256913",
+            "full_name": "Emma Fourreau"
+          },
+          {
+            "name": "Hassan",
+            "id": "256912",
+            "full_name": "Rima Hassan"
+          },
+          {
+            "name": "Mesure",
+            "id": "236053",
+            "full_name": "Marina Mesure"
+          },
+          {
+            "name": "Omarjee",
+            "id": "30482",
+            "full_name": "Younous Omarjee"
+          },
+          {
+            "name": "Saeidi",
+            "id": "256911",
+            "full_name": "Arash Saeidi"
+          },
+          {
+            "name": "Smith",
+            "id": "256910",
+            "full_name": "Anthony Smith"
+          }
         ]
       },
       "0": {
         "France / Verts/ALE :": [
-          "Cormand"
+          {
+            "name": "Cormand",
+            "id": "197503",
+            "full_name": "David Cormand"
+          }
         ]
       }
     },
+    "absent": {
+      "France / PPE :": [
+        {
+          "name": "Le Callennec",
+          "id": "256920",
+          "full_name": "Isabelle Le Callennec"
+        }
+      ],
+      "France / PfE :": [
+        {
+          "name": "Bardella",
+          "id": "131580",
+          "full_name": "Jordan Bardella"
+        },
+        {
+          "name": "Dussausaye",
+          "id": "256897",
+          "full_name": "Gaëtan Dussausaye"
+        },
+        {
+          "name": "Josserand",
+          "id": "256894",
+          "full_name": "Sylvie Josserand"
+        }
+      ],
+      "France / Verts/ALE :": [
+        {
+          "name": "Sbai",
+          "id": "256917",
+          "full_name": "Majdouline Sbai"
+        }
+      ]
+    },
+    "corrections": [
+      {
+        "name": "Sbai",
+        "id": "256917",
+        "full_name": "Majdouline Sbai",
+        "voted": null,
+        "intended": "+"
+      }
+    ],
     "date": "2024-09-19",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
     "details": {
@@ -476,108 +1839,443 @@
     "votes": {
       "+": {
         "France / ECR :": [
-          "Bay Nicolas",
-          "Maréchal",
-          "Peltier",
-          "Trochu"
+          {
+            "name": "Bay Nicolas",
+            "id": "124760",
+            "full_name": "Nicolas Bay"
+          },
+          {
+            "name": "Maréchal",
+            "id": "256922",
+            "full_name": "Marion Maréchal"
+          },
+          {
+            "name": "Peltier",
+            "id": "30123",
+            "full_name": "Guillaume Peltier"
+          },
+          {
+            "name": "Trochu",
+            "id": "256925",
+            "full_name": "Laurence Trochu"
+          }
         ],
         "France / PPE :": [
-          "Bellamy",
-          "Castillo",
-          "Gomart",
-          "Imart"
+          {
+            "name": "Bellamy",
+            "id": "197534",
+            "full_name": "François-Xavier Bellamy"
+          },
+          {
+            "name": "Castillo",
+            "id": "256921",
+            "full_name": "Laurent Castillo"
+          },
+          {
+            "name": "Gomart",
+            "id": "256919",
+            "full_name": "Christophe Gomart"
+          },
+          {
+            "name": "Imart",
+            "id": "256918",
+            "full_name": "Céline Imart"
+          }
         ],
         "France / Renew :": [
-          "Allione",
-          "Boyer",
-          "Canfin",
-          "Devaux",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Keller",
-          "Loiseau",
-          "Vedrenne",
-          "Yon-Courtin"
+          {
+            "name": "Allione",
+            "id": "256869",
+            "full_name": "Grégory Allione"
+          },
+          {
+            "name": "Boyer",
+            "id": "197577",
+            "full_name": "Gilles Boyer"
+          },
+          {
+            "name": "Canfin",
+            "id": "96711",
+            "full_name": "Pascal Canfin"
+          },
+          {
+            "name": "Devaux",
+            "id": "256870",
+            "full_name": "Valérie Devaux"
+          },
+          {
+            "name": "Farreng",
+            "id": "197589",
+            "full_name": "Laurence Farreng"
+          },
+          {
+            "name": "Gozi",
+            "id": "204419",
+            "full_name": "Sandro Gozi"
+          },
+          {
+            "name": "Grudler",
+            "id": "197557",
+            "full_name": "Christophe Grudler"
+          },
+          {
+            "name": "Guetta",
+            "id": "197543",
+            "full_name": "Bernard Guetta"
+          },
+          {
+            "name": "Hayer",
+            "id": "135511",
+            "full_name": "Valérie Hayer"
+          },
+          {
+            "name": "Keller",
+            "id": "22858",
+            "full_name": "Fabienne Keller"
+          },
+          {
+            "name": "Loiseau",
+            "id": "197494",
+            "full_name": "Nathalie Loiseau"
+          },
+          {
+            "name": "Vedrenne",
+            "id": "197502",
+            "full_name": "Marie-Pierre Vedrenne"
+          },
+          {
+            "name": "Yon-Courtin",
+            "id": "197581",
+            "full_name": "Stéphanie Yon-Courtin"
+          }
         ],
         "France / S&D :": [
-          "Clergeau",
-          "Fita",
-          "Germain",
-          "Glucksmann",
-          "Jouvet",
-          "Kalfon",
-          "Lalucq",
-          "Laurent",
-          "Mebarek",
-          "Pellerin-Carlin",
-          "Rafowicz",
-          "Ridel",
-          "Sargiacomo"
+          {
+            "name": "Clergeau",
+            "id": "245018",
+            "full_name": "Christophe Clergeau"
+          },
+          {
+            "name": "Fita",
+            "id": "256906",
+            "full_name": "Claire Fita"
+          },
+          {
+            "name": "Germain",
+            "id": "256901",
+            "full_name": "Jean-Marc Germain"
+          },
+          {
+            "name": "Glucksmann",
+            "id": "197694",
+            "full_name": "Raphaël Glucksmann"
+          },
+          {
+            "name": "Jouvet",
+            "id": "256898",
+            "full_name": "Pierre Jouvet"
+          },
+          {
+            "name": "Kalfon",
+            "id": "256908",
+            "full_name": "François Kalfon"
+          },
+          {
+            "name": "Lalucq",
+            "id": "197697",
+            "full_name": "Aurore Lalucq"
+          },
+          {
+            "name": "Laurent",
+            "id": "256899",
+            "full_name": "Murielle Laurent"
+          },
+          {
+            "name": "Mebarek",
+            "id": "204418",
+            "full_name": "Nora Mebarek"
+          },
+          {
+            "name": "Pellerin-Carlin",
+            "id": "256903",
+            "full_name": "Thomas Pellerin-Carlin"
+          },
+          {
+            "name": "Rafowicz",
+            "id": "256902",
+            "full_name": "Emma Rafowicz"
+          },
+          {
+            "name": "Ridel",
+            "id": "256904",
+            "full_name": "Chloé Ridel"
+          },
+          {
+            "name": "Sargiacomo",
+            "id": "256905",
+            "full_name": "Eric Sargiacomo"
+          }
         ],
         "France / The Left :": [
-          "Omarjee"
+          {
+            "name": "Omarjee",
+            "id": "30482",
+            "full_name": "Younous Omarjee"
+          }
         ],
         "France / Verts/ALE :": [
-          "Camara",
-          "Cormand",
-          "Satouri",
-          "Sbai",
-          "Toussaint"
+          {
+            "name": "Camara",
+            "id": "256915",
+            "full_name": "Mélissa Camara"
+          },
+          {
+            "name": "Cormand",
+            "id": "197503",
+            "full_name": "David Cormand"
+          },
+          {
+            "name": "Satouri",
+            "id": "197500",
+            "full_name": "Mounir Satouri"
+          },
+          {
+            "name": "Sbai",
+            "id": "256917",
+            "full_name": "Majdouline Sbai"
+          },
+          {
+            "name": "Toussaint",
+            "id": "97236",
+            "full_name": "Marie Toussaint"
+          }
         ]
       },
       "-": {
         "France / PfE :": [
-          "Androuët",
-          "Brasier-Clain",
-          "Dauchy",
-          "Deloge",
-          "Disdier",
-          "Frigout",
-          "Furet",
-          "Garraud",
-          "Griset",
-          "Jamet",
-          "Joron",
-          "Leggeri",
-          "Leonardelli",
-          "Mariani",
-          "Nikolic",
-          "Olivier",
-          "Pennelle",
-          "Piera",
-          "Pimpie",
-          "Rechagneux",
-          "Rougé",
-          "Sanchez",
-          "Sorel",
-          "Thionnet",
-          "Tolassy",
-          "Valet",
-          "Varaut"
+          {
+            "name": "Androuët",
+            "id": "197691",
+            "full_name": "Mathilde Androuët"
+          },
+          {
+            "name": "Brasier-Clain",
+            "id": "256878",
+            "full_name": "Marie-Luce Brasier-Clain"
+          },
+          {
+            "name": "Dauchy",
+            "id": "236050",
+            "full_name": "Marie Dauchy"
+          },
+          {
+            "name": "Deloge",
+            "id": "256886",
+            "full_name": "Valérie Deloge"
+          },
+          {
+            "name": "Disdier",
+            "id": "256874",
+            "full_name": "Mélanie Disdier"
+          },
+          {
+            "name": "Frigout",
+            "id": "256876",
+            "full_name": "Anne-Sophie Frigout"
+          },
+          {
+            "name": "Furet",
+            "id": "256896",
+            "full_name": "Angéline Furet"
+          },
+          {
+            "name": "Garraud",
+            "id": "197628",
+            "full_name": "Jean-Paul Garraud"
+          },
+          {
+            "name": "Griset",
+            "id": "94649",
+            "full_name": "Catherine Griset"
+          },
+          {
+            "name": "Jamet",
+            "id": "189065",
+            "full_name": "France Jamet"
+          },
+          {
+            "name": "Joron",
+            "id": "197627",
+            "full_name": "Virginie Joron"
+          },
+          {
+            "name": "Leggeri",
+            "id": "256872",
+            "full_name": "Fabrice Leggeri"
+          },
+          {
+            "name": "Leonardelli",
+            "id": "256895",
+            "full_name": "Julien Leonardelli"
+          },
+          {
+            "name": "Mariani",
+            "id": "197623",
+            "full_name": "Thierry Mariani"
+          },
+          {
+            "name": "Nikolic",
+            "id": "256883",
+            "full_name": "Aleksandar Nikolic"
+          },
+          {
+            "name": "Olivier",
+            "id": "197687",
+            "full_name": "Philippe Olivier"
+          },
+          {
+            "name": "Pennelle",
+            "id": "126699",
+            "full_name": "Gilles Pennelle"
+          },
+          {
+            "name": "Piera",
+            "id": "256877",
+            "full_name": "Pascale Piera"
+          },
+          {
+            "name": "Pimpie",
+            "id": "256893",
+            "full_name": "Pierre Pimpie"
+          },
+          {
+            "name": "Rechagneux",
+            "id": "256882",
+            "full_name": "Julie Rechagneux"
+          },
+          {
+            "name": "Rougé",
+            "id": "197690",
+            "full_name": "André Rougé"
+          },
+          {
+            "name": "Sanchez",
+            "id": "88552",
+            "full_name": "Julien Sanchez"
+          },
+          {
+            "name": "Sorel",
+            "id": "256871",
+            "full_name": "Malika Sorel"
+          },
+          {
+            "name": "Thionnet",
+            "id": "200345",
+            "full_name": "Pierre-Romain Thionnet"
+          },
+          {
+            "name": "Tolassy",
+            "id": "256888",
+            "full_name": "Rody Tolassy"
+          },
+          {
+            "name": "Valet",
+            "id": "256875",
+            "full_name": "Matthieu Valet"
+          },
+          {
+            "name": "Varaut",
+            "id": "5736",
+            "full_name": "Alexandre Varaut"
+          }
         ]
       },
       "0": {
         "France / ESN :": [
-          "Knafo"
+          {
+            "name": "Knafo",
+            "id": "256924",
+            "full_name": "Sarah Knafo"
+          }
         ],
         "France / PPE :": [
-          "Morano"
+          {
+            "name": "Morano",
+            "id": "72779",
+            "full_name": "Nadine Morano"
+          }
         ],
         "France / The Left :": [
-          "Aubry",
-          "Carême",
-          "Chaibi",
-          "Fourreau",
-          "Hassan",
-          "Mesure",
-          "Saeidi",
-          "Smith"
+          {
+            "name": "Aubry",
+            "id": "197533",
+            "full_name": "Manon Aubry"
+          },
+          {
+            "name": "Carême",
+            "id": "197574",
+            "full_name": "Damien Carême"
+          },
+          {
+            "name": "Chaibi",
+            "id": "197529",
+            "full_name": "Leila Chaibi"
+          },
+          {
+            "name": "Fourreau",
+            "id": "256913",
+            "full_name": "Emma Fourreau"
+          },
+          {
+            "name": "Hassan",
+            "id": "256912",
+            "full_name": "Rima Hassan"
+          },
+          {
+            "name": "Mesure",
+            "id": "236053",
+            "full_name": "Marina Mesure"
+          },
+          {
+            "name": "Saeidi",
+            "id": "256911",
+            "full_name": "Arash Saeidi"
+          },
+          {
+            "name": "Smith",
+            "id": "256910",
+            "full_name": "Anthony Smith"
+          }
         ]
       }
     },
+    "absent": {
+      "France / PPE :": [
+        {
+          "name": "Le Callennec",
+          "id": "256920",
+          "full_name": "Isabelle Le Callennec"
+        }
+      ],
+      "France / PfE :": [
+        {
+          "name": "Bardella",
+          "id": "131580",
+          "full_name": "Jordan Bardella"
+        },
+        {
+          "name": "Dussausaye",
+          "id": "256897",
+          "full_name": "Gaëtan Dussausaye"
+        },
+        {
+          "name": "Josserand",
+          "id": "256894",
+          "full_name": "Sylvie Josserand"
+        }
+      ]
+    },
+    "corrections": [],
     "date": "2024-09-19",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
     "details": {
@@ -599,70 +2297,439 @@
     "votes": {
       "+": {
         "France / ECR :": [
-          "Bay Nicolas",
-          "Maréchal",
-          "Peltier",
-          "Trochu"
+          {
+            "name": "Bay Nicolas",
+            "id": "124760",
+            "full_name": "Nicolas Bay"
+          },
+          {
+            "name": "Maréchal",
+            "id": "256922",
+            "full_name": "Marion Maréchal"
+          },
+          {
+            "name": "Peltier",
+            "id": "30123",
+            "full_name": "Guillaume Peltier"
+          },
+          {
+            "name": "Trochu",
+            "id": "256925",
+            "full_name": "Laurence Trochu"
+          }
         ],
         "France / ESN :": [
-          "Knafo"
+          {
+            "name": "Knafo",
+            "id": "256924",
+            "full_name": "Sarah Knafo"
+          }
         ],
         "France / PPE :": [
-          "Bellamy",
-          "Castillo",
-          "Gomart",
-          "Morano"
+          {
+            "name": "Bellamy",
+            "id": "197534",
+            "full_name": "François-Xavier Bellamy"
+          },
+          {
+            "name": "Castillo",
+            "id": "256921",
+            "full_name": "Laurent Castillo"
+          },
+          {
+            "name": "Gomart",
+            "id": "256919",
+            "full_name": "Christophe Gomart"
+          },
+          {
+            "name": "Morano",
+            "id": "72779",
+            "full_name": "Nadine Morano"
+          }
         ],
         "France / PfE :": [
-          "Androuët",
-          "Brasier-Clain",
-          "Dauchy",
-          "Deloge",
-          "Disdier",
-          "Frigout",
-          "Furet",
-          "Garraud",
-          "Griset",
-          "Jamet",
-          "Joron",
-          "Leggeri",
-          "Leonardelli",
-          "Mariani",
-          "Nikolic",
-          "Olivier",
-          "Pennelle",
-          "Piera",
-          "Pimpie",
-          "Rechagneux",
-          "Rougé",
-          "Sanchez",
-          "Sorel",
-          "Thionnet",
-          "Tolassy",
-          "Valet",
-          "Varaut"
+          {
+            "name": "Androuët",
+            "id": "197691",
+            "full_name": "Mathilde Androuët"
+          },
+          {
+            "name": "Brasier-Clain",
+            "id": "256878",
+            "full_name": "Marie-Luce Brasier-Clain"
+          },
+          {
+            "name": "Dauchy",
+            "id": "236050",
+            "full_name": "Marie Dauchy"
+          },
+          {
+            "name": "Deloge",
+            "id": "256886",
+            "full_name": "Valérie Deloge"
+          },
+          {
+            "name": "Disdier",
+            "id": "256874",
+            "full_name": "Mélanie Disdier"
+          },
+          {
+            "name": "Frigout",
+            "id": "256876",
+            "full_name": "Anne-Sophie Frigout"
+          },
+          {
+            "name": "Furet",
+            "id": "256896",
+            "full_name": "Angéline Furet"
+          },
+          {
+            "name": "Garraud",
+            "id": "197628",
+            "full_name": "Jean-Paul Garraud"
+          },
+          {
+            "name": "Griset",
+            "id": "94649",
+            "full_name": "Catherine Griset"
+          },
+          {
+            "name": "Jamet",
+            "id": "189065",
+            "full_name": "France Jamet"
+          },
+          {
+            "name": "Joron",
+            "id": "197627",
+            "full_name": "Virginie Joron"
+          },
+          {
+            "name": "Leggeri",
+            "id": "256872",
+            "full_name": "Fabrice Leggeri"
+          },
+          {
+            "name": "Leonardelli",
+            "id": "256895",
+            "full_name": "Julien Leonardelli"
+          },
+          {
+            "name": "Mariani",
+            "id": "197623",
+            "full_name": "Thierry Mariani"
+          },
+          {
+            "name": "Nikolic",
+            "id": "256883",
+            "full_name": "Aleksandar Nikolic"
+          },
+          {
+            "name": "Olivier",
+            "id": "197687",
+            "full_name": "Philippe Olivier"
+          },
+          {
+            "name": "Pennelle",
+            "id": "126699",
+            "full_name": "Gilles Pennelle"
+          },
+          {
+            "name": "Piera",
+            "id": "256877",
+            "full_name": "Pascale Piera"
+          },
+          {
+            "name": "Pimpie",
+            "id": "256893",
+            "full_name": "Pierre Pimpie"
+          },
+          {
+            "name": "Rechagneux",
+            "id": "256882",
+            "full_name": "Julie Rechagneux"
+          },
+          {
+            "name": "Rougé",
+            "id": "197690",
+            "full_name": "André Rougé"
+          },
+          {
+            "name": "Sanchez",
+            "id": "88552",
+            "full_name": "Julien Sanchez"
+          },
+          {
+            "name": "Sorel",
+            "id": "256871",
+            "full_name": "Malika Sorel"
+          },
+          {
+            "name": "Thionnet",
+            "id": "200345",
+            "full_name": "Pierre-Romain Thionnet"
+          },
+          {
+            "name": "Tolassy",
+            "id": "256888",
+            "full_name": "Rody Tolassy"
+          },
+          {
+            "name": "Valet",
+            "id": "256875",
+            "full_name": "Matthieu Valet"
+          },
+          {
+            "name": "Varaut",
+            "id": "5736",
+            "full_name": "Alexandre Varaut"
+          }
         ]
       },
       "-": {
         "France / The Left :": [
-          "Aubry",
-          "Carême",
-          "Chaibi",
-          "Fourreau",
-          "Hassan",
-          "Mesure",
-          "Omarjee",
-          "Saeidi",
-          "Smith"
+          {
+            "name": "Aubry",
+            "id": "197533",
+            "full_name": "Manon Aubry"
+          },
+          {
+            "name": "Carême",
+            "id": "197574",
+            "full_name": "Damien Carême"
+          },
+          {
+            "name": "Chaibi",
+            "id": "197529",
+            "full_name": "Leila Chaibi"
+          },
+          {
+            "name": "Fourreau",
+            "id": "256913",
+            "full_name": "Emma Fourreau"
+          },
+          {
+            "name": "Hassan",
+            "id": "256912",
+            "full_name": "Rima Hassan"
+          },
+          {
+            "name": "Mesure",
+            "id": "236053",
+            "full_name": "Marina Mesure"
+          },
+          {
+            "name": "Omarjee",
+            "id": "30482",
+            "full_name": "Younous Omarjee"
+          },
+          {
+            "name": "Saeidi",
+            "id": "256911",
+            "full_name": "Arash Saeidi"
+          },
+          {
+            "name": "Smith",
+            "id": "256910",
+            "full_name": "Anthony Smith"
+          }
         ],
         "France / Verts/ALE :": [
-          "Cormand",
-          "Satouri",
-          "Sbai",
-          "Toussaint"
+          {
+            "name": "Cormand",
+            "id": "197503",
+            "full_name": "David Cormand"
+          },
+          {
+            "name": "Satouri",
+            "id": "197500",
+            "full_name": "Mounir Satouri"
+          },
+          {
+            "name": "Sbai",
+            "id": "256917",
+            "full_name": "Majdouline Sbai"
+          },
+          {
+            "name": "Toussaint",
+            "id": "97236",
+            "full_name": "Marie Toussaint"
+          }
         ]
       }
     },
+    "absent": {
+      "France / PPE :": [
+        {
+          "name": "Imart",
+          "id": "256918",
+          "full_name": "Céline Imart"
+        },
+        {
+          "name": "Le Callennec",
+          "id": "256920",
+          "full_name": "Isabelle Le Callennec"
+        }
+      ],
+      "France / PfE :": [
+        {
+          "name": "Bardella",
+          "id": "131580",
+          "full_name": "Jordan Bardella"
+        },
+        {
+          "name": "Dussausaye",
+          "id": "256897",
+          "full_name": "Gaëtan Dussausaye"
+        },
+        {
+          "name": "Josserand",
+          "id": "256894",
+          "full_name": "Sylvie Josserand"
+        }
+      ],
+      "France / Renew :": [
+        {
+          "name": "Allione",
+          "id": "256869",
+          "full_name": "Grégory Allione"
+        },
+        {
+          "name": "Boyer",
+          "id": "197577",
+          "full_name": "Gilles Boyer"
+        },
+        {
+          "name": "Canfin",
+          "id": "96711",
+          "full_name": "Pascal Canfin"
+        },
+        {
+          "name": "Devaux",
+          "id": "256870",
+          "full_name": "Valérie Devaux"
+        },
+        {
+          "name": "Farreng",
+          "id": "197589",
+          "full_name": "Laurence Farreng"
+        },
+        {
+          "name": "Gozi",
+          "id": "204419",
+          "full_name": "Sandro Gozi"
+        },
+        {
+          "name": "Grudler",
+          "id": "197557",
+          "full_name": "Christophe Grudler"
+        },
+        {
+          "name": "Guetta",
+          "id": "197543",
+          "full_name": "Bernard Guetta"
+        },
+        {
+          "name": "Hayer",
+          "id": "135511",
+          "full_name": "Valérie Hayer"
+        },
+        {
+          "name": "Keller",
+          "id": "22858",
+          "full_name": "Fabienne Keller"
+        },
+        {
+          "name": "Loiseau",
+          "id": "197494",
+          "full_name": "Nathalie Loiseau"
+        },
+        {
+          "name": "Vedrenne",
+          "id": "197502",
+          "full_name": "Marie-Pierre Vedrenne"
+        },
+        {
+          "name": "Yon-Courtin",
+          "id": "197581",
+          "full_name": "Stéphanie Yon-Courtin"
+        }
+      ],
+      "France / S&D :": [
+        {
+          "name": "Clergeau",
+          "id": "245018",
+          "full_name": "Christophe Clergeau"
+        },
+        {
+          "name": "Fita",
+          "id": "256906",
+          "full_name": "Claire Fita"
+        },
+        {
+          "name": "Germain",
+          "id": "256901",
+          "full_name": "Jean-Marc Germain"
+        },
+        {
+          "name": "Glucksmann",
+          "id": "197694",
+          "full_name": "Raphaël Glucksmann"
+        },
+        {
+          "name": "Jouvet",
+          "id": "256898",
+          "full_name": "Pierre Jouvet"
+        },
+        {
+          "name": "Kalfon",
+          "id": "256908",
+          "full_name": "François Kalfon"
+        },
+        {
+          "name": "Lalucq",
+          "id": "197697",
+          "full_name": "Aurore Lalucq"
+        },
+        {
+          "name": "Laurent",
+          "id": "256899",
+          "full_name": "Murielle Laurent"
+        },
+        {
+          "name": "Mebarek",
+          "id": "204418",
+          "full_name": "Nora Mebarek"
+        },
+        {
+          "name": "Pellerin-Carlin",
+          "id": "256903",
+          "full_name": "Thomas Pellerin-Carlin"
+        },
+        {
+          "name": "Rafowicz",
+          "id": "256902",
+          "full_name": "Emma Rafowicz"
+        },
+        {
+          "name": "Ridel",
+          "id": "256904",
+          "full_name": "Chloé Ridel"
+        },
+        {
+          "name": "Sargiacomo",
+          "id": "256905",
+          "full_name": "Eric Sargiacomo"
+        }
+      ],
+      "France / Verts/ALE :": [
+        {
+          "name": "Camara",
+          "id": "256915",
+          "full_name": "Mélissa Camara"
+        }
+      ]
+    },
+    "corrections": [],
     "date": "2024-09-19",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-RCV_FR.html",
     "details": {
@@ -684,98 +2751,439 @@
     "votes": {
       "+": {
         "France / ECR :": [
-          "Bay Nicolas",
-          "Maréchal",
-          "Peltier",
-          "Trochu"
+          {
+            "name": "Bay Nicolas",
+            "id": "124760",
+            "full_name": "Nicolas Bay"
+          },
+          {
+            "name": "Maréchal",
+            "id": "256922",
+            "full_name": "Marion Maréchal"
+          },
+          {
+            "name": "Peltier",
+            "id": "30123",
+            "full_name": "Guillaume Peltier"
+          },
+          {
+            "name": "Trochu",
+            "id": "256925",
+            "full_name": "Laurence Trochu"
+          }
         ],
         "France / ESN :": [
-          "Knafo"
+          {
+            "name": "Knafo",
+            "id": "256924",
+            "full_name": "Sarah Knafo"
+          }
         ],
         "France / PfE :": [
-          "Androuët",
-          "Brasier-Clain",
-          "Dauchy",
-          "Deloge",
-          "Disdier",
-          "Frigout",
-          "Furet",
-          "Garraud",
-          "Griset",
-          "Jamet",
-          "Joron",
-          "Leggeri",
-          "Leonardelli",
-          "Mariani",
-          "Nikolic",
-          "Olivier",
-          "Pennelle",
-          "Piera",
-          "Pimpie",
-          "Rechagneux",
-          "Rougé",
-          "Sanchez",
-          "Sorel",
-          "Thionnet",
-          "Tolassy",
-          "Valet",
-          "Varaut"
+          {
+            "name": "Androuët",
+            "id": "197691",
+            "full_name": "Mathilde Androuët"
+          },
+          {
+            "name": "Brasier-Clain",
+            "id": "256878",
+            "full_name": "Marie-Luce Brasier-Clain"
+          },
+          {
+            "name": "Dauchy",
+            "id": "236050",
+            "full_name": "Marie Dauchy"
+          },
+          {
+            "name": "Deloge",
+            "id": "256886",
+            "full_name": "Valérie Deloge"
+          },
+          {
+            "name": "Disdier",
+            "id": "256874",
+            "full_name": "Mélanie Disdier"
+          },
+          {
+            "name": "Frigout",
+            "id": "256876",
+            "full_name": "Anne-Sophie Frigout"
+          },
+          {
+            "name": "Furet",
+            "id": "256896",
+            "full_name": "Angéline Furet"
+          },
+          {
+            "name": "Garraud",
+            "id": "197628",
+            "full_name": "Jean-Paul Garraud"
+          },
+          {
+            "name": "Griset",
+            "id": "94649",
+            "full_name": "Catherine Griset"
+          },
+          {
+            "name": "Jamet",
+            "id": "189065",
+            "full_name": "France Jamet"
+          },
+          {
+            "name": "Joron",
+            "id": "197627",
+            "full_name": "Virginie Joron"
+          },
+          {
+            "name": "Leggeri",
+            "id": "256872",
+            "full_name": "Fabrice Leggeri"
+          },
+          {
+            "name": "Leonardelli",
+            "id": "256895",
+            "full_name": "Julien Leonardelli"
+          },
+          {
+            "name": "Mariani",
+            "id": "197623",
+            "full_name": "Thierry Mariani"
+          },
+          {
+            "name": "Nikolic",
+            "id": "256883",
+            "full_name": "Aleksandar Nikolic"
+          },
+          {
+            "name": "Olivier",
+            "id": "197687",
+            "full_name": "Philippe Olivier"
+          },
+          {
+            "name": "Pennelle",
+            "id": "126699",
+            "full_name": "Gilles Pennelle"
+          },
+          {
+            "name": "Piera",
+            "id": "256877",
+            "full_name": "Pascale Piera"
+          },
+          {
+            "name": "Pimpie",
+            "id": "256893",
+            "full_name": "Pierre Pimpie"
+          },
+          {
+            "name": "Rechagneux",
+            "id": "256882",
+            "full_name": "Julie Rechagneux"
+          },
+          {
+            "name": "Rougé",
+            "id": "197690",
+            "full_name": "André Rougé"
+          },
+          {
+            "name": "Sanchez",
+            "id": "88552",
+            "full_name": "Julien Sanchez"
+          },
+          {
+            "name": "Sorel",
+            "id": "256871",
+            "full_name": "Malika Sorel"
+          },
+          {
+            "name": "Thionnet",
+            "id": "200345",
+            "full_name": "Pierre-Romain Thionnet"
+          },
+          {
+            "name": "Tolassy",
+            "id": "256888",
+            "full_name": "Rody Tolassy"
+          },
+          {
+            "name": "Valet",
+            "id": "256875",
+            "full_name": "Matthieu Valet"
+          },
+          {
+            "name": "Varaut",
+            "id": "5736",
+            "full_name": "Alexandre Varaut"
+          }
         ]
       },
       "-": {
         "France / PPE :": [
-          "Bellamy",
-          "Castillo",
-          "Gomart",
-          "Morano"
+          {
+            "name": "Bellamy",
+            "id": "197534",
+            "full_name": "François-Xavier Bellamy"
+          },
+          {
+            "name": "Castillo",
+            "id": "256921",
+            "full_name": "Laurent Castillo"
+          },
+          {
+            "name": "Gomart",
+            "id": "256919",
+            "full_name": "Christophe Gomart"
+          },
+          {
+            "name": "Morano",
+            "id": "72779",
+            "full_name": "Nadine Morano"
+          }
         ],
         "France / Renew :": [
-          "Allione",
-          "Boyer",
-          "Canfin",
-          "Devaux",
-          "Farreng",
-          "Gozi",
-          "Grudler",
-          "Guetta",
-          "Hayer",
-          "Keller",
-          "Loiseau",
-          "Vedrenne",
-          "Yon-Courtin"
+          {
+            "name": "Allione",
+            "id": "256869",
+            "full_name": "Grégory Allione"
+          },
+          {
+            "name": "Boyer",
+            "id": "197577",
+            "full_name": "Gilles Boyer"
+          },
+          {
+            "name": "Canfin",
+            "id": "96711",
+            "full_name": "Pascal Canfin"
+          },
+          {
+            "name": "Devaux",
+            "id": "256870",
+            "full_name": "Valérie Devaux"
+          },
+          {
+            "name": "Farreng",
+            "id": "197589",
+            "full_name": "Laurence Farreng"
+          },
+          {
+            "name": "Gozi",
+            "id": "204419",
+            "full_name": "Sandro Gozi"
+          },
+          {
+            "name": "Grudler",
+            "id": "197557",
+            "full_name": "Christophe Grudler"
+          },
+          {
+            "name": "Guetta",
+            "id": "197543",
+            "full_name": "Bernard Guetta"
+          },
+          {
+            "name": "Hayer",
+            "id": "135511",
+            "full_name": "Valérie Hayer"
+          },
+          {
+            "name": "Keller",
+            "id": "22858",
+            "full_name": "Fabienne Keller"
+          },
+          {
+            "name": "Loiseau",
+            "id": "197494",
+            "full_name": "Nathalie Loiseau"
+          },
+          {
+            "name": "Vedrenne",
+            "id": "197502",
+            "full_name": "Marie-Pierre Vedrenne"
+          },
+          {
+            "name": "Yon-Courtin",
+            "id": "197581",
+            "full_name": "Stéphanie Yon-Courtin"
+          }
         ],
         "France / S&D :": [
-          "Clergeau",
-          "Fita",
-          "Germain",
-          "Glucksmann",
-          "Kalfon",
-          "Lalucq",
-          "Pellerin-Carlin",
-          "Rafowicz",
-          "Ridel",
-          "Sargiacomo"
+          {
+            "name": "Clergeau",
+            "id": "245018",
+            "full_name": "Christophe Clergeau"
+          },
+          {
+            "name": "Fita",
+            "id": "256906",
+            "full_name": "Claire Fita"
+          },
+          {
+            "name": "Germain",
+            "id": "256901",
+            "full_name": "Jean-Marc Germain"
+          },
+          {
+            "name": "Glucksmann",
+            "id": "197694",
+            "full_name": "Raphaël Glucksmann"
+          },
+          {
+            "name": "Kalfon",
+            "id": "256908",
+            "full_name": "François Kalfon"
+          },
+          {
+            "name": "Lalucq",
+            "id": "197697",
+            "full_name": "Aurore Lalucq"
+          },
+          {
+            "name": "Pellerin-Carlin",
+            "id": "256903",
+            "full_name": "Thomas Pellerin-Carlin"
+          },
+          {
+            "name": "Rafowicz",
+            "id": "256902",
+            "full_name": "Emma Rafowicz"
+          },
+          {
+            "name": "Ridel",
+            "id": "256904",
+            "full_name": "Chloé Ridel"
+          },
+          {
+            "name": "Sargiacomo",
+            "id": "256905",
+            "full_name": "Eric Sargiacomo"
+          }
         ],
         "France / The Left :": [
-          "Aubry",
-          "Carême",
-          "Chaibi",
-          "Fourreau",
-          "Hassan",
-          "Mesure",
-          "Omarjee",
-          "Saeidi",
-          "Smith"
+          {
+            "name": "Aubry",
+            "id": "197533",
+            "full_name": "Manon Aubry"
+          },
+          {
+            "name": "Carême",
+            "id": "197574",
+            "full_name": "Damien Carême"
+          },
+          {
+            "name": "Chaibi",
+            "id": "197529",
+            "full_name": "Leila Chaibi"
+          },
+          {
+            "name": "Fourreau",
+            "id": "256913",
+            "full_name": "Emma Fourreau"
+          },
+          {
+            "name": "Hassan",
+            "id": "256912",
+            "full_name": "Rima Hassan"
+          },
+          {
+            "name": "Mesure",
+            "id": "236053",
+            "full_name": "Marina Mesure"
+          },
+          {
+            "name": "Omarjee",
+            "id": "30482",
+            "full_name": "Younous Omarjee"
+          },
+          {
+            "name": "Saeidi",
+            "id": "256911",
+            "full_name": "Arash Saeidi"
+          },
+          {
+            "name": "Smith",
+            "id": "256910",
+            "full_name": "Anthony Smith"
+          }
         ],
         "France / Verts/ALE :": [
-          "Camara",
-          "Cormand",
-          "Satouri",
-          "Sbai",
-          "Toussaint"
+          {
+            "name": "Camara",
+            "id": "256915",
+            "full_name": "Mélissa Camara"
+          },
+          {
+            "name": "Cormand",
+            "id": "197503",
+            "full_name": "David Cormand"
+          },
+          {
+            "name": "Satouri",
+            "id": "197500",
+            "full_name": "Mounir Satouri"
+          },
+          {
+            "name": "Sbai",
+            "id": "256917",
+            "full_name": "Majdouline Sbai"
+          },
+          {
+            "name": "Toussaint",
+            "id": "97236",
+            "full_name": "Marie Toussaint"
+          }
         ]
       }
     },
+    "absent": {
+      "France / PPE :": [
+        {
+          "name": "Imart",
+          "id": "256918",
+          "full_name": "Céline Imart"
+        },
+        {
+          "name": "Le Callennec",
+          "id": "256920",
+          "full_name": "Isabelle Le Callennec"
+        }
+      ],
+      "France / PfE :": [
+        {
+          "name": "Bardella",
+          "id": "131580",
+          "full_name": "Jordan Bardella"
+        },
+        {
+          "name": "Dussausaye",
+          "id": "256897",
+          "full_name": "Gaëtan Dussausaye"
+        },
+        {
+          "name": "Josserand",
+          "id": "256894",
+          "full_name": "Sylvie Josserand"
+        }
+      ],
+      "France / S&D :": [
+        {
+          "name": "Jouvet",
+          "id": "256898",
+          "full_name": "Pierre Jouvet"
+        },
+        {
+          "name": "Laurent",
+          "id": "256899",
+          "full_name": "Murielle Laurent"
+        },
+        {
+          "name": "Mebarek",
+          "id": "204418",
+          "full_name": "Nora Mebarek"
+        }
+      ]
+    },
+    "corrections": [],
     "date": "2024-09-19",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-10-2024-09-19-VOT_FR.html",
     "details": {

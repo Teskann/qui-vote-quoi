@@ -1,0 +1,57 @@
+{% macro podium_value(kind, member) -%}
+{%- if kind == "absent_rate" -%}
+    {{ "{:.0f}".format(100 * member.absent_rate) }}&nbsp;%
+{%- elif kind == "absent" -%}
+    {{ member.absent | fr_number }}
+{%- else -%}
+    {{ member.corrections | fr_number }}&nbsp;fois
+{%- endif -%}
+{%- endmacro %}
+
+{% macro podium_card(title, kind, podium) %}
+<div class="podium_card">
+    <h3>{{ title }}</h3>
+    <div class="podium">
+        {# Second place on the left, first in the middle, third on the right #}
+        {% for position in [1, 0, 2] if position < podium.entries | length %}
+            {% set entry = podium.entries[position] %}
+            <a class="podium_place podium_place_{{ position + 1 }} podium_rank_{{ entry.rank }}" href="/membre/{{ entry.member.id }}">
+                <span class="podium_photo">
+                    <img src="https://www.europarl.europa.eu/mepphoto/{{ entry.member.id }}.jpg" alt="" loading="lazy" onerror="this.remove()">
+                </span>
+                <span class="podium_name">{{ entry.member.full_name }}</span>
+                <span class="podium_value">{{ podium_value(kind, entry.member) }}</span>
+                <span class="podium_step"><span>{{ entry.rank }}</span></span>
+            </a>
+        {% endfor %}
+    </div>
+    {% if podium.ex_aequo %}
+        <div class="podium_note">et {{ podium.ex_aequo }} autre{{ "s" if podium.ex_aequo > 1 }} ex aequo</div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro podium_cards(podiums) %}
+<div class="podium_cards">
+    {{ podium_card("Les plus absents (pourcentage)", "absent_rate", podiums.absent_rate) if podiums.absent_rate.entries }}
+    {{ podium_card("Les plus absents (nombre de votes)", "absent", podiums.absent) if podiums.absent.entries }}
+    {{ podium_card("Se sont le plus trompés de bouton", "corrections", podiums.corrections) if podiums.corrections.entries }}
+</div>
+{% endmacro %}
+
+{% macro get_podiums(data) %}
+{% set podiums = data | search_podiums %}
+{% if podiums %}
+<div class="wrapper">
+    <input type="checkbox" id="togglePodiums"/>
+    <label for="togglePodiums">Podiums <span class="label_detail">(pour les résultats de cette recherche)</span></label>
+    <div class="podiums_container">
+        {{ podium_cards(podiums) }}
+        <p class="podiums_note">
+            Sur les votes finaux des textes de cette recherche.
+            <a href="/classement">Voir le classement général →</a>
+        </p>
+    </div>
+</div>
+{% endif %}
+{% endmacro %}

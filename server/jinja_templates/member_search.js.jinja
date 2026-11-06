@@ -1,0 +1,88 @@
+<script>
+// Suggestions of members while typing in the search bar
+(function () {
+    const input = document.getElementById("search-input");
+    const box = document.getElementById("mep-suggestions");
+    const MAX_SUGGESTIONS = 6;
+    let members = null;
+    let loading = null;
+
+    function normalize(text) {
+        return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    }
+
+    function load() {
+        if (!loading) {
+            loading = fetch("/membres.json").then((response) => response.json()).then((list) => {
+                members = list.map((member) => ({...member, key: normalize(member.name)}));
+            }).catch(() => members = []);
+        }
+        return loading;
+    }
+
+    function close() {
+        box.hidden = true;
+        box.innerHTML = "";
+    }
+
+    function items() {
+        return Array.from(box.querySelectorAll(".mep_suggestion"));
+    }
+
+    function select(index) {
+        items().forEach((item, position) => item.setAttribute("aria-selected", position === index ? "true" : "false"));
+    }
+
+    async function update() {
+        const words = normalize(input.value).split(/\s+/).filter(Boolean);
+        if (words.join("").length < 2) return close();
+        await load();
+        const matches = members.filter((member) => words.every((word) => member.key.includes(word)))
+                               .slice(0, MAX_SUGGESTIONS);
+        if (!matches.length) return close();
+        box.innerHTML = "";
+        for (const member of matches) {
+            const link = document.createElement("a");
+            link.className = "mep_suggestion";
+            link.href = "/membre/" + member.id;
+            link.setAttribute("role", "option");
+            link.setAttribute("aria-selected", "false");
+            const photo = document.createElement("img");
+            photo.src = "https://www.europarl.europa.eu/mepphoto/" + member.id + ".jpg";
+            photo.alt = "";
+            photo.loading = "lazy";
+            photo.addEventListener("error", () => photo.style.visibility = "hidden");
+            const name = document.createElement("span");
+            name.className = "mep_suggestion_name";
+            name.textContent = member.name;
+            const group = document.createElement("span");
+            group.className = "mep_suggestion_group";
+            group.textContent = member.group;
+            link.append(photo, name, group);
+            box.appendChild(link);
+        }
+        box.hidden = false;
+    }
+
+    input.addEventListener("input", update);
+    input.addEventListener("focus", () => { load(); update(); });
+    input.addEventListener("keydown", (event) => {
+        const list = items();
+        if (box.hidden || !list.length) return;
+        const current = list.findIndex((item) => item.getAttribute("aria-selected") === "true");
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const step = event.key === "ArrowDown" ? 1 : -1;
+            select(current === -1 ? (step === 1 ? 0 : list.length - 1) : (current + step + list.length) % list.length);
+        } else if (event.key === "Enter" && current !== -1) {
+            event.preventDefault();
+            window.location.href = list[current].href;
+        } else if (event.key === "Escape") {
+            close();
+        }
+    });
+    document.addEventListener("click", (event) => {
+        if (!event.target.closest(".search_group")) close();
+    });
+})();
+</script>

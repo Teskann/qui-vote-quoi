@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    {% include "favicon.html.jinja" %}
+    <style>{{ css }}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ member.full_name }} - Qui vote quoi ?</title>
+    <meta name="description" content="Votes, absentéisme et corrections de vote de {{ member.full_name | e }} au parlement européen">
+</head>
+<body>
+{% include "toolbar.html.jinja" %}
+<div id="content">
+
+{% set total = member.voted + member.absent %}
+
+{% macro tile(label, value, detail, rank) %}
+<div class="stat_tile{{ " stat_podium stat_podium_" ~ rank if rank <= 3 }}">
+    {% if rank <= 3 %}<span class="stat_medal" aria-hidden="true">{{ rank }}</span>{% endif %}
+    <div class="stat_label">{{ label }}</div>
+    <div class="stat_value">{{ value }}</div>
+    <div class="stat_detail">{{ detail }}</div>
+    <div class="stat_rank">Top {{ rank | fr_number }}</div>
+</div>
+{% endmacro %}
+{% set labels = {"+": "Pour", "-": "Contre", "0": "Abstention", "absent": "Absent(e)"} %}
+
+<div class="member_header">
+    <img class="member_photo" src="https://www.europarl.europa.eu/mepphoto/{{ member.id }}.jpg" alt="" onerror="this.remove()">
+    <div>
+        <h1>{{ member.full_name }}</h1>
+        <div class="member_meta">
+            <span class="tooltip">{{ member.group | political_group }}<span class="tooltip_text tooltip_text_below">{{ member.group | political_group_tooltip(today) }}</span></span>
+            <a href="https://www.europarl.europa.eu/meps/fr/{{ member.id }}" target="_blank">Fiche sur europarl.europa.eu ↗</a>
+        </div>
+    </div>
+</div>
+
+<div class="stat_tiles">
+    {{ tile("Absentéisme", ("{:.0f}".format(100 * member.absent / total) if total else "-") ~ "&nbsp;%",
+            "des votes tenus pendant son mandat",
+            member.ranks.absent_rate) }}
+    {{ tile("Votes manqués", member.absent | fr_number, "sur " ~ total | fr_number ~ " votes tenus pendant son mandat",
+            member.ranks.absent) }}
+    {{ tile("S'est trompé de bouton", member.corrections | fr_number ~ "&nbsp;fois",
+            "correction" ~ ("s" if member.corrections > 1 else "") ~ " déclarée" ~ ("s" if member.corrections > 1 else "") ~ " après un vote",
+            member.ranks.corrections) }}
+    {{ tile("Votes", member.voted | fr_number, "votes par appel nominal auxquels " ~ member.full_name ~ " a pris part",
+            member.ranks.voted) }}
+</div>
+
+{% if months %}
+<section class="chart_card">
+    <h2>Absentéisme par mois</h2>
+    <p class="chart_note">Part des votes par appel nominal tenus pendant son mandat auxquels {{ member.full_name }} n'a pas pris part.</p>
+    <div class="chart">
+        <div class="chart_yaxis" aria-hidden="true">
+            {% for value in [100, 75, 50, 25, 0] %}<span>{{ value }}&nbsp;%</span>{% endfor %}
+        </div>
+        <div class="chart_scroll">
+            <div class="chart_plot">
+                <div class="chart_grid" aria-hidden="true">
+                    {% for _ in range(5) %}<div class="chart_gridline"></div>{% endfor %}
+                </div>
+                <div class="chart_bars">
+                    {% for month in months %}
+                        <div class="chart_slot"
+                             {% if month.rate is not none %}data-tooltip="{{ month.label | capitalize }} : {{ "{:.0f}".format(100 * month.rate) }} % ({{ (month.absent | fr_number ~ " vote" ~ ("s" if month.absent > 1 else "") ~ " manqué" ~ ("s" if month.absent > 1 else "")) if month.absent else "aucun vote manqué" }} sur {{ month.total | fr_number }})"{% else %}data-tooltip="{{ month.label | capitalize }} : pas de vote en séance ce mois-là"{% endif %}>
+                            {% if month.rate is not none %}<div class="chart_bar" style="height: {{ 100 * month.rate }}%"></div>{% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="chart_axis" aria-hidden="true">
+                    {% for month in months %}
+                        <span>{{ month.month[:4] if month.month.endswith("-01") or loop.first else "" }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="chart_tooltip" hidden></div>
+    </div>
+    <details class="chart_table">
+        <summary>Voir les données</summary>
+        <table>
+            <thead><tr><th>Mois</th><th>Votes manqués</th><th>Votes</th><th>Absentéisme</th></tr></thead>
+            <tbody>
+            {% for month in months | reverse if month.rate is not none %}
+                <tr><td>{{ month.label }}</td><td>{{ month.absent | fr_number }}</td><td>{{ month.total | fr_number }}</td><td>{{ "{:.0f}".format(100 * month.rate) }}&nbsp;%</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </details>
+</section>
+{% endif %}
+
+<section>
+    <h2>Votes récents</h2>
+    <table class="recent_votes">
+    {% for vote in member.recent %}
+        <tr>
+            <td class="recent_date">{{ vote.date | to_pretty_date }}</td>
+            <td><a href="../results?search={{ vote.eu_document_code | urlencode }}&start_date={{ vote.date }}&end_date={{ vote.date }}">{{ vote.title | add_flags }}{{ vote.title | add_emojis }}{{ vote.title }}</a></td>
+            <td><span class="vote_badge {{ vote.vote | class_from_vote_result }}">{{ labels[vote.vote] }}</span></td>
+            <td class="recent_result">{{ "Adopté" if vote.was_adopted else "Rejeté" }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</section>
+
+</div>
+
+<script>
+(function () {
+    const chart = document.querySelector(".chart");
+    if (!chart) return;
+    const tooltip = chart.querySelector(".chart_tooltip");
+    // When the months don't fit (small screens, long mandates), show the most recent ones first
+    const scroll = chart.querySelector(".chart_scroll");
+    scroll.scrollLeft = scroll.scrollWidth;
+    scroll.addEventListener("scroll", () => tooltip.hidden = true, {passive: true});
+    function show(slot) {
+        tooltip.textContent = slot.dataset.tooltip;
+        tooltip.hidden = false;
+        const box = chart.getBoundingClientRect(), target = slot.getBoundingClientRect();
+        const left = Math.min(Math.max(0, target.left - box.left + target.width / 2 - tooltip.offsetWidth / 2),
+                              box.width - tooltip.offsetWidth);
+        tooltip.style.left = left + "px";
+    }
+    chart.addEventListener("mouseover", (event) => {
+        const slot = event.target.closest(".chart_slot");
+        if (slot) show(slot);
+    });
+    chart.addEventListener("click", (event) => {
+        const slot = event.target.closest(".chart_slot");
+        if (slot) show(slot);
+    });
+    chart.addEventListener("mouseleave", () => tooltip.hidden = true);
+})();
+</script>
+</body>
+</html>

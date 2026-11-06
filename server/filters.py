@@ -140,7 +140,7 @@ def political_group_french_list(group_name, date_1, date_2 = None):
 
 
 def class_from_vote_result(result):
-    classes = {"+": "voted_for", "-": "voted_against", "0": "abstained"}
+    classes = {"+": "voted_for", "-": "voted_against", "0": "abstained", "absent": "absent"}
     return classes[result] if result in classes else "abstained"
 
 
@@ -560,3 +560,10 @@ def votes_on_day(date: str, data: dict) -> bool:
 
 def to_html_id(input_string: str):
     return re.sub(r'[^a-zA-Z0-9\-]', '-', input_string)
+
+
+def fr_number(number) -> str:
+    """
+    Format a number the French way: thousands separated by a narrow no-break space (1 000)
+    """
+    return f"{number:,}".replace(",", "\u202f")

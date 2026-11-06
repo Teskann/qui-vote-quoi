@@ -1,0 +1,84 @@
+<div id="mep_card" class="mep_card" hidden>
+    <img class="mep_card_photo" alt="">
+    <div class="mep_card_body">
+        <div class="mep_card_name"></div>
+        <a class="mep_card_link">Voir ses votes →</a>
+    </div>
+</div>
+<script>
+(function () {
+    const card = document.getElementById("mep_card");
+    const photo = card.querySelector(".mep_card_photo");
+    const name = card.querySelector(".mep_card_name");
+    const link = card.querySelector(".mep_card_link");
+    // Without hover (touch screens), a first tap on a name shows the card, the link is then in the card
+    const canHover = window.matchMedia("(hover: hover)").matches;
+    let current = null;
+    let hideTimer = null;
+    let showTimer = null;
+    const SHOW_DELAY = 500;
+
+    function show(mep) {
+        clearTimeout(hideTimer);
+        if (current === mep && !card.hidden) return;
+        current = mep;
+        name.textContent = mep.dataset.fullName || mep.textContent;
+        link.href = mep.href;
+        card.classList.remove("no_photo");
+        photo.src = "https://www.europarl.europa.eu/mepphoto/" + mep.dataset.id + ".jpg";
+        card.hidden = false;
+
+        const target = mep.getBoundingClientRect();
+        const width = card.offsetWidth, height = card.offsetHeight, margin = 8;
+        const above = target.top - height - margin >= 0;
+        const top = above ? target.top - height - margin : target.bottom + margin;
+        const left = Math.min(Math.max(margin, target.left + target.width / 2 - width / 2),
+                              document.documentElement.clientWidth - width - margin);
+        card.style.top = (top + window.scrollY) + "px";
+        card.style.left = (left + window.scrollX) + "px";
+    }
+
+    function hide() {
+        clearTimeout(showTimer);
+        card.hidden = true;
+        current = null;
+    }
+
+    photo.addEventListener("error", () => card.classList.add("no_photo"));
+
+    if (canHover) {
+        document.addEventListener("mouseover", (event) => {
+            const mep = event.target.closest(".mep");
+            if (!mep) return;
+            clearTimeout(hideTimer);
+            clearTimeout(showTimer);
+            if (!card.hidden) {
+                show(mep);  // A card is already displayed: switch to the new member without waiting
+            } else {
+                showTimer = setTimeout(() => show(mep), SHOW_DELAY);
+            }
+        });
+        document.addEventListener("mouseout", (event) => {
+            if (event.target.closest(".mep")) {
+                clearTimeout(showTimer);
+                hideTimer = setTimeout(hide, 150);
+            }
+        });
+        document.addEventListener("focusin", (event) => {
+            const mep = event.target.closest(".mep");
+            mep ? show(mep) : hide();
+        });
+    } else {
+        document.addEventListener("click", (event) => {
+            const mep = event.target.closest(".mep");
+            if (mep && current !== mep) {
+                event.preventDefault();
+                show(mep);
+            } else if (!event.target.closest(".mep_card")) {
+                hide();
+            }
+        });
+        window.addEventListener("scroll", hide, {passive: true});
+    }
+})();
+</script>

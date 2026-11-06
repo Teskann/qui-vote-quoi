@@ -8,6 +8,7 @@ import jinja2
 from server.filters import *
 from urllib.parse import urlencode
 from server.common import get_css, TEMPLATES_PATH
+from server.podiums import search_podiums
 
 
 def generate_results_page(data):
@@ -36,6 +37,8 @@ def generate_results_page(data):
     env.filters["parliament_number_from_date"] = parliament_number_from_date
     env.filters["votes_on_day"] = votes_on_day
     env.filters["to_html_id"] = to_html_id
+    env.filters["search_podiums"] = search_podiums
+    env.filters["fr_number"] = fr_number
 
     env.globals["today"] = datetime.date.today().isoformat()
     env.globals["yesterday"] = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()

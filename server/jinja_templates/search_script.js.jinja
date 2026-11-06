@@ -49,7 +49,8 @@
     setDateFields();
 
     document.getElementById('search-input').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
+    // When a member is selected in the suggestions, Enter opens their page instead (see member_search.js.jinja)
+    if (event.key === 'Enter' && !document.querySelector('.mep_suggestions [aria-selected="true"]')) {
         search();  // Trigger search when "Enter" is pressed
     }
 });

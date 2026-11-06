@@ -1,0 +1,30 @@
+{% from "member.html.jinja" import mep_link %}
+
+{% macro corrections_section(corrections) %}
+
+{% if corrections %}
+{% set cast = {"+": "a voté pour", "-": "a voté contre", "0": "s'est abstenu"} %}
+{% set intended = {"+": "voulait voter pour", "-": "voulait voter contre", "0": "voulait s'abstenir"} %}
+
+<div class="corrections">
+    <div class="corrections_title">{{ "S'est trompé de bouton" if corrections | length == 1 else "Se sont trompés de bouton" }}</div>
+    <ul>
+    {% for correction in corrections %}
+        <li>
+            {% if correction.id %}
+                <a class="correction_photo" href="/membre/{{ correction.id }}" tabindex="-1" aria-hidden="true">
+                    <img src="https://www.europarl.europa.eu/mepphoto/{{ correction.id }}.jpg" alt="" loading="lazy" onerror="this.remove()">
+                </a>
+            {% endif %}
+            <span>
+                {{ mep_link(correction) }}&nbsp;:
+                <span class="{{ correction.voted | class_from_vote_result if correction.voted else "absent" }}">{{ cast[correction.voted] if correction.voted else "absence lors du vote" }}</span>,
+                <span class="{{ correction.intended | class_from_vote_result }}">{{ intended[correction.intended] }}</span>
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% endmacro %}

@@ -1,0 +1,101 @@
+{% from "podiums.html.jinja" import podium_cards %}
+<!doctype html>
+<html lang="fr">
+<head>
+    {% include "favicon.html.jinja" %}
+    <style>{{ css }}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Classement des députés - Qui vote quoi ?</title>
+    <meta name="description" content="Classement des députés français au parlement européen : absentéisme et corrections de vote">
+</head>
+<body>
+{% include "toolbar.html.jinja" %}
+<div id="content">
+
+<h1>Classement des députés</h1>
+<p class="ranking_intro">
+    Sur tous les votes par appel nominal de la période, amendements compris, tenus pendant le mandat de chaque député.
+</p>
+
+<nav class="terms" aria-label="Mandatures">
+    <a href="/classement" class="{{ "active" if start_date == first_date and end_date == last_date }}">Toute la période</a>
+    {% for term in terms %}
+        <a href="/classement?start_date={{ term.start_date }}&end_date={{ term.end_date }}"
+           class="{{ "active" if start_date == term.start_date and end_date == term.end_date }}">{{ term.label }}</a>
+    {% endfor %}
+</nav>
+
+<form class="period" method="get" action="/classement">
+    <label for="ranking-start">Du</label>
+    <input type="date" id="ranking-start" class="date-input" name="start_date" value="{{ start_date }}" min="{{ first_date }}" max="{{ last_date }}">
+    <label for="ranking-end">au</label>
+    <input type="date" id="ranking-end" class="date-input" name="end_date" value="{{ end_date }}" min="{{ first_date }}" max="{{ last_date }}">
+    <button type="submit" class="primary">Appliquer</button>
+</form>
+
+{% if members %}
+{{ podium_cards(podiums) }}
+
+<h2>Classement complet</h2>
+<div class="ranking_scroll">
+<table class="ranking_table" id="ranking">
+    <thead>
+        <tr>
+            <th class="ranking_rank">#</th>
+            <th>Député</th>
+            <th>Groupe</th>
+            <th class="number"><button data-key="absent_rate" class="sorted">Absentéisme</button></th>
+            <th class="number"><button data-key="absent">Votes manqués</button></th>
+            <th class="number"><button data-key="corrections">Trompé de bouton</button></th>
+            <th class="number"><button data-key="voted">Votes</button></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for member in members | sort(attribute="full_name") | sort(attribute="absent_rate", reverse=true) %}
+        <tr data-absent_rate="{{ member.absent_rate }}" data-absent="{{ member.absent }}"
+            data-corrections="{{ member.corrections }}" data-voted="{{ member.voted }}" data-name="{{ member.full_name | e }}">
+            <td class="ranking_rank">{{ member.ranks.absent_rate }}</td>
+            <td><a href="/membre/{{ member.id }}">{{ member.full_name }}</a></td>
+            <td class="ranking_group">{{ member.group | political_group }}</td>
+            <td class="number">{{ "{:.0f}".format(100 * member.absent_rate) }}&nbsp;%</td>
+            <td class="number">{{ member.absent | fr_number }}</td>
+            <td class="number">{{ member.corrections | fr_number }}</td>
+            <td class="number">{{ member.voted | fr_number }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+<p>Aucun vote par appel nominal n'a eu lieu sur cette période.</p>
+{% endif %}
+
+</div>
+
+<script>
+(function () {
+    const table = document.getElementById("ranking");
+    if (!table) return;
+    const body = table.tBodies[0];
+
+    function sort(key) {
+        // Decreasing values; equal values share the same rank (1, 1, 3, ...)
+        const rows = Array.from(body.rows).sort((a, b) =>
+            Number(b.dataset[key]) - Number(a.dataset[key]) || a.dataset.name.localeCompare(b.dataset.name, "fr"));
+        let previous = null, rank = 0;
+        rows.forEach((row, position) => {
+            if (row.dataset[key] !== previous) rank = position + 1;
+            previous = row.dataset[key];
+            row.cells[0].textContent = rank;
+            body.appendChild(row);
+        });
+        table.querySelectorAll("th button").forEach((button) => button.classList.toggle("sorted", button.dataset.key === key));
+    }
+
+    table.querySelectorAll("th button").forEach((button) => button.addEventListener("click", () => sort(button.dataset.key)));
+    sort("absent_rate");
+})();
+</script>
+</body>
+</html>

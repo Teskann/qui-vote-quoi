@@ -4,7 +4,7 @@
 
 <div class="page_navigation">
 <div class="current_page_info">
-    Affichage des résultats {{ 25 * (request_args.page - 1) + 1 }} à {{ (25 * (request_args.page)) | min(size) }} sur {{ size }}
+    Affichage des résultats {{ (25 * (request_args.page - 1) + 1) | fr_number }} à {{ ((25 * (request_args.page)) | min(size)) | fr_number }} sur {{ size | fr_number }}
 </div>
 <span class="move_to_page">Aller à la page:</span>
 {% for i in size | page_range(request_args.page) %}
