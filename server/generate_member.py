@@ -1,4 +1,5 @@
 import datetime
+import functools
 from os.path import join
 
 import jinja2
@@ -45,7 +46,11 @@ def absenteeism_per_month(member: dict) -> list[dict]:
     return result
 
 
+@functools.cache
 def __template(name: str) -> jinja2.Template:
+    """
+    Compiled once, as the compilation takes longer than the rendering
+    """
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATES_PATH))
     env.filters["political_group"] = filter_political_group
     env.filters["political_group_tooltip"] = political_group_tooltip

@@ -34,7 +34,8 @@ pip install -r requirements.txt
 ```
 
 Pour lancer le serveur localement, créez un fichier `database_path.txt` à la racine du projet.
-Il doit contenir le chemin vers la base de données des résultats des votes. Par exemple:
+Il doit contenir le chemin vers le dossier de la base de données des résultats des votes. Les votes y sont
+enregistrés dans une base SQLite, `votes.sqlite`, créée automatiquement. Par exemple:
 ```text
 /home/user/database-qui-vote-quoi
 ```
@@ -61,6 +62,17 @@ elles sont réessayées automatiquement et leur nombre est affiché à la fin : 
 
 Chaque texte contient aussi la liste `amendments` de tous les votes qui ont eu lieu dessus (amendements, paragraphes,
 vote final). Depuis 2024, le résultat de chaque vote est connu ; avant, seuls les votes par appel nominal sont listés.
+Ces votes sont stockés dans une table à part, car ils représentent l'essentiel du volume de la base et ne sont pas
+nécessaires pour afficher les résultats d'une recherche.
+
+### Passer d'une base en fichiers JSON à SQLite
+
+Les anciennes versions enregistraient un fichier JSON par jour. Pour convertir une base existante sans la récupérer à
+nouveau sur le site du parlement, lancez :
+```bash
+python migrate_json_to_sqlite.py
+```
+Les fichiers JSON ne sont pas modifiés : vous pouvez les supprimer une fois le site vérifié.
 
 ## Mise à jour automatique de la base de données quotidiennement
 

@@ -1,8 +1,6 @@
-import json
-import os
 from concurrent.futures import ThreadPoolExecutor
 
-from database.database import get_path
+from database import storage
 from parser.merger import merge_data
 from parser import open_data
 from parser.open_data import get_sitting_dates, OpenDataError
@@ -30,18 +28,17 @@ def __join_amendments(amendments: dict, roll_call_votes: dict) -> dict:
     return amendments
 
 
-def dump_day_to_json(date: str, overwrite: bool = False, overwrite_empty_days: bool = False):
+def dump_day(date: str, overwrite: bool = False, overwrite_empty_days: bool = False):
     """
-    Dump the content of what happened on the passed date and write this in the database.
+    Get what was voted on the passed date and write it in the database.
     If it's known that nothing happened in the passed date, this function does nothing.
-    If a file already exists for the passed date and `overwrite` is False, this function does nothing
+    If the date is already in the database and `overwrite` is False, this function does nothing
     :param date: date to dump, as iso-formatted string
-    :param overwrite: set to True to overwrite the file for this date in the DB if it exists
+    :param overwrite: set to True to overwrite the date in the DB if it exists
     :param overwrite_empty_days: set to True to overwrite the data for the given day, even if it
     has been recorded as a day on which no votes happened
     """
-    file_name = get_path(date + ".json")
-    if os.path.exists(file_name) and not overwrite or nothing_happened_on(date) and not overwrite_empty_days:
+    if storage.day_exists(date) and not overwrite or nothing_happened_on(date) and not overwrite_empty_days:
         return
     if overwrite_empty_days:
         set_something_happened_for(date)
@@ -54,8 +51,7 @@ def dump_day_to_json(date: str, overwrite: bool = False, overwrite_empty_days: b
         global_votes = parse_vote_results(votes_results_xml)
         amendments = __join_amendments(parse_amendments(votes_results_xml), roll_call_votes_by_id(votes_per_document))
         votes_per_document = merge_data(votes_per_document, global_votes, date, amendments)
-    with open(file_name, "w", encoding="utf-8") as f:
-        json.dump(votes_per_document, f, indent=2, ensure_ascii=False)
+    storage.write_day(date, votes_per_document)
 
 
 MAX_PARALLEL_DAYS = 8
@@ -82,7 +78,7 @@ def fill_database(start_date, end_date, overwrite=False, overwrite_empty_days=Fa
     print(f"{len(dates)} plenary sittings to process between {start_date} and {end_date}")
 
     def process(date):
-        dump_day_to_json(date, overwrite=overwrite, overwrite_empty_days=overwrite_empty_days)
+        dump_day(date, overwrite=overwrite, overwrite_empty_days=overwrite_empty_days)
         print("Processed " + date, flush=True)
 
     throttled_before = open_data.throttled_requests
