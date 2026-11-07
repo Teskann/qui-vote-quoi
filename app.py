@@ -1,17 +1,15 @@
 import datetime
 from urllib.parse import urlencode
 
-import requests
 from flask import Flask, request, redirect, abort, jsonify
 
 from database.database import set_root_database_path
 from database.database_reader import search_in_time_range
-from database.storage import read_day, read_amendments
+from database.storage import read_day
 from database.members_index import get_member, get_all_members, get_member_corrections, warm_up
 from server.generate_about import generate_about
 from server.generate_member import generate_member_page, generate_ranking_page, generate_group_page, filters_context
-from server.generate_results import generate_results_page, generate_document_page, amendment_links
-from parser.open_data import OpenDataError
+from server.generate_results import generate_results_page, generate_document_page
 from server.filters import filter_political_group
 from utils.date_management import parliament_number_from_date, date_from_parliament_number
 
@@ -55,19 +53,6 @@ def document():
     if content is None:
         abort(404)
     return generate_document_page(date, eu_document_code, content)
-
-@app.route('/texte/amendements')
-def document_amendment_links():
-    """
-    Links to the documents of the amendments of a document on europarl, loaded by the page of the document
-    """
-    date, eu_document_code = request.args.get('date') or "", request.args.get('code') or ""
-    amendments = read_amendments(date).get(eu_document_code, []) if date else []
-    try:
-        return jsonify(amendment_links(eu_document_code, amendments))
-    except (OpenDataError, requests.RequestException):
-        # Europarl could not be reached: the page is displayed without the links
-        abort(502)
 
 def __filters() -> dict:
     """

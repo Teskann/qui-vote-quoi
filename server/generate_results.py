@@ -1,5 +1,4 @@
 import datetime
-import re
 import functools
 from itertools import islice
 from os.path import join
@@ -10,7 +9,7 @@ from server.filters import *
 from urllib.parse import urlencode
 from server.common import get_css, TEMPLATES_PATH
 from server.podiums import search_podiums
-from parser.open_data import get_amendments_documents, amendment_document
+from parser.open_data import amendment_number
 from utils.date_management import votes_roll_call_source_url
 
 
@@ -70,30 +69,6 @@ def generate_results_page(data):
     return __template(datetime.date.today()).render(data)
 
 
-def __amendment_number(vote: dict) -> str | None:
-    """
-    :return: number of the amendment voted, None if the vote is not on an amendment. Before 2024, the number is only in
-    the label ("A8-0193/2018 - Cláudia Monteiro de Aguiar - Am 32=33rev=").
-    """
-    if vote.get("amendment"):
-        return vote["amendment"]
-    number = re.search(r"\bAm (\d+)", vote.get("label") or "")
-    return number[1] if number else None
-
-
-def amendment_links(eu_document_code: str, amendments: list[dict]) -> dict:
-    """
-    Links to the documents of the amendments on europarl. Asked to europarl, so loaded by the page after it is displayed.
-    :param amendments: votes held on the document (see storage.read_amendments)
-    :return: {<vote identifier>: <URL of the document of the amendment>} for the votes whose document is known
-    """
-    numbers = {vote.get("id"): __amendment_number(vote) for vote in amendments}
-    # Only asked when the document has amendments
-    documents = get_amendments_documents(eu_document_code) if any(numbers.values()) else []
-    links = {identifier: amendment_document(number, documents) for identifier, number in numbers.items()}
-    return {identifier: link for identifier, link in links.items() if link}
-
-
 def generate_document_page(date: str, eu_document_code: str, content: dict) -> str:
     """
     Page of a document voted on a day: its final vote, and all the votes held on it (amendments, paragraphs, ...)
@@ -102,4 +77,4 @@ def generate_document_page(date: str, eu_document_code: str, content: dict) -> s
     amendments = content.get("amendments", [])
     return __template(datetime.date.today(), "document_page.html.jinja").render(
         css=get_css(), date=date, eu_document_code=eu_document_code, data=content, amendments=amendments,
-        amendment_numbers={vote.get("id"): __amendment_number(vote) for vote in amendments})
+        amendment_numbers={vote.get("id"): amendment_number(vote) for vote in amendments})

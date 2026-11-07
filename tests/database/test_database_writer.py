@@ -87,6 +87,9 @@ def test_amendments():
     assert amendment["author"] == "The Left"
     assert amendment["result"] == "REJECTED"
     assert amendment["was_roll_call_voted"]
+    # The document of the amendment on europarl is stored, the website doesn't have to ask it
+    assert amendment["amendment_url"].lower().endswith(".pdf")
+    assert final_vote["amendment_url"] is None
     assert any(not amendment["was_roll_call_voted"] and amendment["votes"] == {} for amendment in amendments)
 
     # Before, only the roll-call votes are known

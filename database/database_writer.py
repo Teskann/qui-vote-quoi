@@ -29,6 +29,21 @@ def __join_amendments(amendments: dict, roll_call_votes: dict) -> dict:
     return amendments
 
 
+def __add_amendment_links(votes_per_document: dict):
+    """
+    Store in each vote on an amendment the URL of the document of the amendment on europarl ("amendment_url", None if
+    unknown), so that the website never has to ask europarl. Raises OpenDataError if europarl can't be reached: the day
+    is then not written, and is processed again by the next filling.
+    """
+    for eu_document_code, content in votes_per_document.items():
+        amendments = content.get("amendments", [])
+        numbers = [open_data.amendment_number(vote) for vote in amendments]
+        # Only asked when the document has amendments
+        documents = open_data.get_amendments_documents(eu_document_code) if any(numbers) else []
+        for vote, number in zip(amendments, numbers):
+            vote["amendment_url"] = open_data.amendment_document(number, documents)
+
+
 def dump_day(date: str, overwrite: bool = False, overwrite_empty_days: bool = False):
     """
     Get what was voted on the passed date and write it in the database.
@@ -52,6 +67,7 @@ def dump_day(date: str, overwrite: bool = False, overwrite_empty_days: bool = Fa
         global_votes = parse_vote_results(votes_results_xml)
         amendments = __join_amendments(parse_amendments(votes_results_xml), roll_call_votes_by_id(votes_per_document))
         votes_per_document = merge_data(votes_per_document, global_votes, date, amendments)
+    __add_amendment_links(votes_per_document)
     storage.write_day(date, votes_per_document)
 
 

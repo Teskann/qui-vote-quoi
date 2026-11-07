@@ -222,6 +222,18 @@ def get_amendments_documents(eu_document_code: str, language: str = "fr") -> lis
     return __amendments_documents_cache[eu_document_code]
 
 
+def amendment_number(vote: dict) -> str | None:
+    """
+    :param vote: one of the votes held on a document (see "amendments")
+    :return: number of the amendment voted, None if the vote is not on an amendment. Before 2024, the number is only in
+    the label ("A8-0193/2018 - Cláudia Monteiro de Aguiar - Am 32=33rev=").
+    """
+    if vote.get("amendment"):
+        return vote["amendment"]
+    number = re.search(r"\bAm (\d+)", vote.get("label") or "")
+    return number[1] if number else None
+
+
 def amendment_document(amendment_number: str | None, documents: list[tuple[int, int, str]]) -> str | None:
     """
     :param amendment_number: number of an amendment, for example "162", "118PC8" or "§" (original text)
