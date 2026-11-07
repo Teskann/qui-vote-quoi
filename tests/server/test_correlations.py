@@ -29,6 +29,13 @@ def test_is_final_vote():
     assert not is_final_vote(amendment, document)
     # The final vote was not a roll-call vote: none of the roll-call votes is the final vote
     assert not is_final_vote(final, {**document, "global": {"was_roll_call_voted": False}})
+    # Since its identifier is stored, the final vote is the one with this identifier, even if an amendment had the same
+    # votes of the French members
+    same_votes = {**amendment, "votes": final["votes"]}
+    assert not is_final_vote(same_votes, {**document, "final_vote_id": "2"})
+    assert is_final_vote(final, {**document, "final_vote_id": "2"})
+    # Its final vote was not among the roll-call votes of the day
+    assert not is_final_vote(final, {**document, "final_vote_id": None})
 
 
 def test_group_slug_of_renamed_group():

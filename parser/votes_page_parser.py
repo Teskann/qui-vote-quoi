@@ -61,6 +61,36 @@ def __main_document(documents: list[etree._Element]) -> str:
     return __document_code(min(documents, key=lambda document: int(document.get("documentOrder") or 0)))
 
 
+def __votings_per_document(vote: etree._Element) -> dict[str, list[etree._Element]]:
+    """
+    Votings of a <vote>, by document. Competing motions for resolution are voted in the same <vote>: each one has its
+    block of votings, after a TITLE_BLOCK voting whose title gives the motion ("Proposition de résolution B10-0060/2026
+    (députés)"), with its own result. When no title gives a document, all the votings are those of the main document.
+    :return: {<eu_document_code>: [<voting>]}, without the TITLE_BLOCK votings
+    """
+    documents = vote.findall("documents/document")
+    codes = [__document_code(document) for document in documents]
+    main_document = __main_document(documents)
+    blocks = [[None, []]]  # [[<document given by the title of the block>, [<voting>]]]
+    for voting in vote.findall("votings/voting"):
+        if voting.get("type") == "TITLE_BLOCK":
+            title = voting.findtext("title") or ""
+            # "RC-B10-0173/2024" contains "B10-0173/2024": the longest code given by the title
+            blocks.append([max((code for code in codes if code in title), key=len, default=None), []])
+        else:
+            blocks[-1][1].append(voting)
+    if not any(document for document, _ in blocks[1:]):
+        return {main_document: [voting for _, votings in blocks for voting in votings]}
+    per_document = {}
+    for position, (document, votings) in enumerate(blocks):
+        # The votings before the first block are those of the main document. A block whose title gives no document
+        # ("Autres propositions de résolution") is left out: it can't be told which document it's about.
+        document = document or (main_document if position == 0 else None)
+        if document is not None and votings:
+            per_document.setdefault(document, []).extend(votings)
+    return per_document
+
+
 def __parse_structured_voting(voting: etree._Element) -> dict:
     was_adopted = voting.get("result") == "ADOPTED"
     if voting.get("resultType") != "ROLL_CALL":
@@ -80,16 +110,13 @@ def __parse_structured_voting(voting: etree._Element) -> dict:
 def __parse_structured_format(xml: etree._Element) -> dict:
     results = {}
     for vote in xml.iter("vote"):
-        documents = vote.findall("documents/document")
-        if not documents:
+        if not vote.findall("documents/document"):
             continue
-        votings = [voting for voting in vote.findall("votings/voting") if voting.get("result") in FINAL_RESULTS]
-        if not votings:
-            continue
-        eu_document_code = __main_document(documents)
-        if eu_document_code not in results:
-            # The last vote is the vote on the whole text
-            results[eu_document_code] = __parse_structured_voting(votings[-1])
+        for eu_document_code, votings in __votings_per_document(vote).items():
+            votings = [voting for voting in votings if voting.get("result") in FINAL_RESULTS]
+            if votings and eu_document_code not in results:
+                # The last vote is the vote on the whole text
+                results[eu_document_code] = __parse_structured_voting(votings[-1])
     return results
 
 
@@ -123,14 +150,11 @@ def __structured_amendment(voting: etree._Element) -> dict:
 def __parse_structured_amendments(xml: etree._Element) -> dict:
     results = {}
     for vote in xml.iter("vote"):
-        documents = vote.findall("documents/document")
-        if not documents:
+        if not vote.findall("documents/document"):
             continue
-        eu_document_code = __main_document(documents)
-        if eu_document_code in results:
-            continue
-        results[eu_document_code] = [__structured_amendment(voting) for voting in vote.findall("votings/voting")
-                                     if voting.get("type") != "TITLE_BLOCK" and voting.get("result")]
+        for eu_document_code, votings in __votings_per_document(vote).items():
+            if eu_document_code not in results:
+                results[eu_document_code] = [__structured_amendment(voting) for voting in votings if voting.get("result")]
     return results
 
 

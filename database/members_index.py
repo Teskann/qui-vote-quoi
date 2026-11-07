@@ -51,6 +51,20 @@ def __group_positions(vote: dict) -> dict:
     return positions
 
 
+def is_final_vote(vote: dict, document: dict) -> bool:
+    """
+    :param vote: one of the votes held on the document (see "amendments")
+    :return: whether the vote is the roll-call vote on the whole document. Its identifier is stored since the final vote
+    is chosen from the result of the document (see merge_data). In the days filled before, it's the vote whose votes
+    are those of the document (the last roll-call vote on the document).
+    """
+    if not (document.get("global", {}).get("was_roll_call_voted") and vote.get("was_roll_call_voted")):
+        return False
+    if "final_vote_id" in document:
+        return document["final_vote_id"] is not None and vote.get("id") == document["final_vote_id"]
+    return bool(vote.get("votes") and vote["votes"] == document.get("votes") and vote.get("absent") == document.get("absent"))
+
+
 def __day_statistics(date: str) -> dict:
     """
     :return: {"members": {<kind of vote, see VOTE_KINDS>: {<identifier>: {"full_name", "group", "voted", "absent",
@@ -82,13 +96,9 @@ def __day_statistics(date: str) -> dict:
             if vote.get("was_roll_call_voted") and vote.get("id"):
                 roll_call_votes[vote["id"]] = vote
                 documents.setdefault(vote["id"], (eu_document_code, content.get("details", {}).get("title")))
-        # The final vote of the document is the one whose votes are those of the document (the last roll-call vote on
-        # the document, see parse_all_votes). Its identifier is not stored.
-        if content.get("global", {}).get("was_roll_call_voted"):
-            final = [vote for vote in content.get("amendments", []) if vote.get("was_roll_call_voted")
-                     and vote.get("id") and vote["votes"] == content["votes"] and vote.get("absent") == content.get("absent")]
-            if final:
-                final_votes.add(final[-1]["id"])
+        final = [vote for vote in content.get("amendments", []) if vote.get("id") and is_final_vote(vote, content)]
+        if final:
+            final_votes.add(final[-1]["id"])
     for vote in roll_call_votes.values():
         kind = FINAL if vote["id"] in final_votes else AMENDMENTS
         # The groups don't need the members to be identified: all the votes are used

@@ -6,6 +6,7 @@ import time
 from babel.dates import format_date
 
 from database import storage
+from database.members_index import is_final_vote  # Used by the templates
 from utils.date_management import parliament_number_from_date, year_from_parliament_number
 
 
@@ -702,16 +703,6 @@ def votes_on_day(date: str, data: dict) -> bool:
     :return: bool
     """
     return any([vote["date"] == date for vote in data.values()])
-
-
-def is_final_vote(vote: dict, document: dict) -> bool:
-    """
-    :param vote: one of the votes held on the document (see "amendments")
-    :return: whether the vote is the final vote of the document: the one whose votes are those of the document (the last
-    roll-call vote on the document, see parse_all_votes)
-    """
-    return bool(document.get("global", {}).get("was_roll_call_voted") and vote.get("was_roll_call_voted")
-                and vote.get("votes") and vote["votes"] == document.get("votes") and vote.get("absent") == document.get("absent"))
 
 
 def to_html_id(input_string: str):

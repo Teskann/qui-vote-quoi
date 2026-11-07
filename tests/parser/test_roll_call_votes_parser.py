@@ -60,3 +60,27 @@ def test_absent_and_corrections():
             assert correction["intended"] in ("+", "-", "0")
             assert correction["voted"] in ("+", "-", "0", None)
     assert any(document["corrections"] for document in documents.values())
+
+
+def test_votes_without_identifier():
+    # From mid-2017 to 2019, the XML doesn't identify the votes: they are identified by their number in the day, so
+    # that they are counted in the statistics of the members
+    votes = parse_all_votes(get_roll_call_votes_xml_at_date("2017-06-01"), "2017-06-01")
+    identifiers = [vote["id"] for content in votes.values() for vote in content["amendments"]]
+    assert identifiers and all(identifier and identifier.startswith("2017-06-01-") for identifier in identifiers)
+    assert "2017-06-01-1" in identifiers
+
+
+def test_members_sharing_a_name():
+    # Marine Le Pen left in June 2017: "Le Pen" is then Jean-Marie Le Pen
+    votes = parse_all_votes(get_roll_call_votes_xml_at_date("2018-03-14"), "2018-03-14")
+    members = [member for content in votes.values() for vote in content["amendments"]
+               for groups in list(vote["votes"].values()) + [vote["absent"]] for group in groups.values() for member in group]
+    assert {member["id"] for member in members if member["name"] == "Le Pen"} == {"1023"}
+    assert all(member["id"] for member in members)
+    # When both were in office, the document writes "Le Pen Marine" for one and "Le Pen" for the other
+    votes = parse_all_votes(get_roll_call_votes_xml_at_date("2017-05-16"), "2017-05-16")
+    members = [member for content in votes.values() for vote in content["amendments"]
+               for groups in vote["votes"].values() for group in groups.values() for member in group]
+    assert {member["id"] for member in members if member["name"] == "Le Pen"} == {"1023"}
+    assert all(vote["absent"] is not None for content in votes.values() for vote in content["amendments"])

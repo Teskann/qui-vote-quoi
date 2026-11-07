@@ -59,7 +59,7 @@
     {{ tile("Députés", group.members_count | fr_number, "député" ~ ("s" if group.members_count > 1 else "") ~ " français sur la période",
             ranks.members_count) }}
     {{ tile("Cohésion", ((100 * cohesion) | fr_decimal ~ "&nbsp;%") if cohesion is not none else "-",
-            ("des députés suivent la majorité du groupe, sur " ~ cohesion_votes | fr_number ~ " votes")
+            ("des députés suivent la majorité du groupe (hors abstentions), sur " ~ cohesion_votes | fr_number ~ " votes")
             if cohesion is not none else "jamais plus d'un député du groupe à un même vote",
             ranks.cohesion) }}
     {{ tile("Absentéisme", "{:.0f}".format(100 * group.absent_rate) ~ "&nbsp;%", "des votes tenus pendant le mandat de ses députés",
