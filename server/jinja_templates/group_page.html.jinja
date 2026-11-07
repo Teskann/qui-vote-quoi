@@ -59,7 +59,7 @@
     {{ tile("Députés", group.members_count | fr_number, "député" ~ ("s" if group.members_count > 1 else "") ~ " français sur la période",
             ranks.members_count) }}
     {{ tile("Cohésion", ((100 * cohesion) | fr_decimal ~ "&nbsp;%") if cohesion is not none else "-",
-            ("des députés votent en moyenne comme la majorité du groupe (abstentions exclues), sur " ~ cohesion_votes | fr_number ~ " votes")
+            ("des députés suivent la majorité du groupe, sur " ~ cohesion_votes | fr_number ~ " votes")
             if cohesion is not none else "jamais plus d'un député du groupe à un même vote",
             ranks.cohesion) }}
     {{ tile("Absentéisme", "{:.0f}".format(100 * group.absent_rate) ~ "&nbsp;%", "des votes tenus pendant le mandat de ses députés",
@@ -138,6 +138,33 @@
     </tbody>
 </table>
 </div>
+
+{% if recent %}
+<section>
+    <h2>Votes récents</h2>
+    <p class="chart_note">Position de la majorité des députés français du groupe sur les derniers votes finaux par appel nominal.</p>
+    {% set positions = {"+": "Pour", "-": "Contre", "0": "Abstention", "absent": "Absents", none: "Partagé"} %}
+    <table class="recent_votes">
+    {% for vote in recent %}
+        <tr>
+            <td class="recent_date">{{ vote.date | to_pretty_date }}</td>
+            <td>
+                <a href="/texte?date={{ vote.date }}&code={{ vote.eu_document_code | urlencode }}">{{ vote.title | add_flags }}{{ vote.title | add_emojis }}{{ vote.title }}</a>
+                <div class="recent_counts">
+                    {%- set details = [] -%}
+                    {%- for vote_type, word in [("+", "pour"), ("-", "contre"), ("0", "abstention"), ("absent", "absent")] if vote.counts[vote_type] -%}
+                        {%- set _ = details.append(vote.counts[vote_type] ~ " " ~ word ~ ("s" if vote_type in ("0", "absent") and vote.counts[vote_type] > 1 else "")) -%}
+                    {%- endfor -%}
+                    {{ details | join(" · ") }}
+                </div>
+            </td>
+            <td><span class="vote_badge {{ vote.position | class_from_vote_result if vote.position else "absent" }}">{{ positions[vote.position] }}</span></td>
+            <td class="recent_result">{{ "Adopté" if vote.was_adopted else "Rejeté" }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</section>
+{% endif %}
 {% endif %}
 
 </div>

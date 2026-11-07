@@ -115,7 +115,8 @@ def __day_statistics(date: str) -> dict:
             member(kind, group, entry)["absent"] += 1
         for correction in vote.get("corrections", []):
             if correction.get("id") in statistics[kind]:
-                statistics[kind][correction["id"]]["corrections"] += 1
+                if correction.get("voted") is not None:
+                    statistics[kind][correction["id"]]["corrections"] += 1
                 corrections.setdefault(correction["id"], []).append({
                     "date": date, "kind": kind, "vote_id": vote["id"], "eu_document_code": documents[vote["id"]][0],
                     "title": documents[vote["id"]][1], "label": vote.get("label"),
@@ -266,6 +267,43 @@ def __recent_votes(identifier: str, last_month: str) -> list[dict]:
     return recent
 
 
+def get_group_recent_votes(groups: set[str], last_month: str) -> list[dict]:
+    """
+    Final votes of a political group on the most recent documents. Only the last days are read, from the last month
+    the group voted in.
+    :param groups: names of the group in the votes ("France / The Left :"), several when it was renamed
+    :param last_month: last month the group voted in, as "YYYY-MM"
+    :return: [{"date", "eu_document_code", "title", "counts": {"+": ..., "-": ..., "0": ..., "absent": ...},
+    "position": <"+", "-" or "0" voted by most of the members who voted, None if as many voted two ways, "absent" if
+    nobody voted>, "was_adopted"}], most recent first
+    """
+    recent = []
+    for date in reversed([date for date, _ in storage.days() if date[:7] <= last_month]):
+        for eu_document_code, content in reversed(list(storage.read_day(date, with_amendments=False).items())):
+            # Same documents as the recent votes of the members, see __recent_votes
+            if content.get("absent") is None or "details" not in content or not content["global"]["was_roll_call_voted"]:
+                continue
+            cast = list(content["votes"].items()) + [("absent", content["absent"])]
+            counts = {vote_type: sum(1 for group, _ in __members(members) if group in groups)
+                      for vote_type, members in cast}
+            counts = {vote_type: counts.get(vote_type, 0) for vote_type in ("+", "-", "0", "absent")}
+            if not any(counts.values()):
+                continue  # The group was not in office
+            votes = sorted((counts[vote_type], vote_type) for vote_type in ("+", "-", "0"))
+            position = "absent" if votes[-1][0] == 0 else None if votes[-1][0] == votes[-2][0] else votes[-1][1]
+            recent.append({
+                "date": date,
+                "eu_document_code": eu_document_code,
+                "title": content["details"]["title"],
+                "counts": counts,
+                "position": position,
+                "was_adopted": content["global"]["was_adopted"],
+            })
+            if len(recent) == RECENT_VOTES:
+                return recent
+    return recent
+
+
 def get_all_members(start_date: str | None = None, end_date: str | None = None,
                     kinds: tuple = VOTE_KINDS) -> list[dict]:
     """
@@ -321,12 +359,13 @@ def get_groups_votes(start_date: str | None = None, end_date: str | None = None,
 def get_member_corrections(identifier: str, start_date: str | None = None, end_date: str | None = None,
                            kinds: tuple = VOTE_KINDS) -> list[dict]:
     """
-    Votes of the period on which the member declared they voted by mistake
+    Votes of the period on which the member declared afterwards what they meant to vote: they voted by mistake, or
+    didn't vote
     :param identifier: identifier of the member (PersId)
     :param kinds: kinds of votes counted, see VOTE_KINDS. All by default.
     :return: [{"date", "kind", "vote_id", "eu_document_code", "title", "label", "voted", "intended"}], most recent
     first.
-    "voted" is what the member voted, "intended" what they meant to vote ("+", "-" or "0").
+    "voted" is what the member voted (None if they didn't vote), "intended" what they meant to vote ("+", "-" or "0").
     """
     with __lock:
         dates = __dates(start_date, end_date)

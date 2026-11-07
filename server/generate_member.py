@@ -5,7 +5,7 @@ from os.path import join
 import jinja2
 from babel.dates import format_date
 
-from database.members_index import get_all_members, get_groups_votes, database_dates, FINAL, AMENDMENTS, VOTE_KINDS
+from database.members_index import get_all_members, get_groups_votes, get_group_recent_votes, database_dates, FINAL, AMENDMENTS, VOTE_KINDS
 from server.common import get_css, TEMPLATES_PATH
 from utils.date_management import parliament_number_from_date, date_from_parliament_number, year_from_parliament_number
 from server.podiums import global_podiums, search_podiums, group_statistics, group_podiums, RENAMED_GROUPS
@@ -173,6 +173,17 @@ def __heads_of_list(group: str) -> list[dict]:
             for head in heads.values()]
 
 
+def __group_recent_votes(group: str) -> list[dict]:
+    """
+    :param group: current name of the group (see RENAMED_GROUPS)
+    :return: see get_group_recent_votes, whatever the filters, like the recent votes of the members
+    """
+    names = {group} | {old for old, new in RENAMED_GROUPS.items() if new == group}
+    months = [month for member in get_all_members() if RENAMED_GROUPS.get(member["group"], member["group"]) == group
+              for month in member["months"]]
+    return get_group_recent_votes(names, max(months)) if months else []
+
+
 def generate_group_page(slug: str, filters: dict) -> str | None:
     """
     Page of a political group: statistics of its members, cohesion, and how often it votes like the other groups
@@ -221,7 +232,7 @@ def generate_group_page(slug: str, filters: dict) -> str | None:
 
     return __template("group_page.html.jinja").render(
         css=get_css(), group=group, today=datetime.date.today().isoformat(), ranks=ranks, filters=filters, slug=slug,
-        heads_of_list=__heads_of_list(group["group"]),
+        heads_of_list=__heads_of_list(group["group"]), recent=__group_recent_votes(group["group"]),
         empty=False,
         groups_count=len(groups), cohesion_groups_count=len(cohesions),
         cohesion=cohesion, cohesion_votes=cohesion_totals.get(group["group"], [0])[0],

@@ -65,20 +65,29 @@
 <p class="ranking_intro">Aucun de ces votes n'a eu lieu pendant son mandat sur cette période.</p>
 {% endif %}
 
-{% if corrections %}
+{# The votes on which the member voted otherwise than they meant, and those they missed but declared afterwards what
+   they would have voted #}
+{% set mistakes = corrections | selectattr("voted") | list %}
+{% set missed = corrections | rejectattr("voted") | list %}
+
+{% macro correction_document(correction) %}
+<td class="recent_date">{{ correction.date | to_pretty_date }}</td>
+<td>
+    <a href="/texte?date={{ correction.date }}&code={{ correction.eu_document_code }}#vote-{{ correction.vote_id }}">{{ (correction.title or correction.eu_document_code) | add_flags }}{{ (correction.title or "") | add_emojis }}{{ correction.title or correction.eu_document_code }}</a>
+    {% if correction.label %}<div class="mistake_vote">{{ correction.label }}</div>{% endif %}
+</td>
+{% endmacro %}
+
+{% if mistakes %}
 <div class="wrapper">
     <input type="checkbox" id="toggleMistakes"/>
-    <label for="toggleMistakes">Erreurs de bouton <span class="label_count">({{ corrections | length | fr_number }})</span></label>
+    <label for="toggleMistakes">Erreurs de bouton <span class="label_count">({{ mistakes | length | fr_number }})</span></label>
     <div class="collapsible">
     <div class="collapsible_inner">
     <table class="recent_votes mistakes_table">
-    {% for correction in corrections %}
+    {% for correction in mistakes %}
         <tr>
-            <td class="recent_date">{{ correction.date | to_pretty_date }}</td>
-            <td>
-                <a href="/texte?date={{ correction.date }}&code={{ correction.eu_document_code }}#vote-{{ correction.vote_id }}">{{ (correction.title or correction.eu_document_code) | add_flags }}{{ (correction.title or "") | add_emojis }}{{ correction.title or correction.eu_document_code }}</a>
-                {% if correction.label %}<div class="mistake_vote">{{ correction.label }}</div>{% endif %}
-            </td>
+            {{ correction_document(correction) }}
             <td class="mistake_badges">
                 <span class="vote_badge {{ correction.voted | class_from_vote_result }}">{{ labels[correction.voted] }}</span>
                 <span class="mistake_arrow" aria-label="au lieu de">→</span>
@@ -87,7 +96,29 @@
         </tr>
     {% endfor %}
     </table>
-    <p class="mistake_note">Vote enregistré → vote voulu, déclaré par {{ agree(member, "le député", "la députée") }} après le vote. La correction ne modifie pas le résultat.</p>
+    </div>
+    </div>
+</div>
+{% endif %}
+
+{% if missed %}
+<div class="wrapper">
+    <input type="checkbox" id="toggleMissed"/>
+    <label for="toggleMissed">A raté le coche <span class="label_count">({{ missed | length | fr_number }})</span></label>
+    <div class="collapsible">
+    <div class="collapsible_inner">
+    <table class="recent_votes mistakes_table">
+    {% for correction in missed %}
+        <tr>
+            {{ correction_document(correction) }}
+            <td class="mistake_badges">
+                <span class="mistake_claim">{{ agree(member, "assure qu'il aurait voté", "assure qu'elle aurait voté", "assure qu'il ou elle aurait voté") }}</span>
+                <span class="vote_badge {{ correction.intended | class_from_vote_result }}">{{ labels[correction.intended] }}</span>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <p class="mistake_note">{{ agree(member, "Le député", "La députée") }} n'a pas voté, puis a déclaré après le vote ce qu'{{ agree(member, "il", "elle", "il ou elle") }} aurait voté. Ces votes sont comptés comme manqués, pas comme des erreurs de bouton.</p>
     </div>
     </div>
 </div>

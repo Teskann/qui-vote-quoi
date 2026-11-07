@@ -35,7 +35,7 @@ def __members_of_search(data: dict) -> list[dict]:
             for entry in entries:
                 member(group, entry)["absent"] += 1
         for correction in content.get("corrections", []):
-            if correction.get("id") in members:
+            if correction.get("id") in members and correction.get("voted") is not None:
                 members[correction["id"]]["corrections"] += 1
 
     for stats in members.values():

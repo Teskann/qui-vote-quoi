@@ -90,3 +90,26 @@ def test_member_page():
     assert "S'est trompé de bouton" in man and ">Absent<" in man
     unknown = generate_member_page({**member("x"), **stats}, filters_context, [])
     assert ">Absent(e)<" in unknown
+
+
+def test_missed_votes_section():
+    set_genders({"f1": "F", "m": "M"})
+    section = render("corrections.html.jinja").corrections_section
+    text = str(section([{**member("f1"), "voted": None, "intended": "0"}]))
+    assert "A raté le coche" in text and "S'est trompé" not in text
+    assert "n'a pas voté</span>, mais assure qu'elle" in text and "se serait abstenue" in text
+    # Both kinds on the same vote: two blocks
+    text = str(section([{**member("m"), "voted": "-", "intended": "+"}, {**member("f1"), "voted": None, "intended": "+"},
+                        {**member("m"), "voted": None, "intended": "-"}]))
+    assert "S'est trompé de bouton" in text and "Ont raté le coche" in text
+    assert "assure qu'il\n" in text or "assure qu'il " in text
+    assert "absence lors du vote" not in text
+
+
+def test_search_podiums_ignore_missed_votes():
+    from server.podiums import search_podiums
+    entry = {**member("m"), "voted": None, "intended": "+"}
+    document = {"date": "2025-01-01", "global": {"was_roll_call_voted": True},
+                "votes": {"+": {"France / PPE :": [member("f1")]}}, "absent": {"France / PPE :": [member("m")]},
+                "corrections": [entry]}
+    assert search_podiums({"A": document})["corrections"]["entries"] == []

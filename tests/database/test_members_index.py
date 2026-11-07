@@ -133,3 +133,58 @@ def test_get_member_corrections(tmp_path):
     assert corrections == [{"date": "2025-03-12", "kind": AMENDMENTS, "vote_id": "v1", "eu_document_code": "A10-0001/2025",
                             "title": "Titre", "label": "Am 3", "voted": "+", "intended": "-"}]
     assert on_final_votes == []
+
+
+def test_missed_votes_are_not_button_mistakes(tmp_path):
+    # b voted by mistake, a didn't vote and declared afterwards what they would have voted
+    a, b = member("1", "A"), member("2", "B")
+    vote = roll_call_vote("v1", {"+": {"France / PPE :": [b]}}, {"France / PPE :": [a]},
+                          [{**b, "voted": "+", "intended": "-"}, {**a, "voted": None, "intended": "+"}])
+    day = {"A10-0001/2025": {"votes": vote["votes"], "absent": vote["absent"], "corrections": [],
+                             "details": {"title": "Titre"}, "global": {"was_roll_call_voted": True, "was_adopted": True},
+                             "amendments": [vote]}}
+    previous_path = get_database_path()
+    set_database_path(str(tmp_path))
+    try:
+        write_day("2025-03-12", day)
+        missed, mistaken = get_member("1"), get_member("2")
+        missed_corrections = get_member_corrections("1")
+    finally:
+        set_database_path(previous_path)
+
+    # The missed vote is counted as absent, not as a mistake, but it's still listed
+    assert (missed["absent"], missed["corrections"]) == (1, 0)
+    assert mistaken["corrections"] == 1
+    assert [(correction["voted"], correction["intended"]) for correction in missed_corrections] == [(None, "+")]
+
+
+def test_get_group_recent_votes(tmp_path):
+    from database.members_index import get_group_recent_votes
+    a, b, c, d = member("1", "A"), member("2", "B"), member("3", "C"), member("4", "D")
+
+    def document(votes, absent):
+        return {"votes": votes, "absent": absent, "corrections": [], "details": {"title": "Titre"},
+                "global": {"was_roll_call_voted": True, "was_adopted": True}}
+    day = {
+        # Most of the Left voted for, a member of the Left under its former name voted against
+        "A10-0001/2025": document({"+": {"France / The Left :": [a, b]}, "-": {"France / GUE/NGL :": [c]}},
+                                  {"France / The Left :": [d]}),
+        # As many for as against
+        "A10-0002/2025": document({"+": {"France / The Left :": [a]}, "-": {"France / The Left :": [b]}}, {}),
+        # Nobody of the group voted
+        "A10-0003/2025": document({"+": {"France / PPE :": [c]}}, {"France / The Left :": [a]}),
+        # The group was not in office
+        "A10-0004/2025": document({"+": {"France / PPE :": [c]}}, {}),
+    }
+    previous_path = get_database_path()
+    set_database_path(str(tmp_path))
+    try:
+        write_day("2025-03-12", day)
+        recent = get_group_recent_votes({"France / The Left :", "France / GUE/NGL :"}, "2025-03")
+    finally:
+        set_database_path(previous_path)
+
+    # Most recent first: the last document of the day first
+    assert [(vote["eu_document_code"], vote["position"]) for vote in recent] == [
+        ("A10-0003/2025", "absent"), ("A10-0002/2025", None), ("A10-0001/2025", "+")]
+    assert recent[-1]["counts"] == {"+": 2, "-": 1, "0": 0, "absent": 1}

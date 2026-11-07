@@ -1151,12 +1151,12 @@ input[type="checkbox"]:checked ~ .collapsible .collapsible_inner {
 
 .stat_medal::before {
     left: 9px;
-    transform: rotate(18deg);
+    transform: rotate(-18deg);
 }
 
 .stat_medal::after {
     right: 9px;
-    transform: rotate(-18deg);
+    transform: rotate(18deg);
 }
 
 .chart_card {
@@ -1334,6 +1334,13 @@ input[type="checkbox"]:checked ~ .collapsible .collapsible_inner {
     white-space: nowrap;
     color: var(--text-muted);
     font-size: 0.9rem;
+}
+
+/* Votes of the members of a group under a recent vote: "12 pour · 3 contre · 2 absents" */
+.recent_counts {
+    margin-top: 2px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }
 
 .vote_badge {
@@ -2014,27 +2021,59 @@ input[type="checkbox"]:checked ~ .collapsible .collapsible_inner {
     list-style: none;
 }
 
-.amendment details {
+.amendment {
     border-radius: var(--radius-sm);
     background-color: var(--surface);
 }
 
-.amendment summary {
+/* Title of the vote, opening it like the other collapsible sections (see .collapsible) */
+.amendment label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+/* Same chevron as the other collapsible sections (see .wrapper label::before), turned by the checkbox */
+.amendment label::before {
+    content: '';
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(-45deg);
+    transition: transform 0.2s ease;
+}
+
+.amendment_heading {
+    flex: 1;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 8px 16px;
-    padding: 12px 16px;
-    cursor: pointer;
-    list-style: none;
 }
 
-.amendment summary::-webkit-details-marker {
-    display: none;
+.amendment label:hover .amendment_title {
+    color: var(--accent-hover);
 }
 
-.amendment summary:hover .amendment_title {
+/* Narrower margins than the other collapsible sections, which are wider */
+.amendment .collapsible_inner {
+    padding: 0 16px;
+}
+
+.amendment input[type="checkbox"]:checked ~ .collapsible .collapsible_inner {
+    padding-top: 4px;
+    padding-bottom: 16px;
+    /* Once open, the tooltips of the vote (above the bar of the result, ...) are not cut */
+    overflow: visible;
+    transition: opacity 0.2s ease, padding 0.25s ease, overflow 0s 0.25s allow-discrete;
+}
+
+.amendment_title {
     color: var(--accent-hover);
 }
 
@@ -2077,10 +2116,6 @@ input[type="checkbox"]:checked ~ .collapsible .collapsible_inner {
     color: var(--against);
 }
 
-.amendment_body {
-    padding: 0 16px 16px;
-}
-
 .amendment_note {
     margin: 8px 0 0;
     color: var(--text-muted);
@@ -2121,6 +2156,13 @@ input[type="checkbox"]:checked ~ .collapsible .collapsible_inner {
 
 .mistake_arrow {
     margin: 0 4px;
+    color: var(--text-muted);
+}
+
+/* "assure qu'elle aurait voté", before the badge of the vote */
+.mistake_claim {
+    margin-right: 4px;
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 

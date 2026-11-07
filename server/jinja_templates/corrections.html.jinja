@@ -1,25 +1,52 @@
 {% from "member.html.jinja" import mep_link %}
 
+{% macro correction_photo(correction) %}
+{% if correction.id %}
+    <a class="correction_photo" href="/membre/{{ correction.id }}" tabindex="-1" aria-hidden="true">
+        <img src="https://www.europarl.europa.eu/mepphoto/{{ correction.id }}.jpg" alt="" loading="lazy" onerror="this.remove()">
+    </a>
+{% endif %}
+{% endmacro %}
+
+{# Members who declared after the vote what they meant to vote: those who voted otherwise ("voted" is "+", "-" or
+   "0"), and those who didn't vote ("voted" is None) #}
 {% macro corrections_section(corrections) %}
 
-{% if corrections %}
+{% set mistakes = corrections | selectattr("voted") | list %}
+{% set missed = corrections | rejectattr("voted") | list %}
 {% set intended = {"+": "voulait voter pour", "-": "voulait voter contre", "0": "voulait s'abstenir"} %}
 
+{% if mistakes %}
 <div class="corrections">
-    <div class="corrections_title">{{ agree(corrections[0], "S'est trompé de bouton", "S'est trompée de bouton") if corrections | length == 1 else agree(corrections, "Se sont trompés de bouton", "Se sont trompées de bouton") }}</div>
+    <div class="corrections_title">{{ agree(mistakes[0], "S'est trompé de bouton", "S'est trompée de bouton") if mistakes | length == 1 else agree(mistakes, "Se sont trompés de bouton", "Se sont trompées de bouton") }}</div>
     <ul>
-    {% for correction in corrections %}
+    {% for correction in mistakes %}
         <li>
             {% set cast = {"+": "a voté pour", "-": "a voté contre", "0": agree(correction, "s'est abstenu", "s'est abstenue")} %}
-            {% if correction.id %}
-                <a class="correction_photo" href="/membre/{{ correction.id }}" tabindex="-1" aria-hidden="true">
-                    <img src="https://www.europarl.europa.eu/mepphoto/{{ correction.id }}.jpg" alt="" loading="lazy" onerror="this.remove()">
-                </a>
-            {% endif %}
+            {{ correction_photo(correction) }}
             <span>
                 {{ mep_link(correction) }}&nbsp;:
-                <span class="{{ correction.voted | class_from_vote_result if correction.voted else "absent" }}">{{ cast[correction.voted] if correction.voted else "absence lors du vote" }}</span>,
+                <span class="{{ correction.voted | class_from_vote_result }}">{{ cast[correction.voted] }}</span>,
                 <span class="{{ correction.intended | class_from_vote_result }}">{{ intended[correction.intended] }}</span>
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% if missed %}
+<div class="corrections">
+    <div class="corrections_title">{{ "A raté le coche" if missed | length == 1 else "Ont raté le coche" }}</div>
+    <ul>
+    {% for correction in missed %}
+        <li>
+            {% set would_have = {"+": "aurait voté pour", "-": "aurait voté contre", "0": agree(correction, "se serait abstenu", "se serait abstenue")} %}
+            {{ correction_photo(correction) }}
+            <span>
+                {{ mep_link(correction) }}&nbsp;:
+                <span class="absent">n'a pas voté</span>, mais assure qu'{{ agree(correction, "il", "elle", "il ou elle") }}
+                <span class="{{ correction.intended | class_from_vote_result }}">{{ would_have[correction.intended] }}</span>
             </span>
         </li>
     {% endfor %}
