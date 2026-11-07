@@ -1,5 +1,14 @@
 {% from "more_info.html.jinja" import more_info %}
 
+{# Name of a group, linking to its page. "Total France" and "Parlement Européen" have no page. #}
+{% macro group_name(group, request) -%}
+{%- if group.startswith("France / ") -%}
+    <a class="correlation_group" href="/groupe/{{ group | group_slug }}">{{ group | political_group }}</a>
+{%- else -%}
+    {{ group | political_group }}
+{%- endif -%}
+{%- endmacro %}
+
 {% macro get_correlations(data, request) %}
 
 {% if data | length > 0 %}
@@ -22,14 +31,15 @@
 <div class="wrapper">
     <input type="checkbox" id="toggleTable"/>
     <label for="toggleTable">Similarité des votes</label>
-    <div class="correlation-table-container">
+    <div class="correlation-table-container collapsible">
+    <div class="collapsible_inner">
         <table class="correlation-table" id="correlation-table">
             <thead>
                 <tr class="header-row">
                     <th class="header-cell">{{ more_info(explainations, True) }}</th>
                     {% for key, _ in cor.items() %}
                         <th class="header-cell tooltip">
-                                {{ key | political_group }}
+                                {{ group_name(key, request) }}
                                 <span class="tooltip_text tooltip_text_below">
                                     {{ key | political_group_tooltip(request.start_date, request.end_date) }}
                                 </span>
@@ -41,7 +51,7 @@
                 {% for row_key, row_value in cor.items() %}
                     <tr class="data-row">
                         <th class="data-cell tooltip">
-                            {{ row_key | political_group }}
+                            {{ group_name(row_key, request) }}
                             <span class="tooltip_text">
                                 {{ row_key | political_group_tooltip(request.start_date, request.end_date) }}
                             </span>
@@ -62,6 +72,7 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 

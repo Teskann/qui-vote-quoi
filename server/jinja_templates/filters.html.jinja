@@ -1,0 +1,94 @@
+{#
+Filters of the statistics, shared by the ranking, the members and the groups pages: kind of votes and period.
+    base: URL of the page
+    filters: {"start_date", "end_date", "votes", "first_date", "last_date", "terms"}, see filters_context
+    extra: other parameters of the URL of the page, kept by the filters ({"vue": "groupes"} for example)
+#}
+
+{# Query string of the filters, to keep them in the links to the other pages. Empty for the default filters. #}
+{% macro filters_query(filters, start=None, end=None, votes=None, extra={}) -%}
+{%- set start = start or filters.start_date -%}
+{%- set end = end or filters.end_date -%}
+{%- set votes = votes or filters.votes -%}
+{#- A namespace, as the variables set in a loop are not kept after it -#}
+{%- set query = namespace(parameters=[]) -%}
+{%- if start != filters.first_date or end != filters.last_date -%}
+    {%- set query.parameters = query.parameters + ["start_date=" ~ start, "end_date=" ~ end] -%}
+{%- endif -%}
+{%- for key, value in extra.items() -%}{%- set query.parameters = query.parameters + [key ~ "=" ~ value] -%}{%- endfor -%}
+{%- if votes != "tous" -%}{%- set query.parameters = query.parameters + ["votes=" ~ votes] -%}{%- endif -%}
+{{ ("?" ~ query.parameters | join("&")) if query.parameters }}
+{%- endmacro %}
+
+{# One segment of a segmented control #}
+{% macro segment(href, label, active) -%}
+<a href="{{ href }}" class="{{ "active" if active }}" aria-current="{{ "page" if active else "false" }}">{{ label }}</a>
+{%- endmacro %}
+
+{#
+Bar of the filters: one segmented control per filter, on one line when it fits
+    by_group: for the ranking, whether the groups are ranked (adds the "Classer" control). None for the other pages.
+#}
+{% macro filter_bar(base, filters, extra={}, by_group=None) %}
+{% set whole_period = filters.start_date == filters.first_date and filters.end_date == filters.last_date %}
+{% set term_period = filters.terms | selectattr("start_date", "equalto", filters.start_date) | selectattr("end_date", "equalto", filters.end_date) | list %}
+{% set custom_period = not whole_period and not term_period %}
+<div class="filter_bar">
+    {% if by_group is not none %}
+    <div class="filter">
+        <span class="filter_label" id="filter-view">Classer</span>
+        <nav class="segmented" aria-labelledby="filter-view">
+            {{ segment(base ~ filters_query(filters), "Députés", not by_group) }}
+            {{ segment(base ~ filters_query(filters, extra={"vue": "groupes"}), "Groupes", by_group) }}
+        </nav>
+    </div>
+    {% endif %}
+    <div class="filter">
+        <span class="filter_label" id="filter-votes">Votes</span>
+        <nav class="segmented" aria-labelledby="filter-votes">
+            {% for kind, label in {"tous": "Tous", "finaux": "Finaux", "amendements": "Amendements"}.items() %}
+                {{ segment(base ~ filters_query(filters, votes=kind, extra=extra), label, filters.votes == kind) }}
+            {% endfor %}
+        </nav>
+    </div>
+    <div class="filter">
+        <span class="filter_label" id="filter-period">Période</span>
+        <nav class="segmented" aria-labelledby="filter-period">
+            {{ segment(base ~ filters_query(filters, filters.first_date, filters.last_date, extra=extra), "Tout", whole_period) }}
+            {% for term in filters.terms %}
+                {# 2014-2019 => 2014-19 #}
+                {{ segment(base ~ filters_query(filters, term.start_date, term.end_date, extra=extra),
+                           term.label[:5] ~ term.label[-2:], filters.start_date == term.start_date and filters.end_date == term.end_date) }}
+            {% endfor %}
+            <details class="filter_custom"{{ " open" if custom_period }}>
+                <summary class="{{ "active" if custom_period }}">Personnalisée</summary>
+                {# Applied as soon as a valid date is entered: the bounds make the incomplete dates invalid (0002, 0020, ...) #}
+                <form class="filter_dates" method="get" action="{{ base }}">
+                    <label for="period-start">Du</label>
+                    <input type="date" id="period-start" class="date-input" name="start_date" value="{{ filters.start_date }}"
+                           min="{{ filters.first_date }}" max="{{ filters.last_date }}" required
+                           onchange="if (this.checkValidity()) this.form.submit()">
+                    <label for="period-end">au</label>
+                    <input type="date" id="period-end" class="date-input" name="end_date" value="{{ filters.end_date }}"
+                           min="{{ filters.first_date }}" max="{{ filters.last_date }}" required
+                           onchange="if (this.checkValidity()) this.form.submit()">
+                    {% for key, value in extra.items() %}<input type="hidden" name="{{ key }}" value="{{ value }}">{% endfor %}
+                    {% if filters.votes != "tous" %}<input type="hidden" name="votes" value="{{ filters.votes }}">{% endif %}
+                    <noscript><button type="submit" class="primary">OK</button></noscript>
+                </form>
+            </details>
+        </nav>
+    </div>
+</div>
+{% endmacro %}
+
+{# Sentence describing the votes counted #}
+{% macro votes_description(filters) -%}
+{%- if filters.votes == "finaux" -%}
+    les votes finaux des textes, par appel nominal,
+{%- elif filters.votes == "amendements" -%}
+    les votes par appel nominal des amendements (et autres votes sur une partie d'un texte),
+{%- else -%}
+    tous les votes par appel nominal, amendements compris,
+{%- endif -%}
+{%- endmacro %}

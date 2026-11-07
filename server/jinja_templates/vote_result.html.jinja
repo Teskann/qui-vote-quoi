@@ -10,10 +10,11 @@
 
 <div class="h2-container">
     <div class="h2">
-        <a href="{{ data.details.source_url }}" target="_blank">🗳️ {{ eu_document_code }}</a> -
-        {{ data.details.title | add_flags }}{{ data.details.title | add_emojis }}{{ data.details.title }}
+        {# The document on europarl is linked in the details ("Lire ...") #}
+        <a href="/texte?date={{ data.date }}&code={{ eu_document_code }}">🗳️ {{ eu_document_code }}</a> -
+        <a class="document_link" href="/texte?date={{ data.date }}&code={{ eu_document_code }}">{{ data.details.title | add_flags }}{{ data.details.title | add_emojis }}{{ data.details.title }}</a>
     </div>
-        {{ share(eu_document_code) }}
+        {{ share(eu_document_code, data.date) }}
 </div>
 
 {{ was_not_roll_call(data) }}

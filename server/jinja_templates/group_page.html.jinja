@@ -1,0 +1,145 @@
+{% from "filters.html.jinja" import filters_query, filter_bar, votes_description %}
+{% set name = group.group | political_group %}
+{% set logo = group.group | political_group_logo %}
+<!doctype html>
+<html lang="fr">
+<head>
+    {% include "favicon.html.jinja" %}
+    <style>{{ css }}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ name }} - Qui vote quoi ?</title>
+    <meta name="description" content="Absentéisme, cohésion et proximité avec les autres groupes des députés français du groupe {{ name | e }} au parlement européen">
+</head>
+<body>
+{% include "toolbar.html.jinja" %}
+<div id="content">
+
+{# rank: among the groups of the database, None if the group is not ranked. Medal for the top 3. #}
+{% macro tile(label, value, detail, rank) %}
+<div class="stat_tile{{ " stat_podium stat_podium_" ~ rank if rank and rank <= 3 }}">
+    {% if rank and rank <= 3 %}<span class="stat_medal" aria-hidden="true">{{ rank }}</span>{% endif %}
+    <div class="stat_label">{{ label }}</div>
+    <div class="stat_value">{{ value }}</div>
+    <div class="stat_detail">{{ detail }}</div>
+    {% if rank %}<div class="stat_rank">Top {{ rank | fr_number }}</div>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro group_name(other, query) %}
+{% set other_logo = other | political_group_logo %}
+<a class="proximity_group" href="/groupe/{{ other | group_slug }}{{ query }}">
+    <span class="group_logo">{% if other_logo %}<img src="{{ other_logo.url }}" alt=""{{ ' style="filter: brightness(%s)"' % other_logo.brightness if other_logo.brightness != 1 }}{{ ' class="logo_rounded"' if other_logo.rounded }}>{% endif %}</span>
+    {{ other | political_group }}
+</a>
+{% endmacro %}
+
+<div class="member_header">
+    {% if logo %}
+        <span class="group_header_logo"><img src="{{ logo.url }}" alt=""{{ ' style="filter: brightness(%s)"' % logo.brightness if logo.brightness != 1 }}{{ ' class="logo_rounded"' if logo.rounded }}></span>
+    {% endif %}
+    <div>
+        <h1>{{ name }}</h1>
+        <div class="member_meta">
+            <span>{{ group.group | political_group_tooltip(today) }}</span>
+            <a href="/classement{{ filters_query(filters, extra={"vue": "groupes"}) }}">Classement des groupes</a>
+        </div>
+    </div>
+</div>
+
+{% set base = "/groupe/" ~ slug %}
+{% set query = filters_query(filters) %}
+{{ filter_bar(base, filters) }}
+
+{% if empty %}
+<p class="ranking_intro">Aucun député du groupe n'a pris part à ces votes sur cette période.</p>
+{% else %}
+
+<div class="stat_tiles">
+    {{ tile("Députés", group.members_count | fr_number, "député" ~ ("s" if group.members_count > 1 else "") ~ " français sur la période",
+            ranks.members_count) }}
+    {{ tile("Cohésion", ((100 * cohesion) | fr_decimal ~ "&nbsp;%") if cohesion is not none else "-",
+            ("des députés votent en moyenne comme la majorité du groupe (abstentions exclues), sur " ~ cohesion_votes | fr_number ~ " votes")
+            if cohesion is not none else "jamais plus d'un député du groupe à un même vote",
+            ranks.cohesion) }}
+    {{ tile("Absentéisme", "{:.0f}".format(100 * group.absent_rate) ~ "&nbsp;%", "des votes tenus pendant le mandat de ses députés",
+            ranks.absent_rate) }}
+    {{ tile("Se sont trompés de bouton", group.corrections_average | fr_decimal ~ "&nbsp;fois", "en moyenne par député",
+            ranks.corrections_average) }}
+</div>
+
+{% if heads_of_list %}
+<section class="heads_section">
+    <h2>Têtes de liste</h2>
+    <div class="heads_of_list">
+    {% for head in heads_of_list %}
+        <div class="head_of_list">
+            <a href="/membre/{{ head.member.id }}" class="head_photo">
+                <img src="https://www.europarl.europa.eu/mepphoto/{{ head.member.id }}.jpg" alt="" loading="lazy" onerror="this.remove()">
+            </a>
+            <div>
+                {% for entry in head.lists %}<div class="head_term">{{ entry.terms }} · {{ entry.list }}</div>{% endfor %}
+                <a class="head_name" href="/membre/{{ head.member.id }}">{{ head.member.full_name }}</a>
+                {% if head.other_group %}
+                    <div class="head_note">{{ "Siège" if head.current else "A siégé" }} dans le groupe {{ head.other_group | political_group }}</div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% if proximity %}
+<section class="chart_card">
+    <h2>Proximité avec les autres groupes</h2>
+    <p class="chart_note">
+        Part des votes où la majorité des députés français de {{ name }} a voté comme celle de l'autre groupe (pour ou
+        contre), parmi les votes où les deux groupes avaient une majorité. Comme dans le résultat d'un vote, les
+        abstentions ne comptent pas.
+    </p>
+    <ul class="proximity">
+    {% for entry in proximity %}
+        <li>
+            {{ group_name(entry.group, query) }}
+            <span class="proximity_bar"><span style="width: {{ 100 * entry.rate }}%"></span></span>
+            <span class="proximity_rate">{{ "{:.0f}".format(100 * entry.rate) }}&nbsp;%</span>
+            <span class="proximity_detail">{{ entry.same | fr_number }} votes sur {{ entry.total | fr_number }}</span>
+        </li>
+    {% endfor %}
+    </ul>
+</section>
+{% endif %}
+
+<h2>Députés</h2>
+<div class="ranking_scroll">
+<table class="ranking_table">
+    <thead>
+        <tr>
+            <th class="ranking_rank">n<sup>o</sup></th>
+            <th>Député</th>
+            <th class="number">Absentéisme</th>
+            <th class="number">Votes manqués</th>
+            <th class="number">Trompé de bouton</th>
+            <th class="number">Votes</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for member in group.members | sort(attribute="full_name") | sort(attribute="absent_rate", reverse=true) %}
+        <tr>
+            <td class="ranking_rank">{{ loop.index }}</td>
+            <td><a href="/membre/{{ member.id }}{{ query }}">{{ member.full_name }}</a></td>
+            <td class="number">{{ "{:.0f}".format(100 * member.absent_rate) }}&nbsp;%</td>
+            <td class="number">{{ member.absent | fr_number }}</td>
+            <td class="number">{{ member.corrections | fr_number }}</td>
+            <td class="number">{{ member.voted | fr_number }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endif %}
+
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{% from "vote_result.html.jinja" import create_vote_results %}
+{% from "votes_table.html.jinja" import create_votes_table %}
+{% from "corrections.html.jinja" import corrections_section %}
+{% from "table_details.html.jinja" import outcome %}
+<!doctype html>
+<html lang="fr">
+<head>
+    {% include "favicon.html.jinja" %}
+    <style>{{ css }}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ eu_document_code }} - Qui vote quoi ?</title>
+    <meta name="description" content="Votes des députés français sur {{ eu_document_code }} et ses amendements au parlement européen">
+</head>
+<body>
+{% include "toolbar.html.jinja" %}
+<div id="content">
+
+{% set results = {"ADOPTED": ("adopted", "Adopté"), "REJECTED": ("rejected", "Rejeté"), "LAPSED": ("unknown", "Caduc"),
+                  "WITHDRAWN": ("unknown", "Retiré")} %}
+
+{# Result of one of the votes held on the document #}
+{# result: (<class>, <label>) of the result, None if unknown #}
+{% macro amendment_outcomes(vote, result) %}
+{% set gv = vote.global_votes if vote.global_votes and vote.global_votes["+"] is number else none %}
+<div class="outcomes">
+    {% if gv %}
+        {{ outcome("🇪🇺", result[0] if result else "unknown", result[1] if result else "Résultat inconnu",
+                   gv["+"], gv["-"], gv["0"], "Résultat du vote au parlement européen.") }}
+    {% endif %}
+    {% if vote.votes %}
+        {% set n_for = vote.votes["+"] | count_all_votes if "+" in vote.votes else 0 %}
+        {% set n_against = vote.votes["-"] | count_all_votes if "-" in vote.votes else 0 %}
+        {% set n_abstained = vote.votes["0"] | count_all_votes if "0" in vote.votes else 0 %}
+        {{ outcome("🇫🇷", "adopted" if n_for > n_against else "rejected",
+                   "Aurait été adopté" if n_for > n_against else "Aurait été rejeté",
+                   n_for, n_against, n_abstained, "Résultat théorique du vote si seuls les députés français avaient voté.") }}
+    {% endif %}
+</div>
+{% endmacro %}
+
+<p class="document_back"><a href="javascript:history.back()">← Retour</a></p>
+
+<h2 class="document_section">Vote final</h2>
+{{ create_vote_results(eu_document_code, data) }}
+
+{% if amendments %}
+<h2 class="document_section">
+    Tous les votes sur ce texte
+    <span class="label_detail">(ordre chronologique)</span>
+</h2>
+<ol class="amendments">
+{% for vote in amendments %}
+    {% set result = results.get(vote.result) %}
+    {% set final = vote | is_final_vote(data) %}
+    <li class="amendment">
+        <details>
+            <summary>
+                <span class="amendment_title">
+                    {{ vote.label or vote.subject or "Vote" }}
+                    {% if vote.author %}<span class="amendment_author">{{ vote.author }}</span>{% endif %}
+                </span>
+                <span class="amendment_badges">
+                    {% if final %}<span class="amendment_badge amendment_badge_final">Vote final</span>{% endif %}
+                    {% if not vote.was_roll_call_voted %}<span class="amendment_badge">Main levée</span>{% endif %}
+                    {% if result %}<span class="amendment_badge amendment_{{ result[0] }}">{{ result[1] }}</span>{% endif %}
+                </span>
+            </summary>
+            <div class="amendment_body">
+                {% if amendment_links[vote.id] %}
+                    <p class="amendment_source"><a href="{{ amendment_links[vote.id] }}" target="_blank">Lire l'amendement {{ amendment_numbers[vote.id] }} sur europarl ↗</a></p>
+                {% endif %}
+                {{ amendment_outcomes(vote, result) }}
+                {% if vote.was_roll_call_voted and vote.votes %}
+                    {{ create_votes_table(vote.votes, date, vote.absent) }}
+                    {{ corrections_section(vote.corrections or []) }}
+                {% elif not vote.was_roll_call_voted %}
+                    <p class="amendment_note">Vote à main levée : les votes des députés ne sont pas connus.</p>
+                {% else %}
+                    <p class="amendment_note">Les votes des députés français ne sont pas disponibles.</p>
+                {% endif %}
+            </div>
+        </details>
+    </li>
+{% endfor %}
+</ol>
+{% endif %}
+
+</div>
+{% include "mep_card.html.jinja" %}
+</body>
+</html>

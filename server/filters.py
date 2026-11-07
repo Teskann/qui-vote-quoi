@@ -26,6 +26,45 @@ def political_group_url(group_name):
     return links[group_name] if group_name in links else ""
 
 
+def group_slug(group_name) -> str:
+    """
+    :return: identifier of the group in the URLs, for example "verts-ale" for "France / Verts/ALE :". A group which
+    changed its name has the identifier of its current name (see RENAMED_GROUPS).
+    """
+    from server.podiums import RENAMED_GROUPS
+    group_name = RENAMED_GROUPS.get(group_name, group_name)
+    return re.sub(r"[^a-z0-9]+", "-", group_name.replace("France / ", "")[:-2].lower()).strip("-")
+
+
+def political_group_logo(group_name) -> dict | None:
+    """
+    :return: {"url": <URL of the logo>, "brightness": <factor to lighten the logo on the dark theme, 1 if it's readable
+    as it is>, "rounded": <the logo is a rounded square, whose corners are white in the file>}, None if the logo is
+    unknown. The logos come from Wikimedia Commons (property "logo image" of the groups
+    on Wikidata), they are public domain (text logos) but trademarked.
+    """
+    logos = {
+        # Too dark for the dark background: lightened, keeping their colors, to a contrast of at least 4:1
+        "France / ECR :": ("ecr.svg", 1.5),
+        "France / ESN :": ("esn.svg", 2.5),
+        "France / PfE :": ("pfe.svg", 2.5),
+        "France / ID :": ("id.svg", 1.8),
+        "France / PPE :": ("ppe.svg", 1.5),
+        # Readable as they are
+        "France / Renew :": ("renew.svg", 1),
+        "France / S&D :": ("sd.svg", 1),
+        "France / The Left :": ("left.svg", 1),
+        "France / Verts/ALE :": ("verts.svg", 1),
+        "France / EFDD :": ("efdd.png", 1),
+    }
+    from server.podiums import RENAMED_GROUPS
+    group_name = RENAMED_GROUPS.get(group_name, group_name)
+    if group_name not in logos:
+        return None
+    file, brightness = logos[group_name]
+    return {"url": f"/static/groups/{file}", "brightness": brightness, "rounded": group_name == "France / EFDD :"}
+
+
 def political_group_class(group_name):
     classes = {
         "France / ECR :": "group_ecr",
@@ -89,6 +128,81 @@ def political_group_spectrum(group_name):
         "Total France :": 2,
     }
     return classes[group_name] if group_name in classes else 1
+
+# Heads of the French lists elected in each group, by parliamentary term: {<term>: {<group>: [(<list>, <identifier of
+# the head of the list>)]}}. In 2014, France voted in 8 regional constituencies, each list had a head per constituency
+# (source: Wikipedia, results of the 2014 European elections in France). The lists of Outre-Mer had one head per section:
+# they are not given.
+HEADS_OF_LIST = {
+    10: {
+        "France / PfE :": [("Liste RN", "131580")],  # Jordan Bardella
+        "France / ECR :": [("Liste Reconquête", "256922")],  # Marion Maréchal
+        "France / ESN :": [("Liste Reconquête", "256922")],
+        "France / PPE :": [("Liste LR", "197534")],  # François-Xavier Bellamy
+        "France / Renew :": [("Liste Ensemble", "135511")],  # Valérie Hayer
+        "France / S&D :": [("Liste PS", "197694")],  # Raphaël Glucksmann
+        "France / The Left :": [("Liste LFI", "197533")],  # Manon Aubry
+        "France / Verts/ALE :": [("Liste EELV", "97236")],  # Marie Toussaint
+    },
+    9: {
+        "France / ID :": [("Liste RN", "131580")],
+        "France / PPE :": [("Liste LR", "197534")],
+        "France / Renew :": [("Liste LREM", "197494")],  # Nathalie Loiseau
+        "France / S&D :": [("Liste PS", "197694")],
+        "France / The Left :": [("Liste LFI", "197533")],
+        "France / Verts/ALE :": [("Liste EELV", "96740")],  # Yannick Jadot
+    },
+    8: {
+        "France / ENF :": [
+            ("Liste FN · Nord-Ouest", "28210"),  # Marine Le Pen
+            ("Liste FN · Ouest", "124738"),  # Gilles Lebreton
+            ("Liste FN · Est", "110977"),  # Florian Philippot
+            ("Liste FN · Massif central-Centre", "124761"),  # Bernard Monot
+            ("Liste FN · Sud-Ouest", "30190"),  # Louis Aliot
+            ("Liste FN · Sud-Est", "1023"),  # Jean-Marie Le Pen
+            ("Liste FN · Île-de-France", "124752"),  # Aymeric Chauprade
+        ],
+        "France / PPE :": [
+            ("Liste UMP · Nord-Ouest", "124731"),  # Jérôme Lavrilleux
+            ("Liste UMP · Ouest", "96849"),  # Alain Cadec
+            ("Liste UMP · Est", "72779"),  # Nadine Morano
+            ("Liste UMP · Massif central-Centre", "5565"),  # Brice Hortefeux
+            ("Liste UMP · Sud-Ouest", "1179"),  # Michèle Alliot-Marie
+            ("Liste UMP · Sud-Est", "124729"),  # Renaud Muselier
+            ("Liste UMP · Île-de-France", "1204"),  # Alain Lamassoure
+        ],
+        "France / S&D :": [
+            ("Liste PS-PRG · Nord-Ouest", "96948"),  # Gilles Pargneaux
+            ("Liste PS-PRG · Ouest", "114279"),  # Isabelle Thomas
+            ("Liste PS-PRG · Est", "124947"),  # Édouard Martin
+            ("Liste PS-PRG · Massif central-Centre", "94282"),  # Jean-Paul Denanot
+            ("Liste PS-PRG · Sud-Ouest", "103845"),  # Virginie Rozière
+            ("Liste PS-PRG · Sud-Est", "28166"),  # Vincent Peillon
+            ("Liste PS-PRG · Île-de-France", "1985"),  # Pervenche Berès
+        ],
+        "France / ALDE :": [
+            ("Liste UDI-MoDem · Nord-Ouest", "96885"),  # Dominique Riquet
+            ("Liste UDI-MoDem · Ouest", "124773"),  # Jean Arthuis
+            ("Liste UDI-MoDem · Est", "28208"),  # Nathalie Griesbeck
+            ("Liste UDI-MoDem · Sud-Ouest", "97022"),  # Robert Rochefort
+            ("Liste UDI-MoDem · Sud-Est", "97137"),  # Sylvie Goulard
+            ("Liste UDI-MoDem · Île-de-France", "4335"),  # Marielle de Sarnez
+        ],
+        "France / Verts/ALE :": [
+            ("Liste EELV · Nord-Ouest", "96868"),  # Karima Delli
+            ("Liste EELV · Ouest", "96740"),  # Yannick Jadot
+            ("Liste EELV · Sud-Ouest", "96744"),  # José Bové
+            ("Liste EELV · Sud-Est", "96743"),  # Michèle Rivasi
+            ("Liste EELV · Île-de-France", "124693"),  # Pascal Durand
+        ],
+        "France / GUE/NGL :": [
+            ("Liste Front de gauche · Sud-Ouest", "96742"),  # Jean-Luc Mélenchon
+            ("Liste Front de gauche · Sud-Est", "96858"),  # Marie-Christine Vergiat
+            ("Liste Front de gauche · Île-de-France", "96735"),  # Patrick Le Hyaric
+        ],
+    },
+}
+
 
 def political_group_french_list(group_name, date_1, date_2 = None):
     classes = {
@@ -474,22 +588,19 @@ def vote_results_per_group(data: dict):
             return 0
         return len(votes[vote_type][group])
 
+    def majority(votes_for, votes_against):
+        """
+        The abstentions don't count in the result of a vote: only the votes for and against are compared. None when
+        they are equal (no majority, or only abstentions).
+        """
+        return None if votes_for == votes_against else votes_for > votes_against
+
     def voted_for_this_document(group, votes):
-        votes_for = get_number_of_votes(group, "+", votes)
-        votes_against = get_number_of_votes(group, "-", votes)
-        votes_abstained = get_number_of_votes(group, "0", votes)
-        if  votes_for + votes_against + votes_abstained == 0:
-            return None
-        return get_number_of_votes(group, "+", votes) > get_number_of_votes(group, "-", votes)
+        return majority(get_number_of_votes(group, "+", votes), get_number_of_votes(group, "-", votes))
 
     def france_voted_for_this_document(votes):
-        votes_pro = 0
-        votes_against = 0
-        if "+" in votes:
-            votes_pro = sum([len(x) for x in votes['+']])
-        if "-" in votes:
-            votes_against = sum([len(x) for x in votes['-']])
-        return votes_pro > votes_against
+        return majority(sum(len(members) for members in votes.get("+", {}).values()),
+                        sum(len(members) for members in votes.get("-", {}).values()))
 
     def get_all_groups(votes):
         all_groups = set()
@@ -558,6 +669,16 @@ def votes_on_day(date: str, data: dict) -> bool:
     return any([vote["date"] == date for vote in data.values()])
 
 
+def is_final_vote(vote: dict, document: dict) -> bool:
+    """
+    :param vote: one of the votes held on the document (see "amendments")
+    :return: whether the vote is the final vote of the document: the one whose votes are those of the document (the last
+    roll-call vote on the document, see parse_all_votes)
+    """
+    return bool(document.get("global", {}).get("was_roll_call_voted") and vote.get("was_roll_call_voted")
+                and vote.get("votes") and vote["votes"] == document.get("votes") and vote.get("absent") == document.get("absent"))
+
+
 def to_html_id(input_string: str):
     return re.sub(r'[^a-zA-Z0-9\-]', '-', input_string)
 
@@ -567,3 +688,10 @@ def fr_number(number) -> str:
     Format a number the French way: thousands separated by a narrow no-break space (1 000)
     """
     return f"{number:,}".replace(",", "\u202f")
+
+
+def fr_decimal(number) -> str:
+    """
+    Format a number with one decimal the French way (1 234,5), without the decimal when it's 0 (1 234)
+    """
+    return f"{number:,.1f}".removesuffix(".0").replace(",", "\u202f").replace(".", ",")

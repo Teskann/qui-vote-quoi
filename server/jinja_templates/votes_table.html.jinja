@@ -11,7 +11,7 @@
         {% set vote_class = vote_result | class_from_vote_result %}
         {% for group, members in groups.items() %}
         <tr class="{{ vote_class }}">
-            <td class="political_group {{ group | political_group_class }} {{ vote_class }}"><a href="{{ group | political_group_url }}" class="tooltip"><span class="political_group_name {{ vote_class }}">{{ group | political_group }}</span><span class="tooltip_text">{{ group | political_group_tooltip(date) }}</span></a></td>
+            <td class="political_group {{ group | political_group_class }} {{ vote_class }}"><a href="/groupe/{{ group | group_slug }}" class="tooltip"><span class="political_group_name {{ vote_class }}">{{ group | political_group }}</span><span class="tooltip_text">{{ group | political_group_tooltip(date) }}</span></a></td>
             <td class="{{ vote_class }}">
             {%- for is_last, member in members | is_last_iterator -%}
                 {{ mep_link(member) }}{{ ", " if not is_last }}

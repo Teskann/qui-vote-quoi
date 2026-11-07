@@ -5,6 +5,8 @@ The plenary documents (votes results, roll-call votes results, ...) are publishe
 The same files are also published on www.europarl.europa.eu/doceo, but this website is protected against
 automated requests, whereas the open data portal is meant to be used by programs.
 """
+import re
+
 import requests
 from lxml import etree
 from requests.adapters import HTTPAdapter
@@ -15,12 +17,14 @@ from utils.date_management import parliament_number_from_date
 OPEN_DATA_URL = "https://data.europarl.europa.eu"
 API_URL = f"{OPEN_DATA_URL}/api/v2"
 JSON_LD = "application/ld+json"
+DOCEO_URL = "https://www.europarl.europa.eu/doceo/document"
 TIMEOUT = 60
 
 __session = None
 __meps_cache = {}
 __mep_cache = {}
 __corporate_bodies_cache = {}
+__amendments_documents_cache = {}
 
 # Number of "429 Too Many Requests" responses received, to tune the parallelism
 throttled_requests = 0
@@ -162,6 +166,64 @@ def get_corporate_body_label(identifier: str) -> str:
             raise OpenDataError(f"Could not get the corporate body {identifier}")
         __corporate_bodies_cache[identifier] = response.json()["data"][0]["label"]
     return __corporate_bodies_cache[identifier]
+
+
+def plenary_document_identifier(eu_document_code: str) -> str | None:
+    """
+    :param eu_document_code: for example "A10-0018/2025", "B10-0476/2026" or "RC-B10-0476/2026"
+    :return: identifier of the document in the API, for example "A-10-2025-0018" or "RC-10-2026-0476". None if the code
+    is not one of a plenary document.
+    """
+    match = re.match(r"^(RC-)?([A-Z])(\d+)-(\d+)/(\d{4})$", eu_document_code)
+    if not match:
+        return None
+    joint, letter, term, number, year = match.groups()
+    return f"{'RC' if joint else letter}-{term}-{year}-{number}"
+
+
+def get_amendments_documents(eu_document_code: str, language: str = "fr") -> list[tuple[int, int, str]]:
+    """
+    Documents of the amendments tabled in plenary on a document. Each document gathers a range of amendments.
+    :param eu_document_code: for example "A10-0018/2025"
+    :return: [(<first amendment number>, <last amendment number>, <URL of the PDF document>)], empty if unknown
+    """
+    if eu_document_code not in __amendments_documents_cache:
+        identifier = plenary_document_identifier(eu_document_code)
+        response = __get(f"{API_URL}/plenary-documents/{identifier}",
+                         params={"format": JSON_LD, "language": language}) if identifier else None
+        documents = []
+        for document in (response.json().get("data", [{}])[0].get("inverse_foresees_change_of", [])
+                         if response is not None else []):
+            numbers = re.search(r"-AM-(\d+)-(\d+)$", document.get("id", ""))
+            paths = [manifestation.get("is_exemplified_by", "")
+                     for expression in document.get("is_realized_by", []) if isinstance(expression, dict)
+                     for manifestation in expression.get("is_embodied_by", []) if isinstance(manifestation, dict)]
+            pdf = next((path for path in paths if path.lower().endswith(f"_{language}.pdf")),
+                       next((path for path in paths if path.lower().endswith(".pdf")), None))
+            # The files of some documents (amendments to joint motions for resolution) are not on the open data
+            # portal: the document is then linked on the website of the parliament
+            reference = document.get("id", "").split("/")[-1]
+            url = f"{OPEN_DATA_URL}/{pdf}" if pdf else f"{DOCEO_URL}/{reference}_{language.upper()}.pdf"
+            if numbers:
+                documents.append((int(numbers[1]), int(numbers[2]), url))
+        # Not kept when the API could not be reached, to try again later
+        if response is not None:
+            __amendments_documents_cache[eu_document_code] = documents
+        return documents
+    return __amendments_documents_cache[eu_document_code]
+
+
+def amendment_document(amendment_number: str | None, documents: list[tuple[int, int, str]]) -> str | None:
+    """
+    :param amendment_number: number of an amendment, for example "162", "118PC8" or "§" (original text)
+    :param documents: see get_amendments_documents
+    :return: URL of the document of the amendment, None if unknown. The ranges may overlap: the narrowest one is used.
+    """
+    number = re.match(r"^\d+", amendment_number or "")
+    if not number:
+        return None
+    matching = [document for document in documents if document[0] <= int(number[0]) <= document[1]]
+    return min(matching, key=lambda document: document[1] - document[0])[2] if matching else None
 
 
 def get_sitting_dates(year: int) -> set[str]:

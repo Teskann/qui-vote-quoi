@@ -1,3 +1,4 @@
+{% from "filters.html.jinja" import filters_query, filter_bar, votes_description %}
 <!doctype html>
 <html lang="fr">
 <head>
@@ -12,7 +13,9 @@
 {% include "toolbar.html.jinja" %}
 <div id="content">
 
-{% set total = member.voted + member.absent %}
+{% set has_stats = "voted" in member %}
+{% set total = member.voted + member.absent if has_stats else 0 %}
+{% set base = "/membre/" ~ member.id %}
 
 {% macro tile(label, value, detail, rank) %}
 <div class="stat_tile{{ " stat_podium stat_podium_" ~ rank if rank <= 3 }}">
@@ -30,12 +33,22 @@
     <div>
         <h1>{{ member.full_name }}</h1>
         <div class="member_meta">
-            <span class="tooltip">{{ member.group | political_group }}<span class="tooltip_text tooltip_text_below">{{ member.group | political_group_tooltip(today) }}</span></span>
+            {% set logo = member.group | political_group_logo %}
+            <a class="tooltip member_group" href="/groupe/{{ member.group | group_slug }}{{ filters_query(filters) }}">
+                {%- if logo %}<span class="group_logo"><img src="{{ logo.url }}" alt=""{{ ' style="filter: brightness(%s)"' % logo.brightness if logo.brightness != 1 }}{{ ' class="logo_rounded"' if logo.rounded }}></span>{% endif -%}
+                {{ member.group | political_group }}<span class="tooltip_text tooltip_text_below">{{ member.group | political_group_tooltip(today) }}</span></a>
             <a href="https://www.europarl.europa.eu/meps/fr/{{ member.id }}" target="_blank">Fiche sur europarl.europa.eu ↗</a>
         </div>
     </div>
 </div>
 
+{{ filter_bar(base, filters) }}
+
+{% if has_stats %}
+<p class="ranking_intro">
+    Sur {{ votes_description(filters) }} tenus pendant son mandat. Les rangs sont parmi les
+    {{ member.members_count | fr_number }} députés en fonction sur la période.
+</p>
 <div class="stat_tiles">
     {{ tile("Absentéisme", ("{:.0f}".format(100 * member.absent / total) if total else "-") ~ "&nbsp;%",
             "des votes tenus pendant son mandat",
@@ -48,6 +61,9 @@
     {{ tile("Votes", member.voted | fr_number, "votes par appel nominal auxquels " ~ member.full_name ~ " a pris part",
             member.ranks.voted) }}
 </div>
+{% else %}
+<p class="ranking_intro">Aucun de ces votes n'a eu lieu pendant son mandat sur cette période.</p>
+{% endif %}
 
 {% if months %}
 <section class="chart_card">

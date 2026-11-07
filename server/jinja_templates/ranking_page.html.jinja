@@ -1,4 +1,5 @@
 {% from "podiums.html.jinja" import podium_cards %}
+{% from "filters.html.jinja" import filters_query, filter_bar, votes_description %}
 <!doctype html>
 <html lang="fr">
 <head>
@@ -13,57 +14,83 @@
 {% include "toolbar.html.jinja" %}
 <div id="content">
 
-<h1>Classement des députés</h1>
+<h1>Classement des {{ "groupes politiques" if by_group else "députés" }}</h1>
+{% set extra = {"vue": "groupes"} if by_group else {} %}
+{# Filters kept in the links to the members and groups pages #}
+{% set query = filters_query(filters) %}
+
 <p class="ranking_intro">
-    Sur tous les votes par appel nominal de la période, amendements compris, tenus pendant le mandat de chaque député.
+    Sur {{ votes_description(filters) }} tenus pendant le mandat de chaque député.
+    {% if by_group %}Chaque député compte dans son dernier groupe de la période. L'absentéisme porte sur l'ensemble
+    des votes du groupe, les autres nombres sont des moyennes par député.{% endif %}
 </p>
 
-<nav class="terms" aria-label="Mandatures">
-    <a href="/classement" class="{{ "active" if start_date == first_date and end_date == last_date }}">Toute la période</a>
-    {% for term in terms %}
-        <a href="/classement?start_date={{ term.start_date }}&end_date={{ term.end_date }}"
-           class="{{ "active" if start_date == term.start_date and end_date == term.end_date }}">{{ term.label }}</a>
-    {% endfor %}
-</nav>
+{{ filter_bar("/classement", filters, extra, by_group) }}
 
-<form class="period" method="get" action="/classement">
-    <label for="ranking-start">Du</label>
-    <input type="date" id="ranking-start" class="date-input" name="start_date" value="{{ start_date }}" min="{{ first_date }}" max="{{ last_date }}">
-    <label for="ranking-end">au</label>
-    <input type="date" id="ranking-end" class="date-input" name="end_date" value="{{ end_date }}" min="{{ first_date }}" max="{{ last_date }}">
-    <button type="submit" class="primary">Appliquer</button>
-</form>
-
-{% if members %}
-{{ podium_cards(podiums) }}
-
-<h2>Classement complet</h2>
-<div class="ranking_scroll">
-<table class="ranking_table" id="ranking">
-    <thead>
-        <tr>
-            <th class="ranking_rank">#</th>
-            <th>Député</th>
-            <th>Groupe</th>
-            <th class="number"><button data-key="absent_rate" class="sorted">Absentéisme</button></th>
-            <th class="number"><button data-key="absent">Votes manqués</button></th>
-            <th class="number"><button data-key="corrections">Trompé de bouton</button></th>
-            <th class="number"><button data-key="voted">Votes</button></th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for member in members | sort(attribute="full_name") | sort(attribute="absent_rate", reverse=true) %}
-        <tr data-absent_rate="{{ member.absent_rate }}" data-absent="{{ member.absent }}"
-            data-corrections="{{ member.corrections }}" data-voted="{{ member.voted }}" data-name="{{ member.full_name | e }}">
-            <td class="ranking_rank">{{ member.ranks.absent_rate }}</td>
-            <td><a href="/membre/{{ member.id }}">{{ member.full_name }}</a></td>
+{% macro member_row(member, rank, group=None) %}
+        <tr class="ranking_member" data-absent_rate="{{ member.absent_rate }}" data-absent="{{ member.absent }}"
+            data-corrections="{{ member.corrections }}" data-voted="{{ member.voted }}" data-name="{{ member.full_name | e }}"
+            data-group="{{ (group or member.group) | e }}">
+            <td class="ranking_rank">{{ rank }}</td>
+            <td class="ranking_name"><a href="/membre/{{ member.id }}{{ query }}">{{ member.full_name }}</a></td>
             <td class="ranking_group">{{ member.group | political_group }}</td>
             <td class="number">{{ "{:.0f}".format(100 * member.absent_rate) }}&nbsp;%</td>
             <td class="number">{{ member.absent | fr_number }}</td>
             <td class="number">{{ member.corrections | fr_number }}</td>
             <td class="number">{{ member.voted | fr_number }}</td>
         </tr>
-    {% endfor %}
+{% endmacro %}
+
+{% if members %}
+{{ podium_cards(podiums, by_group, query) }}
+
+<h2>Classement complet</h2>
+<div class="ranking_scroll">
+<table class="ranking_table{{ " grouped" if by_group }}" id="ranking">
+    <thead>
+        <tr>
+            <th class="ranking_rank">n<sup>o</sup></th>
+            <th>{{ "Groupe" if by_group else "Député" }}</th>
+            <th class="ranking_group">Groupe</th>
+            <th class="number"><button data-key="absent_rate" class="sorted">Absentéisme</button></th>
+            <th class="number"><button data-key="absent">Votes manqués{{ "<span class=\"column_detail\"> (moyenne)</span>" if by_group }}</button></th>
+            <th class="number"><button data-key="corrections">Trompé de bouton{{ "<span class=\"column_detail\"> (moyenne)</span>" if by_group }}</button></th>
+            <th class="number"><button data-key="voted">Votes{{ "<span class=\"column_detail\"> (moyenne)</span>" if by_group }}</button></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if by_group %}
+        {# The members are listed under their group, they can be folded (see the script) #}
+        {% for group in groups | sort(attribute="group") | sort(attribute="absent_rate", reverse=true) %}
+        <tr class="ranking_group_row" data-absent_rate="{{ group.absent_rate }}" data-absent="{{ group.absent_average }}"
+            data-corrections="{{ group.corrections_average }}" data-voted="{{ group.voted_average }}"
+            data-name="{{ group.group | e }}" data-group="{{ group.group | e }}">
+            <td class="ranking_rank">{{ loop.index }}</td>
+            <td>
+                <button type="button" class="ranking_expand" aria-expanded="true">
+                    <span class="ranking_chevron" aria-hidden="true"></span>
+                    {% set logo = group.group | political_group_logo %}
+                    <span class="group_logo">{% if logo %}<img src="{{ logo.url }}" alt=""{{ ' style="filter: brightness(%s)"' % logo.brightness if logo.brightness != 1 }}{{ ' class="logo_rounded"' if logo.rounded }}>{% endif %}</span>
+                    {{ group.group | political_group }}
+                    <span class="ranking_group_count">{{ group.members_count }} député{{ "s" if group.members_count > 1 }}</span>
+                </button>
+                <a class="ranking_group_link" href="/groupe/{{ group.group | group_slug }}{{ query }}" aria-label="Page du groupe {{ group.group | political_group }}">→</a>
+            </td>
+            <td class="ranking_group"></td>
+            <td class="number">{{ "{:.0f}".format(100 * group.absent_rate) }}&nbsp;%</td>
+            <td class="number">{{ group.absent_average | round | int | fr_number }}</td>
+            <td class="number">{{ group.corrections_average | fr_decimal }}</td>
+            <td class="number">{{ group.voted_average | round | int | fr_number }}</td>
+        </tr>
+            {% for member in group.members | sort(attribute="full_name") | sort(attribute="absent_rate", reverse=true) %}
+                {{ member_row(member, loop.index, group.group) }}
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        {% for member in members | sort(attribute="full_name") | sort(attribute="absent_rate", reverse=true) %}
+            {{ member_row(member, member.ranks.absent_rate) }}
+        {% endfor %}
+    {% endif %}
     </tbody>
 </table>
 </div>
@@ -78,21 +105,49 @@
     const table = document.getElementById("ranking");
     if (!table) return;
     const body = table.tBodies[0];
+    const groupRows = Array.from(body.querySelectorAll(".ranking_group_row"));
+    const memberRows = Array.from(body.querySelectorAll(".ranking_member"));
 
-    function sort(key) {
+    function ranked(rows, key) {
         // Decreasing values; equal values share the same rank (1, 1, 3, ...)
-        const rows = Array.from(body.rows).sort((a, b) =>
-            Number(b.dataset[key]) - Number(a.dataset[key]) || a.dataset.name.localeCompare(b.dataset.name, "fr"));
+        rows.sort((a, b) => Number(b.dataset[key]) - Number(a.dataset[key]) || a.dataset.name.localeCompare(b.dataset.name, "fr"));
         let previous = null, rank = 0;
         rows.forEach((row, position) => {
             if (row.dataset[key] !== previous) rank = position + 1;
             previous = row.dataset[key];
             row.cells[0].textContent = rank;
-            body.appendChild(row);
         });
+        return rows;
+    }
+
+    function membersOf(groupRow) {
+        return memberRows.filter((row) => row.dataset.group === groupRow.dataset.group);
+    }
+
+    function sort(key) {
+        if (groupRows.length) {
+            // Each group, then its members ranked within the group
+            ranked(groupRows, key).forEach((groupRow) => {
+                body.appendChild(groupRow);
+                ranked(membersOf(groupRow), key).forEach((row) => body.appendChild(row));
+            });
+        } else {
+            ranked(memberRows, key).forEach((row) => body.appendChild(row));
+        }
         table.querySelectorAll("th button").forEach((button) => button.classList.toggle("sorted", button.dataset.key === key));
     }
 
+    function fold(groupRow, expanded) {
+        groupRow.querySelector(".ranking_expand").setAttribute("aria-expanded", expanded);
+        membersOf(groupRow).forEach((row) => row.hidden = !expanded);
+    }
+
+    // The groups are folded, so that their ranking is visible at a glance
+    groupRows.forEach((groupRow) => {
+        const button = groupRow.querySelector(".ranking_expand");
+        button.addEventListener("click", () => fold(groupRow, button.getAttribute("aria-expanded") !== "true"));
+        fold(groupRow, false);
+    });
     table.querySelectorAll("th button").forEach((button) => button.addEventListener("click", () => sort(button.dataset.key)));
     sort("absent_rate");
 })();

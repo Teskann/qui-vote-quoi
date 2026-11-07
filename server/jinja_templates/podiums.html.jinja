@@ -1,26 +1,39 @@
-{% macro podium_value(kind, member) -%}
+{# groups: the podium is made of political groups (see group_statistics), whose numbers are averages per member #}
+{% macro podium_value(kind, member, groups=False) -%}
 {%- if kind == "absent_rate" -%}
     {{ "{:.0f}".format(100 * member.absent_rate) }}&nbsp;%
 {%- elif kind == "absent" -%}
-    {{ member.absent | fr_number }}
+    {{ (member.absent_average | round | int if groups else member.absent) | fr_number }}
 {%- else -%}
-    {{ member.corrections | fr_number }}&nbsp;fois
+    {{ member.corrections_average | fr_decimal if groups else member.corrections | fr_number }}&nbsp;fois
 {%- endif -%}
 {%- endmacro %}
 
-{% macro podium_card(title, kind, podium) %}
+{# query: filters kept in the links to the members and groups pages #}
+{% macro podium_card(title, kind, podium, groups=False, query="") %}
 <div class="podium_card">
     <h3>{{ title }}</h3>
     <div class="podium">
         {# Second place on the left, first in the middle, third on the right #}
         {% for position in [1, 0, 2] if position < podium.entries | length %}
             {% set entry = podium.entries[position] %}
-            <a class="podium_place podium_place_{{ position + 1 }} podium_rank_{{ entry.rank }}" href="/membre/{{ entry.member.id }}">
+            {% if groups %}
+            <a class="podium_place podium_place_{{ position + 1 }} podium_rank_{{ entry.rank }}" href="/groupe/{{ entry.member.group | group_slug }}{{ query }}">
+                {# Only the logo (or the name when there's no logo): the details are in the table #}
+                {% set logo = entry.member.group | political_group_logo %}
+                {% if logo %}
+                <span class="podium_logo"><img src="{{ logo.url }}" alt="{{ entry.member.group | political_group }}"{{ ' style="filter: brightness(%s)"' % logo.brightness if logo.brightness != 1 }}{{ ' class="logo_rounded"' if logo.rounded }}></span>
+                {% else %}
+                <span class="podium_logo podium_badge">{{ entry.member.group | political_group }}</span>
+                {% endif %}
+            {% else %}
+            <a class="podium_place podium_place_{{ position + 1 }} podium_rank_{{ entry.rank }}" href="/membre/{{ entry.member.id }}{{ query }}">
                 <span class="podium_photo">
                     <img src="https://www.europarl.europa.eu/mepphoto/{{ entry.member.id }}.jpg" alt="" loading="lazy" onerror="this.remove()">
                 </span>
                 <span class="podium_name">{{ entry.member.full_name }}</span>
-                <span class="podium_value">{{ podium_value(kind, entry.member) }}</span>
+            {% endif %}
+                <span class="podium_value">{{ podium_value(kind, entry.member, groups) }}</span>
                 <span class="podium_step"><span>{{ entry.rank }}</span></span>
             </a>
         {% endfor %}
@@ -31,11 +44,11 @@
 </div>
 {% endmacro %}
 
-{% macro podium_cards(podiums) %}
+{% macro podium_cards(podiums, groups=False, query="") %}
 <div class="podium_cards">
-    {{ podium_card("Les plus absents (pourcentage)", "absent_rate", podiums.absent_rate) if podiums.absent_rate.entries }}
-    {{ podium_card("Les plus absents (nombre de votes)", "absent", podiums.absent) if podiums.absent.entries }}
-    {{ podium_card("Se sont le plus trompés de bouton", "corrections", podiums.corrections) if podiums.corrections.entries }}
+    {{ podium_card("Les plus absents (pourcentage)", "absent_rate", podiums.absent_rate, groups, query) if podiums.absent_rate.entries }}
+    {{ podium_card("Les plus absents (votes manqués par député)" if groups else "Les plus absents (nombre de votes)", "absent", podiums.absent, groups, query) if podiums.absent.entries }}
+    {{ podium_card("Se sont le plus trompés de bouton (par député)" if groups else "Se sont le plus trompés de bouton", "corrections", podiums.corrections, groups, query) if podiums.corrections.entries }}
 </div>
 {% endmacro %}
 
@@ -45,12 +58,14 @@
 <div class="wrapper">
     <input type="checkbox" id="togglePodiums"/>
     <label for="togglePodiums">Podiums <span class="label_detail">(pour les résultats de cette recherche)</span></label>
-    <div class="podiums_container">
+    <div class="podiums_container collapsible">
+    <div class="collapsible_inner">
         {{ podium_cards(podiums) }}
         <p class="podiums_note">
             Sur les votes finaux des textes de cette recherche.
             <a href="/classement">Voir le classement général →</a>
         </p>
+    </div>
     </div>
 </div>
 {% endif %}
