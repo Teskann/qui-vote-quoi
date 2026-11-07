@@ -1,5 +1,3 @@
-import re
-
 from unidecode import unidecode
 
 from database import storage
@@ -14,9 +12,23 @@ def get_all_votes_for_day(date: str) -> dict:
 
 
 def __keywords_matcher(keywords: str):
-    keywords_re = ".*".join(map(lambda kw: re.escape(unidecode(kw)), keywords.split(" ")))
-    keywords_regex = re.compile(f".*{keywords_re}.*", flags=re.IGNORECASE | re.MULTILINE)
-    return lambda text: keywords_regex.match(text) is not None
+    """
+    :return: function telling if a text contains all the keywords, in this order, ignoring the case and the accents
+    """
+    keywords = [unidecode(keyword).lower() for keyword in keywords.split()]
+
+    def matches(text: str) -> bool:
+        # Searching each keyword after the previous one is linear. A regular expression such as ".*a.*b.*c" takes an
+        # exponential time with many keywords, which would allow anyone to block the server with a long search.
+        text, position = text.lower(), 0
+        for keyword in keywords:
+            position = text.find(keyword, position)
+            if position < 0:
+                return False
+            position += len(keyword)
+        return True
+
+    return matches
 
 
 def search_eu_document(keywords: str, date: str) -> dict:

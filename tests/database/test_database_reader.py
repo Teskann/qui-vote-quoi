@@ -1,3 +1,5 @@
+import time
+
 from database.database_reader import search_eu_document, search_in_time_range
 from database.database_writer import dump_day
 from tests.setup_database import clear_database
@@ -51,3 +53,14 @@ def test_search_in_time_range():
     # The range is inclusive
     assert len(list(search_in_time_range("2022-06-23", "2022-06-23", ""))) == 1
     assert list(search_in_time_range("2023-01-01", "2023-12-31", "")) == []
+
+
+def test_search_with_many_keywords():
+    clear_database()
+    dump_day("2024-09-19")
+    # The keywords must appear in this order, the case and the accents are ignored
+    assert set(search_eu_document("situation VÉNÉZUELA", "2024-09-19")) == {"RC-B10-0023/2024"}
+    # Many keywords don't block the server (a regular expression took several seconds per document)
+    start = time.perf_counter()
+    assert search_eu_document("a " * 50 + "zzz", "2024-09-19") == {}
+    assert time.perf_counter() - start < 1
