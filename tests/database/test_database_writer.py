@@ -88,7 +88,8 @@ def test_amendments():
     assert amendment["result"] == "REJECTED"
     assert amendment["was_roll_call_voted"]
     # The document of the amendment on europarl is stored, the website doesn't have to ask it
-    assert amendment["amendment_url"].lower().endswith(".pdf")
+    other = [vote for vote in open_actual_amendments("2024-10-10", "RC-B10-0095/2024") if vote["id"] == "169828"][0]
+    assert other["amendment_url"].endswith("/RC-10-2024-0095-AM-003-004_fr.pdf")
     assert final_vote["amendment_url"] is None
     assert any(not amendment["was_roll_call_voted"] and amendment["votes"] == {} for amendment in amendments)
 
