@@ -18,8 +18,6 @@ def __keywords_matcher(keywords: str):
     keywords = [unidecode(keyword).lower() for keyword in keywords.split()]
 
     def matches(text: str) -> bool:
-        # Searching each keyword after the previous one is linear. A regular expression such as ".*a.*b.*c" takes an
-        # exponential time with many keywords, which would allow anyone to block the server with a long search.
         text, position = text.lower(), 0
         for keyword in keywords:
             position = text.find(keyword, position)
