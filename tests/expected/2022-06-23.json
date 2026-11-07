@@ -436,6 +436,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146551",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -896,6 +897,7 @@
         "intended": "+"
       }
     ],
+    "final_vote_id": "146523",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -1350,6 +1352,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "145865",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -1830,6 +1833,7 @@
         "intended": "-"
       }
     ],
+    "final_vote_id": "146461",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -2296,6 +2300,7 @@
         "intended": "-"
       }
     ],
+    "final_vote_id": "145876",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -2744,6 +2749,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146304",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -3192,6 +3198,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146303",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -3640,6 +3647,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146307",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -4106,6 +4114,7 @@
         "intended": "-"
       }
     ],
+    "final_vote_id": "146357",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -4554,6 +4563,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146358",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -5002,6 +5012,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146315",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -5023,6 +5034,7 @@
     "votes": {},
     "absent": null,
     "corrections": [],
+    "final_vote_id": null,
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-VOT_FR.html",
     "details": {
@@ -5482,6 +5494,7 @@
         "intended": "+"
       }
     ],
+    "final_vote_id": "146052",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -5930,6 +5943,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146053",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -5948,442 +5962,10 @@
     }
   },
   "B9-0329/2022": {
-    "votes": {
-      "+": {
-        "France / Renew :": [
-          {
-            "name": "Bijoux",
-            "id": "197551",
-            "full_name": "Stéphane Bijoux"
-          },
-          {
-            "name": "Boyer",
-            "id": "197577",
-            "full_name": "Gilles Boyer"
-          },
-          {
-            "name": "Canfin",
-            "id": "96711",
-            "full_name": "Pascal Canfin"
-          },
-          {
-            "name": "Cicurel",
-            "id": "204416",
-            "full_name": "Ilana Cicurel"
-          },
-          {
-            "name": "Farreng",
-            "id": "197589",
-            "full_name": "Laurence Farreng"
-          },
-          {
-            "name": "Gozi",
-            "id": "204419",
-            "full_name": "Sandro Gozi"
-          },
-          {
-            "name": "Grudler",
-            "id": "197557",
-            "full_name": "Christophe Grudler"
-          },
-          {
-            "name": "Guetta",
-            "id": "197543",
-            "full_name": "Bernard Guetta"
-          },
-          {
-            "name": "Hayer",
-            "id": "135511",
-            "full_name": "Valérie Hayer"
-          },
-          {
-            "name": "Karleskind",
-            "id": "197585",
-            "full_name": "Pierre Karleskind"
-          },
-          {
-            "name": "Loiseau",
-            "id": "197494",
-            "full_name": "Nathalie Loiseau"
-          },
-          {
-            "name": "Orville",
-            "id": "234344",
-            "full_name": "Max Orville"
-          },
-          {
-            "name": "Séjourné",
-            "id": "197508",
-            "full_name": "Stéphane Séjourné"
-          },
-          {
-            "name": "Trillet-Lenoir",
-            "id": "197593",
-            "full_name": "Véronique Trillet-Lenoir"
-          },
-          {
-            "name": "Vedrenne",
-            "id": "197502",
-            "full_name": "Marie-Pierre Vedrenne"
-          },
-          {
-            "name": "Yenbou",
-            "id": "197511",
-            "full_name": "Salima Yenbou"
-          },
-          {
-            "name": "Yon-Courtin",
-            "id": "197581",
-            "full_name": "Stéphanie Yon-Courtin"
-          }
-        ],
-        "France / S&D :": [
-          {
-            "name": "Andrieu",
-            "id": "113892",
-            "full_name": "Eric Andrieu"
-          },
-          {
-            "name": "Glucksmann",
-            "id": "197694",
-            "full_name": "Raphaël Glucksmann"
-          },
-          {
-            "name": "Guillaume",
-            "id": "96952",
-            "full_name": "Sylvie Guillaume"
-          },
-          {
-            "name": "Lalucq",
-            "id": "197697",
-            "full_name": "Aurore Lalucq"
-          },
-          {
-            "name": "Larrouturou",
-            "id": "197698",
-            "full_name": "Pierre Larrouturou"
-          }
-        ],
-        "France / The Left :": [
-          {
-            "name": "Aubry",
-            "id": "197533",
-            "full_name": "Manon Aubry"
-          },
-          {
-            "name": "Chaibi",
-            "id": "197529",
-            "full_name": "Leila Chaibi"
-          },
-          {
-            "name": "Maurel",
-            "id": "24505",
-            "full_name": "Emmanuel Maurel"
-          },
-          {
-            "name": "Pelletier",
-            "id": "197527",
-            "full_name": "Anne-Sophie Pelletier"
-          }
-        ],
-        "France / Verts/ALE :": [
-          {
-            "name": "Alfonsi",
-            "id": "96750",
-            "full_name": "François Alfonsi"
-          },
-          {
-            "name": "Biteau",
-            "id": "197512",
-            "full_name": "Benoît Biteau"
-          },
-          {
-            "name": "Carême",
-            "id": "197574",
-            "full_name": "Damien Carême"
-          },
-          {
-            "name": "Cormand",
-            "id": "197503",
-            "full_name": "David Cormand"
-          },
-          {
-            "name": "Delbos-Corfield",
-            "id": "197531",
-            "full_name": "Gwendoline Delbos-Corfield"
-          },
-          {
-            "name": "Gruffat",
-            "id": "204420",
-            "full_name": "Claude Gruffat"
-          },
-          {
-            "name": "Jadot",
-            "id": "96740",
-            "full_name": "Yannick Jadot"
-          },
-          {
-            "name": "Roose",
-            "id": "197506",
-            "full_name": "Caroline Roose"
-          },
-          {
-            "name": "Satouri",
-            "id": "197500",
-            "full_name": "Mounir Satouri"
-          },
-          {
-            "name": "Toussaint",
-            "id": "97236",
-            "full_name": "Marie Toussaint"
-          }
-        ]
-      },
-      "-": {
-        "France / ID :": [
-          {
-            "name": "Androuët",
-            "id": "197691",
-            "full_name": "Mathilde Androuët"
-          },
-          {
-            "name": "Beigneux",
-            "id": "197680",
-            "full_name": "Aurélia Beigneux"
-          },
-          {
-            "name": "Bilde",
-            "id": "124771",
-            "full_name": "Dominique Bilde"
-          },
-          {
-            "name": "Bruna",
-            "id": "182995",
-            "full_name": "Annika Bruna"
-          },
-          {
-            "name": "Garraud",
-            "id": "197628",
-            "full_name": "Jean-Paul Garraud"
-          },
-          {
-            "name": "Griset",
-            "id": "94649",
-            "full_name": "Catherine Griset"
-          },
-          {
-            "name": "Jalkh",
-            "id": "124770",
-            "full_name": "Jean-François Jalkh"
-          },
-          {
-            "name": "Jamet",
-            "id": "189065",
-            "full_name": "France Jamet"
-          },
-          {
-            "name": "Joron",
-            "id": "197627",
-            "full_name": "Virginie Joron"
-          },
-          {
-            "name": "Juvin",
-            "id": "197626",
-            "full_name": "Hervé Juvin"
-          },
-          {
-            "name": "Lacapelle",
-            "id": "204421",
-            "full_name": "Jean-Lin Lacapelle"
-          },
-          {
-            "name": "Lebreton",
-            "id": "124738",
-            "full_name": "Gilles Lebreton"
-          },
-          {
-            "name": "Mariani",
-            "id": "197623",
-            "full_name": "Thierry Mariani"
-          },
-          {
-            "name": "Rougé",
-            "id": "197690",
-            "full_name": "André Rougé"
-          }
-        ],
-        "France / NI :": [
-          {
-            "name": "Bay",
-            "id": "124760",
-            "full_name": "Nicolas Bay"
-          },
-          {
-            "name": "Rivière",
-            "id": "197615",
-            "full_name": "Jérôme Rivière"
-          }
-        ],
-        "France / PPE :": [
-          {
-            "name": "Bellamy",
-            "id": "197534",
-            "full_name": "François-Xavier Bellamy"
-          },
-          {
-            "name": "Colin-Oesterlé",
-            "id": "197536",
-            "full_name": "Nathalie Colin-Oesterlé"
-          },
-          {
-            "name": "Danjean",
-            "id": "96747",
-            "full_name": "Arnaud Danjean"
-          },
-          {
-            "name": "Didier",
-            "id": "190774",
-            "full_name": "Geoffroy Didier"
-          },
-          {
-            "name": "Evren",
-            "id": "197535",
-            "full_name": "Agnès Evren"
-          },
-          {
-            "name": "Morano",
-            "id": "72779",
-            "full_name": "Nadine Morano"
-          },
-          {
-            "name": "Sander",
-            "id": "24594",
-            "full_name": "Anne Sander"
-          }
-        ]
-      },
-      "0": {
-        "France / Renew :": [
-          {
-            "name": "Decerle",
-            "id": "197504",
-            "full_name": "Jérémy Decerle"
-          },
-          {
-            "name": "Riquet",
-            "id": "96885",
-            "full_name": "Dominique Riquet"
-          }
-        ]
-      }
-    },
-    "absent": {
-      "France / ID :": [
-        {
-          "name": "Bardella",
-          "id": "131580",
-          "full_name": "Jordan Bardella"
-        },
-        {
-          "name": "Laporte",
-          "id": "197597",
-          "full_name": "Hélène Laporte"
-        },
-        {
-          "name": "Lechanteux",
-          "id": "197686",
-          "full_name": "Julie Lechanteux"
-        },
-        {
-          "name": "Mélin",
-          "id": "124765",
-          "full_name": "Joëlle Mélin"
-        },
-        {
-          "name": "Olivier",
-          "id": "197687",
-          "full_name": "Philippe Olivier"
-        }
-      ],
-      "France / NI :": [
-        {
-          "name": "Collard",
-          "id": "197683",
-          "full_name": "Gilbert Collard"
-        },
-        {
-          "name": "Pirbakas",
-          "id": "197629",
-          "full_name": "Maxette Pirbakas"
-        }
-      ],
-      "France / PPE :": [
-        {
-          "name": "Hortefeux",
-          "id": "5565",
-          "full_name": "Brice Hortefeux"
-        }
-      ],
-      "France / Renew :": [
-        {
-          "name": "Brunet",
-          "id": "197576",
-          "full_name": "Sylvie Brunet"
-        },
-        {
-          "name": "Chabaud",
-          "id": "197505",
-          "full_name": "Catherine Chabaud"
-        },
-        {
-          "name": "Durand",
-          "id": "124693",
-          "full_name": "Pascal Durand"
-        },
-        {
-          "name": "Keller",
-          "id": "22858",
-          "full_name": "Fabienne Keller"
-        },
-        {
-          "name": "Tolleret",
-          "id": "197547",
-          "full_name": "Irène Tolleret"
-        }
-      ],
-      "France / S&D :": [
-        {
-          "name": "Mebarek",
-          "id": "204418",
-          "full_name": "Nora Mebarek"
-        }
-      ],
-      "France / The Left :": [
-        {
-          "name": "Bompard",
-          "id": "197521",
-          "full_name": "Manuel Bompard"
-        },
-        {
-          "name": "Omarjee",
-          "id": "30482",
-          "full_name": "Younous Omarjee"
-        }
-      ],
-      "France / Verts/ALE :": [
-        {
-          "name": "Delli",
-          "id": "96868",
-          "full_name": "Karima Delli"
-        },
-        {
-          "name": "Rivasi",
-          "id": "96743",
-          "full_name": "Michèle Rivasi"
-        }
-      ]
-    },
+    "votes": {},
+    "absent": null,
     "corrections": [],
+    "final_vote_id": null,
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-VOT_FR.html",
     "details": {
@@ -6829,6 +6411,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146356",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -7279,6 +6862,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "145843",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -7731,6 +7315,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "146342",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -8183,6 +7768,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "145821",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -8637,6 +8223,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "145872",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
@@ -9087,6 +8674,7 @@
       ]
     },
     "corrections": [],
+    "final_vote_id": "145862",
     "date": "2022-06-23",
     "votes_source_url": "https://www.europarl.europa.eu/doceo/document/PV-9-2022-06-23-RCV_FR.html",
     "details": {
