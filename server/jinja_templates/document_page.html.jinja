@@ -67,8 +67,9 @@
                 </span>
             </summary>
             <div class="amendment_body">
-                {% if amendment_links[vote.id] %}
-                    <p class="amendment_source"><a href="{{ amendment_links[vote.id] }}" target="_blank">Lire l'amendement {{ amendment_numbers[vote.id] }} sur europarl ↗</a></p>
+                {% if amendment_numbers[vote.id] %}
+                    {# Shown when the link is loaded (see the script below) #}
+                    <p class="amendment_source" hidden><a data-vote-id="{{ vote.id }}" target="_blank">Lire l'amendement {{ amendment_numbers[vote.id] }} sur europarl ↗</a></p>
                 {% endif %}
                 {% if vote.was_roll_call_voted and vote.dlv_id %}
                     <p class="amendment_source"><a href="{{ date | votes_roll_call_source_url(vote.id, vote.dlv_id) }}" target="_blank">Source du vote ↗</a></p>
@@ -102,6 +103,21 @@
     }
     window.addEventListener("hashchange", open);
     open();
+})();
+
+// The links to the amendments are asked to europarl, which is slow: they are loaded after the page is displayed
+(function () {
+    const links = document.querySelectorAll("a[data-vote-id]");
+    if (!links.length) return;
+    fetch("/texte/amendements?" + new URLSearchParams({date: {{ date | tojson }}, code: {{ eu_document_code | tojson }}}))
+        .then(response => response.ok ? response.json() : {})
+        .then(urls => links.forEach(link => {
+            const url = urls[link.dataset.voteId];
+            if (!url) return;
+            link.href = url;
+            link.parentElement.hidden = false;
+        }))
+        .catch(() => {});
 })();
 </script>
 </body>

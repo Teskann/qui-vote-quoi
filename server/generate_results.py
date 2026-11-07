@@ -81,16 +81,25 @@ def __amendment_number(vote: dict) -> str | None:
     return number[1] if number else None
 
 
+def amendment_links(eu_document_code: str, amendments: list[dict]) -> dict:
+    """
+    Links to the documents of the amendments on europarl. Asked to europarl, so loaded by the page after it is displayed.
+    :param amendments: votes held on the document (see storage.read_amendments)
+    :return: {<vote identifier>: <URL of the document of the amendment>} for the votes whose document is known
+    """
+    numbers = {vote.get("id"): __amendment_number(vote) for vote in amendments}
+    # Only asked when the document has amendments
+    documents = get_amendments_documents(eu_document_code) if any(numbers.values()) else []
+    links = {identifier: amendment_document(number, documents) for identifier, number in numbers.items()}
+    return {identifier: link for identifier, link in links.items() if link}
+
+
 def generate_document_page(date: str, eu_document_code: str, content: dict) -> str:
     """
     Page of a document voted on a day: its final vote, and all the votes held on it (amendments, paragraphs, ...)
     :param content: the document, with its amendments (see storage.read_day)
     """
     amendments = content.get("amendments", [])
-    # Documents of the amendments on europarl, only asked when the document has amendments
-    numbers = {vote.get("id"): __amendment_number(vote) for vote in amendments}
-    documents = get_amendments_documents(eu_document_code) if any(numbers.values()) else []
     return __template(datetime.date.today(), "document_page.html.jinja").render(
         css=get_css(), date=date, eu_document_code=eu_document_code, data=content, amendments=amendments,
-        amendment_numbers=numbers,
-        amendment_links={identifier: amendment_document(number, documents) for identifier, number in numbers.items()})
+        amendment_numbers={vote.get("id"): __amendment_number(vote) for vote in amendments})
