@@ -5,7 +5,7 @@ from parser.merger import merge_data
 from parser import open_data
 from parser.open_data import get_sitting_dates, OpenDataError
 from parser.votes_page_parser import get_votes_results_xml, parse_vote_results, parse_amendments
-from utils.date_management import date_range
+from utils.date_management import date_range, parliament_number_from_date
 from parser.empty_days_management import nothing_happened_on, set_something_happened_for
 from parser.roll_call_votes_parser import get_roll_call_votes_xml_at_date, parse_all_votes, roll_call_votes_by_id
 
@@ -23,6 +23,7 @@ def __join_amendments(amendments: dict, roll_call_votes: dict) -> dict:
                 amendment["votes"] = roll_call_vote["votes"]
                 amendment["absent"] = roll_call_vote["absent"]
                 amendment["corrections"] = roll_call_vote["corrections"]
+                amendment["dlv_id"] = roll_call_vote["dlv_id"]
                 amendment["was_roll_call_voted"] = True
                 amendment["global_votes"] = amendment["global_votes"] or roll_call_vote["global_votes"]
     return amendments
@@ -73,6 +74,39 @@ def sitting_dates_in_range(start_date: str, end_date: str) -> list[str]:
     return [date for date in all_dates if date in sittings]
 
 
+FIRST_PARLIAMENTARY_TERM = 8  # The votes per country are only known since the 2014 term
+
+
+def fill_genders(end_date: str, jobs: int | None = None):
+    """
+    Store the gender of the French members whose gender is not stored yet, from the 2014 term to the one of end_date.
+    The members of all the terms are looked at, so that a database filled before the genders were stored gets them.
+    """
+    known = storage.read_genders()
+    last_term = parliament_number_from_date(end_date)
+    print(f"Looking for the members whose gender is unknown (terms {FIRST_PARLIAMENTARY_TERM} to {last_term}, "
+          f"{len(known)} genders already stored)", flush=True)
+    try:
+        identifiers = {mep["identifier"] for term in range(FIRST_PARLIAMENTARY_TERM, last_term + 1)
+                       for mep in open_data.get_meps(term)} - set(known)
+        if not identifiers:
+            print("The genders of all the members are already stored")
+            return
+        print(f"Getting the gender of {len(identifiers)} members", flush=True)
+        with ThreadPoolExecutor(jobs or MAX_PARALLEL_DAYS) as executor:
+            genders = dict(zip(identifiers, executor.map(open_data.get_mep_gender, identifiers)))
+    except (OpenDataError, OSError) as error:
+        print(f"Could not get the genders of the members ({error})")
+        return
+    found = {identifier: gender for identifier, gender in genders.items() if gender}
+    storage.write_genders(found)
+    print(f"Stored the gender of {len(found)} members "
+          f"({sum(gender == 'F' for gender in found.values())} women, {sum(gender == 'M' for gender in found.values())} men)")
+    missing = sorted(set(genders) - set(found))
+    if missing:
+        print(f"No gender given by the open data portal for {len(missing)} members: {', '.join(missing)}")
+
+
 def fill_database(start_date, end_date, overwrite=False, overwrite_empty_days=False, jobs=None):
     dates = sitting_dates_in_range(start_date, end_date)
     print(f"{len(dates)} plenary sittings to process between {start_date} and {end_date}")
@@ -86,6 +120,7 @@ def fill_database(start_date, end_date, overwrite=False, overwrite_empty_days=Fa
     with ThreadPoolExecutor(jobs or MAX_PARALLEL_DAYS) as executor:
         # list() propagates the exceptions raised in the threads
         list(executor.map(process, dates))
+    fill_genders(end_date, jobs)
 
     throttled = open_data.throttled_requests - throttled_before
     if throttled:

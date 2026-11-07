@@ -19,7 +19,7 @@ def merge_data(roll_call_votes_data, global_votes_data, date, amendments_data=No
             "absent": roll_call_votes.get("absent"),
             "corrections": roll_call_votes.get("corrections", []),
             "date": date,
-            "votes_source_url": date_management.votes_roll_call_source_url(date) if global_votes_information["was_roll_call_voted"] else date_management.votes_source_url(date),
+            "votes_source_url": roll_call_votes.get("source_url", date_management.votes_roll_call_source_url(date)) if global_votes_information["was_roll_call_voted"] else date_management.votes_source_url(date),
             "details": details[document],
             "global": global_votes_information,
             # All the votes held on the document. The votes results give the result of each vote, but are only

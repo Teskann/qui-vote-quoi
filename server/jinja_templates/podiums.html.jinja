@@ -46,9 +46,14 @@
 
 {% macro podium_cards(podiums, groups=False, query="") %}
 <div class="podium_cards">
-    {{ podium_card("Les plus absents (pourcentage)", "absent_rate", podiums.absent_rate, groups, query) if podiums.absent_rate.entries }}
-    {{ podium_card("Les plus absents (votes manqués par député)" if groups else "Les plus absents (nombre de votes)", "absent", podiums.absent, groups, query) if podiums.absent.entries }}
-    {{ podium_card("Se sont le plus trompés de bouton (par député)" if groups else "Se sont le plus trompés de bouton", "corrections", podiums.corrections, groups, query) if podiums.corrections.entries }}
+    {# The titles agree with the members on the podium (the groups, without identifier, are in the masculine) #}
+    {% set on_podium = {} %}
+    {% for kind in ["absent_rate", "absent", "corrections"] %}
+        {% set _ = on_podium.update({kind: podiums[kind].entries | map(attribute="member") | list}) %}
+    {% endfor %}
+    {{ podium_card(agree(on_podium.absent_rate, "Les plus absents", "Les plus absentes") ~ " (pourcentage)", "absent_rate", podiums.absent_rate, groups, query) if podiums.absent_rate.entries }}
+    {{ podium_card("Les plus absents (votes manqués par député)" if groups else agree(on_podium.absent, "Les plus absents", "Les plus absentes") ~ " (nombre de votes)", "absent", podiums.absent, groups, query) if podiums.absent.entries }}
+    {{ podium_card(agree(on_podium.corrections, "Se sont le plus trompés de bouton", "Se sont le plus trompées de bouton") ~ (" (par député)" if groups else ""), "corrections", podiums.corrections, groups, query) if podiums.corrections.entries }}
 </div>
 {% endmacro %}
 

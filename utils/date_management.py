@@ -66,8 +66,14 @@ def date_from_parliament_number(number: int) -> datetime.date | None:
     }
     return matches[number] if number in matches else None
 
-def votes_roll_call_source_url(date: str):
-    return f"https://www.europarl.europa.eu/doceo/document/PV-{parliament_number_from_date(date)}-{date}-RCV_FR.html"
+def votes_roll_call_source_url(date: str, vote_id: str | None = None, dlv_id: str | None = None):
+    """
+    :param vote_id: identifier of a roll-call vote ("Identifier" in the XML)
+    :param dlv_id: identifier of the item of the agenda the vote belongs to ("DlvId" in the XML)
+    :return: URL of the roll-call votes results of the day, opened at the given vote when both identifiers are known
+    """
+    anchor = f"#{vote_id}#{dlv_id}" if vote_id and dlv_id else ""
+    return f"https://www.europarl.europa.eu/doceo/document/PV-{parliament_number_from_date(date)}-{date}-RCV_FR.html{anchor}"
 
 def votes_source_url(date: str):
     return f"https://www.europarl.europa.eu/doceo/document/PV-{parliament_number_from_date(date)}-{date}-VOT_FR.html"

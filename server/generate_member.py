@@ -9,7 +9,7 @@ from database.members_index import get_all_members, get_groups_votes, database_d
 from server.common import get_css, TEMPLATES_PATH
 from utils.date_management import parliament_number_from_date, date_from_parliament_number, year_from_parliament_number
 from server.podiums import global_podiums, search_podiums, group_statistics, group_podiums, RENAMED_GROUPS
-from server.filters import fr_number, fr_decimal, group_slug, HEADS_OF_LIST, add_flags, add_emojis, filter_political_group, political_group_logo, political_group_tooltip, to_pretty_date, class_from_vote_result
+from server.filters import fr_number, fr_decimal, group_slug, HEADS_OF_LIST, add_flags, add_emojis, filter_political_group, political_group_logo, political_group_tooltip, to_pretty_date, class_from_vote_result, agree
 
 
 def __months_between(first: str, last: str) -> list[str]:
@@ -63,16 +63,19 @@ def __template(name: str) -> jinja2.Template:
     env.filters["fr_decimal"] = fr_decimal
     env.filters["add_flags"] = add_flags
     env.filters["add_emojis"] = add_emojis
+    env.globals["agree"] = agree
     with open(join(TEMPLATES_PATH, name), encoding="utf-8") as f:
         return env.from_string(f.read())
 
 
-def generate_member_page(member: dict, filters: dict) -> str:
+def generate_member_page(member: dict, filters: dict, corrections: list[dict]) -> str:
     """
     :param member: see get_member, with the filters applied
     :param filters: see filters_context
+    :param corrections: votes on which the member voted by mistake, see get_member_corrections
     """
     return __template("member_page.html.jinja").render(css=get_css(), member=member, filters=filters,
+                                                       corrections=corrections,
                                                        months=absenteeism_per_month(member) if "months" in member else [],
                                                        today=datetime.date.today().isoformat())
 

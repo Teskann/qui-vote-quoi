@@ -57,11 +57,14 @@ def __day_statistics(date: str) -> dict:
     "corrections"}}},
     "cohesion": {<kind>: {<group>: [<number of votes>, <sum of the shares of the members who voted like the majority>]}},
     "proximity": {<kind>: {(<group>, <other group>): [<votes where they had the same position>, <votes where both had
-    a position>]}}} for the roll-call votes of the day
+    a position>]}}, "corrections": {<identifier>: [{"date", "kind", "vote_id", "eu_document_code", "title", "label",
+    "voted", "intended"}]}} for the roll-call votes of the day
     """
     statistics = {kind: {} for kind in VOTE_KINDS}
     cohesion = {kind: {} for kind in VOTE_KINDS}
     proximity = {kind: {} for kind in VOTE_KINDS}
+    # {<identifier>: [<correction>]}
+    corrections = {}
 
     def member(kind, group, entry):
         stats = statistics[kind].setdefault(entry["id"], {"voted": 0, "absent": 0, "corrections": 0})
@@ -72,10 +75,13 @@ def __day_statistics(date: str) -> dict:
     # A roll-call vote may concern several documents, it's counted once
     roll_call_votes = {}
     final_votes = set()
-    for content in storage.read_day(date).values():
+    # {<vote identifier>: (<eu_document_code>, <title>)}, the first document of the vote
+    documents = {}
+    for eu_document_code, content in storage.read_day(date).items():
         for vote in content.get("amendments", []):
             if vote.get("was_roll_call_voted") and vote.get("id"):
                 roll_call_votes[vote["id"]] = vote
+                documents.setdefault(vote["id"], (eu_document_code, content.get("details", {}).get("title")))
         # The final vote of the document is the one whose votes are those of the document (the last roll-call vote on
         # the document, see parse_all_votes). Its identifier is not stored.
         if content.get("global", {}).get("was_roll_call_voted"):
@@ -110,7 +116,11 @@ def __day_statistics(date: str) -> dict:
         for correction in vote.get("corrections", []):
             if correction.get("id") in statistics[kind]:
                 statistics[kind][correction["id"]]["corrections"] += 1
-    return {"members": statistics, "cohesion": cohesion, "proximity": proximity}
+                corrections.setdefault(correction["id"], []).append({
+                    "date": date, "kind": kind, "vote_id": vote["id"], "eu_document_code": documents[vote["id"]][0],
+                    "title": documents[vote["id"]][1], "label": vote.get("label"),
+                    "voted": correction.get("voted"), "intended": correction.get("intended")})
+    return {"members": statistics, "cohesion": cohesion, "proximity": proximity, "corrections": corrections}
 
 
 def __refresh(days: list[tuple[str, float]]):
@@ -306,3 +316,20 @@ def get_groups_votes(start_date: str | None = None, end_date: str | None = None,
         if start_date is None and end_date is None and tuple(kinds) == VOTE_KINDS:
             return __cache["groups"]
         return __aggregate_groups(dates, tuple(kinds))
+
+
+def get_member_corrections(identifier: str, start_date: str | None = None, end_date: str | None = None,
+                           kinds: tuple = VOTE_KINDS) -> list[dict]:
+    """
+    Votes of the period on which the member declared they voted by mistake
+    :param identifier: identifier of the member (PersId)
+    :param kinds: kinds of votes counted, see VOTE_KINDS. All by default.
+    :return: [{"date", "kind", "vote_id", "eu_document_code", "title", "label", "voted", "intended"}], most recent
+    first.
+    "voted" is what the member voted, "intended" what they meant to vote ("+", "-" or "0").
+    """
+    with __lock:
+        dates = __dates(start_date, end_date)
+        return [correction for date in reversed(dates)
+                for correction in reversed(__days[date][1]["corrections"].get(identifier, []))
+                if correction["kind"] in kinds]

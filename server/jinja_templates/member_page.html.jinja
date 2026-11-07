@@ -26,7 +26,7 @@
     <div class="stat_rank">Top {{ rank | fr_number }}</div>
 </div>
 {% endmacro %}
-{% set labels = {"+": "Pour", "-": "Contre", "0": "Abstention", "absent": "Absent(e)"} %}
+{% set labels = {"+": "Pour", "-": "Contre", "0": "Abstention", "absent": agree(member, "Absent", "Absente", "Absent(e)")} %}
 
 <div class="member_header">
     <img class="member_photo" src="https://www.europarl.europa.eu/mepphoto/{{ member.id }}.jpg" alt="" onerror="this.remove()">
@@ -55,7 +55,7 @@
             member.ranks.absent_rate) }}
     {{ tile("Votes manqués", member.absent | fr_number, "sur " ~ total | fr_number ~ " votes tenus pendant son mandat",
             member.ranks.absent) }}
-    {{ tile("S'est trompé de bouton", member.corrections | fr_number ~ "&nbsp;fois",
+    {{ tile(agree(member, "S'est trompé de bouton", "S'est trompée de bouton"), member.corrections | fr_number ~ "&nbsp;fois",
             "correction" ~ ("s" if member.corrections > 1 else "") ~ " déclarée" ~ ("s" if member.corrections > 1 else "") ~ " après un vote",
             member.ranks.corrections) }}
     {{ tile("Votes", member.voted | fr_number, "votes par appel nominal auxquels " ~ member.full_name ~ " a pris part",
@@ -63,6 +63,34 @@
 </div>
 {% else %}
 <p class="ranking_intro">Aucun de ces votes n'a eu lieu pendant son mandat sur cette période.</p>
+{% endif %}
+
+{% if corrections %}
+<div class="wrapper">
+    <input type="checkbox" id="toggleMistakes"/>
+    <label for="toggleMistakes">Erreurs de bouton <span class="label_count">({{ corrections | length | fr_number }})</span></label>
+    <div class="collapsible">
+    <div class="collapsible_inner">
+    <table class="recent_votes mistakes_table">
+    {% for correction in corrections %}
+        <tr>
+            <td class="recent_date">{{ correction.date | to_pretty_date }}</td>
+            <td>
+                <a href="/texte?date={{ correction.date }}&code={{ correction.eu_document_code }}#vote-{{ correction.vote_id }}">{{ (correction.title or correction.eu_document_code) | add_flags }}{{ (correction.title or "") | add_emojis }}{{ correction.title or correction.eu_document_code }}</a>
+                {% if correction.label %}<div class="mistake_vote">{{ correction.label }}</div>{% endif %}
+            </td>
+            <td class="mistake_badges">
+                <span class="vote_badge {{ correction.voted | class_from_vote_result }}">{{ labels[correction.voted] }}</span>
+                <span class="mistake_arrow" aria-label="au lieu de">→</span>
+                <span class="vote_badge {{ correction.intended | class_from_vote_result }}">{{ labels[correction.intended] }}</span>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <p class="mistake_note">Vote enregistré → vote voulu, déclaré par {{ agree(member, "le député", "la députée") }} après le vote. La correction ne modifie pas le résultat.</p>
+    </div>
+    </div>
+</div>
 {% endif %}
 
 {% if months %}

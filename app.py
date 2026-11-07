@@ -6,7 +6,7 @@ from flask import Flask, request, redirect, abort, jsonify
 from database.database import set_root_database_path
 from database.database_reader import search_in_time_range
 from database.storage import read_day
-from database.members_index import get_member, get_all_members, warm_up
+from database.members_index import get_member, get_all_members, get_member_corrections, warm_up
 from server.generate_about import generate_about
 from server.generate_member import generate_member_page, generate_ranking_page, generate_group_page, filters_context
 from server.generate_results import generate_results_page, generate_document_page
@@ -67,7 +67,8 @@ def member(identifier):
     member_data = get_member(identifier, filters["start_date"], filters["end_date"], filters["kinds"])
     if member_data is None:
         abort(404)
-    return generate_member_page(member_data, filters)
+    corrections = get_member_corrections(identifier, filters["start_date"], filters["end_date"], filters["kinds"])
+    return generate_member_page(member_data, filters, corrections)
 
 @app.route('/membres.json')
 def members_list():

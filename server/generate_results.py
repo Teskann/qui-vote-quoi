@@ -11,6 +11,7 @@ from urllib.parse import urlencode
 from server.common import get_css, TEMPLATES_PATH
 from server.podiums import search_podiums
 from parser.open_data import get_amendments_documents, amendment_document
+from utils.date_management import votes_roll_call_source_url
 
 
 @functools.lru_cache(maxsize=1)
@@ -47,8 +48,10 @@ def __environment(today: datetime.date) -> jinja2.Environment:
 
     env.filters["group_slug"] = group_slug
     env.filters["is_final_vote"] = is_final_vote
+    env.filters["votes_roll_call_source_url"] = votes_roll_call_source_url
 
     env.globals["today"] = today.isoformat()
+    env.globals["agree"] = agree
     env.globals["yesterday"] = (today - datetime.timedelta(days=1)).isoformat()
     return env
 

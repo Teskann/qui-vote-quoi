@@ -154,6 +154,15 @@ def get_mep(identifier: str) -> dict:
     return __mep_cache[identifier]
 
 
+def get_mep_gender(identifier: str) -> str | None:
+    """
+    :param identifier: identifier of the member (PersId)
+    :return: "F", "M", or None if the gender is not given
+    """
+    gender = get_mep(identifier).get("hasGender", "")
+    return {"FEMALE": "F", "MALE": "M"}.get(gender.rsplit("/", 1)[-1])
+
+
 def get_corporate_body_label(identifier: str) -> str:
     """
     Short name of a corporate body (political group, committee, ...)

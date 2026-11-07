@@ -24,6 +24,7 @@
         current = mep;
         name.textContent = mep.dataset.fullName || mep.textContent;
         link.href = mep.href;
+        link.textContent = mep.dataset.gender === "F" ? "Profil de la parlementaire →" : "Profil du parlementaire →";
         card.classList.remove("no_photo");
         photo.src = "https://www.europarl.europa.eu/mepphoto/" + mep.dataset.id + ".jpg";
         card.hidden = false;

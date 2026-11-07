@@ -1,6 +1,6 @@
 {% macro mep_link(member) -%}
 {%- if member is mapping and member.id -%}
-<a class="mep" href="/membre/{{ member.id }}" data-id="{{ member.id }}" data-full-name="{{ member.full_name | e }}">{{ member.name }}</a>
+<a class="mep" href="/membre/{{ member.id }}" data-id="{{ member.id }}" data-full-name="{{ member.full_name | e }}" data-gender="{{ agree(member, "M", "F", "") }}">{{ member.name }}</a>
 {%- else -%}
 {#- Members without identifier, or database filled before the identifiers were stored -#}
 {{ member.name if member is mapping else member }}

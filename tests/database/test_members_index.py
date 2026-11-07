@@ -1,5 +1,5 @@
 from database.database import get_database_path, set_database_path
-from database.members_index import get_member, get_groups_votes, get_all_members, FINAL, AMENDMENTS
+from database.members_index import get_member, get_groups_votes, get_all_members, get_member_corrections, FINAL, AMENDMENTS
 from database.storage import write_day
 
 
@@ -111,3 +111,25 @@ def test_get_groups_votes_without_abstentions(tmp_path):
     assert ("France / PPE :", "France / S&D :") not in votes["proximity"]
     # A single member of the PPE voted for or against: no cohesion
     assert "France / PPE :" not in votes["cohesion"]
+
+
+def test_get_member_corrections(tmp_path):
+    a, b = member("1", "A"), member("2", "B")
+    amendment = roll_call_vote("v1", {"+": {"France / PPE :": [a, b]}}, {}, [{**b, "voted": "+", "intended": "-"}])
+    amendment["label"] = "Am 3"
+    final = roll_call_vote("v2", {"-": {"France / PPE :": [a, b]}}, {})
+    day = {"A10-0001/2025": {"votes": final["votes"], "absent": final["absent"], "corrections": [],
+                             "details": {"title": "Titre"}, "global": {"was_roll_call_voted": True},
+                             "amendments": [amendment, final]}}
+    previous_path = get_database_path()
+    set_database_path(str(tmp_path))
+    try:
+        write_day("2025-03-12", day)
+        corrections = get_member_corrections("2")
+        on_final_votes = get_member_corrections("2", kinds=(FINAL,))
+    finally:
+        set_database_path(previous_path)
+
+    assert corrections == [{"date": "2025-03-12", "kind": AMENDMENTS, "vote_id": "v1", "eu_document_code": "A10-0001/2025",
+                            "title": "Titre", "label": "Am 3", "voted": "+", "intended": "-"}]
+    assert on_final_votes == []

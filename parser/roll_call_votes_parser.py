@@ -11,7 +11,7 @@ from parser.Document import scrap_documents_from_string
 from parser.empty_days_management import set_nothing_happened_for
 from parser.open_data import (get_plenary_document_xml, get_meps, plenary_document_reference, get_mep,
                               get_corporate_body_label)
-from utils.date_management import parliament_number_from_date
+from utils.date_management import parliament_number_from_date, votes_roll_call_source_url
 
 COUNTRY = "FR"
 COUNTRY_NAME = "France"
@@ -272,6 +272,8 @@ def __amendment(vote: etree._Element, description: str, eu_document_code: str, m
     position = description.upper().find(eu_document_code.upper())
     return {
         "id": vote.get("Identifier"),
+        # Item of the agenda the vote belongs to, to open the vote in the source (see votes_roll_call_source_url)
+        "dlv_id": vote.get("DlvId"),
         "label": " ".join(description[position if position >= 0 else 0:].split()),
         "subject": None,
         "amendment": None,
@@ -291,7 +293,8 @@ def parse_all_votes(xml: etree._Element, date: str) -> dict:
     usually the vote on the whole text. All the votes on the document are listed in "amendments".
     :param xml: root of the roll-call votes results XML document
     :param date: date of the votes as iso formatted string
-    :return: {<eu_document_code>: {"votes": {...}, "absent": {...}, "corrections": [...], "amendments": [...]}}
+    :return: {<eu_document_code>: {"votes": {...}, "absent": {...}, "corrections": [...], "amendments": [...],
+    "source_url": <URL of the last vote in the roll-call votes results>}}
     """
     members = MembersSelector(parliament_number_from_date(date), COUNTRY)
     votes = [(vote, __text(vote.find("RollCallVote.Description.Text")))
@@ -307,8 +310,10 @@ def parse_all_votes(xml: etree._Element, date: str) -> dict:
         matching_votes = [(vote, description) for vote, description in votes if regex.match(description)]
         if not matching_votes:
             continue
+        last_vote = matching_votes[-1][0]
         votes_per_document[eu_document_code] = {
-            **__parse_roll_call_vote(matching_votes[-1][0], members, date),
+            **__parse_roll_call_vote(last_vote, members, date),
+            "source_url": votes_roll_call_source_url(date, last_vote.get("Identifier"), last_vote.get("DlvId")),
             "amendments": [__amendment(vote, description, eu_document_code, members, date)
                            for vote, description in matching_votes],
         }

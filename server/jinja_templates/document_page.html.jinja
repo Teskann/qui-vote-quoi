@@ -53,7 +53,7 @@
 {% for vote in amendments %}
     {% set result = results.get(vote.result) %}
     {% set final = vote | is_final_vote(data) %}
-    <li class="amendment">
+    <li class="amendment" id="vote-{{ vote.id }}">
         <details>
             <summary>
                 <span class="amendment_title">
@@ -69,6 +69,9 @@
             <div class="amendment_body">
                 {% if amendment_links[vote.id] %}
                     <p class="amendment_source"><a href="{{ amendment_links[vote.id] }}" target="_blank">Lire l'amendement {{ amendment_numbers[vote.id] }} sur europarl ↗</a></p>
+                {% endif %}
+                {% if vote.was_roll_call_voted and vote.dlv_id %}
+                    <p class="amendment_source"><a href="{{ date | votes_roll_call_source_url(vote.id, vote.dlv_id) }}" target="_blank">Source du vote ↗</a></p>
                 {% endif %}
                 {{ amendment_outcomes(vote, result) }}
                 {% if vote.was_roll_call_voted and vote.votes %}
@@ -88,5 +91,18 @@
 
 </div>
 {% include "mep_card.html.jinja" %}
+<script>
+// A link to one of the votes (#vote-<identifier>) opens it
+(function () {
+    function open() {
+        const vote = location.hash.startsWith("#vote-") && document.getElementById(location.hash.slice(1));
+        if (!vote) return;
+        vote.querySelector("details").open = true;
+        vote.scrollIntoView({block: "start"});
+    }
+    window.addEventListener("hashchange", open);
+    open();
+})();
+</script>
 </body>
 </html>

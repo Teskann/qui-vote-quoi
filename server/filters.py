@@ -1,9 +1,44 @@
 import datetime
 import re
+import threading
+import time
 
 from babel.dates import format_date
 
+from database import storage
 from utils.date_management import parliament_number_from_date, year_from_parliament_number
+
+
+# Seconds during which the genders read from the database are reused
+GENDERS_LIFETIME = 60
+__genders_lock = threading.Lock()
+__genders = {"read_at": None, "genders": {}}
+
+
+def member_gender(member) -> str | None:
+    """
+    :param member: identifier of a member, or member as stored in the votes ({"id", ...})
+    :return: "F", "M", or None if unknown
+    """
+    identifier = member.get("id") if isinstance(member, dict) else member
+    with __genders_lock:
+        if __genders["read_at"] is None or time.monotonic() - __genders["read_at"] > GENDERS_LIFETIME:
+            __genders["genders"] = storage.read_genders()
+            __genders["read_at"] = time.monotonic()
+        return __genders["genders"].get(identifier)
+
+
+def agree(members, masculine: str, feminine: str, unknown: str | None = None) -> str:
+    """
+    Word agreeing with the gender of the members
+    :param members: a member (see member_gender), or a list of members
+    :param unknown: word for a single member whose gender is unknown, the masculine one by default
+    :return: for a list, the feminine word only if all the members are women
+    """
+    if isinstance(members, (list, tuple)):
+        return feminine if members and all(member_gender(member) == "F" for member in members) else masculine
+    gender = member_gender(members)
+    return feminine if gender == "F" else masculine if gender == "M" or unknown is None else unknown
 
 
 def political_group_url(group_name):

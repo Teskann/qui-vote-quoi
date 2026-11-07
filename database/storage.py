@@ -47,6 +47,12 @@ CREATE TABLE IF NOT EXISTS amendments (
     PRIMARY KEY (date, eu_document_code),
     FOREIGN KEY (date, eu_document_code) REFERENCES documents(date, eu_document_code) ON DELETE CASCADE
 );
+CREATE TABLE IF NOT EXISTS genders (
+    -- Identifier of the member (PersId)
+    id TEXT PRIMARY KEY,
+    -- "F" or "M", to make the words agree with the member
+    gender TEXT NOT NULL
+);
 """
 
 
@@ -145,6 +151,22 @@ def read_amendments(date: str) -> dict:
             "JOIN documents d USING (date, eu_document_code) WHERE a.date = ? ORDER BY d.position",
             (date,)).fetchall()
     return {eu_document_code: json.loads(content) for eu_document_code, content in rows}
+
+
+def write_genders(genders: dict):
+    """
+    :param genders: {<identifier>: <"F" or "M">}, added to those already stored
+    """
+    with connect() as connection:
+        connection.executemany("INSERT OR REPLACE INTO genders (id, gender) VALUES (?, ?)", genders.items())
+
+
+def read_genders() -> dict:
+    """
+    :return: {<identifier>: <"F" or "M">} for the members whose gender is known
+    """
+    with connect() as connection:
+        return dict(connection.execute("SELECT id, gender FROM genders").fetchall())
 
 
 def search_documents(matches, start_date: str, end_date: str) -> Iterator[tuple[str, dict]]:
