@@ -4,21 +4,17 @@ from urllib.parse import urlencode
 from flask import Flask, request, redirect, abort, jsonify
 
 from database.database import set_root_database_path
-from database.database_reader import search_in_time_range, search_keys_in_time_range
 from database.storage import read_day
-from database.members_index import get_member, get_all_members, get_member_corrections, warm_up
+from database.members_index import get_member, get_all_members, get_member_corrections
 from server.generate_about import generate_about
 from server.generate_member import generate_member_page, generate_ranking_page, generate_group_page, filters_context
 from server.generate_results import generate_results_page, generate_document_page
-from server.filters import filter_political_group, SearchCorrelations
-from server.podiums import SearchMembers, search_podiums
+from server.filters import filter_political_group
+from server.search_results import search_results
 from utils.date_management import parliament_number_from_date, date_from_parliament_number
 
 set_root_database_path()
-warm_up()
 app = Flask(__name__)
-
-RESULTS_PER_PAGE = 25
 
 
 @app.route('/')
@@ -35,27 +31,7 @@ def results():
     start_date = args.get('start_date') or "2014-07-01"
     end_date = args.get('end_date') or datetime.date.today().isoformat()
     page = int(args.get('page') or 1)
-    data = {"keywords": search, "data": {}}
-
-    # A document may be voted on several days (amendments, then the final vote after negotiations with the Council):
-    # each vote is a result, keyed by (date, eu_document_code). The most recent results come first.
-    keys = search_keys_in_time_range(start_date, end_date, search)
-    displayed = set(keys[::-1][RESULTS_PER_PAGE * (page - 1):RESULTS_PER_PAGE * page])
-    # Only the displayed documents are kept: the others are only needed for the statistics of the search, computed
-    # one document at a time, so that a search over many years doesn't hold all the votes in memory
-    search_members, search_correlations, days = SearchMembers(), SearchCorrelations(), set()
-    for result in search_in_time_range(start_date, end_date, search):
-        for eu_document, content in result.items():
-            search_members.add(content)
-            search_correlations.add(content)
-            days.add(content["date"])
-            if (content["date"], eu_document) in displayed:
-                data["data"][(content["date"], eu_document)] = content
-    data["count"] = len(keys)
-    data["podiums"] = search_podiums(search_members)
-    data["correlations"] = search_correlations.correlations() if keys else None
-    data["days"] = days
-
+    data = {"keywords": search, **search_results(start_date, end_date, search, page)}
     data["request"] = {"search": search, "start_date": start_date, "end_date": end_date, "page": page}
     return generate_results_page(data)
 

@@ -6,7 +6,7 @@ import time
 from babel.dates import format_date
 
 from database import storage
-from database.members_index import is_final_vote  # Used by the templates
+from database.statistics import is_final_vote, document_group_positions  # is_final_vote is used by the templates
 from utils.date_management import parliament_number_from_date, year_from_parliament_number
 
 
@@ -615,92 +615,31 @@ def add_emojis(title):
 
 
 def vote_results_per_group(data: dict):
-    results_per_group = {}
-
-    def get_number_of_votes(group, vote_type, votes):
-        if vote_type not in votes:
-            return 0
-        if group not in votes[vote_type]:
-            return 0
-        return len(votes[vote_type][group])
-
-    def majority(votes_for, votes_against):
-        """
-        The abstentions don't count in the result of a vote: only the votes for and against are compared. None when
-        they are equal (no majority, or only abstentions).
-        """
-        return None if votes_for == votes_against else votes_for > votes_against
-
-    def voted_for_this_document(group, votes):
-        return majority(get_number_of_votes(group, "+", votes), get_number_of_votes(group, "-", votes))
-
-    def france_voted_for_this_document(votes):
-        return majority(sum(len(members) for members in votes.get("+", {}).values()),
-                        sum(len(members) for members in votes.get("-", {}).values()))
-
-    def get_all_groups(votes):
-        all_groups = set()
-        for vote_type in votes:
-            all_groups.update(set(votes[vote_type].keys()))
-        return all_groups
-
-    for document, results in data.items():
-        if "votes" not in results or results["votes"] == {} or not results["global"]["was_roll_call_voted"]:
-            continue
-        all_groups = get_all_groups(results["votes"])
-        results_per_group[document] = {}
-        for group in all_groups:
-            results_per_group[document][group] = voted_for_this_document(group, results["votes"])
-        results_per_group[document]["Parlement Européen :"] = results["global"]["was_adopted"]
-        results_per_group[document]["Parlement Européen :"] = results["global"]["was_adopted"]
-        results_per_group[document]["Total France :"] = france_voted_for_this_document(results["votes"])
-
-    return results_per_group
-
-class SearchCorrelations:
     """
-    How often the groups voted alike on the documents found by a search. The documents are added one by one, so that
-    they don't have to be kept in memory: only the position of each group is kept.
+    :param data: {<key>: <content of a document>}
+    :return: {<key>: <position of each group, see document_group_positions>} for the documents whose final vote was a
+    roll-call vote
     """
+    return {key: positions for key, content in data.items()
+            if (positions := document_group_positions(content)) is not None}
 
-    def __init__(self):
-        self.groups = {"Parlement Européen :", "Total France :"}
-        # [{<group>: <position on the document, see vote_results_per_group>}]
-        self.positions = []
 
-    def add(self, results: dict):
-        """
-        :param results: a document found, as displayed on the results page
-        """
-        for vote_type in results["votes"]:
-            self.groups.update(results["votes"][vote_type].keys())
-        self.positions.extend(vote_results_per_group({None: results}).values())
-
-    def correlations(self) -> dict:
-        all_groups = sorted(self.groups, key=political_group_spectrum)
-        correlations = {}
-        for i, group_1 in enumerate(all_groups):
-            correlations[group_1] = {}
-            for j in range(len(all_groups)):
-                group_2 = all_groups[j]
-                if j <= i:
-                    correlations[group_1][group_2] = None
-                    continue
-                correlations[group_1][group_2] = 0
-                valid_documents = 0
-                for per_group in self.positions:
-                    if group_1 not in per_group and group_2 not in per_group:
-                        continue
-                    elif group_1 in per_group and per_group[group_1] is None or group_2 in per_group and per_group[group_2] is None:
-                        continue
-                    elif group_1 in per_group and group_2 in per_group:
-                        valid_documents += 1
-                        correlations[group_1][group_2] += per_group[group_1] == per_group[group_2]
-                if valid_documents == 0:
-                    correlations[group_1][group_2] = None
-                else:
-                    correlations[group_1][group_2] /= valid_documents
-        return correlations
+def correlations(groups: set[str], pairs: dict) -> dict:
+    """
+    :param groups: groups which voted on the documents found, EUROPEAN_PARLIAMENT and TOTAL_FRANCE included
+    :param pairs: {(<group>, <other group>): (<documents where both had the same majority>, <documents where both had a
+    majority>)}, in both orders
+    :return: {<group>: {<other group>: <share of the documents where they had the same majority, None if they never
+    both had a majority, or if the other group comes before in the table>}}, the groups in the order of the table
+    """
+    all_groups = sorted(groups, key=political_group_spectrum)
+    table = {}
+    for i, group_1 in enumerate(all_groups):
+        table[group_1] = {}
+        for j, group_2 in enumerate(all_groups):
+            same, valid = pairs.get((group_1, group_2), (0, 0))
+            table[group_1][group_2] = None if j <= i or valid == 0 else same / valid
+    return table
 
 
 def to_html_id(input_string: str):

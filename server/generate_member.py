@@ -5,7 +5,7 @@ from os.path import join
 import jinja2
 from babel.dates import format_date
 
-from database.members_index import get_all_members, get_groups_votes, get_group_recent_votes, database_dates, FINAL, AMENDMENTS, VOTE_KINDS
+from database.members_index import get_all_members, get_member_group, get_groups_votes, get_group_recent_votes, database_dates, FINAL, AMENDMENTS, VOTE_KINDS
 from server.common import get_css, TEMPLATES_PATH
 from utils.date_management import parliament_number_from_date, date_from_parliament_number, year_from_parliament_number
 from server.podiums import global_podiums, search_podiums, group_statistics, group_podiums, RENAMED_GROUPS
@@ -141,21 +141,20 @@ def __competition_rank(value, values: list) -> int:
     return 1 + sum(1 for other in values if other > value)
 
 
-def __heads_of_list(group: str) -> list[dict]:
+def __heads_of_list(group: str, all_members: list[dict]) -> list[dict]:
     """
     :return: [{"member": <statistics of the member, see get_all_members>, "lists": [{"terms": "2019-2024, 2024-2029",
     "list": "Liste LFI"}], "other_group": <group the member sat in instead of this one during their last term as head of
     list, None if it's this one>, "current": <the last term is the current one>}] for the heads of the French lists
     elected in the group, most recent first. A member head of list for several terms is given once. See HEADS_OF_LIST.
+    :param all_members: statistics of the members over the whole database, see get_all_members
     """
-    members = {member["id"]: member for member in get_all_members()}
+    members = {member["id"]: member for member in all_members}
     current_term = parliament_number_from_date(datetime.date.today().isoformat())
     heads = {}
     for term, lists in sorted(HEADS_OF_LIST.items(), reverse=True):
         label = f"{year_from_parliament_number(term)}-{year_from_parliament_number(term + 1)}"
         start, end = date_from_parliament_number(term), date_from_parliament_number(term + 1)
-        # The end of the current term is not known yet
-        in_term = {member["id"]: member for member in get_all_members(start.isoformat(), end.isoformat() if end else None)}
         for name, entries in lists.items():
             if RENAMED_GROUPS.get(name, name) != group:
                 continue
@@ -165,7 +164,8 @@ def __heads_of_list(group: str) -> list[dict]:
                 head = heads.setdefault(identifier, {"member": members[identifier], "lists": {}, "other_group": None,
                                                      "current": term == current_term})
                 head["lists"].setdefault(list_name, []).insert(0, label)
-                sat_in = in_term.get(identifier, {}).get("group")
+                # The end of the current term is not known yet
+                sat_in = get_member_group(identifier, start.isoformat(), end.isoformat() if end else None)
                 if len(head["lists"]) == 1 and len(head["lists"][list_name]) == 1 and sat_in \
                         and RENAMED_GROUPS.get(sat_in, sat_in) != group:
                     head["other_group"] = sat_in
@@ -173,13 +173,14 @@ def __heads_of_list(group: str) -> list[dict]:
             for head in heads.values()]
 
 
-def __group_recent_votes(group: str) -> list[dict]:
+def __group_recent_votes(group: str, all_members: list[dict]) -> list[dict]:
     """
     :param group: current name of the group (see RENAMED_GROUPS)
+    :param all_members: statistics of the members over the whole database, see get_all_members
     :return: see get_group_recent_votes, whatever the filters, like the recent votes of the members
     """
     names = {group} | {old for old, new in RENAMED_GROUPS.items() if new == group}
-    months = [month for member in get_all_members() if RENAMED_GROUPS.get(member["group"], member["group"]) == group
+    months = [month for member in all_members if RENAMED_GROUPS.get(member["group"], member["group"]) == group
               for month in member["months"]]
     return get_group_recent_votes(names, max(months)) if months else []
 
@@ -191,13 +192,14 @@ def generate_group_page(slug: str, filters: dict) -> str | None:
     :param filters: see filters_context
     :return: None if there is no such group in the database
     """
-    if not any(group_slug(group["group"]) == slug for group in group_statistics(get_all_members())):
+    all_groups = group_statistics(all_members := get_all_members())
+    if not any(group_slug(group["group"]) == slug for group in all_groups):
         return None
     groups = group_statistics(get_all_members(filters["start_date"], filters["end_date"], filters["kinds"]))
     # The group may have no vote on the period: its page is still shown, with the filters to change it
     group = next((group for group in groups if group_slug(group["group"]) == slug), None)
     if group is None:
-        name = next(group["group"] for group in group_statistics(get_all_members()) if group_slug(group["group"]) == slug)
+        name = next(group["group"] for group in all_groups if group_slug(group["group"]) == slug)
         return __template("group_page.html.jinja").render(css=get_css(), group={"group": name}, filters=filters,
                                                           slug=slug, empty=True,
                                                           today=datetime.date.today().isoformat())
@@ -232,7 +234,8 @@ def generate_group_page(slug: str, filters: dict) -> str | None:
 
     return __template("group_page.html.jinja").render(
         css=get_css(), group=group, today=datetime.date.today().isoformat(), ranks=ranks, filters=filters, slug=slug,
-        heads_of_list=__heads_of_list(group["group"]), recent=__group_recent_votes(group["group"]),
+        heads_of_list=__heads_of_list(group["group"], all_members),
+        recent=__group_recent_votes(group["group"], all_members),
         empty=False,
         groups_count=len(groups), cohesion_groups_count=len(cohesions),
         cohesion=cohesion, cohesion_votes=cohesion_totals.get(group["group"], [0])[0],

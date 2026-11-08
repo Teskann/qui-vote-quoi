@@ -123,6 +123,21 @@ def fill_genders(end_date: str, jobs: int | None = None):
         print(f"No gender given by the open data portal for {len(missing)} members: {', '.join(missing)}")
 
 
+def fill_statistics():
+    """
+    Compute the statistics of the days written before they were stored with each day (see database.statistics). The
+    votes are read from the database: nothing is downloaded.
+    """
+    dates = storage.days_without_statistics()
+    if not dates:
+        return
+    print(f"Computing the statistics of {len(dates)} days written before they were stored", flush=True)
+    for number, date in enumerate(dates, 1):
+        storage.write_statistics(date)
+        if number % 50 == 0 or number == len(dates):
+            print(f"Statistics computed for {number}/{len(dates)} days", flush=True)
+
+
 def fill_database(start_date, end_date, overwrite=False, overwrite_empty_days=False, jobs=None):
     dates = sitting_dates_in_range(start_date, end_date)
     print(f"{len(dates)} plenary sittings to process between {start_date} and {end_date}")
@@ -137,6 +152,7 @@ def fill_database(start_date, end_date, overwrite=False, overwrite_empty_days=Fa
         # list() propagates the exceptions raised in the threads
         list(executor.map(process, dates))
     fill_genders(end_date, jobs)
+    fill_statistics()
 
     throttled = open_data.throttled_requests - throttled_before
     if throttled:

@@ -106,10 +106,10 @@ def test_missed_votes_section():
     assert "absence lors du vote" not in text
 
 
-def test_search_podiums_ignore_missed_votes():
-    from server.podiums import search_podiums
+def test_search_podiums_ignore_missed_votes(tmp_path):
+    from tests.server.test_podiums import search_podiums_of
     entry = {**member("m"), "voted": None, "intended": "+"}
-    document = {"date": "2025-01-01", "global": {"was_roll_call_voted": True},
+    document = {"date": "2025-01-01", "global": {"was_roll_call_voted": True}, "details": {"title": "Titre"},
                 "votes": {"+": {"France / PPE :": [member("f1")]}}, "absent": {"France / PPE :": [member("m")]},
                 "corrections": [entry]}
-    assert search_podiums({"A": document})["corrections"]["entries"] == []
+    assert search_podiums_of(tmp_path, {"A": document})["corrections"]["entries"] == []
