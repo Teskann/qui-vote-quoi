@@ -6,41 +6,50 @@ the most.
 PODIUM_SIZE = 3
 
 
-def __members_of_search(data: dict) -> list[dict]:
+class SearchMembers:
     """
-    Statistics of the members on the final votes of the documents found by a search
-    :param data: {<eu_document_code>: <content>}, as displayed on the results page
-    :return: [{"id", "full_name", "group", "voted", "absent", "absent_rate", "corrections"}]
+    Statistics of the members on the final votes of the documents found by a search. The documents are added one by
+    one, so that they don't have to be kept in memory.
     """
-    members = {}
 
-    def member(group, entry):
-        stats = members.setdefault(entry["id"], {"id": entry["id"], "voted": 0, "absent": 0, "corrections": 0})
+    def __init__(self):
+        # {<identifier>: {"id", "full_name", "group", "voted", "absent", "corrections"}}
+        self.__members = {}
+
+    def __member(self, group, entry):
+        stats = self.__members.setdefault(entry["id"], {"id": entry["id"], "voted": 0, "absent": 0, "corrections": 0})
         stats["full_name"] = entry.get("full_name") or entry["name"]
         stats["group"] = group
         return stats
 
-    # The documents are processed by date, so the latest group of each member is kept
-    for content in sorted(data.values(), key=lambda content: content["date"]):
+    def add(self, content: dict):
+        """
+        :param content: a document found, as displayed on the results page. The documents must be added by date, so
+        that the latest group of each member is kept.
+        """
         if content.get("absent") is None:
-            continue  # Database filled before the absents were stored, or unidentified voters
+            return  # Database filled before the absents were stored, or unidentified voters
         if not content.get("global", {}).get("was_roll_call_voted"):
-            continue  # "votes" and "absent" are those of another vote on the document (amendment, ...)
+            return  # "votes" and "absent" are those of another vote on the document (amendment, ...)
         for groups in content["votes"].values():
             for group, entries in groups.items():
                 for entry in entries:
                     if entry.get("id"):
-                        member(group, entry)["voted"] += 1
+                        self.__member(group, entry)["voted"] += 1
         for group, entries in content["absent"].items():
             for entry in entries:
-                member(group, entry)["absent"] += 1
+                self.__member(group, entry)["absent"] += 1
         for correction in content.get("corrections", []):
-            if correction.get("id") in members and correction.get("voted") is not None:
-                members[correction["id"]]["corrections"] += 1
+            if correction.get("id") in self.__members and correction.get("voted") is not None:
+                self.__members[correction["id"]]["corrections"] += 1
 
-    for stats in members.values():
-        stats["absent_rate"] = stats["absent"] / (stats["voted"] + stats["absent"])
-    return list(members.values())
+    def members(self) -> list[dict]:
+        """
+        :return: [{"id", "full_name", "group", "voted", "absent", "absent_rate", "corrections"}]
+        """
+        for stats in self.__members.values():
+            stats["absent_rate"] = stats["absent"] / (stats["voted"] + stats["absent"])
+        return list(self.__members.values())
 
 
 def __podium(members: list[dict], key: str, tie_break: str | None = None) -> dict:
@@ -71,12 +80,19 @@ def __podiums(members: list[dict]) -> dict:
     }
 
 
-def search_podiums(data: dict) -> dict | None:
+def search_podiums(data: dict | SearchMembers) -> dict | None:
     """
+    :param data: {<eu_document_code>: <content>}, as displayed on the results page, or the statistics of the members
+    on these documents
     :return: {"absent_rate": <podium>, "absent": <podium>, "corrections": <podium>} for the final votes of the
     documents found, None if the absents are not known for these documents
     """
-    members = __members_of_search(data)
+    if not isinstance(data, SearchMembers):
+        search_members = SearchMembers()
+        for content in sorted(data.values(), key=lambda content: content["date"]):
+            search_members.add(content)
+        data = search_members
+    members = data.members()
     return __podiums(members) if members else None
 
 

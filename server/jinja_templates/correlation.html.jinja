@@ -9,10 +9,9 @@
 {%- endif -%}
 {%- endmacro %}
 
-{% macro get_correlations(data, request) %}
+{% macro get_correlations(cor, request) %}
 
-{% if data | length > 0 %}
-{% set cor = data | correlations %}
+{% if cor %}
 {% set base_saturation = 61 %}
 {% set base_lightness = 66 %}
 

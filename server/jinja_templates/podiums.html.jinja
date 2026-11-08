@@ -57,8 +57,7 @@
 </div>
 {% endmacro %}
 
-{% macro get_podiums(data) %}
-{% set podiums = data | search_podiums %}
+{% macro get_podiums(podiums) %}
 {% if podiums %}
 <div class="wrapper">
     <input type="checkbox" id="togglePodiums"/>

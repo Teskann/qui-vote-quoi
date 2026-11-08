@@ -169,9 +169,23 @@ def read_genders() -> dict:
         return dict(connection.execute("SELECT id, gender FROM genders").fetchall())
 
 
+def search_keys(matches, start_date: str, end_date: str) -> list[tuple[str, str]]:
+    """
+    Same as search_documents, without reading the content of the documents
+    :return: [(<date>, <eu_document_code>)] in chronological order
+    """
+    with connect() as connection:
+        connection.create_function("matches", 1, lambda text: text is not None and matches(text), deterministic=True)
+        return connection.execute(
+            "SELECT date, eu_document_code FROM documents "
+            "WHERE date BETWEEN ? AND ? AND matches(search_text) ORDER BY date, position",
+            (start_date, end_date)).fetchall()
+
+
 def search_documents(matches, start_date: str, end_date: str) -> Iterator[tuple[str, dict]]:
     """
-    Documents voted between two dates whose search text matches, without their amendments
+    Documents voted between two dates whose search text matches, without their amendments. The rows are read one day
+    at a time, so that a search over many years doesn't hold all the documents in memory.
     :param matches: function called with the search text of each document, returning True to keep the document
     :param start_date: first day, as iso formatted string
     :param end_date: last day, included
@@ -183,13 +197,13 @@ def search_documents(matches, start_date: str, end_date: str) -> Iterator[tuple[
         rows = connection.execute(
             "SELECT date, eu_document_code, content FROM documents "
             "WHERE date BETWEEN ? AND ? AND matches(search_text) ORDER BY date, position",
-            (start_date, end_date)).fetchall()
-    current_date, documents = None, {}
-    for date, eu_document_code, content in rows:
-        if date != current_date:
-            if documents:
-                yield current_date, documents
-            current_date, documents = date, {}
-        documents[eu_document_code] = json.loads(content)
-    if documents:
-        yield current_date, documents
+            (start_date, end_date))
+        current_date, documents = None, {}
+        for date, eu_document_code, content in rows:
+            if date != current_date:
+                if documents:
+                    yield current_date, documents
+                current_date, documents = date, {}
+            documents[eu_document_code] = json.loads(content)
+        if documents:
+            yield current_date, documents

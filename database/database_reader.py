@@ -46,3 +46,11 @@ def search_in_time_range(start_date: str, end_date: str, keywords: str):
     """
     for _, documents in storage.search_documents(__keywords_matcher(keywords), start_date, end_date):
         yield documents
+
+
+def search_keys_in_time_range(start_date: str, end_date: str, keywords: str) -> list[tuple[str, str]]:
+    """
+    Same as search_in_time_range, without reading the content of the documents
+    :return: [(<date>, <eu_document_code>)] in chronological order
+    """
+    return storage.search_keys(__keywords_matcher(keywords), start_date, end_date)

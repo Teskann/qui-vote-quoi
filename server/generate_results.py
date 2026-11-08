@@ -1,6 +1,5 @@
 import datetime
 import functools
-from itertools import islice
 from os.path import join
 
 import jinja2
@@ -8,7 +7,6 @@ import jinja2
 from server.filters import *
 from urllib.parse import urlencode
 from server.common import get_css, TEMPLATES_PATH
-from server.podiums import search_podiums
 from parser.open_data import amendment_number
 from utils.date_management import votes_roll_call_source_url
 
@@ -33,16 +31,12 @@ def __environment(today: datetime.date) -> jinja2.Environment:
     env.filters["urlencode"] = urlencode
     env.filters["set_page"] = set_page
     env.filters["set_search"] = set_search
-    env.filters["islice"] = islice
     env.filters["min"] = min
     env.filters["page_range"] = page_range
     env.filters["add_flags"] = add_flags
     env.filters["add_emojis"] = add_emojis
-    env.filters["correlations"] = correlations
     env.filters["parliament_number_from_date"] = parliament_number_from_date
-    env.filters["votes_on_day"] = votes_on_day
     env.filters["to_html_id"] = to_html_id
-    env.filters["search_podiums"] = search_podiums
     env.filters["fr_number"] = fr_number
 
     env.filters["group_slug"] = group_slug

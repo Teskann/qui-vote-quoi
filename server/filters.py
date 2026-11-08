@@ -657,52 +657,50 @@ def vote_results_per_group(data: dict):
 
     return results_per_group
 
-def correlations(data: dict):
-    def get_all_groups():
-        all_groups = set()
-        for results in data.values():
-            for vote_type in results["votes"]:
-                all_groups.update(set(results["votes"][vote_type].keys()))
-        all_groups.add("Parlement Européen :")
-        all_groups.add("Total France :")
-        return all_groups
-
-    all_groups = sorted(get_all_groups(), key=political_group_spectrum)
-    votes_per_group = vote_results_per_group(data)
-
-    correlations = {}
-    for i, group_1 in enumerate(all_groups):
-        correlations[group_1] = {}
-        for j in range(len(all_groups)):
-            group_2 = all_groups[j]
-            if j <= i:
-                correlations[group_1][group_2] = None
-                continue
-            correlations[group_1][group_2] = 0
-            valid_documents = 0
-            for document, per_group in votes_per_group.items():
-                if group_1 not in per_group and group_2 not in per_group:
-                    continue
-                elif group_1 in per_group and per_group[group_1] is None or group_2 in per_group and per_group[group_2] is None:
-                    continue
-                elif group_1 in per_group and group_2 in per_group:
-                    valid_documents += 1
-                    correlations[group_1][group_2] += per_group[group_1] == per_group[group_2]
-            if valid_documents == 0:
-                correlations[group_1][group_2] = None
-            else:
-                correlations[group_1][group_2] /= valid_documents
-    return correlations
-
-
-def votes_on_day(date: str, data: dict) -> bool:
+class SearchCorrelations:
     """
-    Return True if documents were voted on the passed date, for the given data
-    :param date: date to check
-    :param data: votes database
-    :return: bool
+    How often the groups voted alike on the documents found by a search. The documents are added one by one, so that
+    they don't have to be kept in memory: only the position of each group is kept.
     """
-    return any([vote["date"] == date for vote in data.values()])
+
+    def __init__(self):
+        self.groups = {"Parlement Européen :", "Total France :"}
+        # [{<group>: <position on the document, see vote_results_per_group>}]
+        self.positions = []
+
+    def add(self, results: dict):
+        """
+        :param results: a document found, as displayed on the results page
+        """
+        for vote_type in results["votes"]:
+            self.groups.update(results["votes"][vote_type].keys())
+        self.positions.extend(vote_results_per_group({None: results}).values())
+
+    def correlations(self) -> dict:
+        all_groups = sorted(self.groups, key=political_group_spectrum)
+        correlations = {}
+        for i, group_1 in enumerate(all_groups):
+            correlations[group_1] = {}
+            for j in range(len(all_groups)):
+                group_2 = all_groups[j]
+                if j <= i:
+                    correlations[group_1][group_2] = None
+                    continue
+                correlations[group_1][group_2] = 0
+                valid_documents = 0
+                for per_group in self.positions:
+                    if group_1 not in per_group and group_2 not in per_group:
+                        continue
+                    elif group_1 in per_group and per_group[group_1] is None or group_2 in per_group and per_group[group_2] is None:
+                        continue
+                    elif group_1 in per_group and group_2 in per_group:
+                        valid_documents += 1
+                        correlations[group_1][group_2] += per_group[group_1] == per_group[group_2]
+                if valid_documents == 0:
+                    correlations[group_1][group_2] = None
+                else:
+                    correlations[group_1][group_2] /= valid_documents
+        return correlations
 
 
 def to_html_id(input_string: str):

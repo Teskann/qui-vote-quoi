@@ -19,24 +19,24 @@
      <body>
      {% include "toolbar.html.jinja" %}
        <div id="content">
-       <h1>🔎 {{ data | length | fr_number }} {{ "résultat" + ("s" if data | length > 1 else "") }} {{ " pour «&nbsp;" + keywords.strip() + "&nbsp;»" if keywords.strip() else "(tous les votes)" }}</h1>
-       {{ get_correlations(data, request) }}
-       {{ get_podiums(data) }}
-           {{ page_navigation(data | length, request) }}
+       <h1>🔎 {{ count | fr_number }} {{ "résultat" + ("s" if count > 1 else "") }} {{ " pour «&nbsp;" + keywords.strip() + "&nbsp;»" if keywords.strip() else "(tous les votes)" }}</h1>
+       {{ get_correlations(correlations, request) }}
+       {{ get_podiums(podiums) }}
+           {{ page_navigation(count, request) }}
 
-       {% if today | votes_on_day(data) and yesterday | votes_on_day(data) %}
+       {% if today in days and yesterday in days %}
            {{ recent_update([today, yesterday]) }}
-       {% elif today | votes_on_day(data) %}
+       {% elif today in days %}
            {{ recent_update([today]) }}
-       {% elif yesterday | votes_on_day(data) %}
+       {% elif yesterday in days %}
            {{ recent_update([yesterday]) }}
        {% endif %}
 
-       {# The results are keyed by (date, eu_document_code) #}
-       {% for key, data in data.items() | reversed | islice(25 * (request.page - 1), 25*(request.page)) %}
+       {# The results of the page, keyed by (date, eu_document_code) #}
+       {% for key, data in data.items() | reversed %}
             {{ create_vote_results(key[1], data) }}
        {% endfor %}
-       {% if data | length == 0 %}
+       {% if count == 0 %}
            <p>Réessayez avec d'autres mots-clés ou sur une autre période.</p>
            <p>Si des votes ont eu lieu aujourd'hui, revenez plus tard pour les consulter. Des mises à jour sont
            effectuées toutes les heures.</p>
@@ -50,7 +50,7 @@
            </a>
            pour voir si le document que vous cherchez se trouve parmi eux.</p>
        {% endif %}
-       {{ page_navigation(data | length, request) }}
+       {{ page_navigation(count, request) }}
        </div>
      {% include "mep_card.html.jinja" %}
      </body>
